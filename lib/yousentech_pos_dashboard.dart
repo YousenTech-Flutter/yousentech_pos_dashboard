@@ -4,3 +4,5 @@
 //   int addOne(int value) => value + 1;
 // }
 library yousentech_pos_dashboard;
+
+export 'src/presentation/views/home_page.dart';
