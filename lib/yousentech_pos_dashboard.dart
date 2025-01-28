@@ -5,6 +5,4 @@
 // }
 library yousentech_pos_dashboard;
 
-export 'src/presentation/views/home_page.dart';
-export 'src/presentation/views/user_dashboard_screen.dart';
-export 'src/domain/dashboard_viewmodel.dart';
+export 'lib_module.dart';

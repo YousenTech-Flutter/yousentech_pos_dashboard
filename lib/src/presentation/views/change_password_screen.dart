@@ -15,11 +15,10 @@ import 'package:shared_widgets/utils/response_result.dart';
 import 'package:shared_widgets/utils/validator_helper.dart';
 import 'package:yousentech_authentication/authentication/domain/authentication_viewmodel.dart';
 import 'package:yousentech_authentication/authentication/presentation/views/login_screen.dart';
+import 'package:yousentech_authentication/authentication/presentation/widgets/enable_pin_login_screen.dart';
 
 TextEditingController passwordController = TextEditingController();
 TextEditingController confirmPasswordController = TextEditingController();
-AuthenticationController authenticationController =
-    Get.put(AuthenticationController.getInstance());
 
 final _formKey = GlobalKey<FormState>();
 String? errorMessage;
