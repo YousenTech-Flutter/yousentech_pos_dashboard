@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shared_widgets/config/app_colors.dart';
-
-import '../../../../core/config/app_colors.dart';
-import '../../../session/domain/session_viewmodel.dart';
-
+import 'package:yousentech_pos_session/src/domain/session_viewmodel.dart';
 class FiltterSalesTottal extends StatelessWidget {
   FiltterSalesTottal({super.key, required this.id, required this.text});
 

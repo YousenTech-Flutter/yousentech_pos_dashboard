@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:shared_widgets/config/app_colors.dart';
 import 'package:shared_widgets/shared_widgets/custom_app_bar.dart';
 import 'package:yousentech_pos_basic_data_management/yousentech_pos_basic_data_management.dart';
@@ -329,55 +330,56 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   icon: 'calculate_menu_icon',
                                   title: 'pos_account_journal_list',
                                 ),
-                                // TODO :ADD AFTER SessionList
-                                // if (SharedPr.userObj!
-                                //     .showFinalReportForAllSessions!) ...[
-                                //   menuContent(
-                                //     selectedsideUserMenu: SideUserMenu.reports,
-                                //     onTap: () {
-                                //       updateSelectedMenu(
-                                //           menu: SideUserMenu.reports,
-                                //           contentpage: SessionListScreen());
-                                //       updatecontent();
-                                //     },
-                                //     icon: 'reports_menu_icon',
-                                //     title: 'Reports',
-                                //   ),
-                                // ]
-                                // END
-                                // menuContent(
-                                //   selectedsideUserMenu: SideUserMenu.configuration,
-                                //   onTap: () {
-                                //     updateSelectedMenu(
-                                //         menu: SideUserMenu.configuration,
-                                //         contentpage: Container());
-                                //     updatecontent();
-                                //   },
-                                //   icon: 'setting_menu_icon',
-                                //   title: 'Settings',
-                                // ),
-                                // menuContent(
-                                //   selectedsideUserMenu: SideUserMenu.databaseInfoSetting,
-                                //   onTap: () async {
-                                //     updateSelectedMenu(
-                                //         menu: SideUserMenu.databaseInfoSetting,
-                                //         contentpage: const ShowLoadedData());
-                                //     updatecontent();
-                                //   },
-                                //   icon: 'database_menu_icon',
-                                //   title: 'Database_Info_Setting',
-                                // ),
-                                // menuContent(
-                                //   selectedsideUserMenu: SideUserMenu.dataManagement,
-                                //   onTap: () async {
-                                //     updateSelectedMenu(
-                                //         menu: SideUserMenu.dataManagement,
-                                //         contentpage: Container());
-                                //     updatecontent();
-                                //   },
-                                //   icon: 'management_menu_icon',
-                                //   title: 'data_Management',
-                                // ),
+                                
+                                if (SharedPr.userObj!
+                                    .showFinalReportForAllSessions!) ...[
+                                  menuContent(
+                                    selectedsideUserMenu: SideUserMenu.reports,
+                                    onTap: () {
+                                      // TODO :ADD AFTER SessionList
+                                      // updateSelectedMenu(
+                                      //     menu: SideUserMenu.reports,
+                                      //     contentpage: SessionListScreen());
+                                      // updatecontent();
+                                    },
+                                    icon: 'reports_menu_icon',
+                                    title: 'Reports',
+                                  ),
+                                ],
+                                menuContent(
+                                  selectedsideUserMenu: SideUserMenu.configuration,
+                                  onTap: () {
+                                    updateSelectedMenu(
+                                        menu: SideUserMenu.configuration,
+                                        contentpage: Container());
+                                    updatecontent();
+                                  },
+                                  icon: 'setting_menu_icon',
+                                  title: 'Settings',
+                                ),
+                                menuContent(
+                                  selectedsideUserMenu: SideUserMenu.databaseInfoSetting,
+                                  onTap: () async {
+                                    // TODO :ADD AFTER SessionList
+                                    // updateSelectedMenu(
+                                    //     menu: SideUserMenu.databaseInfoSetting,
+                                    //     contentpage: const ShowLoadedData());
+                                    // updatecontent();
+                                  },
+                                  icon: 'database_menu_icon',
+                                  title: 'Database_Info_Setting',
+                                ),
+                                menuContent(
+                                  selectedsideUserMenu: SideUserMenu.dataManagement,
+                                  onTap: () async {
+                                    updateSelectedMenu(
+                                        menu: SideUserMenu.dataManagement,
+                                        contentpage: Container());
+                                    updatecontent();
+                                  },
+                                  icon: 'management_menu_icon',
+                                  title: 'data_Management',
+                                ),
                               ],
                             ),
                           ),

@@ -2,19 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:pos_desktop/core/shared_widgets/app_loading.dart';
-
-import '../../../core/config/app_colors.dart';
-import '../../../core/config/app_enums.dart';
-import '../../../core/config/app_shared_pr.dart';
-import '../../../core/shared_widgets/app_button.dart';
-import '../../../core/shared_widgets/app_dialog.dart';
-import '../../../core/shared_widgets/app_snack_bar.dart';
-import '../../../core/shared_widgets/app_text_field.dart';
-import '../../../core/utils/response_result.dart';
-import '../../session/data/posSession.dart';
-import '../../session/domain/session_viewmodel.dart';
-import '../../session/presentation/session_screen.dart';
+import 'package:pos_shared_preferences/models/pos_session/posSession.dart';
+import 'package:pos_shared_preferences/pos_shared_preferences.dart';
+import 'package:shared_widgets/config/app_colors.dart';
+import 'package:shared_widgets/config/app_enum.dart';
+import 'package:shared_widgets/shared_widgets/app_button.dart';
+import 'package:shared_widgets/shared_widgets/app_dialog.dart';
+import 'package:shared_widgets/shared_widgets/app_loading.dart';
+import 'package:shared_widgets/shared_widgets/app_snack_bar.dart';
+import 'package:shared_widgets/shared_widgets/app_text_field.dart';
+import 'package:shared_widgets/utils/response_result.dart';
+import 'package:yousentech_pos_session/src/domain/session_viewmodel.dart';
+import 'package:yousentech_pos_session/src/presentation/session_screen.dart';
 
 void startNewSession({required BuildContext context}) {
   SessionController sessionController = Get.isRegistered<SessionController>()
@@ -27,9 +26,6 @@ void startNewSession({required BuildContext context}) {
   });
 
   onPressed() async {
-    // print(
-    //     "sessionController.isLoading.value ${sessionController.isLoading.value}");
-
     sessionController.isLoading.value = true;
     ResponseResult result = await sessionController.openOrResumeSession(
         balance: sessionController.price.text.isNotEmpty
@@ -41,17 +37,11 @@ void startNewSession({required BuildContext context}) {
       sessionController.price.text = '';
       await SharedPr.setCurrentSaleSessionId(
           currentSaleSessionId: sessionObj.last);
-      //
       sessionController.isLoading.value = false;
       Get.close(1);
-      // save id
-      // SharedPr.setCurrentSaleSessionId(currentSaleSessionId: sessionObj.last.id!.toString());
-
       Get.to(() => const SessionScreen());
-      // Get.offAll(() => const SessionScreen());
       sessionController.update(['Sessionbutton']);
     } else {
-      //
       sessionController.isLoading.value = false;
       appSnackBar(
           message: result.message,

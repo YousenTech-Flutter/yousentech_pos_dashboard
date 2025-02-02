@@ -37,6 +37,14 @@ dependencies:
     git:
       url: https://github.com/YousenTech-Flutter/yousentech_pos_basic_data_management.git
       ref: master
+  yousentech_pos_session:
+    git:
+      url: https://github.com/YousenTech-Flutter/yousentech_pos_session.git
+      ref: master
+  yousentech_pos_final_report:
+    git:
+      url: https://github.com/YousenTech-Flutter/yousentech_pos_final_report.git
+      ref: master
 dev_dependencies:
   flutter_test:
     sdk: flutter
