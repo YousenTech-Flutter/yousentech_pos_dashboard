@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:yousentech_pos_basic_data_management/yousentech_pos_basic_data_management.dart';
+import 'package:yousentech_pos_basic_data_management/basic_data_management/src/account_journal/presentation/account_journal_list_screen.dart';
+import 'package:yousentech_pos_basic_data_management/basic_data_management/src/account_tax/presentation/account_tax_list_screen.dart';
+import 'package:yousentech_pos_basic_data_management/basic_data_management/src/customer/presentation/views/customers_list_screen.dart';
+import 'package:yousentech_pos_basic_data_management/basic_data_management/src/pos_categories/presentation/views/pos_categories_list_screen.dart';
+import 'package:yousentech_pos_basic_data_management/basic_data_management/src/product_unit/presentation/pos_product_unit_list_screen.dart';
+import 'package:yousentech_pos_basic_data_management/basic_data_management/src/products/presentation/views/product_list_screen.dart';
 import 'package:yousentech_pos_dashboard/config/app_enums.dart';
 
 var sideUserMenu = {
@@ -13,18 +18,6 @@ var sideUserMenu = {
   SideUserMenu.accountTax: [],
   SideUserMenu.accountJournal: [],
   SideUserMenu.reports: [
-    // [
-    //   "orders",
-    //   [Icons.add_shopping_cart_rounded, Container()]
-    // ],
-    // [
-    //   "sale_details",
-    //   [Icons.details, Container()]
-    // ],
-    // [
-    //   "session_report",
-    //   [Icons.report, Container()]
-    // ]
   ],
   SideUserMenu.configuration: [],
   SideUserMenu.databaseInfoSetting: [],

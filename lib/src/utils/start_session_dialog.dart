@@ -12,8 +12,8 @@ import 'package:shared_widgets/shared_widgets/app_loading.dart';
 import 'package:shared_widgets/shared_widgets/app_snack_bar.dart';
 import 'package:shared_widgets/shared_widgets/app_text_field.dart';
 import 'package:shared_widgets/utils/response_result.dart';
-import 'package:yousentech_pos_session/src/domain/session_viewmodel.dart';
-import 'package:yousentech_pos_session/src/presentation/session_screen.dart';
+import 'package:yousentech_pos_session/pos_session/src/domain/session_viewmodel.dart';
+import 'package:yousentech_pos_session/pos_session/src/presentation/session_screen.dart';
 
 void startNewSession({required BuildContext context}) {
   SessionController sessionController = Get.isRegistered<SessionController>()

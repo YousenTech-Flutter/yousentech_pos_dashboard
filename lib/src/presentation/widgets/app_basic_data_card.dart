@@ -8,12 +8,10 @@ import 'package:shared_widgets/config/app_colors.dart';
 import 'package:shared_widgets/config/app_enum.dart';
 import 'package:shared_widgets/shared_widgets/app_snack_bar.dart';
 import 'package:shared_widgets/utils/mac_address_helper.dart';
-import 'package:yousentech_pos_basic_data_management/utils/define_type_function.dart';
+import 'package:yousentech_pos_basic_data_management/basic_data_management/utils/define_type_function.dart';
 import 'package:yousentech_pos_dashboard/config/app_enums.dart';
 import 'package:yousentech_pos_dashboard/config/app_list.dart';
 import 'package:yousentech_pos_dashboard/src/domain/dashboard_viewmodel.dart';
-import 'package:yousentech_pos_loading_synchronizing_data/config/app_enums.dart';
-import 'package:yousentech_pos_loading_synchronizing_data/utils/fetch_date.dart';
 import 'package:yousentech_pos_loading_synchronizing_data/yousentech_pos_loading_synchronizing_data.dart';
 
 class Cardloadingdata extends StatefulWidget {
@@ -34,8 +32,6 @@ class Cardloadingdata extends StatefulWidget {
 }
 
 class _CardloadingdataState extends State<Cardloadingdata> {
-  // Map itemdata = loadingDataController.itemdata;
-
   DashboardController dashboardController =
       Get.put(DashboardController.getInstance());
 
@@ -57,17 +53,8 @@ class _CardloadingdataState extends State<Cardloadingdata> {
     dashboardController.update(['content']);
     loadingDataController.update(['card_loading_data']);
   }
-
-  // Future getsCountLocalAndRemote() async {
-  //   await loadingDataController.getitems();
-  // }
-
   @override
   void initState() {
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    //   getsCountLocalAndRemote();
-    // });
-
     super.initState();
   }
 
@@ -257,7 +244,6 @@ class _CardloadingdataState extends State<Cardloadingdata> {
 class LinearProgress extends StatefulWidget {
   final int startNumber;
   final int endNumber;
-
   const LinearProgress({
     super.key,
     required this.startNumber,
@@ -283,13 +269,6 @@ class _LinearProgressState extends State<LinearProgress> {
 
   @override
   void didUpdateWidget(covariant LinearProgress oldWidget) {
-    // if (widget.startNumber == 0 && widget.endNumber == 0) {
-    //   _progress = 0;
-    // } else if (widget.endNumber == 0) {
-    //   _progress = 0;
-    // } else {
-    //   _progress = (widget.startNumber.toDouble() / widget.endNumber.toDouble()) * 100;
-    // }
     _progress = (widget.startNumber > widget.endNumber)
         ? (widget.endNumber /
                 (widget.startNumber == 0 ? 1 : widget.startNumber)) *
@@ -334,7 +313,6 @@ class _LinearProgressState extends State<LinearProgress> {
           height: 0.01.sh,
         ),
         LinearProgressIndicator(
-            // value: (_progress / 100),
             value: (_progress),
             minHeight: 5.r,
             color: AppColor.emeraldGreen,

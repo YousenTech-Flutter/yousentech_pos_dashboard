@@ -16,20 +16,18 @@ import 'package:shared_widgets/config/app_colors.dart';
 import 'package:shared_widgets/shared_widgets/app_loading.dart';
 import 'package:shared_widgets/shared_widgets/progress_bar_with_text.dart';
 import 'package:shared_widgets/utils/response_result.dart';
-import 'package:yousentech_pos_basic_data_management/yousentech_pos_basic_data_management.dart';
+import 'package:yousentech_pos_basic_data_management/basic_data_management/src/customer/presentation/views/customers_list_screen.dart';
+import 'package:yousentech_pos_basic_data_management/basic_data_management/src/products/presentation/views/product_list_screen.dart';
 import 'package:yousentech_pos_dashboard/config/app_enums.dart';
 import 'package:yousentech_pos_dashboard/config/app_list.dart';
 import 'package:yousentech_pos_dashboard/src/presentation/widgets/app_basic_data_card.dart';
 import 'package:yousentech_pos_dashboard/src/presentation/widgets/invoices_types_summery_cards.dart';
 import 'package:yousentech_pos_final_report/yousentech_pos_final_report.dart';
-import 'package:yousentech_pos_loading_synchronizing_data/config/app_enums.dart';
-import 'package:yousentech_pos_loading_synchronizing_data/config/app_list.dart';
 import 'package:yousentech_pos_loading_synchronizing_data/yousentech_pos_loading_synchronizing_data.dart';
+import 'package:yousentech_pos_session/pos_session/src/domain/session_service.dart';
+import 'package:yousentech_pos_session/pos_session/src/domain/session_viewmodel.dart';
+import 'package:yousentech_pos_session/pos_session/src/presentation/session_close_screen.dart';
 // import 'package:syncfusion_flutter_charts/charts.dart';
-import '../widgets/filtter_sales_tottal.dart';
-import 'package:yousentech_pos_session/src/domain/session_viewmodel.dart';
-import 'package:yousentech_pos_session/src/domain/session_service.dart';
-import 'package:yousentech_pos_session/src/presentation/session_close_screen.dart';
 class UserDashboard extends StatefulWidget {
   const UserDashboard({super.key});
 

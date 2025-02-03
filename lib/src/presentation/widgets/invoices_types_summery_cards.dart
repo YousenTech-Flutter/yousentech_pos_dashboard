@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:yousentech_pos_session/src/domain/session_viewmodel.dart';
-import 'package:yousentech_pos_session/src/utils/show_pending_deletion_confirm_dialog.dart';
 import 'package:shared_widgets/config/app_colors.dart';
 import 'package:shared_widgets/config/app_styles.dart';
+import 'package:yousentech_pos_session/pos_session/src/domain/session_viewmodel.dart';
+import 'package:yousentech_pos_session/pos_session/src/utils/show_pending_deletion_confirm_dialog.dart';
 
 class CustomCard extends StatelessWidget {
   final String title;

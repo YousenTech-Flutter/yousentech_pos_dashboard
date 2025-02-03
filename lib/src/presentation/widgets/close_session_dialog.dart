@@ -4,8 +4,8 @@ import 'package:shared_widgets/config/app_colors.dart';
 import 'package:shared_widgets/config/app_styles.dart';
 import 'package:shared_widgets/shared_widgets/app_button.dart';
 import 'package:shared_widgets/shared_widgets/app_dialog.dart';
-import 'package:yousentech_pos_session/src/domain/session_viewmodel.dart';
-import 'package:yousentech_pos_session/src/utils/show_pending_deletion_confirm_dialog.dart';
+import 'package:yousentech_pos_session/pos_session/src/domain/session_viewmodel.dart';
+import 'package:yousentech_pos_session/pos_session/src/utils/show_pending_deletion_confirm_dialog.dart';
 void closeSessionDialog({
   required onPressed,
   double? openAmount,
