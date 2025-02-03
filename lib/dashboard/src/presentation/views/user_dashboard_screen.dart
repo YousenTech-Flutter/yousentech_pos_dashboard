@@ -127,6 +127,7 @@ class _UserDashboardState extends State<UserDashboard> {
                                           children: [
                                             SvgPicture.asset(
                                               'assets/image/pos_icon.svg',
+                                              package: 'yousentech_pos_dashboard',
                                               clipBehavior: Clip.antiAlias,
                                               fit: BoxFit.fill,
                                               width: 0.01.sw,
@@ -243,6 +244,7 @@ class _UserDashboardState extends State<UserDashboard> {
                                             ),
                                             child: SvgPicture.asset(
                                               'assets/image/pos_image.svg',
+                                              package: 'yousentech_pos_dashboard',
                                               clipBehavior: Clip.antiAlias,
                                               matchTextDirection: true,
                                               fit: BoxFit.fitHeight,

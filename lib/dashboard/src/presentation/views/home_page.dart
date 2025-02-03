@@ -76,7 +76,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   child: GetBuilder<LoadingDataController>(
                       id: "loading",
                       builder: (loadingcontext) {
-                        // print(loadingDataController.isLoad.value);
                         return loadingDataController.isLoad.value
                             ? const ProgressWidget()
                             : GetBuilder<DashboardController>(
@@ -240,29 +239,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   icon: 'dashboard_icon',
                                   title: 'dashboard',
                                 ),
-                                // menuContent(
-                                //   selectedsideUserMenu: SideUserMenu.pointOfSale,
-                                //   onTap: () {
-                                //     updateSelectedMenu(
-                                //         menu: SideUserMenu.pointOfSale,
-                                //         contentpage: const InvoiceScreen());
-                                //     updatecontent();
-                                //   },
-                                //   icon: 'reservation-orders',
-                                //   title: 'pointOfSale',
-                                // ),
-                                // menuContent(
-                                //   selectedsideUserMenu: SideUserMenu.orders,
-                                //   onTap: () {
-                                //     updateSelectedMenu(
-                                //         menu: SideUserMenu.orders,
-                                //         contentpage: const InvoiceScreen());
-                                //     updatecontent();
-                                //   },
-                                //   icon: 'reservation-orders',
-                                //   title: 'orders',
-                                // ),
-                                ///////////////////////////////////
                                 menuContent(
                                   selectedsideUserMenu: SideUserMenu.products,
                                   onTap: () {
@@ -442,6 +418,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         )
                       : SvgPicture.asset(
                           "assets/image/$icon.svg",
+                          package: 'yousentech_pos_dashboard',
                           width: 15.r,
                           height: 15.r,
                           color: AppColor.cyanTeal,
