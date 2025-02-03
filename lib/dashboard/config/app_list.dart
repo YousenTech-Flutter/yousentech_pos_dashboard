@@ -5,7 +5,7 @@ import 'package:yousentech_pos_basic_data_management/basic_data_management/src/c
 import 'package:yousentech_pos_basic_data_management/basic_data_management/src/pos_categories/presentation/views/pos_categories_list_screen.dart';
 import 'package:yousentech_pos_basic_data_management/basic_data_management/src/product_unit/presentation/pos_product_unit_list_screen.dart';
 import 'package:yousentech_pos_basic_data_management/basic_data_management/src/products/presentation/views/product_list_screen.dart';
-import 'package:yousentech_pos_dashboard/config/app_enums.dart';
+import 'package:yousentech_pos_dashboard/dashboard/config/app_enums.dart';
 
 var sideUserMenu = {
   SideUserMenu.dashboard: [],

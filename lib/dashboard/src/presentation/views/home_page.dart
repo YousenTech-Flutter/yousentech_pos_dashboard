@@ -11,10 +11,10 @@ import 'package:yousentech_pos_basic_data_management/basic_data_management/src/c
 import 'package:yousentech_pos_basic_data_management/basic_data_management/src/pos_categories/presentation/views/pos_categories_list_screen.dart';
 import 'package:yousentech_pos_basic_data_management/basic_data_management/src/product_unit/presentation/pos_product_unit_list_screen.dart';
 import 'package:yousentech_pos_basic_data_management/basic_data_management/src/products/presentation/views/product_list_screen.dart';
-import 'package:yousentech_pos_dashboard/config/app_enums.dart';
-import 'package:yousentech_pos_dashboard/config/app_list.dart';
-import 'package:yousentech_pos_dashboard/src/presentation/views/user_dashboard_screen.dart';
-import 'package:yousentech_pos_loading_synchronizing_data/yousentech_pos_loading_synchronizing_data.dart';
+import 'package:yousentech_pos_dashboard/dashboard/config/app_enums.dart';
+import 'package:yousentech_pos_dashboard/dashboard/config/app_list.dart';
+import 'package:yousentech_pos_dashboard/dashboard/src/presentation/views/user_dashboard_screen.dart';
+import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/src/domain/loading_synchronizing_data_viewmodel.dart';
 import '../../domain/dashboard_viewmodel.dart';
 import '../widgets/progress_bar.dart';
 
