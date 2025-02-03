@@ -37,6 +37,10 @@ dependencies:
     git:
       url: https://github.com/YousenTech-Flutter/yousentech_pos_basic_data_management.git
       ref: master
+  yousentech_pos_session:
+    git:
+      url: https://github.com/YousenTech-Flutter/yousentech_pos_session.git
+      ref: master
   yousentech_pos_final_report:
     git:
       url: https://github.com/YousenTech-Flutter/yousentech_pos_final_report.git
@@ -52,8 +56,6 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
   # To add assets to your package, add an assets section, like this:
-  assets:
-    - assets/image/
   #
   # For details regarding assets in packages, see
   # https://flutter.dev/to/asset-from-package

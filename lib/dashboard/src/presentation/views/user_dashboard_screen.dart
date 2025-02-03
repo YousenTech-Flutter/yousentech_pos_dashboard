@@ -8,49 +8,28 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:intl/intl.dart';
 import 'package:popover/popover.dart';
-import 'package:pos_desktop/core/config/app_colors.dart';
-import 'package:pos_desktop/core/shared_widgets/app_loading.dart';
-import 'package:pos_desktop/features/FinalReport/data/final_report_info.dart';
-import 'package:pos_desktop/features/FinalReport/domain/final_report_viewmodel.dart';
-import 'package:pos_desktop/features/dashboard/presentation/widgets/total_card.dart';
-import 'package:pos_desktop/features/session/data/posSession.dart';
-import 'package:pos_desktop/features/session/presentation/widgets/pie_test.dart';
-import 'package:pos_desktop/features/session/presentation/widgets/refined/invoices_bar_chart.dart';
 import 'package:pos_shared_preferences/helper/app_enum.dart';
 import 'package:pos_shared_preferences/models/final_report_info.dart';
-import 'package:pos_shared_preferences/models/pos_session_model.dart';
+import 'package:pos_shared_preferences/models/pos_session/posSession.dart';
 import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:shared_widgets/config/app_colors.dart';
 import 'package:shared_widgets/shared_widgets/app_loading.dart';
 import 'package:shared_widgets/shared_widgets/progress_bar_with_text.dart';
 import 'package:shared_widgets/utils/response_result.dart';
-import 'package:yousentech_pos_basic_data_management/yousentech_pos_basic_data_management.dart';
-import 'package:yousentech_pos_dashboard/config/app_enums.dart';
-import 'package:yousentech_pos_dashboard/config/app_list.dart';
-import 'package:yousentech_pos_dashboard/src/presentation/widgets/app_basic_data_card.dart';
-import 'package:yousentech_pos_loading_synchronizing_data/config/app_enums.dart';
-import 'package:yousentech_pos_loading_synchronizing_data/config/app_list.dart';
-import 'package:yousentech_pos_loading_synchronizing_data/yousentech_pos_loading_synchronizing_data.dart';
+import 'package:yousentech_pos_basic_data_management/basic_data_management/src/customer/presentation/views/customers_list_screen.dart';
+import 'package:yousentech_pos_basic_data_management/basic_data_management/src/products/presentation/views/product_list_screen.dart';
+import 'package:yousentech_pos_dashboard/dashboard/config/app_enums.dart';
+import 'package:yousentech_pos_dashboard/dashboard/config/app_list.dart';
+import 'package:yousentech_pos_dashboard/dashboard/src/presentation/widgets/app_basic_data_card.dart';
+import 'package:yousentech_pos_dashboard/dashboard/src/presentation/widgets/invoices_types_summery_cards.dart';
+import 'package:yousentech_pos_final_report/final_report/src/domain/final_report_viewmodel.dart';
+import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/config/app_enums.dart';
+import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/config/app_list.dart';
+import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/src/domain/loading_synchronizing_data_viewmodel.dart';
+import 'package:yousentech_pos_session/pos_session/src/domain/session_service.dart';
+import 'package:yousentech_pos_session/pos_session/src/domain/session_viewmodel.dart';
+import 'package:yousentech_pos_session/pos_session/src/presentation/session_close_screen.dart';
 // import 'package:syncfusion_flutter_charts/charts.dart';
-
-import '../../../../core/config/app_enums.dart';
-import '../../../../core/config/app_lists.dart';
-import '../../../../core/config/app_shared_pr.dart';
-import '../../../../core/shared_widgets/app_basic_data_card.dart';
-import '../../../../core/utils/response_result.dart';
-import '../../../basic_data_management/customer/presentation/views/customers_list_screen.dart';
-import '../../../basic_data_management/products/presentation/product_list_screen.dart';
-import '../../../dynamic_color_based_on_bg.dart';
-import '../../../loading_synchronizing_data/domain/loading_synchronizing_data_viewmodel.dart';
-import '../../../session/domain/session_service.dart';
-import '../../../session/domain/session_viewmodel.dart';
-import '../../../session/presentation/session_close_screen.dart';
-import '../../../session/presentation/widgets/line_chart.dart';
-import '../../../session/presentation/widgets/refined/invoices_types_summery_cards.dart';
-import '../../../session/presentation/widgets/refined/part3.dart';
-import '../../../session/presentation/widgets/session_Info.dart';
-import '../widgets/filtter_sales_tottal.dart';
-
 class UserDashboard extends StatefulWidget {
   const UserDashboard({super.key});
 
@@ -87,11 +66,8 @@ class _UserDashboardState extends State<UserDashboard> {
   Future posSessionsData() async {
     await sessionController.posSessionsData();
     await loadingDataController.getitems();
-
     await sessionController.sessionAmountOpration();
-    // if(sessionController.posSessionsList.isNotEmpty){
     await finalReportController.getFinalReportInfo();
-    // }
     return sessionController.posSessionsList;
   }
 
@@ -129,7 +105,6 @@ class _UserDashboardState extends State<UserDashboard> {
                             decoration: BoxDecoration(
                                 color: AppColor.white,
                                 borderRadius: BorderRadius.circular(10.r)),
-                            // padding: const EdgeInsets.all(10),
                             child: Column(
                               children: [
                                 Expanded(
@@ -320,7 +295,6 @@ class _UserDashboardState extends State<UserDashboard> {
                                           sessionController
                                                   .posSessionsList.last.state !=
                                               SessionState.closedSession) ...[
-                                        // if(sessionController.posSessionsList.last.closingAmountSet == 0)
                                         const VerticalDivider(),
                                         Expanded(
                                             child: InkWell(
@@ -329,9 +303,6 @@ class _UserDashboardState extends State<UserDashboard> {
                                                       .isLoading.value = true;
                                                   await sessioncontroller
                                                       .uploadData();
-
-                                                  // await sessionController.countInvoicesByStateAndMoveTypessionRemot(sessionNumber:sessionController.posSessionsList.last.id);
-                                                  // await sessionController.countInvoicesByStateAndMoveTypeFromDB(sessionNumber:sessionController.posSessionsList.last.id);
                                                   sessionController
                                                       .isLoading.value = false;
                                                   Get.to(() =>
@@ -467,9 +438,6 @@ class _UserDashboardState extends State<UserDashboard> {
                                   color: Colors.grey,
                                   size: 3.sp,
                                 ),
-                                // SvgPicture.asset(
-                                //   'assets/image/filter.svg',
-                                // ),
                               ],
                             ),
                           );
@@ -479,10 +447,6 @@ class _UserDashboardState extends State<UserDashboard> {
                 SizedBox(
                   height: 10.r,
                 ),
-                // cardes
-                // GetBuilder<SessionController>(
-                //     id: "session_amount_opration_card",
-                //     builder:
                 GetBuilder<FinalReportController>(
                     id: "session_card",
                     builder: (controller) {
@@ -490,7 +454,6 @@ class _UserDashboardState extends State<UserDashboard> {
                         children: [
                           CustomCard(
                             title: InfoTotalCard.totalSales.text,
-
                             total: controller.formatter.format(
                                 controller.finalReportInfo?.totalOutInvoice ??
                                     0.0),
@@ -498,11 +461,6 @@ class _UserDashboardState extends State<UserDashboard> {
                             icon: InfoTotalCard.totalSales.icon,
                             isMiddle: false,
                             height: 0.09.sh, isdashbord: true,
-
-                            // showDeletIcon: index == 0 &&
-                            //         sessionController.pendingInvoiceNo != 0
-                            //     ? true
-                            //     : false,
                           ),
                           CustomCard(
                             title: InfoTotalCard.netIncome.text,
@@ -513,11 +471,6 @@ class _UserDashboardState extends State<UserDashboard> {
                             icon: InfoTotalCard.netIncome.icon,
                             isMiddle: true,
                             height: 0.09.sh, isdashbord: true,
-
-                            // showDeletIcon: index == 0 &&
-                            //         sessionController.pendingInvoiceNo != 0
-                            //     ? true
-                            //     : false,
                           ),
 
                           CustomCard(
@@ -531,64 +484,8 @@ class _UserDashboardState extends State<UserDashboard> {
                             isdashbord: true,
                             isMiddle: false,
                             height: 0.09.sh,
-                            // showDeletIcon: index == 0 &&
-                            //         sessionController.pendingInvoiceNo != 0
-                            //     ? true
-                            //     : false,
                             showSendIcon: false,
                           ),
-// infoCard(text: controller.formatter.format(
-//                                 controller.finalReportInfo?.totalOutInvoice ??
-//                                     0.0), titel:InfoTotalCard.totalSales.,)
-                          // TotalCard(
-                          //   info: InfoTotalCard.totalSales,
-                          //   // totalPrice: sessionController
-                          //   //         .sessionAmountOprationCard.isEmpty
-                          //   //     ? "0.0"
-                          //   //     : sessionController.formatter.format(
-                          //   //         sessionController
-                          //   //                         .sessionAmountOprationCard[
-                          //   //                     "session_amount_opration"]
-                          //   //                 ["total_out_invoice"] ??
-                          //   //             0.0)
-                          //   totalPrice: controller.formatter.format(
-                          //       controller.finalReportInfo?.totalOutInvoice ??
-                          //           0.0),
-                          // ),
-                          // TotalCard(
-                          //   info: InfoTotalCard.netIncome,
-                          //   isMiddle: true,
-                          //   // totalPrice: sessionController
-                          //   //         .sessionAmountOprationCard.isEmpty
-                          //   //     ? "0.0"
-                          //   //     : sessionController.formatter.format(
-                          //   //         (sessionController.sessionAmountOprationCard[
-                          //   //                         "session_amount_opration"]
-                          //   //                     ["total_out_invoice"] ??
-                          //   //                 0.0) -
-                          //   //             (sessionController
-                          //   //                             .sessionAmountOprationCard[
-                          //   //                         "session_amount_opration"]
-                          //   //                     ["total_out_refund"] ??
-                          //   //                 0.0)
-                          //   // ),
-                          //   totalPrice: controller.formatter.format(
-                          //       controller.finalReportInfo?.netSales ?? 0.0),
-                          // ),
-                          // TotalCard(
-                          //   info: InfoTotalCard.totalReturns,
-                          //   // totalPrice: sessionController
-                          //   //         .sessionAmountOprationCard.isEmpty
-                          //   //     ? "0.0"
-                          //   //     : sessionController.formatter.format(
-                          //   //         sessionController.sessionAmountOprationCard[
-                          //   //                     "session_amount_opration"]
-                          //   //                 ["total_out_refund"] ??
-                          //   //             0.0),
-                          //   totalPrice: controller.formatter.format(
-                          //       controller.finalReportInfo?.totalOutRefund ??
-                          //           0.0),
-                          // ),
                         ],
                       );
                     }),
@@ -606,8 +503,6 @@ class _UserDashboardState extends State<UserDashboard> {
                             child: Container(
                                 height: 0.2.sh,
                                 padding: EdgeInsets.all(10.r),
-                                // margin:
-                                //     EdgeInsets.symmetric(vertical: 10.r),
                                 decoration: BoxDecoration(
                                     color: AppColor.white,
                                     borderRadius: BorderRadius.circular(10.r)),
@@ -684,7 +579,6 @@ class _UserDashboardState extends State<UserDashboard> {
                                                         .finalReportInfo!
                                                         .basedSellingProduct!
                                                         .length
-                                            // best_selling_products.length
 
                                             ))
                                   ],
@@ -714,8 +608,6 @@ class _UserDashboardState extends State<UserDashboard> {
                               child: Container(
                                   height: 0.2.sh,
                                   padding: EdgeInsets.all(10.r),
-                                  // margin: EdgeInsets.symmetric(
-                                  //     vertical: 10.r),
                                   decoration: BoxDecoration(
                                       color: AppColor.white,
                                       borderRadius:
@@ -743,8 +635,6 @@ class _UserDashboardState extends State<UserDashboard> {
                                                       (index) {
                                                     opsity -= (opsity /
                                                         (data.length + 1));
-
-                                                    // print(data[index]);
                                                     return Column(
                                                       children: [
                                                         ProgressBarWithText(
@@ -763,18 +653,7 @@ class _UserDashboardState extends State<UserDashboard> {
                                                                   .withOpacity(
                                                                       opsity),
                                                         ),
-                                                        // LineIndecetorContainer(
-                                                        //   value:
-                                                        //       '(${indector![index]}) ${controller.formatter.format((data[index] / sum) * 100)} %',
-                                                        //   prec: double.parse(
-                                                        //       controller.formatter
-                                                        //           .format(data[
-                                                        //                   index] /
-                                                        //               sum)),
-                                                        //   color: AppColor.cyanTeal
-                                                        //       .withOpacity(
-                                                        //           opsity),
-                                                        // ),
+                                                        
                                                         SizedBox(
                                                           height: 1.r,
                                                         ),
@@ -785,30 +664,7 @@ class _UserDashboardState extends State<UserDashboard> {
                                               ),
                                             ),
                                           ),
-                                        // SizedBox(
-                                        //   height: 1.r,
-                                        // ),
-                                        // LineIndecetorContainer(
-                                        //   value: '${'فواكهه'} ${20} %',
-                                        //   prec: 20 / 100,
-                                        //   color: AppColor.amberDark,
-                                        // ),
-                                        // SizedBox(
-                                        //   height: 1.r,
-                                        // ),
-                                        // LineIndecetorContainer(
-                                        //   value: '${'فواكهه'} ${10} %',
-                                        //   prec: 10 / 100,
-                                        //   color: AppColor.amberLight,
-                                        // ),
-                                        // SizedBox(
-                                        //   height: 1.r,
-                                        // ),
-                                        // LineIndecetorContainer(
-                                        //   value: '${'فواكهه'} ${20} %',
-                                        //   prec: 20 / 100,
-                                        //   color: AppColor.aqua,
-                                        // )
+                                        
                                       ])));
                         }),
                     SizedBox(
@@ -821,8 +677,6 @@ class _UserDashboardState extends State<UserDashboard> {
                               child: Container(
                                   height: 0.2.sh,
                                   padding: EdgeInsets.all(10.r),
-                                  // margin: EdgeInsets.symmetric(
-                                  //     vertical: 10.r),
                                   decoration: BoxDecoration(
                                       color: AppColor.white,
                                       borderRadius:
@@ -853,290 +707,7 @@ class _UserDashboardState extends State<UserDashboard> {
                                                 controller: controller)),
                                       ])));
                         })
-                    //Top_sales_sessions
-                    // GetBuilder<FinalReportController>(
-                    //     id: "session_card",
-                    //     builder: (controller) {
-                    //       return Expanded(
-                    //         child: Container(
-                    //             height: 0.2.sh,
-                    //             padding: EdgeInsets.all(10.r),
-                    //             margin:
-                    //                 EdgeInsets.symmetric(vertical: 10.r),
-                    //             decoration: BoxDecoration(
-                    //                 color: AppColor.white,
-                    //                 borderRadius:
-                    //                     BorderRadius.circular(10.r)),
-                    //             child: Column(
-                    //               crossAxisAlignment:
-                    //                   CrossAxisAlignment.start,
-                    //               children: [
-                    //                 Text(
-                    //                   'Top_sales_sessions'.tr,
-                    //                   style: TextStyle(
-                    //                       fontSize: 10.r,
-                    //                       color: AppColor.strongDimGray,
-                    //                       fontWeight: FontWeight.w700),
-                    //                 ),
-                    //                 SizedBox(
-                    //                   height: 10.r,
-                    //                 ),
-                    //                 paymentHeaderRow(header: const [
-                    //                   'session_number',
-                    //                   'start_date',
-                    //                   'balance_opening',
-                    //                   'closingAmount',
-                    //                   "salesAmount"
-                    //                 ]),
-                    //                 Expanded(
-                    //                     child: ListView.separated(
-                    //                         shrinkWrap: true,
-                    //                         itemBuilder:
-                    //                             (BuildContext context,
-                    //                                 int index) {
-                    //                           PosSession? item = controller
-                    //                                       .finalReportInfo ==
-                    //                                   null
-                    //                               ? null
-                    //                               : controller
-                    //                                   .finalReportInfo!
-                    //                                   .topSession![index];
-                    //                           List session = item != null
-                    //                               ? [
-                    //                                   item.id,
-                    //                                   item.startTime,
-                    //                                   item.balanceOpening,
-                    //                                   item.closingAmount,
-                    //                                   item.totalSales,
-                    //                                 ]
-                    //                               : [];
-                    //                           if (session.isNotEmpty) {
-                    //                             session[1] = DateFormat(
-                    //                                     'yyyy-MM-dd')
-                    //                                 .format(DateTime
-                    //                                     .parse(item!
-                    //                                         .startTime!));
-                    //                             session[2] =
-                    //                                 finalReportController
-                    //                                     .formatter
-                    //                                     .format(item
-                    //                                         .balanceOpening);
-
-                    //                             session[3] =
-                    //                                 finalReportController
-                    //                                     .formatter
-                    //                                     .format(item
-                    //                                         .closingAmount);
-                    //                             session[4] =
-                    //                                 finalReportController
-                    //                                     .formatter
-                    //                                     .format(item
-                    //                                         .totalSales);
-                    //                           }
-                    //                           return paymentDataRow(
-                    //                             data: session,
-                    //                           );
-                    //                         },
-                    //                         separatorBuilder:
-                    //                             (context, index) {
-                    //                           return const Divider();
-                    //                         },
-                    //                         itemCount: controller
-                    //                                     .finalReportInfo ==
-                    //                                 null
-                    //                             ? 0
-                    //                             : controller
-                    //                                 .finalReportInfo!
-                    //                                 .topSession!
-                    //                                 .length))
-                    //               ],
-                    //             )),
-                    //       );
-                    //     }),
-
-                    // SizedBox(
-                    //   width: 10.r,
-                    // ),
-                    //lessProductsBasedInAvailableQty
-                    // GetBuilder<FinalReportController>(
-                    //     id: "session_card",
-                    //     builder: (controller) {
-                    //       return Expanded(
-                    //         child: Container(
-                    //             height: 0.2.sh,
-                    //             padding: EdgeInsets.all(10.r),
-                    //             margin:
-                    //                 EdgeInsets.symmetric(vertical: 10.r),
-                    //             decoration: BoxDecoration(
-                    //                 color: AppColor.white,
-                    //                 borderRadius:
-                    //                     BorderRadius.circular(10.r)),
-                    //             child: Column(
-                    //               crossAxisAlignment:
-                    //                   CrossAxisAlignment.start,
-                    //               children: [
-                    //                 Text(
-                    //                   'less_Products_based_on_availableQty'
-                    //                       .tr,
-                    //                   style: TextStyle(
-                    //                       fontSize: 10.r,
-                    //                       color: AppColor.strongDimGray,
-                    //                       fontWeight: FontWeight.w700),
-                    //                 ),
-                    //                 SizedBox(
-                    //                   height: 10.r,
-                    //                 ),
-                    //                 paymentHeaderRow(header: const [
-                    //                   'ID',
-                    //                   'product_name',
-                    //                   'quantity_available',
-                    //                 ]),
-                    //                 Expanded(
-                    //                     child: ListView.separated(
-                    //                         shrinkWrap: true,
-                    //                         itemBuilder:
-                    //                             (BuildContext context,
-                    //                                 int index) {
-                    //                           LessProductsBasedInAvailableQty?
-                    //                               item =
-                    //                               controller.finalReportInfo ==
-                    //                                       null
-                    //                                   ? null
-                    //                                   : controller
-                    //                                       .finalReportInfo!
-                    //                                       .lessProductsBasedInAvailableQty![index];
-                    //                           List product = item != null
-                    //                               ? [
-                    //                                   item.productId,
-                    //                                   item.getProductNameBasedOnLang,
-                    //                                   item.availableQty,
-                    //                                 ]
-                    //                               : [];
-
-                    //                           return paymentDataRow(
-                    //                             data: product,
-                    //                           );
-                    //                         },
-                    //                         separatorBuilder:
-                    //                             (context, index) {
-                    //                           return const Divider();
-                    //                         },
-                    //                         itemCount: controller
-                    //                                     .finalReportInfo ==
-                    //                                 null
-                    //                             ? 0
-                    //                             : controller
-                    //                                 .finalReportInfo!
-                    //                                 .lessProductsBasedInAvailableQty!
-                    //                                 .length))
-                    //               ],
-                    //             )),
-                    //       );
-                    //     }),
-
-                    // ,
-                    // InvoicesBarChart(
-                    //   sessionController: sessionController,
-                    //   isEmpty: true,
-                    // ),
-                    // ,
-                    // Expanded(
-                    //   child: Container(
-                    //       height: 0.25.sh,
-                    //       decoration: BoxDecoration(
-                    //           color: AppColor.white,
-                    //           borderRadius: BorderRadius.circular(10.r)),
-                    //       child: Column(
-                    //         children: [
-                    //           Padding(
-                    //             padding: EdgeInsets.symmetric(
-                    //                 horizontal: 20.0.r, vertical: 5.r),
-                    //             child: Row(
-                    //               children: [
-                    //                 Expanded(
-                    //                   flex: 3,
-                    //                   child: Text(
-                    //                     InfoTotalCard.totalSales.text.tr,
-                    //                     style: TextStyle(
-                    //                         fontSize: 12.r,
-                    //                         color: AppColor.strongDimGray,
-                    //                         fontWeight: FontWeight.w700),
-                    //                   ),
-                    //                 ),
-                    //                 Expanded(
-                    //                   flex: 2,
-                    //                   child: GetBuilder<SessionController>(
-                    //                       builder: (context) {
-                    //                     return Row(
-                    //                       mainAxisAlignment:
-                    //                           MainAxisAlignment.spaceEvenly,
-                    //                       children: [
-                    //                         FiltterSalesTottal(
-                    //                           id: period[0]['id'],
-                    //                           text: period[0]['name'],
-                    //                         ),
-                    //                         FiltterSalesTottal(
-                    //                           id: period[1]['id'],
-                    //                           text: period[1]['name'],
-                    //                         ),
-                    //                         FiltterSalesTottal(
-                    //                           id: period[2]['id'],
-                    //                           text: period[2]['name'],
-                    //                         ),
-                    //                         FiltterSalesTottal(
-                    //                           id: period[3]['id'],
-                    //                           text: period[3]['name'],
-                    //                         ),
-                    //                       ],
-                    //                     );
-                    //                   }),
-                    //                 )
-                    //               ],
-                    //             ),
-                    //           ),
-                    //           Expanded(child: LineChartSample2())
-                    //         ],
-                    //       )),
-                    // ),
-                    // GetBuilder<FinalReportController>(
-                    //   id: "session_card",
-                    //   builder: (controller) {
-                    //     var data = controller
-                    //         .finalReportInfo?.productBasedCategories
-                    //         ?.map((e) => e.totalQty!)
-                    //         .toList();
-                    //     var indector = controller
-                    //         .finalReportInfo?.productBasedCategories
-                    //         ?.map((e) => e.getProductNameBasedOnLang)
-                    //         .toList();
-                    //     return Expanded(
-                    //       flex: 1,
-                    //       child: Container(
-                    //           height: 0.25.sh,
-                    //           padding: EdgeInsets.symmetric(
-                    //               horizontal: 20.0.r, vertical: 10.r),
-                    //           decoration: BoxDecoration(
-                    //               color: AppColor.white,
-                    //               borderRadius: BorderRadius.circular(10.r)),
-                    //           child: Column(
-                    //             crossAxisAlignment: CrossAxisAlignment.start,
-                    //             children: [
-                    //               Text(
-                    //                 'best_products_by_cat'.tr,
-                    //                 style: TextStyle(
-                    //                     fontSize: 10.r,
-                    //                     color: AppColor.strongDimGray,
-                    //                     fontWeight: FontWeight.w700),
-                    //               ),
-                    // Expanded(
-                    //                   child: PieChartSample(
-                    //                 data: data ?? [],
-                    //                 indector: indector ?? [],
-                    //               )),
-                    //             ],
-                    //           )),
-                    //     );
-                    //   })
+                    
                   ],
                 ),
                 SizedBox(
@@ -1163,7 +734,6 @@ class _UserDashboardState extends State<UserDashboard> {
                             child: Container(
                                 height: 0.2.sh,
                                 padding: EdgeInsets.all(10.r),
-                                // margin: EdgeInsets.symmetric(vertical: 10.r),
                                 decoration: BoxDecoration(
                                     color: AppColor.white,
                                     borderRadius: BorderRadius.circular(10.r)),
@@ -1222,17 +792,7 @@ class _UserDashboardState extends State<UserDashboard> {
                                                       ),
                                                     ),
                                                   ])),
-                                              // Text(
-                                              //   " ${'S.R'.tr}",
-                                              //   style: TextStyle(
-                                              //       color: controller
-                                              //               .isbestsellertab
-                                              //               .value
-                                              //           ? AppColor.darkGray8
-                                              //           : AppColor.cyanTeal,
-                                              //       fontWeight:
-                                              //           FontWeight.w700),
-                                              // ),
+                                              
                                             ],
                                           ),
                                           Column(
@@ -1264,7 +824,6 @@ class _UserDashboardState extends State<UserDashboard> {
                                         child: TabBarView(
                                           children: [
                                             // Use PageStorageKey to preserve state
-
                                             Column(
                                               children: [
                                                 Padding(
@@ -1412,81 +971,6 @@ class _UserDashboardState extends State<UserDashboard> {
                                     ],
                                   ),
                                 )
-                                // Column(
-                                //   crossAxisAlignment: CrossAxisAlignment.start,
-                                //   children: [
-
-                                //     Text(
-                                //       'best_selling_products'.tr,
-                                //       style: TextStyle(
-                                //           fontSize: 10.r,
-                                //           color: AppColor.strongDimGray,
-                                //           fontWeight: FontWeight.w700),
-                                //     ),
-                                //     SizedBox(
-                                //       height: 10.r,
-                                //     ),
-                                //     paymentHeaderRow(header: const [
-                                //       'ID',
-                                //       'product_name',
-                                //       'quantity',
-                                //       "price",
-                                //       "total"
-                                //     ]),
-                                //     Expanded(
-                                //         child: ListView.separated(
-                                //             shrinkWrap: true,
-                                //             itemBuilder: (BuildContext context,
-                                //                 int index) {
-                                //               BasedSellingProduct? item =
-                                //                   controller.finalReportInfo ==
-                                //                           null
-                                //                       ? null
-                                //                       : controller
-                                //                               .finalReportInfo!
-                                //                               .basedSellingProduct![
-                                //                           index];
-                                //               List products = item != null
-                                //                   ? [
-                                //                       item.productId,
-                                //                       item.getProductNameBasedOnLang,
-                                //                       item.totalQty,
-                                //                       item.unitPrice,
-                                //                       item.totalPrice
-                                //                     ]
-                                //                   : [];
-                                //               if (products.isNotEmpty) {
-                                //                 products[3] =
-                                //                     finalReportController
-                                //                         .formatter
-                                //                         .format(
-                                //                             item!.unitPrice);
-                                //                 products[4] =
-                                //                     finalReportController
-                                //                         .formatter
-                                //                         .format(
-                                //                             item.totalPrice);
-                                //               }
-                                //               return paymentDataRow(
-                                //                 data: products,
-                                //               );
-                                //             },
-                                //             separatorBuilder: (context, index) {
-                                //               return const Divider();
-                                //             },
-                                //             itemCount:
-                                //                 controller.finalReportInfo ==
-                                //                         null
-                                //                     ? 0
-                                //                     : controller
-                                //                         .finalReportInfo!
-                                //                         .basedSellingProduct!
-                                //                         .length
-                                //             // best_selling_products.length
-
-                                //             ))
-                                //   ],
-                                // )
                                 ),
                           );
                         }),
@@ -1502,7 +986,6 @@ class _UserDashboardState extends State<UserDashboard> {
                             child: Container(
                                 height: 0.2.sh,
                                 padding: EdgeInsets.all(10.r),
-                                // margin: EdgeInsets.symmetric(vertical: 10.r),
                                 decoration: BoxDecoration(
                                     color: AppColor.white,
                                     borderRadius: BorderRadius.circular(10.r)),
@@ -1586,61 +1069,6 @@ class _UserDashboardState extends State<UserDashboard> {
                                 )),
                           );
                         }),
-
-                    // SizedBox(
-                    //   width: 0.01.sw,
-                    // ),
-                    // Expanded(
-                    //   flex: 1,
-                    //   child: Container(
-                    //       height: 0.2.sh,
-                    //       padding: EdgeInsets.all(10.r),
-                    //       margin: EdgeInsets.symmetric(vertical: 10.r),
-                    //       decoration: BoxDecoration(
-                    //           color: AppColor.white,
-                    //           borderRadius: BorderRadius.circular(10.r)),
-                    //       child: Column(
-                    //         crossAxisAlignment: CrossAxisAlignment.start,
-                    //         children: [
-                    //           Text(
-                    //             'best_sellers'.tr,
-                    //             style: TextStyle(
-                    //                 fontSize: 10.r,
-                    //                 color: AppColor.strongDimGray,
-                    //                 fontWeight: FontWeight.w700),
-                    //           ),
-                    //           SizedBox(
-                    //             height: 10.r,
-                    //           ),
-                    //           paymentHeaderRow(header: const [
-                    //             'NO',
-                    //             'name',
-                    //             'total_sales',
-                    //             'no_sessions',
-                    //           ]),
-                    //           Expanded(
-                    //               child: ListView.separated(
-                    //                   shrinkWrap: true,
-                    //                   itemBuilder:
-                    //                       (BuildContext context, int index) {
-                    //                     return paymentDataRow(
-                    //                       data: best_seller[index] as List,
-                    //                     );
-                    //                   },
-                    //                   separatorBuilder: (context, index) {
-                    //                     return const Divider();
-                    //                   },
-                    //                   itemCount: best_seller.length)),
-                    //           // ...[
-                    //           //   ['1', 'Ahmed Ali', '4,099 ', "25"],
-                    //           //   ['2', 'Ahmed Ali', '4,099 ', "25"],
-                    //           //   ['3', 'Ahmed Ali', '4,099 ', "25"],
-                    //           // ].map(
-                    //           //   (e) => SellerHeaderRow(header: e),
-                    //           // )
-                    //         ],
-                    //       )),
-                    // )
                   ],
                 )
               ],
@@ -1706,8 +1134,6 @@ stockAlertsItem({required FinalReportController controller}) {
                 ? null
                 : controller
                     .finalReportInfo!.lessProductsBasedInAvailableQty![index];
-
-        // var item = list[index];
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -1737,23 +1163,7 @@ stockAlertsItem({required FinalReportController controller}) {
                     ),
                   ),
                 ),
-                // InkWell(
-                //   onTap: () {},
-                //   child: Container(
-                //     padding: EdgeInsets.all(3.r),
-                //     decoration: BoxDecoration(
-                //       borderRadius: BorderRadius.circular(10.r),
-                //       color: AppColor.palePink,
-                //     ),
-                //     child: Text(
-                //       'Reorder'.tr,
-                //       style: TextStyle(
-                //           fontSize: 7.r,
-                //           color: AppColor.crimsonRed,
-                //           fontWeight: FontWeight.w700),
-                //     ),
-                //   ),
-                // ),
+                
               ],
             ),
             SizedBox(
@@ -1768,56 +1178,6 @@ stockAlertsItem({required FinalReportController controller}) {
       }),
     ]),
   );
-  // return ListView.builder(
-  //   itemCount: list.length,
-  //   itemBuilder: (BuildContext, index) {
-  //     var item = list[index];
-  //     return Container(
-  //       height: 0.05.sh,
-  //       child: Column(
-  //         crossAxisAlignment: CrossAxisAlignment.start,
-  //         children: [
-  //           Text(
-  //             item['name'].toString().tr,
-  //             style: TextStyle(
-  //                 fontSize: 8.r,
-  //                 color: AppColor.strongDimGray,
-  //                 fontWeight: FontWeight.w700),
-  //           ),
-  //           Row(
-  //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //             children: [
-  //               Text(
-  //                 '${'remaining_quantity'.tr} ${item['naquantitye']} ${'packs'.tr}',
-  //                 style: TextStyle(
-  //                     fontSize: 8.r,
-  //                     color: AppColor.strongDimGray,
-  //                     fontWeight: FontWeight.w700),
-  //               ),
-  //               InkWell(
-  //                 child: Container(
-  //                   padding: EdgeInsets.all(3.r),
-  //                   decoration: BoxDecoration(
-  //                     borderRadius: BorderRadius.circular(10.r),
-  //                     color: AppColor.palePink,
-  //                   ),
-  //                   child: Text(
-  //                     'Reorder'.tr,
-  //                     style: TextStyle(
-  //                         fontSize: 8.r,
-  //                         color: AppColor.crimsonRed,
-  //                         fontWeight: FontWeight.w700),
-  //                   ),
-  //                 ),
-  //               ),
-  //             ],
-  //           ),
-  //           if (index != list.length - 1) const Divider()
-  //         ],
-  //       ),
-  //     );
-  //   },
-  // );
 }
 
 class paymentHeaderRow extends StatelessWidget {
@@ -1903,58 +1263,7 @@ class SellerHeaderRow extends StatelessWidget {
     );
   }
 }
-// class SellerHeaderRow extends StatelessWidget {
-//   SellerHeaderRow({super.key, required this.header});
-//   List header;
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       height: 0.05.sh,
-//       child: Row(
-//         children: [
-//           ...List.generate(
-//             header.length,
-//             (index) => index == 0
-//                 ? Expanded(
-//                     child: Container(
-//                       height: 0.05.sh,
-//                       alignment: Alignment.center,
-//                       color: AppColor.greyWithOpcity,
-//                       child: Text(
-//                         '${header[index]}',
-//                         style: TextStyle(
-//                             fontSize: 3.sp,
-//                             color: AppColor.strongDimGray,
-//                             fontWeight: FontWeight.w700),
-//                       ),
-//                     ),
-//                   )
-//                 : Expanded(
-//                     child: Container(
-//                       height: 0.05.sh,
-//                       child: Column(
-//                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                         children: [
-//                           Text(
-//                             '${header[index]}',
-//                             style: TextStyle(
-//                                 fontSize: 3.sp,
-//                                 color: AppColor.strongDimGray,
-//                                 fontWeight: FontWeight.w700),
-//                           ),
-//                           Divider(
-//                             color: AppColor.lightPeriwinkle,
-//                           )
-//                         ],
-//                       ),
-//                     ),
-//                   ),
-//           )
-//         ],
-//       ),
-//     );
-//   }
-// }
+
 
 class paymentDataRow extends StatelessWidget {
   paymentDataRow(
