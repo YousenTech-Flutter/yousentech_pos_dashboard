@@ -31,14 +31,14 @@ import 'package:yousentech_pos_session/pos_session/src/domain/session_service.da
 import 'package:yousentech_pos_session/pos_session/src/domain/session_viewmodel.dart';
 import 'package:yousentech_pos_session/pos_session/src/presentation/session_close_screen.dart';
 
-class TabletUserDashboard extends StatefulWidget {
-  const TabletUserDashboard({super.key});
+class DesktopUserDashboard extends StatefulWidget {
+  const DesktopUserDashboard({super.key});
 
   @override
-  State<TabletUserDashboard> createState() => _TabletUserDashboardState();
+  State<DesktopUserDashboard> createState() => _DesktopUserDashboardState();
 }
 
-class _TabletUserDashboardState extends State<TabletUserDashboard> {
+class _DesktopUserDashboardState extends State<DesktopUserDashboard> {
   final List<Map> _itemsData = [];
   LoadingDataController loadingDataController =
       Get.put(LoadingDataController());

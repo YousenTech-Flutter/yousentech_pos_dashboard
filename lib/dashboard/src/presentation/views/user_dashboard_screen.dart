@@ -29,6 +29,7 @@ import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/src/domai
 import 'package:yousentech_pos_session/pos_session/src/domain/session_service.dart';
 import 'package:yousentech_pos_session/pos_session/src/domain/session_viewmodel.dart';
 import 'package:yousentech_pos_session/pos_session/src/presentation/session_close_screen.dart';
+
 // import 'package:syncfusion_flutter_charts/charts.dart';
 class UserDashboard extends StatefulWidget {
   const UserDashboard({super.key});
@@ -42,7 +43,7 @@ class _UserDashboardState extends State<UserDashboard> {
   LoadingDataController loadingDataController =
       Get.put(LoadingDataController());
   late ResponseResult _responseResult;
-  late List<_ChartData> data;
+  late List<ChartData> data;
   final bool _isLoading = true;
   late final SessionController sessionController;
   final FinalReportController finalReportController =
@@ -75,10 +76,10 @@ class _UserDashboardState extends State<UserDashboard> {
   void initState() {
     super.initState();
     data = [
-      _ChartData('David', 25),
-      _ChartData('Steve', 38),
-      _ChartData('Jack', 34),
-      _ChartData('Others', 52)
+      ChartData('David', 25),
+      ChartData('Steve', 38),
+      ChartData('Jack', 34),
+      ChartData('Others', 52)
     ];
     sessionController = Get.put(SessionController());
     posSessionsData();
@@ -127,7 +128,8 @@ class _UserDashboardState extends State<UserDashboard> {
                                           children: [
                                             SvgPicture.asset(
                                               'assets/image/pos_icon.svg',
-                                              package: 'yousentech_pos_dashboard',
+                                              package:
+                                                  'yousentech_pos_dashboard',
                                               clipBehavior: Clip.antiAlias,
                                               fit: BoxFit.fill,
                                               width: 0.01.sw,
@@ -244,7 +246,8 @@ class _UserDashboardState extends State<UserDashboard> {
                                             ),
                                             child: SvgPicture.asset(
                                               'assets/image/pos_image.svg',
-                                              package: 'yousentech_pos_dashboard',
+                                              package:
+                                                  'yousentech_pos_dashboard',
                                               clipBehavior: Clip.antiAlias,
                                               matchTextDirection: true,
                                               fit: BoxFit.fitHeight,
@@ -462,22 +465,21 @@ class _UserDashboardState extends State<UserDashboard> {
                             color: InfoTotalCard.totalSales.color,
                             icon: InfoTotalCard.totalSales.icon,
                             isMiddle: false,
-                            height: 0.09.sh, isdashbord: true,
+                            height: 0.09.sh,
+                            isdashbord: true,
                           ),
                           CustomCard(
                             title: InfoTotalCard.netIncome.text,
-
                             total: controller.formatter.format(
                                 controller.finalReportInfo?.netSales ?? 0.0),
                             color: InfoTotalCard.netIncome.color,
                             icon: InfoTotalCard.netIncome.icon,
                             isMiddle: true,
-                            height: 0.09.sh, isdashbord: true,
+                            height: 0.09.sh,
+                            isdashbord: true,
                           ),
-
                           CustomCard(
                             title: InfoTotalCard.totalReturns.text,
-
                             total: controller.formatter.format(
                                 controller.finalReportInfo?.totalOutRefund ??
                                     0.0),
@@ -580,9 +582,7 @@ class _UserDashboardState extends State<UserDashboard> {
                                                     : controller
                                                         .finalReportInfo!
                                                         .basedSellingProduct!
-                                                        .length
-
-                                            ))
+                                                        .length))
                                   ],
                                 )),
                           );
@@ -655,7 +655,6 @@ class _UserDashboardState extends State<UserDashboard> {
                                                                   .withOpacity(
                                                                       opsity),
                                                         ),
-                                                        
                                                         SizedBox(
                                                           height: 1.r,
                                                         ),
@@ -666,7 +665,6 @@ class _UserDashboardState extends State<UserDashboard> {
                                               ),
                                             ),
                                           ),
-                                        
                                       ])));
                         }),
                     SizedBox(
@@ -709,7 +707,6 @@ class _UserDashboardState extends State<UserDashboard> {
                                                 controller: controller)),
                                       ])));
                         })
-                    
                   ],
                 ),
                 SizedBox(
@@ -794,7 +791,6 @@ class _UserDashboardState extends State<UserDashboard> {
                                                       ),
                                                     ),
                                                   ])),
-                                              
                                             ],
                                           ),
                                           Column(
@@ -972,8 +968,7 @@ class _UserDashboardState extends State<UserDashboard> {
                                       ),
                                     ],
                                   ),
-                                )
-                                ),
+                                )),
                           );
                         }),
                     SizedBox(
@@ -1165,7 +1160,6 @@ stockAlertsItem({required FinalReportController controller}) {
                     ),
                   ),
                 ),
-                
               ],
             ),
             SizedBox(
@@ -1266,7 +1260,6 @@ class SellerHeaderRow extends StatelessWidget {
   }
 }
 
-
 class paymentDataRow extends StatelessWidget {
   paymentDataRow(
       {super.key,
@@ -1341,8 +1334,8 @@ class paymentDataRow extends StatelessWidget {
   }
 }
 
-class _ChartData {
-  _ChartData(this.x, this.y);
+class ChartData {
+  ChartData(this.x, this.y);
 
   final String x;
   final double y;
