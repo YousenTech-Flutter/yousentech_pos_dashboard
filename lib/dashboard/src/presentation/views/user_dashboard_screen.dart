@@ -466,7 +466,6 @@ class _UserDashboardState extends State<UserDashboard> {
                           ),
                           CustomCard(
                             title: InfoTotalCard.netIncome.text,
-
                             total: controller.formatter.format(
                                 controller.finalReportInfo?.netSales ?? 0.0),
                             color: InfoTotalCard.netIncome.color,

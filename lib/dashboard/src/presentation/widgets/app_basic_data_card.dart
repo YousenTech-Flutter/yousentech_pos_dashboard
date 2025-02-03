@@ -87,6 +87,7 @@ class _CardloadingdataState extends State<Cardloadingdata> {
               children: [
                 SvgPicture.asset(
                   widget.e.value.last,
+                  package: "yousentech_pos_dashboard",
                   clipBehavior: Clip.antiAlias,
                   fit: BoxFit.fill,
                   width: 15.r,
