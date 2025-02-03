@@ -29,8 +29,6 @@ class _ProgressWidgetState extends State<ProgressWidget> {
 
   @override
   Widget build(BuildContext context) {
-    // Container();
-
     return OverlayPortal(
         controller: _overlayPortalController,
         overlayChildBuilder: (context) {
@@ -46,6 +44,7 @@ class _ProgressWidgetState extends State<ProgressWidget> {
                         children: [
                           Image.asset(
                             'assets/image/logoGif.gif',
+                            package: 'yousentech_pos_dashboard',
                             fit: BoxFit.contain,
                             width: 50.r,
                             height: 50.r,

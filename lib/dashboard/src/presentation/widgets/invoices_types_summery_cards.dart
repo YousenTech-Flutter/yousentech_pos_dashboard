@@ -136,6 +136,7 @@ class CustomCard extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(5)),
                               child: SvgPicture.asset(
                                 "assets/image/delete.svg",
+                                package: 'yousentech_pos_dashboard',
                                 width: 13.r,
                                 height: 13.r,
                               )),
@@ -157,6 +158,7 @@ class CustomCard extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(5)),
                               child: SvgPicture.asset(
                                 "assets/image/send.svg",
+                                package: 'yousentech_pos_dashboard',
                                 width: 13.r,
                                 height: 13.r,
                               )),
