@@ -129,8 +129,8 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                           package: 'yousentech_pos_dashboard',
                                           clipBehavior: Clip.antiAlias,
                                           fit: BoxFit.fill,
-                                          width: 0.01.sw,
-                                          height: 0.01.sw,
+                                          width: 0.02.sw,
+                                          height: 0.02.sw,
                                         ),
                                         SizedBox(
                                           height: 0.01.sh,

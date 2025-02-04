@@ -73,6 +73,7 @@ class CustomCard extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(5.r)),
                             child: SvgPicture.asset(
                               icon,
+                              package: 'yousentech_pos_dashboard',
                               color: AppColor.white,
                               width: 15.r,
                               height: 15.r,

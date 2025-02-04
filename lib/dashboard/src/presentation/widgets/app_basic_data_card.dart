@@ -101,6 +101,7 @@ class _CardLoadingdataTabletState extends State<CardLoadingdataTablet> {
                         children: [
                           SvgPicture.asset(
                             widget.e.value.last,
+                            package: 'yousentech_pos_dashboard',
                             clipBehavior: Clip.antiAlias,
                             fit: BoxFit.fill,
                             color: AppColor.darkCyan,
@@ -216,6 +217,7 @@ class _CardLoadingdataTabletState extends State<CardLoadingdataTablet> {
                                       message: "synchronization".tr,
                                       child: SvgPicture.asset(
                                         'assets/image/sync.svg',
+                                        package: 'yousentech_pos_dashboard',
                                         clipBehavior: Clip.antiAlias,
                                         fit: BoxFit.fill,
                                         width: !widget.ishide ? 15.r : 8.r,
