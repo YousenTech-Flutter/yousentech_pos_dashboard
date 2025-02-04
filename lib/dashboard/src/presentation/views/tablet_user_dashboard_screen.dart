@@ -685,248 +685,249 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
             ),
             Row(
               children: [
-                GetBuilder<FinalReportController>(
-                    id: "session_card",
-                    builder: (controller) {
-                      String theTopSession =
-                          controller.finalReportInfo == null ||
-                                  controller.finalReportInfo!.topSession == null
-                              ? '0'
-                              : controller.finalReportInfo!.topSession!.isEmpty
-                                  ? '0'
-                                  : controller.formatter.format(controller
-                                      .finalReportInfo!
-                                      .topSession!
-                                      .first
-                                      .totalSales!);
-                      return Expanded(
-                        flex: 2,
-                        child: Container(
-                            height: 0.2.sh,
-                            padding: EdgeInsets.all(10.r),
-                            decoration: BoxDecoration(
-                                color: AppColor.white,
-                                borderRadius: BorderRadius.circular(10.r)),
-                            child: DefaultTabController(
-                              length: 2,
-                              child: Column(
-                                children: [
-                                  TabBar(
-                                    onTap: (index) {
-                                      if (index == 0) {
-                                        controller.isbestsellertab.value =
-                                            false;
-                                      } else {
-                                        controller.isbestsellertab.value = true;
-                                      }
-                                      controller.update(["session_card"]);
-                                    },
-                                    indicatorColor: AppColor.cyanTeal,
-                                    tabs: [
-                                      Column(
-                                        children: [
-                                          Text(
-                                            'Top_sales_sessions'.tr,
-                                            style: TextStyle(
-                                                fontSize: 10.r,
-                                                color: AppColor.strongDimGray,
-                                                fontWeight: FontWeight.w700),
-                                          ),
-                                          RichText(
-                                              text:
-                                                  TextSpan(children: <TextSpan>[
-                                            TextSpan(
-                                              text: theTopSession,
-                                              style: TextStyle(
-                                                fontSize: 8.r,
-                                                color: controller
-                                                        .isbestsellertab.value
-                                                    ? AppColor.strongDimGray
-                                                    : AppColor.cyanTeal,
-                                                fontFamily: 'Tajawal',
-                                              ),
-                                            ),
-                                            // get the number
-                                            TextSpan(
-                                              text: ' ${'S.R'.tr}',
-                                              style: TextStyle(
-                                                fontSize: 8.r,
-                                                color: AppColor.strongDimGray,
-                                                fontFamily: 'Tajawal',
-                                              ),
-                                            ),
-                                          ])),
-                                        ],
-                                      ),
-                                      Column(
-                                        children: [
-                                          Text(
-                                            'best_sellers'.tr,
-                                            style: TextStyle(
-                                              fontSize: 10.r,
-                                              fontWeight: FontWeight.w700,
-                                              color: AppColor.strongDimGray,
-                                            ),
-                                          ),
-                                          Text(
-                                            best_seller.first![1].toString(),
-                                            style: TextStyle(
-                                              fontSize: 8.r,
-                                              color: controller
-                                                      .isbestsellertab.value
-                                                  ? AppColor.cyanTeal
-                                                  : AppColor.strongDimGray,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  Expanded(
-                                    child: TabBarView(
-                                      children: [
-                                        // Use PageStorageKey to preserve state
-                                        Column(
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  EdgeInsets.only(top: 5.r),
-                                              child: paymentHeaderRow(
-                                                header: const [
-                                                  'session_number',
-                                                  'start_date',
-                                                  'balance_opening',
-                                                  'closingAmount',
-                                                  "salesAmount"
-                                                ],
-                                                isbold: false,
-                                              ),
-                                            ),
-                                            Expanded(
-                                                child: ListView.separated(
-                                                    shrinkWrap: true,
-                                                    itemBuilder:
-                                                        (BuildContext context,
-                                                            int index) {
-                                                      PosSession? item = controller
-                                                                  .finalReportInfo ==
-                                                              null
-                                                          ? null
-                                                          : controller
-                                                              .finalReportInfo!
-                                                              .topSession![index];
-                                                      List session =
-                                                          item != null
-                                                              ? [
-                                                                  item.id,
-                                                                  item.startTime,
-                                                                  item.balanceOpening,
-                                                                  item.closingAmount,
-                                                                  item.totalSales,
-                                                                ]
-                                                              : [];
-                                                      if (session.isNotEmpty) {
-                                                        session[1] = DateFormat(
-                                                                'yyyy-MM-dd')
-                                                            .format(DateTime
-                                                                .parse(item!
-                                                                    .startTime!));
-                                                        session[2] =
-                                                            finalReportController
-                                                                .formatter
-                                                                .format(item
-                                                                    .balanceOpening);
+                // GetBuilder<FinalReportController>(
+                //     id: "session_card",
+                //     builder: (controller) {
+                //       String theTopSession =
+                //           controller.finalReportInfo == null ||
+                //                   controller.finalReportInfo!.topSession == null
+                //               ? '0'
+                //               : controller.finalReportInfo!.topSession!.isEmpty
+                //                   ? '0'
+                //                   : controller.formatter.format(controller
+                //                       .finalReportInfo!
+                //                       .topSession!
+                //                       .first
+                //                       .totalSales!);
+                //       return Expanded(
+                //         flex: 2,
+                //         child: Container(
+                //             height: 0.2.sh,
+                //             padding: EdgeInsets.all(10.r),
+                //             decoration: BoxDecoration(
+                //                 color: AppColor.white,
+                //                 borderRadius: BorderRadius.circular(10.r)),
+                //             child: DefaultTabController(
+                //               length: 2,
+                //               child: Column(
+                //                 children: [
+                //                   TabBar(
+                //                     onTap: (index) {
+                //                       if (index == 0) {
+                //                         controller.isbestsellertab.value =
+                //                             false;
+                //                       } else {
+                //                         controller.isbestsellertab.value = true;
+                //                       }
+                //                       controller.update(["session_card"]);
+                //                     },
+                //                     indicatorColor: AppColor.cyanTeal,
+                //                     tabs: [
+                //                       Column(
+                //                         children: [
+                //                           Text(
+                //                             'Top_sales_sessions'.tr,
+                //                             style: TextStyle(
+                //                                 fontSize: 10.r,
+                //                                 color: AppColor.strongDimGray,
+                //                                 fontWeight: FontWeight.w700),
+                //                           ),
+                //                           RichText(
+                //                               text:
+                //                                   TextSpan(children: <TextSpan>[
+                //                             TextSpan(
+                //                               text: theTopSession,
+                //                               style: TextStyle(
+                //                                 fontSize: 8.r,
+                //                                 color: controller
+                //                                         .isbestsellertab.value
+                //                                     ? AppColor.strongDimGray
+                //                                     : AppColor.cyanTeal,
+                //                                 fontFamily: 'Tajawal',
+                //                               ),
+                //                             ),
+                //                             // get the number
+                //                             TextSpan(
+                //                               text: ' ${'S.R'.tr}',
+                //                               style: TextStyle(
+                //                                 fontSize: 8.r,
+                //                                 color: AppColor.strongDimGray,
+                //                                 fontFamily: 'Tajawal',
+                //                               ),
+                //                             ),
+                //                           ])),
+                //                         ],
+                //                       ),
+                //                       Column(
+                //                         children: [
+                //                           Text(
+                //                             'best_sellers'.tr,
+                //                             style: TextStyle(
+                //                               fontSize: 10.r,
+                //                               fontWeight: FontWeight.w700,
+                //                               color: AppColor.strongDimGray,
+                //                             ),
+                //                           ),
+                //                           Text(
+                //                             best_seller.first![1].toString(),
+                //                             style: TextStyle(
+                //                               fontSize: 8.r,
+                //                               color: controller
+                //                                       .isbestsellertab.value
+                //                                   ? AppColor.cyanTeal
+                //                                   : AppColor.strongDimGray,
+                //                             ),
+                //                           ),
+                //                         ],
+                //                       ),
+                //                     ],
+                //                   ),
+                //                   Expanded(
+                //                     child: TabBarView(
+                //                       children: [
+                //                         // Use PageStorageKey to preserve state
+                //                         Column(
+                //                           children: [
+                //                             Padding(
+                //                               padding:
+                //                                   EdgeInsets.only(top: 5.r),
+                //                               child: paymentHeaderRow(
+                //                                 header: const [
+                //                                   'session_number',
+                //                                   'start_date',
+                //                                   'balance_opening',
+                //                                   'closingAmount',
+                //                                   "salesAmount"
+                //                                 ],
+                //                                 isbold: false,
+                //                               ),
+                //                             ),
+                //                             Expanded(
+                //                                 child: ListView.separated(
+                //                                     shrinkWrap: true,
+                //                                     itemBuilder:
+                //                                         (BuildContext context,
+                //                                             int index) {
+                //                                       PosSession? item = controller
+                //                                                   .finalReportInfo ==
+                //                                               null
+                //                                           ? null
+                //                                           : controller
+                //                                               .finalReportInfo!
+                //                                               .topSession![index];
+                //                                       List session =
+                //                                           item != null
+                //                                               ? [
+                //                                                   item.id,
+                //                                                   item.startTime,
+                //                                                   item.balanceOpening,
+                //                                                   item.closingAmount,
+                //                                                   item.totalSales,
+                //                                                 ]
+                //                                               : [];
+                //                                       if (session.isNotEmpty) {
+                //                                         session[1] = DateFormat(
+                //                                                 'yyyy-MM-dd')
+                //                                             .format(DateTime
+                //                                                 .parse(item!
+                //                                                     .startTime!));
+                //                                         session[2] =
+                //                                             finalReportController
+                //                                                 .formatter
+                //                                                 .format(item
+                //                                                     .balanceOpening);
 
-                                                        session[3] =
-                                                            finalReportController
-                                                                .formatter
-                                                                .format(item
-                                                                    .closingAmount);
-                                                        session[4] =
-                                                            finalReportController
-                                                                .formatter
-                                                                .format(item
-                                                                    .totalSales);
-                                                      }
-                                                      return Padding(
-                                                        padding: EdgeInsets
-                                                            .symmetric(
-                                                                vertical: 1.r),
-                                                        child: paymentDataRow(
-                                                          data: session,
-                                                        ),
-                                                      );
-                                                    },
-                                                    separatorBuilder:
-                                                        (context, index) {
-                                                      return const Divider(
-                                                          // height: 50.r,
-                                                          );
-                                                    },
-                                                    itemCount: controller
-                                                                .finalReportInfo ==
-                                                            null
-                                                        ? 0
-                                                        : controller.finalReportInfo!
-                                                                    .topSession ==
-                                                                null
-                                                            ? 0
-                                                            : controller
-                                                                .finalReportInfo!
-                                                                .topSession!
-                                                                .length))
-                                          ],
-                                        ),
-                                        Column(
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  EdgeInsets.only(top: 5.r),
-                                              child: paymentHeaderRow(
-                                                header: const [
-                                                  'NO',
-                                                  'name',
-                                                  'total_sales',
-                                                  'no_sessions',
-                                                ],
-                                                isbold: false,
-                                              ),
-                                            ),
-                                            Expanded(
-                                                child: ListView.separated(
-                                                    shrinkWrap: true,
-                                                    itemBuilder:
-                                                        (BuildContext context,
-                                                            int index) {
-                                                      return Padding(
-                                                        padding: EdgeInsets
-                                                            .symmetric(
-                                                                vertical: 1.r),
-                                                        child: paymentDataRow(
-                                                          data:
-                                                              best_seller[index]
-                                                                  as List,
-                                                        ),
-                                                      );
-                                                    },
-                                                    separatorBuilder:
-                                                        (context, index) {
-                                                      return Divider(
-                                                          // height: 5.r,
-                                                          );
-                                                    },
-                                                    itemCount:
-                                                        best_seller.length)),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )),
-                      );
-                    }),
+                //                                         session[3] =
+                //                                             finalReportController
+                //                                                 .formatter
+                //                                                 .format(item
+                //                                                     .closingAmount);
+                //                                         session[4] =
+                //                                             finalReportController
+                //                                                 .formatter
+                //                                                 .format(item
+                //                                                     .totalSales);
+                //                                       }
+                //                                       return Padding(
+                //                                         padding: EdgeInsets
+                //                                             .symmetric(
+                //                                                 vertical: 1.r),
+                //                                         child: paymentDataRow(
+                //                                           data: session,
+                //                                         ),
+                //                                       );
+                //                                     },
+                //                                     separatorBuilder:
+                //                                         (context, index) {
+                //                                       return const Divider(
+                //                                           // height: 50.r,
+                //                                           );
+                //                                     },
+                //                                     itemCount: controller
+                //                                                 .finalReportInfo ==
+                //                                             null
+                //                                         ? 0
+                //                                         : controller.finalReportInfo!
+                //                                                     .topSession ==
+                //                                                 null
+                //                                             ? 0
+                //                                             : controller
+                //                                                 .finalReportInfo!
+                //                                                 .topSession!
+                //                                                 .length))
+                //                           ],
+                //                         ),
+                //                         Column(
+                //                           children: [
+                //                             Padding(
+                //                               padding:
+                //                                   EdgeInsets.only(top: 5.r),
+                //                               child: paymentHeaderRow(
+                //                                 header: const [
+                //                                   'NO',
+                //                                   'name',
+                //                                   'total_sales',
+                //                                   'no_sessions',
+                //                                 ],
+                //                                 isbold: false,
+                //                               ),
+                //                             ),
+                //                             Expanded(
+                //                                 child: ListView.separated(
+                //                                     shrinkWrap: true,
+                //                                     itemBuilder:
+                //                                         (BuildContext context,
+                //                                             int index) {
+                //                                       return Padding(
+                //                                         padding: EdgeInsets
+                //                                             .symmetric(
+                //                                                 vertical: 1.r),
+                //                                         child: paymentDataRow(
+                //                                           data:
+                //                                               best_seller[index]
+                //                                                   as List,
+                //                                         ),
+                //                                       );
+                //                                     },
+                //                                     separatorBuilder:
+                //                                         (context, index) {
+                //                                       return Divider(
+                //                                           // height: 5.r,
+                //                                           );
+                //                                     },
+                //                                     itemCount:
+                //                                         best_seller.length)),
+                //                           ],
+                //                         ),
+                //                       ],
+                //                     ),
+                //                   ),
+                //                 ],
+                //               ),
+                //             )),
+                //       );
+                //     }),
+
                 SizedBox(
                   width: 10.r,
                 ),
