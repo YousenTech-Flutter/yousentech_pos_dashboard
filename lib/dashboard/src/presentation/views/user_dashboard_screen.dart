@@ -106,7 +106,7 @@ class _UserDashboardState extends State<UserDashboard> {
     // Calculate the diagonal screen size in inches
     double screenSizeInInches =
         sqrt(pow(widthInInches, 2) + pow(heightInInches, 2));
-    print(screenSizeInInches < 11);
+    print("is leess than 11 ${screenSizeInInches < 11}");
     return screenSizeInInches < 11;
   }
 
