@@ -619,7 +619,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       ? Icon(
                           icon,
                           size: 10.r,
-                          color: showtitel
+                          color: !showtitel
                               ? isselected
                                   ? AppColor.cyanTeal
                                   : AppColor.white
