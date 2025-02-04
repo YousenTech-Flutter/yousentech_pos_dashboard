@@ -18,6 +18,7 @@ import 'package:shared_widgets/config/app_colors.dart';
 import 'package:shared_widgets/shared_widgets/app_loading.dart';
 import 'package:shared_widgets/shared_widgets/progress_bar_with_text.dart';
 import 'package:shared_widgets/utils/response_result.dart';
+import 'package:shared_widgets/utils/screens_size.dart';
 import 'package:yousentech_pos_basic_data_management/basic_data_management/src/customer/presentation/views/customers_list_screen.dart';
 import 'package:yousentech_pos_basic_data_management/basic_data_management/src/products/presentation/views/product_list_screen.dart';
 import 'package:yousentech_pos_dashboard/dashboard/config/app_enums.dart';
@@ -91,30 +92,11 @@ class _UserDashboardState extends State<UserDashboard> {
     SessionService.getInstance();
   }
 
-  bool isScreenLessThan11Inches() {
-    // Get screen width and height in pixels
-    double screenWidthInPixels = ScreenUtil().screenWidth;
-    double screenHeightInPixels = ScreenUtil().screenHeight;
-
-    // Get the device's pixel density (dpi)
-    double pixelDensity = ScreenUtil().pixelRatio! * 160;
-
-    // Convert pixels to inches
-    double widthInInches = screenWidthInPixels / pixelDensity;
-    double heightInInches = screenHeightInPixels / pixelDensity;
-
-    // Calculate the diagonal screen size in inches
-    double screenSizeInInches =
-        sqrt(pow(widthInInches, 2) + pow(heightInInches, 2));
-    print("is leess than 11 ${screenSizeInInches < 11}");
-    return screenSizeInInches < 11;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        isScreenLessThan11Inches()
+        ScreenSizeHelper().isScreenLessThan11Inches()
             ? TabletUserDashboard()
             : DesktopUserDashboard(),
         Obx(() {

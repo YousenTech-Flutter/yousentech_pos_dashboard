@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:shared_widgets/config/app_colors.dart';
 import 'package:shared_widgets/shared_widgets/custom_app_bar.dart';
+import 'package:shared_widgets/utils/screens_size.dart';
 import 'package:yousentech_pos_basic_data_management/basic_data_management/src/account_journal/presentation/account_journal_list_screen.dart';
 import 'package:yousentech_pos_basic_data_management/basic_data_management/src/account_tax/presentation/account_tax_list_screen.dart';
 import 'package:yousentech_pos_basic_data_management/basic_data_management/src/customer/presentation/views/customers_list_screen.dart';
@@ -212,171 +213,360 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           alignment: Alignment.bottomCenter,
                           child: Padding(
                             padding: EdgeInsets.all(16.0.r),
-                            child: Container(
-                              width: 0.7.sw,
-                              height: 0.07.sh,
-                              padding: EdgeInsets.all(5.r),
-                              decoration: BoxDecoration(
-                                color: AppColor.white,
-                                borderRadius: BorderRadius.circular(10.r),
-                                // boxShadow: [
-                                //   BoxShadow(
-                                //     color: Colors.black
-                                //         .withOpacity(0.1), // يمكنك تغيير لون الظل
-                                //     offset: const Offset(2, 2), // تحديد موضع الظل
-                                //     blurRadius: 4.0, // تحديد درجة تشويش الظل
-                                //     spreadRadius: 1.0, // تحديد مدى امتداد الظل
-                                //   ),
-                                // ],
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  menuContent(
-                                    selectedsideUserMenu:
-                                        SideUserMenu.dashboard,
-                                    onTap: () {
-                                      updateSelectedMenu(
-                                          menu: SideUserMenu.dashboard,
-                                          contentpage: const UserDashboard());
-                                      updatecontent();
-                                    },
-                                    icon: 'dashboard_icon',
-                                    title: 'dashboard',
-                                  ),
-                                  menuContent(
-                                    selectedsideUserMenu: SideUserMenu.products,
-                                    onTap: () {
-                                      updateSelectedMenu(
-                                          menu: SideUserMenu.products,
-                                          contentpage:
-                                              const ProductListScreen());
-                                      updatecontent();
-                                    },
-                                    icon: 'product_menu_icon',
-                                    title: 'products',
-                                  ),
-                                  menuContent(
-                                    selectedsideUserMenu:
-                                        SideUserMenu.customers,
-                                    onTap: () {
-                                      updateSelectedMenu(
-                                          menu: SideUserMenu.customers,
-                                          contentpage:
-                                              const CustomersListScreen());
-                                      updatecontent();
-                                    },
-                                    icon: 'customers',
-                                    title: 'customers',
-                                  ),
-                                  menuContent(
-                                    selectedsideUserMenu:
-                                        SideUserMenu.categories,
-                                    onTap: () {
-                                      updateSelectedMenu(
-                                          menu: SideUserMenu.categories,
-                                          contentpage:
-                                              const PosCategoryListScreen());
-                                      updatecontent();
-                                    },
-                                    icon: 'categories_menu_icon',
-                                    title: 'categories',
-                                  ),
-                                  menuContent(
-                                    selectedsideUserMenu: SideUserMenu.units,
-                                    onTap: () {
-                                      updateSelectedMenu(
-                                          menu: SideUserMenu.units,
-                                          contentpage:
-                                              const PosProductUnitListScreen());
-                                      updatecontent();
-                                    },
-                                    icon: 'productunit_menu_icon',
-                                    title: 'product_unit',
-                                  ),
-                                  menuContent(
-                                    selectedsideUserMenu:
-                                        SideUserMenu.accountTax,
-                                    onTap: () {
-                                      updateSelectedMenu(
-                                          menu: SideUserMenu.accountTax,
-                                          contentpage:
-                                              const PosAccountTaxListScreen());
-                                      updatecontent();
-                                    },
-                                    icon: 'product_tax_menu_icon',
-                                    title: 'taxes',
-                                  ),
-                                  menuContent(
-                                    selectedsideUserMenu:
-                                        SideUserMenu.accountJournal,
-                                    onTap: () {
-                                      updateSelectedMenu(
-                                          menu: SideUserMenu.accountJournal,
-                                          contentpage:
-                                              const PosAccountJournalListScreen());
-                                      updatecontent();
-                                    },
-                                    icon: 'calculate_menu_icon',
-                                    title: 'pos_account_journal_list',
-                                  ),
-                                  if (SharedPr.userObj!
-                                      .showFinalReportForAllSessions!) ...[
-                                    menuContent(
-                                      selectedsideUserMenu:
-                                          SideUserMenu.reports,
-                                      onTap: () {
-                                        // TODO :ADD AFTER SessionList
-                                        // updateSelectedMenu(
-                                        //     menu: SideUserMenu.reports,
-                                        //     contentpage: SessionListScreen());
-                                        // updatecontent();
-                                      },
-                                      icon: 'reports_menu_icon',
-                                      title: 'Reports',
+                            child: ScreenSizeHelper().isScreenLessThan11Inches()
+                                ? Container(
+                                    width: 0.7.sw,
+                                    height: 0.07.sh,
+                                    padding: EdgeInsets.all(5.r),
+                                    decoration: BoxDecoration(
+                                      color: AppColor.cyanTeallite,
+                                      borderRadius: BorderRadius.circular(13.r),
+                                      // boxShadow: [
+                                      //   BoxShadow(
+                                      //     color: Colors.black
+                                      //         .withOpacity(0.1), // يمكنك تغيير لون الظل
+                                      //     offset: const Offset(2, 2), // تحديد موضع الظل
+                                      //     blurRadius: 4.0, // تحديد درجة تشويش الظل
+                                      //     spreadRadius: 1.0, // تحديد مدى امتداد الظل
+                                      //   ),
+                                      // ],
                                     ),
-                                  ],
-                                  menuContent(
-                                    selectedsideUserMenu:
-                                        SideUserMenu.configuration,
-                                    onTap: () {
-                                      updateSelectedMenu(
-                                          menu: SideUserMenu.configuration,
-                                          contentpage: Container());
-                                      updatecontent();
-                                    },
-                                    icon: 'setting_menu_icon',
-                                    title: 'Settings',
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        menuContent(
+                                          selectedsideUserMenu:
+                                              SideUserMenu.dashboard,
+                                          onTap: () {
+                                            updateSelectedMenu(
+                                                menu: SideUserMenu.dashboard,
+                                                contentpage:
+                                                    const UserDashboard());
+                                            updatecontent();
+                                          },
+                                          showtitel: false,
+                                          icon: 'dashboard_icon',
+                                          title: 'dashboard',
+                                        ),
+                                        menuContent(
+                                          selectedsideUserMenu:
+                                              SideUserMenu.products,
+                                          onTap: () {
+                                            updateSelectedMenu(
+                                                menu: SideUserMenu.products,
+                                                contentpage:
+                                                    const ProductListScreen());
+                                            updatecontent();
+                                          },
+                                          showtitel: false,
+                                          icon: 'product_menu_icon',
+                                          title: 'products',
+                                        ),
+                                        menuContent(
+                                          selectedsideUserMenu:
+                                              SideUserMenu.customers,
+                                          onTap: () {
+                                            updateSelectedMenu(
+                                                menu: SideUserMenu.customers,
+                                                contentpage:
+                                                    const CustomersListScreen());
+                                            updatecontent();
+                                          },
+                                          showtitel: false,
+                                          icon: 'customers',
+                                          title: 'customers',
+                                        ),
+                                        menuContent(
+                                          selectedsideUserMenu:
+                                              SideUserMenu.categories,
+                                          onTap: () {
+                                            updateSelectedMenu(
+                                                menu: SideUserMenu.categories,
+                                                contentpage:
+                                                    const PosCategoryListScreen());
+                                            updatecontent();
+                                          },
+                                          showtitel: false,
+                                          icon: 'categories_menu_icon',
+                                          title: 'categories',
+                                        ),
+                                        menuContent(
+                                          selectedsideUserMenu:
+                                              SideUserMenu.units,
+                                          onTap: () {
+                                            updateSelectedMenu(
+                                                menu: SideUserMenu.units,
+                                                contentpage:
+                                                    const PosProductUnitListScreen());
+                                            updatecontent();
+                                          },
+                                          showtitel: false,
+                                          icon: 'productunit_menu_icon',
+                                          title: 'product_unit',
+                                        ),
+                                        menuContent(
+                                          selectedsideUserMenu:
+                                              SideUserMenu.accountTax,
+                                          onTap: () {
+                                            updateSelectedMenu(
+                                                menu: SideUserMenu.accountTax,
+                                                contentpage:
+                                                    const PosAccountTaxListScreen());
+                                            updatecontent();
+                                          },
+                                          showtitel: false,
+                                          icon: 'product_tax_menu_icon',
+                                          title: 'taxes',
+                                        ),
+                                        menuContent(
+                                          selectedsideUserMenu:
+                                              SideUserMenu.accountJournal,
+                                          onTap: () {
+                                            updateSelectedMenu(
+                                                menu:
+                                                    SideUserMenu.accountJournal,
+                                                contentpage:
+                                                    const PosAccountJournalListScreen());
+                                            updatecontent();
+                                          },
+                                          showtitel: false,
+                                          icon: 'calculate_menu_icon',
+                                          title: 'pos_account_journal_list',
+                                        ),
+                                        if (SharedPr.userObj!
+                                            .showFinalReportForAllSessions!) ...[
+                                          menuContent(
+                                            selectedsideUserMenu:
+                                                SideUserMenu.reports,
+                                            onTap: () {
+                                              // TODO :ADD AFTER SessionList
+                                              // updateSelectedMenu(
+                                              //     menu: SideUserMenu.reports,
+                                              //     contentpage: SessionListScreen());
+                                              // updatecontent();
+                                            },
+                                            showtitel: false,
+                                            icon: 'reports_menu_icon',
+                                            title: 'Reports',
+                                          ),
+                                        ],
+                                        menuContent(
+                                          selectedsideUserMenu:
+                                              SideUserMenu.configuration,
+                                          onTap: () {
+                                            updateSelectedMenu(
+                                                menu:
+                                                    SideUserMenu.configuration,
+                                                contentpage: Container());
+                                            updatecontent();
+                                          },
+                                          showtitel: false,
+                                          icon: 'setting_menu_icon',
+                                          title: 'Settings',
+                                        ),
+                                        menuContent(
+                                          selectedsideUserMenu:
+                                              SideUserMenu.databaseInfoSetting,
+                                          onTap: () async {
+                                            // TODO :ADD AFTER SessionList
+                                            // updateSelectedMenu(
+                                            //     menu: SideUserMenu.databaseInfoSetting,
+                                            //     contentpage: const ShowLoadedData());
+                                            // updatecontent();
+                                          },
+                                          showtitel: false,
+                                          icon: 'database_menu_icon',
+                                          title: 'Database_Info_Setting',
+                                        ),
+                                        menuContent(
+                                          selectedsideUserMenu:
+                                              SideUserMenu.dataManagement,
+                                          onTap: () async {
+                                            updateSelectedMenu(
+                                                menu:
+                                                    SideUserMenu.dataManagement,
+                                                contentpage: Container());
+                                            updatecontent();
+                                          },
+                                          icon: 'management_menu_icon',
+                                          showtitel: false,
+                                          title: 'data_Management',
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                : Container(
+                                    width: 0.7.sw,
+                                    height: 0.07.sh,
+                                    padding: EdgeInsets.all(5.r),
+                                    decoration: BoxDecoration(
+                                      color: AppColor.white,
+                                      borderRadius: BorderRadius.circular(10.r),
+                                      // boxShadow: [
+                                      //   BoxShadow(
+                                      //     color: Colors.black
+                                      //         .withOpacity(0.1), // يمكنك تغيير لون الظل
+                                      //     offset: const Offset(2, 2), // تحديد موضع الظل
+                                      //     blurRadius: 4.0, // تحديد درجة تشويش الظل
+                                      //     spreadRadius: 1.0, // تحديد مدى امتداد الظل
+                                      //   ),
+                                      // ],
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        menuContent(
+                                          selectedsideUserMenu:
+                                              SideUserMenu.dashboard,
+                                          onTap: () {
+                                            updateSelectedMenu(
+                                                menu: SideUserMenu.dashboard,
+                                                contentpage:
+                                                    const UserDashboard());
+                                            updatecontent();
+                                          },
+                                          icon: 'dashboard_icon',
+                                          title: 'dashboard',
+                                        ),
+                                        menuContent(
+                                          selectedsideUserMenu:
+                                              SideUserMenu.products,
+                                          onTap: () {
+                                            updateSelectedMenu(
+                                                menu: SideUserMenu.products,
+                                                contentpage:
+                                                    const ProductListScreen());
+                                            updatecontent();
+                                          },
+                                          icon: 'product_menu_icon',
+                                          title: 'products',
+                                        ),
+                                        menuContent(
+                                          selectedsideUserMenu:
+                                              SideUserMenu.customers,
+                                          onTap: () {
+                                            updateSelectedMenu(
+                                                menu: SideUserMenu.customers,
+                                                contentpage:
+                                                    const CustomersListScreen());
+                                            updatecontent();
+                                          },
+                                          icon: 'customers',
+                                          title: 'customers',
+                                        ),
+                                        menuContent(
+                                          selectedsideUserMenu:
+                                              SideUserMenu.categories,
+                                          onTap: () {
+                                            updateSelectedMenu(
+                                                menu: SideUserMenu.categories,
+                                                contentpage:
+                                                    const PosCategoryListScreen());
+                                            updatecontent();
+                                          },
+                                          icon: 'categories_menu_icon',
+                                          title: 'categories',
+                                        ),
+                                        menuContent(
+                                          selectedsideUserMenu:
+                                              SideUserMenu.units,
+                                          onTap: () {
+                                            updateSelectedMenu(
+                                                menu: SideUserMenu.units,
+                                                contentpage:
+                                                    const PosProductUnitListScreen());
+                                            updatecontent();
+                                          },
+                                          icon: 'productunit_menu_icon',
+                                          title: 'product_unit',
+                                        ),
+                                        menuContent(
+                                          selectedsideUserMenu:
+                                              SideUserMenu.accountTax,
+                                          onTap: () {
+                                            updateSelectedMenu(
+                                                menu: SideUserMenu.accountTax,
+                                                contentpage:
+                                                    const PosAccountTaxListScreen());
+                                            updatecontent();
+                                          },
+                                          icon: 'product_tax_menu_icon',
+                                          title: 'taxes',
+                                        ),
+                                        menuContent(
+                                          selectedsideUserMenu:
+                                              SideUserMenu.accountJournal,
+                                          onTap: () {
+                                            updateSelectedMenu(
+                                                menu:
+                                                    SideUserMenu.accountJournal,
+                                                contentpage:
+                                                    const PosAccountJournalListScreen());
+                                            updatecontent();
+                                          },
+                                          icon: 'calculate_menu_icon',
+                                          title: 'pos_account_journal_list',
+                                        ),
+                                        if (SharedPr.userObj!
+                                            .showFinalReportForAllSessions!) ...[
+                                          menuContent(
+                                            selectedsideUserMenu:
+                                                SideUserMenu.reports,
+                                            onTap: () {
+                                              // TODO :ADD AFTER SessionList
+                                              // updateSelectedMenu(
+                                              //     menu: SideUserMenu.reports,
+                                              //     contentpage: SessionListScreen());
+                                              // updatecontent();
+                                            },
+                                            icon: 'reports_menu_icon',
+                                            title: 'Reports',
+                                          ),
+                                        ],
+                                        menuContent(
+                                          selectedsideUserMenu:
+                                              SideUserMenu.configuration,
+                                          onTap: () {
+                                            updateSelectedMenu(
+                                                menu:
+                                                    SideUserMenu.configuration,
+                                                contentpage: Container());
+                                            updatecontent();
+                                          },
+                                          icon: 'setting_menu_icon',
+                                          title: 'Settings',
+                                        ),
+                                        menuContent(
+                                          selectedsideUserMenu:
+                                              SideUserMenu.databaseInfoSetting,
+                                          onTap: () async {
+                                            // TODO :ADD AFTER SessionList
+                                            // updateSelectedMenu(
+                                            //     menu: SideUserMenu.databaseInfoSetting,
+                                            //     contentpage: const ShowLoadedData());
+                                            // updatecontent();
+                                          },
+                                          icon: 'database_menu_icon',
+                                          title: 'Database_Info_Setting',
+                                        ),
+                                        menuContent(
+                                          selectedsideUserMenu:
+                                              SideUserMenu.dataManagement,
+                                          onTap: () async {
+                                            updateSelectedMenu(
+                                                menu:
+                                                    SideUserMenu.dataManagement,
+                                                contentpage: Container());
+                                            updatecontent();
+                                          },
+                                          icon: 'management_menu_icon',
+                                          title: 'data_Management',
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  menuContent(
-                                    selectedsideUserMenu:
-                                        SideUserMenu.databaseInfoSetting,
-                                    onTap: () async {
-                                      // TODO :ADD AFTER SessionList
-                                      // updateSelectedMenu(
-                                      //     menu: SideUserMenu.databaseInfoSetting,
-                                      //     contentpage: const ShowLoadedData());
-                                      // updatecontent();
-                                    },
-                                    icon: 'database_menu_icon',
-                                    title: 'Database_Info_Setting',
-                                  ),
-                                  menuContent(
-                                    selectedsideUserMenu:
-                                        SideUserMenu.dataManagement,
-                                    onTap: () async {
-                                      updateSelectedMenu(
-                                          menu: SideUserMenu.dataManagement,
-                                          contentpage: Container());
-                                      updatecontent();
-                                    },
-                                    icon: 'management_menu_icon',
-                                    title: 'data_Management',
-                                  ),
-                                ],
-                              ),
-                            ),
                           ),
                         );
                       })
@@ -402,6 +592,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     required icon,
     required void Function()? onTap,
     required String title,
+    bool showtitel = true,
     required SideUserMenu selectedsideUserMenu,
   }) {
     return GetBuilder<DashboardController>(
@@ -441,13 +632,15 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           //     ? AppColor.iconsMenuActavit
                           //     : AppColor.iconsMenu,
                         ),
-                  Text(
-                    title.tr,
-                    style: TextStyle(
-                        fontSize: 8.r,
-                        fontWeight: FontWeight.w400,
-                        color: AppColor.cyanTeal),
-                  )
+                  showtitel
+                      ? Text(
+                          title.tr,
+                          style: TextStyle(
+                              fontSize: 8.r,
+                              fontWeight: FontWeight.w400,
+                              color: AppColor.cyanTeal),
+                        )
+                      : Container()
                 ],
               ),
             ),
