@@ -309,6 +309,7 @@ class _CardloadingdataState extends State<Cardloadingdata> {
   updateSelectedMenu(
       {required SideUserMenu menu, required Widget contentpage}) {
     dashboardController.updateSelectedMenu(sideUserMenu: menu);
+
     dashboardController.selectedMenulength =
         sideUserMenu[dashboardController.selectedMenu]!.length;
     dashboardController.content = contentpage;
