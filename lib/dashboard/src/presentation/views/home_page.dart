@@ -605,7 +605,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 3.r),
               decoration: BoxDecoration(
-                  color: isselected ? AppColor.cyanTeal.withOpacity(0.1) : null,
+                  color: !showtitel
+                      ? null
+                      : isselected
+                          ? AppColor.cyanTeal.withOpacity(0.1)
+                          : null,
                   borderRadius:
                       isselected ? BorderRadius.circular(10.r) : null),
               child: Column(
@@ -615,7 +619,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       ? Icon(
                           icon,
                           size: 10.r,
-                          color: AppColor.cyanTeal,
+                          color: showtitel
+                              ? isselected
+                                  ? AppColor.cyanTeal
+                                  : AppColor.white
+                              : AppColor.cyanTeal,
                           // color: dashboardController.selectedMenu ==
                           //         selectedsideUserMenu
                           //     ? AppColor.purple
