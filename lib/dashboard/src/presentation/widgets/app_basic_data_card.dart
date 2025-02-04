@@ -15,7 +15,270 @@ import 'package:yousentech_pos_dashboard/dashboard/src/domain/dashboard_viewmode
 import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/config/app_enums.dart';
 import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/src/domain/loading_synchronizing_data_viewmodel.dart';
 
+class CardLoadingdataTablet extends StatefulWidget {
+  MapEntry<Loaddata, List> e;
 
+  SideUserMenu? menu;
+  Widget? contentpage;
+  bool ishide;
+  CardLoadingdataTablet(
+      {super.key,
+      required this.e,
+      this.menu,
+      this.contentpage,
+      this.ishide = false});
+
+  @override
+  State<CardLoadingdataTablet> createState() => _CardLoadingdataTabletState();
+}
+
+class _CardLoadingdataTabletState extends State<CardLoadingdataTablet> {
+  // Map itemdata = loadingDataController.itemdata;
+
+  DashboardController dashboardController =
+      Get.put(DashboardController.getInstance());
+  LoadingDataController loadingDataController =
+      Get.find<LoadingDataController>();
+  BuildContext? dialogContext;
+
+  updateSelectedMenu(
+      {required SideUserMenu menu, required Widget contentpage}) {
+    dashboardController.updateSelectedMenu(sideUserMenu: menu);
+    dashboardController.selectedMenulength =
+        sideUserMenu[dashboardController.selectedMenu]!.length;
+    dashboardController.content = contentpage;
+    dashboardController.selectedSubMenu =
+        sideUserMenu[dashboardController.selectedMenu]!.isNotEmpty ? 0 : null;
+  }
+
+  updatecontent() {
+    dashboardController.update(['UserMenu']);
+    loadingDataController.update(['loadings']);
+    dashboardController.update(['content']);
+    loadingDataController.update(['card_loading_data']);
+  }
+
+  // Future getsCountLocalAndRemote() async {
+  //   await loadingDataController.getitems();
+  // }
+
+  @override
+  void initState() {
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   getsCountLocalAndRemote();
+    // });
+
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<LoadingDataController>(
+        id: 'card_loading_data',
+        builder: (controller) {
+          return Container(
+            padding: EdgeInsets.all(10.r),
+            width: 0.3.sw,
+            decoration: BoxDecoration(
+              color: AppColor.white,
+              borderRadius: BorderRadius.circular(10.r),
+              boxShadow: [
+                BoxShadow(
+                  color: AppColor.softIceBlue,
+                  blurRadius: 60,
+                  offset: const Offset(0, 10),
+                  spreadRadius: 0,
+                )
+              ],
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          SvgPicture.asset(
+                            widget.e.value.last,
+                            clipBehavior: Clip.antiAlias,
+                            fit: BoxFit.fill,
+                            color: AppColor.darkCyan,
+                            width: 15.r,
+                            height: 15.r,
+                          ),
+                          SizedBox(
+                            width: 10.r,
+                          ),
+                          InkWell(
+                            onTap: () async {
+                              bool isTrustedDevice =
+                                  await MacAddressHelper.isTrustedDevice();
+                              if (isTrustedDevice) {
+                                if (widget.menu != null) {
+                                  updateSelectedMenu(
+                                      menu: widget.menu!,
+                                      contentpage: widget.contentpage!);
+                                  updatecontent();
+                                }
+                              }
+                            },
+                            child: Text(
+                              widget.e.key.name.toString().tr,
+                              style: TextStyle(
+                                  fontSize: 10.r,
+                                  color: AppColor.dimGray,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                          ),
+                        ],
+                      ),
+                      // SizedBox(
+                      //   height: 10.r,
+                      // ),
+                      Padding(
+                        padding: EdgeInsets.all(8.0.r),
+                        child: LinearProgress(
+                          startNumber:
+                              controller.itemdata[widget.e.key.name.toString()]
+                                      ?['local'] ??
+                                  0,
+                          endNumber:
+                              controller.itemdata[widget.e.key.name.toString()]
+                                      ?['remote'] ??
+                                  0,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                GetBuilder<LoadingDataController>(
+                    id: 'loading',
+                    builder: (controller) {
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          !widget.ishide
+                              ? InkWell(
+                                  onTap: () async {
+                                    loadingDataController.isUpdate.value = true;
+                                    bool isTrustedDevice =
+                                        await MacAddressHelper
+                                            .isTrustedDevice();
+                                    if (isTrustedDevice) {
+                                      var result =
+                                          await synchronizeBasedOnModelType(
+                                              type: widget.e.key.toString());
+
+                                      if (result == true) {
+                                        appSnackBar(
+                                            message: 'synchronized'.tr,
+                                            messageType: MessageTypes.success,
+                                            isDismissible: false);
+                                      } else if (result == false) {
+                                        appSnackBar(
+                                            message:
+                                                'synchronized_successfully'.tr,
+                                            messageType: MessageTypes.success,
+                                            isDismissible: false);
+                                      } else if (result is String) {
+                                        appSnackBar(
+                                          message: result,
+                                          messageType:
+                                              MessageTypes.connectivityOff,
+                                        );
+                                      } else {
+                                        appSnackBar(
+                                            message:
+                                                'synchronization_problem'.tr,
+                                            messageType: MessageTypes.success,
+                                            isDismissible: false);
+                                      }
+                                      loadingDataController.isUpdate.value =
+                                          false;
+                                      controller.update(['card_loading_data']);
+                                      controller.update(['loading']);
+                                    }
+                                    loadingDataController.isUpdate.value =
+                                        false;
+                                  },
+                                  child: Container(
+                                    width: 20.w,
+                                    height: 20.h,
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: AppColor.cyanTeal,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(10.r)),
+                                    child: Tooltip(
+                                      message: "synchronization".tr,
+                                      child: SvgPicture.asset(
+                                        'assets/image/sync.svg',
+                                        clipBehavior: Clip.antiAlias,
+                                        fit: BoxFit.fill,
+                                        width: !widget.ishide ? 15.r : 8.r,
+                                        height: !widget.ishide ? 15.r : 8.r,
+                                        color: AppColor.tealBlue,
+                                      ),
+                                    ),
+                                  ))
+                              : Container(),
+                          SizedBox(
+                            height: 10.r,
+                          ),
+                          !widget.ishide
+                              ? InkWell(
+                                  onTap: () async {
+                                    var result = await controller.updateAll(
+                                        name: widget.e.key.toString());
+                                    if (result == true) {
+                                      appSnackBar(
+                                          message: 'update_success'.tr,
+                                          messageType: MessageTypes.success,
+                                          isDismissible: false);
+                                    } else if (result is String) {
+                                      appSnackBar(
+                                        message: result,
+                                        messageType:
+                                            MessageTypes.connectivityOff,
+                                      );
+                                    } else {
+                                      appSnackBar(
+                                          message: 'update_Failed'.tr,
+                                          messageType: MessageTypes.error,
+                                          isDismissible: false);
+                                    }
+                                    controller.update(['card_loading_data']);
+                                  },
+                                  child: Container(
+                                    width: 20.w,
+                                    height: 20.h,
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                        color: AppColor.cyanTeal,
+                                        borderRadius:
+                                            BorderRadius.circular(10.r)),
+                                    child: Text(
+                                      "Update_All".tr,
+                                      style: TextStyle(
+                                          fontSize: 8.r,
+                                          color: AppColor.offWhite,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                  ))
+                              : Container(),
+                        ],
+                      );
+                      // }
+                    })
+              ],
+            ),
+          );
+        });
+  }
+}
 
 class Cardloadingdata extends StatefulWidget {
   MapEntry<Loaddata, List> e;
@@ -37,7 +300,8 @@ class Cardloadingdata extends StatefulWidget {
 class _CardloadingdataState extends State<Cardloadingdata> {
   DashboardController dashboardController =
       Get.put(DashboardController.getInstance());
-  LoadingDataController loadingDataController = Get.find<LoadingDataController>();
+  LoadingDataController loadingDataController =
+      Get.find<LoadingDataController>();
   BuildContext? dialogContext;
 
   updateSelectedMenu(
@@ -56,6 +320,7 @@ class _CardloadingdataState extends State<Cardloadingdata> {
     dashboardController.update(['content']);
     loadingDataController.update(['card_loading_data']);
   }
+
   @override
   void initState() {
     super.initState();

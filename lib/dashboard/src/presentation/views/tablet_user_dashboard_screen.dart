@@ -99,8 +99,8 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                   id: "Sessionbutton",
                   builder: (sessioncontroller) {
                     return Container(
-                        width: 0.3.sw,
-                        height: 0.2.sh,
+                        width: 0.4.sw,
+                        height: 0.24.sh,
                         decoration: BoxDecoration(
                             color: AppColor.white,
                             borderRadius: BorderRadius.circular(10.r)),
@@ -321,21 +321,26 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                 width: 10.r,
               ),
               // product && customer
-              Cardloadingdata(
-                e: loaddata.entries
-                    .firstWhere((element) => element.key == Loaddata.products),
-                menu: SideUserMenu.products,
-                contentpage: const ProductListScreen(),
+              Column(
+                children: [
+                  CardLoadingdataTablet(
+                    e: loaddata.entries.firstWhere(
+                        (element) => element.key == Loaddata.products),
+                    menu: SideUserMenu.products,
+                    contentpage: const ProductListScreen(),
+                  ),
+                  SizedBox(
+                    height: 10.r,
+                  ),
+                  CardLoadingdataTablet(
+                    e: loaddata.entries.firstWhere(
+                        (element) => element.key == Loaddata.customers),
+                    menu: SideUserMenu.customers,
+                    contentpage: const CustomersListScreen(),
+                  ),
+                ],
               ),
-              SizedBox(
-                width: 10.r,
-              ),
-              Cardloadingdata(
-                e: loaddata.entries
-                    .firstWhere((element) => element.key == Loaddata.customers),
-                menu: SideUserMenu.customers,
-                contentpage: const CustomersListScreen(),
-              ),
+
               // filter
               const Spacer(),
               GetBuilder<SessionController>(
@@ -366,7 +371,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                                 style: TextStyle(
                                                   color:
                                                       const Color(0xff6F6F6F),
-                                                  fontSize: 2.5.sp,
+                                                  fontSize: 10.r,
                                                 ),
                                               ),
                                               dense: true,
@@ -419,7 +424,9 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                             ),
                             Text(
                               _selectedValue!.tr,
-                              style: TextStyle(color: AppColor.lavenderGray2),
+                              style: TextStyle(
+                                  fontSize: 10.r,
+                                  color: AppColor.lavenderGray2),
                             ),
                             SizedBox(
                               width: 5.r,
@@ -427,7 +434,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                             Icon(
                               FontAwesomeIcons.sliders,
                               color: Colors.grey,
-                              size: 3.sp,
+                              size: 10.r,
                             ),
                           ],
                         ),
@@ -484,89 +491,6 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                GetBuilder<FinalReportController>(
-                    id: "session_card",
-                    builder: (controller) {
-                      return Expanded(
-                        child: Container(
-                            height: 0.2.sh,
-                            padding: EdgeInsets.all(10.r),
-                            decoration: BoxDecoration(
-                                color: AppColor.white,
-                                borderRadius: BorderRadius.circular(10.r)),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'best_selling_products'.tr,
-                                  style: TextStyle(
-                                      fontSize: 10.r,
-                                      color: AppColor.strongDimGray,
-                                      fontWeight: FontWeight.w700),
-                                ),
-                                SizedBox(
-                                  height: 10.r,
-                                ),
-                                paymentHeaderRow(header: const [
-                                  'ID',
-                                  'product_name',
-                                  'quantity',
-                                  "price",
-                                  "total"
-                                ]),
-                                Expanded(
-                                    child: ListView.separated(
-                                        shrinkWrap: true,
-                                        itemBuilder:
-                                            (BuildContext context, int index) {
-                                          BasedSellingProduct? item = controller
-                                                      .finalReportInfo ==
-                                                  null
-                                              ? null
-                                              : controller.finalReportInfo!
-                                                  .basedSellingProduct![index];
-                                          List products = item != null
-                                              ? [
-                                                  item.productId,
-                                                  item.getProductNameBasedOnLang,
-                                                  item.totalQty,
-                                                  item.unitPrice,
-                                                  item.totalPrice
-                                                ]
-                                              : [];
-                                          if (products.isNotEmpty) {
-                                            products[3] = finalReportController
-                                                .formatter
-                                                .format(item!.unitPrice);
-                                            products[4] = finalReportController
-                                                .formatter
-                                                .format(item.totalPrice);
-                                          }
-                                          return paymentDataRow(
-                                            data: products,
-                                          );
-                                        },
-                                        separatorBuilder: (context, index) {
-                                          return const Divider();
-                                        },
-                                        itemCount: controller.finalReportInfo ==
-                                                null
-                                            ? 0
-                                            : controller.finalReportInfo!
-                                                        .basedSellingProduct ==
-                                                    null
-                                                ? 0
-                                                : controller
-                                                    .finalReportInfo!
-                                                    .basedSellingProduct!
-                                                    .length))
-                              ],
-                            )),
-                      );
-                    }),
-                SizedBox(
-                  width: 10.r,
-                ),
                 GetBuilder<FinalReportController>(
                     id: "session_card",
                     builder: (controller) {
@@ -683,337 +607,421 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
             SizedBox(
               height: 10.r,
             ),
+            Row(children: [
+              GetBuilder<FinalReportController>(
+                  id: "session_card",
+                  builder: (controller) {
+                    return Expanded(
+                      flex: 2,
+                      child: Container(
+                          height: 0.2.sh,
+                          padding: EdgeInsets.all(10.r),
+                          decoration: BoxDecoration(
+                              color: AppColor.white,
+                              borderRadius: BorderRadius.circular(10.r)),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'best_selling_products'.tr,
+                                style: TextStyle(
+                                    fontSize: 10.r,
+                                    color: AppColor.strongDimGray,
+                                    fontWeight: FontWeight.w700),
+                              ),
+                              SizedBox(
+                                height: 10.r,
+                              ),
+                              paymentHeaderRow(header: const [
+                                'ID',
+                                'product_name',
+                                'quantity',
+                                "price",
+                                "total"
+                              ]),
+                              Expanded(
+                                  child: ListView.separated(
+                                      shrinkWrap: true,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        BasedSellingProduct? item = controller
+                                                    .finalReportInfo ==
+                                                null
+                                            ? null
+                                            : controller.finalReportInfo!
+                                                .basedSellingProduct![index];
+                                        List products = item != null
+                                            ? [
+                                                item.productId,
+                                                item.getProductNameBasedOnLang,
+                                                item.totalQty,
+                                                item.unitPrice,
+                                                item.totalPrice
+                                              ]
+                                            : [];
+                                        if (products.isNotEmpty) {
+                                          products[3] = finalReportController
+                                              .formatter
+                                              .format(item!.unitPrice);
+                                          products[4] = finalReportController
+                                              .formatter
+                                              .format(item.totalPrice);
+                                        }
+                                        return paymentDataRow(
+                                          data: products,
+                                        );
+                                      },
+                                      separatorBuilder: (context, index) {
+                                        return const Divider();
+                                      },
+                                      itemCount: controller.finalReportInfo ==
+                                              null
+                                          ? 0
+                                          : controller.finalReportInfo!
+                                                      .basedSellingProduct ==
+                                                  null
+                                              ? 0
+                                              : controller.finalReportInfo!
+                                                  .basedSellingProduct!.length))
+                            ],
+                          )),
+                    );
+                  }),
+
+              SizedBox(
+                width: 10.r,
+              ),
+              // payment Method
+              GetBuilder<FinalReportController>(
+                  id: "session_card",
+                  builder: (controller) {
+                    return Expanded(
+                      flex: 1,
+                      child: Container(
+                          height: 0.2.sh,
+                          padding: EdgeInsets.all(10.r),
+                          decoration: BoxDecoration(
+                              color: AppColor.white,
+                              borderRadius: BorderRadius.circular(10.r)),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'payment_methods'.tr,
+                                style: TextStyle(
+                                    fontSize: 10.r,
+                                    color: AppColor.strongDimGray,
+                                    fontWeight: FontWeight.w700),
+                              ),
+                              SizedBox(
+                                height: 10.r,
+                              ),
+                              paymentHeaderRow(header: const [
+                                'paymentType',
+                                'total',
+                                'num_times'
+                              ]),
+                              Expanded(
+                                  child: ListView.separated(
+                                      shrinkWrap: true,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        String name = SharedPr.lang == "ar"
+                                            ? finalReportController
+                                                .invoicePaymentMethod[index]
+                                                .accountJournalName
+                                                .ar001
+                                            : finalReportController
+                                                .invoicePaymentMethod[index]
+                                                .accountJournalName
+                                                .enUS;
+                                        String amount = finalReportController
+                                            .formatter
+                                            .format(finalReportController
+                                                .invoicePaymentMethod[index]
+                                                .totalAmount);
+                                        String invoiceCount =
+                                            finalReportController
+                                                .invoicePaymentMethod[index]
+                                                .invoiceCount
+                                                .toString();
+                                        List item = [
+                                          name,
+                                          amount,
+                                          invoiceCount
+                                        ];
+                                        return paymentDataRow(
+                                          data: item,
+                                          icon: finalReportController
+                                                      .invoicePaymentMethod[
+                                                          index]
+                                                      .type ==
+                                                  PaymentType.cash.name
+                                              ? 'assets/image/cash.svg'
+                                              : finalReportController
+                                                          .invoicePaymentMethod[
+                                                              index]
+                                                          .type ==
+                                                      PaymentType.bank.name
+                                                  ? 'assets/image/credit_card.svg'
+                                                  : 'assets/image/wallet.svg',
+                                          isPymentMethod: true,
+                                        );
+                                      },
+                                      separatorBuilder: (context, index) {
+                                        return const Divider();
+                                      },
+                                      itemCount: controller
+                                          .invoicePaymentMethod.length))
+                            ],
+                          )),
+                    );
+                  }),
+            ]),
+            SizedBox(
+              height: 10.r,
+            ),
             Row(
               children: [
-                // GetBuilder<FinalReportController>(
-                //     id: "session_card",
-                //     builder: (controller) {
-                //       String theTopSession =
-                //           controller.finalReportInfo == null ||
-                //                   controller.finalReportInfo!.topSession == null
-                //               ? '0'
-                //               : controller.finalReportInfo!.topSession!.isEmpty
-                //                   ? '0'
-                //                   : controller.formatter.format(controller
-                //                       .finalReportInfo!
-                //                       .topSession!
-                //                       .first
-                //                       .totalSales!);
-                //       return Expanded(
-                //         flex: 2,
-                //         child: Container(
-                //             height: 0.2.sh,
-                //             padding: EdgeInsets.all(10.r),
-                //             decoration: BoxDecoration(
-                //                 color: AppColor.white,
-                //                 borderRadius: BorderRadius.circular(10.r)),
-                //             child: DefaultTabController(
-                //               length: 2,
-                //               child: Column(
-                //                 children: [
-                //                   TabBar(
-                //                     onTap: (index) {
-                //                       if (index == 0) {
-                //                         controller.isbestsellertab.value =
-                //                             false;
-                //                       } else {
-                //                         controller.isbestsellertab.value = true;
-                //                       }
-                //                       controller.update(["session_card"]);
-                //                     },
-                //                     indicatorColor: AppColor.cyanTeal,
-                //                     tabs: [
-                //                       Column(
-                //                         children: [
-                //                           Text(
-                //                             'Top_sales_sessions'.tr,
-                //                             style: TextStyle(
-                //                                 fontSize: 10.r,
-                //                                 color: AppColor.strongDimGray,
-                //                                 fontWeight: FontWeight.w700),
-                //                           ),
-                //                           RichText(
-                //                               text:
-                //                                   TextSpan(children: <TextSpan>[
-                //                             TextSpan(
-                //                               text: theTopSession,
-                //                               style: TextStyle(
-                //                                 fontSize: 8.r,
-                //                                 color: controller
-                //                                         .isbestsellertab.value
-                //                                     ? AppColor.strongDimGray
-                //                                     : AppColor.cyanTeal,
-                //                                 fontFamily: 'Tajawal',
-                //                               ),
-                //                             ),
-                //                             // get the number
-                //                             TextSpan(
-                //                               text: ' ${'S.R'.tr}',
-                //                               style: TextStyle(
-                //                                 fontSize: 8.r,
-                //                                 color: AppColor.strongDimGray,
-                //                                 fontFamily: 'Tajawal',
-                //                               ),
-                //                             ),
-                //                           ])),
-                //                         ],
-                //                       ),
-                //                       Column(
-                //                         children: [
-                //                           Text(
-                //                             'best_sellers'.tr,
-                //                             style: TextStyle(
-                //                               fontSize: 10.r,
-                //                               fontWeight: FontWeight.w700,
-                //                               color: AppColor.strongDimGray,
-                //                             ),
-                //                           ),
-                //                           Text(
-                //                             best_seller.first![1].toString(),
-                //                             style: TextStyle(
-                //                               fontSize: 8.r,
-                //                               color: controller
-                //                                       .isbestsellertab.value
-                //                                   ? AppColor.cyanTeal
-                //                                   : AppColor.strongDimGray,
-                //                             ),
-                //                           ),
-                //                         ],
-                //                       ),
-                //                     ],
-                //                   ),
-                //                   Expanded(
-                //                     child: TabBarView(
-                //                       children: [
-                //                         // Use PageStorageKey to preserve state
-                //                         Column(
-                //                           children: [
-                //                             Padding(
-                //                               padding:
-                //                                   EdgeInsets.only(top: 5.r),
-                //                               child: paymentHeaderRow(
-                //                                 header: const [
-                //                                   'session_number',
-                //                                   'start_date',
-                //                                   'balance_opening',
-                //                                   'closingAmount',
-                //                                   "salesAmount"
-                //                                 ],
-                //                                 isbold: false,
-                //                               ),
-                //                             ),
-                //                             Expanded(
-                //                                 child: ListView.separated(
-                //                                     shrinkWrap: true,
-                //                                     itemBuilder:
-                //                                         (BuildContext context,
-                //                                             int index) {
-                //                                       PosSession? item = controller
-                //                                                   .finalReportInfo ==
-                //                                               null
-                //                                           ? null
-                //                                           : controller
-                //                                               .finalReportInfo!
-                //                                               .topSession![index];
-                //                                       List session =
-                //                                           item != null
-                //                                               ? [
-                //                                                   item.id,
-                //                                                   item.startTime,
-                //                                                   item.balanceOpening,
-                //                                                   item.closingAmount,
-                //                                                   item.totalSales,
-                //                                                 ]
-                //                                               : [];
-                //                                       if (session.isNotEmpty) {
-                //                                         session[1] = DateFormat(
-                //                                                 'yyyy-MM-dd')
-                //                                             .format(DateTime
-                //                                                 .parse(item!
-                //                                                     .startTime!));
-                //                                         session[2] =
-                //                                             finalReportController
-                //                                                 .formatter
-                //                                                 .format(item
-                //                                                     .balanceOpening);
-
-                //                                         session[3] =
-                //                                             finalReportController
-                //                                                 .formatter
-                //                                                 .format(item
-                //                                                     .closingAmount);
-                //                                         session[4] =
-                //                                             finalReportController
-                //                                                 .formatter
-                //                                                 .format(item
-                //                                                     .totalSales);
-                //                                       }
-                //                                       return Padding(
-                //                                         padding: EdgeInsets
-                //                                             .symmetric(
-                //                                                 vertical: 1.r),
-                //                                         child: paymentDataRow(
-                //                                           data: session,
-                //                                         ),
-                //                                       );
-                //                                     },
-                //                                     separatorBuilder:
-                //                                         (context, index) {
-                //                                       return const Divider(
-                //                                           // height: 50.r,
-                //                                           );
-                //                                     },
-                //                                     itemCount: controller
-                //                                                 .finalReportInfo ==
-                //                                             null
-                //                                         ? 0
-                //                                         : controller.finalReportInfo!
-                //                                                     .topSession ==
-                //                                                 null
-                //                                             ? 0
-                //                                             : controller
-                //                                                 .finalReportInfo!
-                //                                                 .topSession!
-                //                                                 .length))
-                //                           ],
-                //                         ),
-                //                         Column(
-                //                           children: [
-                //                             Padding(
-                //                               padding:
-                //                                   EdgeInsets.only(top: 5.r),
-                //                               child: paymentHeaderRow(
-                //                                 header: const [
-                //                                   'NO',
-                //                                   'name',
-                //                                   'total_sales',
-                //                                   'no_sessions',
-                //                                 ],
-                //                                 isbold: false,
-                //                               ),
-                //                             ),
-                //                             Expanded(
-                //                                 child: ListView.separated(
-                //                                     shrinkWrap: true,
-                //                                     itemBuilder:
-                //                                         (BuildContext context,
-                //                                             int index) {
-                //                                       return Padding(
-                //                                         padding: EdgeInsets
-                //                                             .symmetric(
-                //                                                 vertical: 1.r),
-                //                                         child: paymentDataRow(
-                //                                           data:
-                //                                               best_seller[index]
-                //                                                   as List,
-                //                                         ),
-                //                                       );
-                //                                     },
-                //                                     separatorBuilder:
-                //                                         (context, index) {
-                //                                       return Divider(
-                //                                           // height: 5.r,
-                //                                           );
-                //                                     },
-                //                                     itemCount:
-                //                                         best_seller.length)),
-                //                           ],
-                //                         ),
-                //                       ],
-                //                     ),
-                //                   ),
-                //                 ],
-                //               ),
-                //             )),
-                //       );
-                //     }),
-
-                SizedBox(
-                  width: 10.r,
-                ),
-                // payment Method
                 GetBuilder<FinalReportController>(
                     id: "session_card",
                     builder: (controller) {
+                      String theTopSession =
+                          controller.finalReportInfo == null ||
+                                  controller.finalReportInfo!.topSession == null
+                              ? '0'
+                              : controller.finalReportInfo!.topSession!.isEmpty
+                                  ? '0'
+                                  : controller.formatter.format(controller
+                                      .finalReportInfo!
+                                      .topSession!
+                                      .first
+                                      .totalSales!);
                       return Expanded(
-                        flex: 1,
+                        flex: 2,
                         child: Container(
                             height: 0.2.sh,
                             padding: EdgeInsets.all(10.r),
                             decoration: BoxDecoration(
                                 color: AppColor.white,
                                 borderRadius: BorderRadius.circular(10.r)),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'payment_methods'.tr,
-                                  style: TextStyle(
-                                      fontSize: 10.r,
-                                      color: AppColor.strongDimGray,
-                                      fontWeight: FontWeight.w700),
-                                ),
-                                SizedBox(
-                                  height: 10.r,
-                                ),
-                                paymentHeaderRow(header: const [
-                                  'paymentType',
-                                  'total',
-                                  'num_times'
-                                ]),
-                                Expanded(
-                                    child: ListView.separated(
-                                        shrinkWrap: true,
-                                        itemBuilder:
-                                            (BuildContext context, int index) {
-                                          String name = SharedPr.lang == "ar"
-                                              ? finalReportController
-                                                  .invoicePaymentMethod[index]
-                                                  .accountJournalName
-                                                  .ar001
-                                              : finalReportController
-                                                  .invoicePaymentMethod[index]
-                                                  .accountJournalName
-                                                  .enUS;
-                                          String amount = finalReportController
-                                              .formatter
-                                              .format(finalReportController
-                                                  .invoicePaymentMethod[index]
-                                                  .totalAmount);
-                                          String invoiceCount =
-                                              finalReportController
-                                                  .invoicePaymentMethod[index]
-                                                  .invoiceCount
-                                                  .toString();
-                                          List item = [
-                                            name,
-                                            amount,
-                                            invoiceCount
-                                          ];
-                                          return paymentDataRow(
-                                            data: item,
-                                            icon: finalReportController
-                                                        .invoicePaymentMethod[
-                                                            index]
-                                                        .type ==
-                                                    PaymentType.cash.name
-                                                ? 'assets/image/cash.svg'
-                                                : finalReportController
-                                                            .invoicePaymentMethod[
-                                                                index]
-                                                            .type ==
-                                                        PaymentType.bank.name
-                                                    ? 'assets/image/credit_card.svg'
-                                                    : 'assets/image/wallet.svg',
-                                            isPymentMethod: true,
-                                          );
-                                        },
-                                        separatorBuilder: (context, index) {
-                                          return const Divider();
-                                        },
-                                        itemCount: controller
-                                            .invoicePaymentMethod.length))
-                              ],
+                            child: DefaultTabController(
+                              length: 2,
+                              child: Column(
+                                children: [
+                                  TabBar(
+                                    onTap: (index) {
+                                      if (index == 0) {
+                                        controller.isbestsellertab.value =
+                                            false;
+                                      } else {
+                                        controller.isbestsellertab.value = true;
+                                      }
+                                      controller.update(["session_card"]);
+                                    },
+                                    indicatorColor: AppColor.cyanTeal,
+                                    tabs: [
+                                      Column(
+                                        children: [
+                                          Text(
+                                            'Top_sales_sessions'.tr,
+                                            style: TextStyle(
+                                                fontSize: 10.r,
+                                                color: AppColor.strongDimGray,
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                          RichText(
+                                              text:
+                                                  TextSpan(children: <TextSpan>[
+                                            TextSpan(
+                                              text: theTopSession,
+                                              style: TextStyle(
+                                                fontSize: 8.r,
+                                                color: controller
+                                                        .isbestsellertab.value
+                                                    ? AppColor.strongDimGray
+                                                    : AppColor.cyanTeal,
+                                                fontFamily: 'Tajawal',
+                                              ),
+                                            ),
+                                            // get the number
+                                            TextSpan(
+                                              text: ' ${'S.R'.tr}',
+                                              style: TextStyle(
+                                                fontSize: 8.r,
+                                                color: AppColor.strongDimGray,
+                                                fontFamily: 'Tajawal',
+                                              ),
+                                            ),
+                                          ])),
+                                        ],
+                                      ),
+                                      Column(
+                                        children: [
+                                          Text(
+                                            'best_sellers'.tr,
+                                            style: TextStyle(
+                                              fontSize: 10.r,
+                                              fontWeight: FontWeight.w700,
+                                              color: AppColor.strongDimGray,
+                                            ),
+                                          ),
+                                          Text(
+                                            best_seller.first![1].toString(),
+                                            style: TextStyle(
+                                              fontSize: 8.r,
+                                              color: controller
+                                                      .isbestsellertab.value
+                                                  ? AppColor.cyanTeal
+                                                  : AppColor.strongDimGray,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  Expanded(
+                                    child: TabBarView(
+                                      children: [
+                                        // Use PageStorageKey to preserve state
+                                        Column(
+                                          children: [
+                                            Padding(
+                                              padding:
+                                                  EdgeInsets.only(top: 5.r),
+                                              child: paymentHeaderRow(
+                                                header: const [
+                                                  'session_number',
+                                                  'start_date',
+                                                  'balance_opening',
+                                                  'closingAmount',
+                                                  "salesAmount"
+                                                ],
+                                                isbold: false,
+                                              ),
+                                            ),
+                                            Expanded(
+                                                child: ListView.separated(
+                                                    shrinkWrap: true,
+                                                    itemBuilder:
+                                                        (BuildContext context,
+                                                            int index) {
+                                                      PosSession? item = controller
+                                                                  .finalReportInfo ==
+                                                              null
+                                                          ? null
+                                                          : controller
+                                                              .finalReportInfo!
+                                                              .topSession![index];
+                                                      List session =
+                                                          item != null
+                                                              ? [
+                                                                  item.id,
+                                                                  item.startTime,
+                                                                  item.balanceOpening,
+                                                                  item.closingAmount,
+                                                                  item.totalSales,
+                                                                ]
+                                                              : [];
+                                                      if (session.isNotEmpty) {
+                                                        session[1] = DateFormat(
+                                                                'yyyy-MM-dd')
+                                                            .format(DateTime
+                                                                .parse(item!
+                                                                    .startTime!));
+                                                        session[2] =
+                                                            finalReportController
+                                                                .formatter
+                                                                .format(item
+                                                                    .balanceOpening);
+
+                                                        session[3] =
+                                                            finalReportController
+                                                                .formatter
+                                                                .format(item
+                                                                    .closingAmount);
+                                                        session[4] =
+                                                            finalReportController
+                                                                .formatter
+                                                                .format(item
+                                                                    .totalSales);
+                                                      }
+                                                      return Padding(
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                                vertical: 1.r),
+                                                        child: paymentDataRow(
+                                                          data: session,
+                                                        ),
+                                                      );
+                                                    },
+                                                    separatorBuilder:
+                                                        (context, index) {
+                                                      return const Divider(
+                                                          // height: 50.r,
+                                                          );
+                                                    },
+                                                    itemCount: controller
+                                                                .finalReportInfo ==
+                                                            null
+                                                        ? 0
+                                                        : controller.finalReportInfo!
+                                                                    .topSession ==
+                                                                null
+                                                            ? 0
+                                                            : controller
+                                                                .finalReportInfo!
+                                                                .topSession!
+                                                                .length))
+                                          ],
+                                        ),
+                                        Column(
+                                          children: [
+                                            Padding(
+                                              padding:
+                                                  EdgeInsets.only(top: 5.r),
+                                              child: paymentHeaderRow(
+                                                header: const [
+                                                  'NO',
+                                                  'name',
+                                                  'total_sales',
+                                                  'no_sessions',
+                                                ],
+                                                isbold: false,
+                                              ),
+                                            ),
+                                            Expanded(
+                                                child: ListView.separated(
+                                                    shrinkWrap: true,
+                                                    itemBuilder:
+                                                        (BuildContext context,
+                                                            int index) {
+                                                      return Padding(
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                                vertical: 1.r),
+                                                        child: paymentDataRow(
+                                                          data:
+                                                              best_seller[index]
+                                                                  as List,
+                                                        ),
+                                                      );
+                                                    },
+                                                    separatorBuilder:
+                                                        (context, index) {
+                                                      return Divider(
+                                                          // height: 5.r,
+                                                          );
+                                                    },
+                                                    itemCount:
+                                                        best_seller.length)),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             )),
                       );
                     }),
