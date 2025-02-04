@@ -634,7 +634,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           package: 'yousentech_pos_dashboard',
                           width: 15.r,
                           height: 15.r,
-                          color: AppColor.cyanTeal,
+                          color: !showtitel
+                              ? isselected
+                                  ? AppColor.cyanTeal
+                                  : AppColor.white
+                              : AppColor.cyanTeal,
                           // color: dashboardController.selectedMenu ==
                           //         selectedsideUserMenu
                           //     ? AppColor.iconsMenuActavit
