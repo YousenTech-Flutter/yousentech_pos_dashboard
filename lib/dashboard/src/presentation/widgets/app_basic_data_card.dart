@@ -215,14 +215,17 @@ class _CardLoadingdataTabletState extends State<CardLoadingdataTablet> {
                                             BorderRadius.circular(10.r)),
                                     child: Tooltip(
                                       message: "synchronization".tr,
-                                      child: SvgPicture.asset(
-                                        'assets/image/sync.svg',
-                                        package: 'yousentech_pos_dashboard',
-                                        clipBehavior: Clip.antiAlias,
-                                        fit: BoxFit.fill,
-                                        width: !widget.ishide ? 12.r : 8.r,
-                                        height: !widget.ishide ? 12.r : 8.r,
-                                        color: AppColor.tealBlue,
+                                      child: Padding(
+                                        padding: EdgeInsets.all(3.r),
+                                        child: SvgPicture.asset(
+                                          'assets/image/sync.svg',
+                                          package: 'yousentech_pos_dashboard',
+                                          clipBehavior: Clip.antiAlias,
+                                          fit: BoxFit.fill,
+                                          width: !widget.ishide ? 12.r : 8.r,
+                                          height: !widget.ishide ? 12.r : 8.r,
+                                          color: AppColor.tealBlue,
+                                        ),
                                       ),
                                     ),
                                   ))
