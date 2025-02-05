@@ -27,6 +27,7 @@ import 'package:yousentech_pos_final_report/final_report/src/domain/final_report
 import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/config/app_enums.dart';
 import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/config/app_list.dart';
 import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/src/domain/loading_synchronizing_data_viewmodel.dart';
+import 'package:yousentech_pos_payment/payment/config/app_enums.dart';
 import 'package:yousentech_pos_session/pos_session/src/domain/session_service.dart';
 import 'package:yousentech_pos_session/pos_session/src/domain/session_viewmodel.dart';
 import 'package:yousentech_pos_session/pos_session/src/presentation/session_close_screen.dart';

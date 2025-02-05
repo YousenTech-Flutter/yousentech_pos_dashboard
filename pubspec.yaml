@@ -41,9 +41,21 @@ dependencies:
     git:
       url: https://github.com/YousenTech-Flutter/yousentech_pos_session.git
       ref: master
+  yousentech_pos_session_list_with_report:
+    git:
+      url: https://github.com/YousenTech-Flutter/yousentech_pos_session_list_with_report.git
+      ref: master
   yousentech_pos_final_report:
     git:
       url: https://github.com/YousenTech-Flutter/yousentech_pos_final_report.git
+      ref: master
+  yousentech_pos_payment:
+    git:
+      url: https://github.com/YousenTech-Flutter/yousentech_pos_payment.git
+      ref: master
+  yousentech_pos_notification_history:
+    git:
+      url: https://github.com/YousenTech-Flutter/yousentech_pos_notification_history.git
       ref: master
 dev_dependencies:
   flutter_test:
