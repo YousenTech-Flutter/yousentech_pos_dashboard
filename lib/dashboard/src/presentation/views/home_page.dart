@@ -525,45 +525,45 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                             title: 'Reports',
                                           ),
                                         ],
-                                        menuContent(
-                                          selectedsideUserMenu:
-                                              SideUserMenu.configuration,
-                                          onTap: () {
-                                            updateSelectedMenu(
-                                                menu:
-                                                    SideUserMenu.configuration,
-                                                contentpage: Container());
-                                            updatecontent();
-                                          },
-                                          icon: 'setting_menu_icon',
-                                          title: 'Settings',
-                                        ),
-                                        menuContent(
-                                          selectedsideUserMenu:
-                                              SideUserMenu.databaseInfoSetting,
-                                          onTap: () async {
-                                            // TODO :ADD AFTER SessionList
-                                            // updateSelectedMenu(
-                                            //     menu: SideUserMenu.databaseInfoSetting,
-                                            //     contentpage: const ShowLoadedData());
-                                            // updatecontent();
-                                          },
-                                          icon: 'database_menu_icon',
-                                          title: 'Database_Info_Setting',
-                                        ),
-                                        menuContent(
-                                          selectedsideUserMenu:
-                                              SideUserMenu.dataManagement,
-                                          onTap: () async {
-                                            updateSelectedMenu(
-                                                menu:
-                                                    SideUserMenu.dataManagement,
-                                                contentpage: Container());
-                                            updatecontent();
-                                          },
-                                          icon: 'management_menu_icon',
-                                          title: 'data_Management',
-                                        ),
+                                        // menuContent(
+                                        //   selectedsideUserMenu:
+                                        //       SideUserMenu.configuration,
+                                        //   onTap: () {
+                                        //     updateSelectedMenu(
+                                        //         menu:
+                                        //             SideUserMenu.configuration,
+                                        //         contentpage: Container());
+                                        //     updatecontent();
+                                        //   },
+                                        //   icon: 'setting_menu_icon',
+                                        //   title: 'Settings',
+                                        // ),
+                                        // menuContent(
+                                        //   selectedsideUserMenu:
+                                        //       SideUserMenu.databaseInfoSetting,
+                                        //   onTap: () async {
+                                        //     // TODO :ADD AFTER SessionList
+                                        //     // updateSelectedMenu(
+                                        //     //     menu: SideUserMenu.databaseInfoSetting,
+                                        //     //     contentpage: const ShowLoadedData());
+                                        //     // updatecontent();
+                                        //   },
+                                        //   icon: 'database_menu_icon',
+                                        //   title: 'Database_Info_Setting',
+                                        // ),
+                                        // menuContent(
+                                        //   selectedsideUserMenu:
+                                        //       SideUserMenu.dataManagement,
+                                        //   onTap: () async {
+                                        //     updateSelectedMenu(
+                                        //         menu:
+                                        //             SideUserMenu.dataManagement,
+                                        //         contentpage: Container());
+                                        //     updatecontent();
+                                        //   },
+                                        //   icon: 'management_menu_icon',
+                                        //   title: 'data_Management',
+                                        // ),
                                       ],
                                     ),
                                   ),
