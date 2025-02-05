@@ -31,15 +31,3 @@ enum InfoTotalCard {
 
   const InfoTotalCard(this.text, this.icon, this.percentage, this.color);
 }
-// TODO :=====
-enum PaymentType {
-  bank('bank'),
-  cash('cash'),
-  customer_invoice('customer_invoice');
-
-  const PaymentType(this.text);
-  final String text;
-
-  @override
-  String toString() => 'PaymentType($text)';
-}
