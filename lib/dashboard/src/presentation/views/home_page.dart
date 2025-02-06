@@ -223,15 +223,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                     decoration: BoxDecoration(
                                       color: AppColor.cyanTeallite,
                                       borderRadius: BorderRadius.circular(13.r),
-                                      // boxShadow: [
-                                      //   BoxShadow(
-                                      //     color: Colors.black
-                                      //         .withOpacity(0.1), // يمكنك تغيير لون الظل
-                                      //     offset: const Offset(2, 2), // تحديد موضع الظل
-                                      //     blurRadius: 4.0, // تحديد درجة تشويش الظل
-                                      //     spreadRadius: 1.0, // تحديد مدى امتداد الظل
-                                      //   ),
-                                      // ],
                                     ),
                                     child: Row(
                                       mainAxisAlignment:
@@ -352,20 +343,20 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                             title: 'Reports',
                                           ),
                                         ],
-                                        menuContent(
-                                          selectedsideUserMenu:
-                                              SideUserMenu.configuration,
-                                          onTap: () {
-                                            updateSelectedMenu(
-                                                menu:
-                                                    SideUserMenu.configuration,
-                                                contentpage: Container());
-                                            updatecontent();
-                                          },
-                                          showtitel: false,
-                                          icon: 'setting_menu_icon',
-                                          title: 'Settings',
-                                        ),
+                                        // menuContent(
+                                        //   selectedsideUserMenu:
+                                        //       SideUserMenu.configuration,
+                                        //   onTap: () {
+                                        //     updateSelectedMenu(
+                                        //         menu:
+                                        //             SideUserMenu.configuration,
+                                        //         contentpage: Container());
+                                        //     updatecontent();
+                                        //   },
+                                        //   showtitel: false,
+                                        //   icon: 'setting_menu_icon',
+                                        //   title: 'Settings',
+                                        // ),
                                         // menuContent(
                                         //   selectedsideUserMenu:
                                         //       SideUserMenu.databaseInfoSetting,
@@ -379,20 +370,20 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                         //   icon: 'database_menu_icon',
                                         //   title: 'Database_Info_Setting',
                                         // ),
-                                        menuContent(
-                                          selectedsideUserMenu:
-                                              SideUserMenu.dataManagement,
-                                          onTap: () async {
-                                            updateSelectedMenu(
-                                                menu:
-                                                    SideUserMenu.dataManagement,
-                                                contentpage: Container());
-                                            updatecontent();
-                                          },
-                                          icon: 'management_menu_icon',
-                                          showtitel: false,
-                                          title: 'data_Management',
-                                        ),
+                                        // menuContent(
+                                        //   selectedsideUserMenu:
+                                        //       SideUserMenu.dataManagement,
+                                        //   onTap: () async {
+                                        //     updateSelectedMenu(
+                                        //         menu:
+                                        //             SideUserMenu.dataManagement,
+                                        //         contentpage: Container());
+                                        //     updatecontent();
+                                        //   },
+                                        //   icon: 'management_menu_icon',
+                                        //   showtitel: false,
+                                        //   title: 'data_Management',
+                                        // ),
                                       ],
                                     ),
                                   )
@@ -403,15 +394,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                     decoration: BoxDecoration(
                                       color: AppColor.white,
                                       borderRadius: BorderRadius.circular(10.r),
-                                      // boxShadow: [
-                                      //   BoxShadow(
-                                      //     color: Colors.black
-                                      //         .withOpacity(0.1), // يمكنك تغيير لون الظل
-                                      //     offset: const Offset(2, 2), // تحديد موضع الظل
-                                      //     blurRadius: 4.0, // تحديد درجة تشويش الظل
-                                      //     spreadRadius: 1.0, // تحديد مدى امتداد الظل
-                                      //   ),
-                                      // ],
                                     ),
                                     child: Row(
                                       mainAxisAlignment:
@@ -524,19 +506,19 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                             title: 'Reports',
                                           ),
                                         ],
-                                        menuContent(
-                                          selectedsideUserMenu:
-                                              SideUserMenu.configuration,
-                                          onTap: () {
-                                            updateSelectedMenu(
-                                                menu:
-                                                    SideUserMenu.configuration,
-                                                contentpage: Container());
-                                            updatecontent();
-                                          },
-                                          icon: 'setting_menu_icon',
-                                          title: 'Settings',
-                                        ),
+                                        // menuContent(
+                                        //   selectedsideUserMenu:
+                                        //       SideUserMenu.configuration,
+                                        //   onTap: () {
+                                        //     updateSelectedMenu(
+                                        //         menu:
+                                        //             SideUserMenu.configuration,
+                                        //         contentpage: Container());
+                                        //     updatecontent();
+                                        //   },
+                                        //   icon: 'setting_menu_icon',
+                                        //   title: 'Settings',
+                                        // ),
                                         // menuContent(
                                         //   selectedsideUserMenu:
                                         //       SideUserMenu.databaseInfoSetting,
@@ -549,19 +531,19 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                         //   icon: 'database_menu_icon',
                                         //   title: 'Database_Info_Setting',
                                         // ),
-                                        menuContent(
-                                          selectedsideUserMenu:
-                                              SideUserMenu.dataManagement,
-                                          onTap: () async {
-                                            updateSelectedMenu(
-                                                menu:
-                                                    SideUserMenu.dataManagement,
-                                                contentpage: Container());
-                                            updatecontent();
-                                          },
-                                          icon: 'management_menu_icon',
-                                          title: 'data_Management',
-                                        ),
+                                        // menuContent(
+                                        //   selectedsideUserMenu:
+                                        //       SideUserMenu.dataManagement,
+                                        //   onTap: () async {
+                                        //     updateSelectedMenu(
+                                        //         menu:
+                                        //             SideUserMenu.dataManagement,
+                                        //         contentpage: Container());
+                                        //     updatecontent();
+                                        //   },
+                                        //   icon: 'management_menu_icon',
+                                        //   title: 'data_Management',
+                                        // ),
                                       ],
                                     ),
                                   ),
