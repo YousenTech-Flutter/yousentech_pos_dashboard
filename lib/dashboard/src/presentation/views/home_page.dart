@@ -335,7 +335,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                             onTap: () {
                                               updateSelectedMenu(
                                                   menu: SideUserMenu.reports,
-                                                  contentpage: SessionListScreen());
+                                                  contentpage:
+                                                      SessionListScreen());
                                               updatecontent();
                                             },
                                             showtitel: false,
@@ -499,7 +500,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                             onTap: () {
                                               updateSelectedMenu(
                                                   menu: SideUserMenu.reports,
-                                                  contentpage: SessionListScreen());
+                                                  contentpage:
+                                                      SessionListScreen());
                                               updatecontent();
                                             },
                                             icon: 'reports_menu_icon',
