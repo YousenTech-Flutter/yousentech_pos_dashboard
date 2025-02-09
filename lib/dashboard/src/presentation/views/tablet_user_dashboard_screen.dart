@@ -458,7 +458,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                         color: InfoTotalCard.totalSales.color,
                         icon: InfoTotalCard.totalSales.icon,
                         isMiddle: false,
-                        height: 60.r,
+                        height: 65.r,
                         isdashbord: true,
                       ),
                       CustomCard(
@@ -468,7 +468,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                         color: InfoTotalCard.netIncome.color,
                         icon: InfoTotalCard.netIncome.icon,
                         isMiddle: true,
-                        height: 60.r,
+                        height: 65.r,
                         isdashbord: true,
                       ),
                       CustomCard(
@@ -479,7 +479,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                         icon: InfoTotalCard.totalReturns.icon,
                         isdashbord: true,
                         isMiddle: false,
-                        height: 60.r,
+                        height: 65.r,
                         showSendIcon: false,
                       ),
                     ],
