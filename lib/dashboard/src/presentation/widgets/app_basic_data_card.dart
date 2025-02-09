@@ -79,7 +79,7 @@ class _CardLoadingdataTabletState extends State<CardLoadingdataTablet> {
           return Container(
             padding: EdgeInsets.all(10.r),
             width: 0.3.sw,
-            height: 50.r,
+            height: 75.r,
             decoration: BoxDecoration(
               color: AppColor.white,
               borderRadius: BorderRadius.circular(10.r),

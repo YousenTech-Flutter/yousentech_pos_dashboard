@@ -101,7 +101,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                   builder: (sessioncontroller) {
                     return Container(
                         width: 0.4.sw,
-                        height: 100.r,
+                        height: 150.r,
                         decoration: BoxDecoration(
                             color: AppColor.white,
                             borderRadius: BorderRadius.circular(10.r)),
