@@ -510,7 +510,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
 
                       return Expanded(
                           child: Container(
-                              height: 0.2.sh,
+                              height: 0.25.sh,
                               padding: EdgeInsets.all(10.r),
                               decoration: BoxDecoration(
                                   color: AppColor.white,
@@ -573,7 +573,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                     builder: (controller) {
                       return Expanded(
                           child: Container(
-                              height: 0.2.sh,
+                              height: 0.25.sh,
                               padding: EdgeInsets.all(10.r),
                               decoration: BoxDecoration(
                                   color: AppColor.white,
@@ -615,7 +615,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                     return Expanded(
                       flex: 2,
                       child: Container(
-                          height: 0.2.sh,
+                          height: 0.25.sh,
                           padding: EdgeInsets.all(10.r),
                           decoration: BoxDecoration(
                               color: AppColor.white,
@@ -699,7 +699,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                     return Expanded(
                       flex: 1,
                       child: Container(
-                          height: 0.2.sh,
+                          height: 0.25.sh,
                           padding: EdgeInsets.all(10.r),
                           decoration: BoxDecoration(
                               color: AppColor.white,
@@ -801,7 +801,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                       return Expanded(
                         flex: 2,
                         child: Container(
-                            height: 0.2.sh,
+                            height: 0.25.sh,
                             padding: EdgeInsets.all(10.r),
                             decoration: BoxDecoration(
                                 color: AppColor.white,
