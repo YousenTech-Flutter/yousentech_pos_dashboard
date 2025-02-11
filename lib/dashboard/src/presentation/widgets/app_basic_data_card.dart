@@ -571,7 +571,7 @@ class _LinearProgressState extends State<LinearProgress> {
                     fontSize: 10.r,
                     color: AppColor.gray,
                     fontWeight: FontWeight.w400,
-                    fontFamily: 'Tajawal'),
+                    fontFamily: 'Tajawal',package: 'yousentech_pos_dashboard'),
               ),
               // get the number
               TextSpan(
@@ -580,7 +580,7 @@ class _LinearProgressState extends State<LinearProgress> {
                     fontSize: 10.r,
                     color: AppColor.gunmetalGray,
                     fontWeight: FontWeight.w400,
-                    fontFamily: 'Tajawal'),
+                    fontFamily: 'Tajawal',package: 'yousentech_pos_dashboard'),
               ),
             ],
           ),

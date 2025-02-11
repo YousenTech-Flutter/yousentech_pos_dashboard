@@ -160,7 +160,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                                       color: AppColor.darkTeal,
                                                       fontWeight:
                                                           FontWeight.w400,
-                                                      fontFamily: 'Tajawal'),
+                                                      fontFamily: 'Tajawal',package: 'yousentech_pos_dashboard'),
                                                 ),
                                                 TextSpan(
                                                   text: sessionController
@@ -182,7 +182,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                                       color: AppColor.white,
                                                       fontWeight:
                                                           FontWeight.w400,
-                                                      fontFamily: 'Tajawal'),
+                                                      fontFamily: 'Tajawal',package: 'yousentech_pos_dashboard'),
                                                 ),
                                               ],
                                             ),
@@ -198,7 +198,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                                       color: AppColor.darkTeal,
                                                       fontWeight:
                                                           FontWeight.w400,
-                                                      fontFamily: 'Tajawal'),
+                                                      fontFamily: 'Tajawal',package: 'yousentech_pos_dashboard'),
                                                 ),
                                                 TextSpan(
                                                   text: sessionController
@@ -220,7 +220,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                                       color: AppColor.white,
                                                       fontWeight:
                                                           FontWeight.w400,
-                                                      fontFamily: 'Tajawal'),
+                                                      fontFamily: 'Tajawal',package: 'yousentech_pos_dashboard'),
                                                 ),
                                               ],
                                             ),
@@ -842,7 +842,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                                         .isbestsellertab.value
                                                     ? AppColor.strongDimGray
                                                     : AppColor.cyanTeal,
-                                                fontFamily: 'Tajawal',
+                                                fontFamily: 'Tajawal',package: 'yousentech_pos_dashboard'
                                               ),
                                             ),
                                             // get the number
@@ -851,7 +851,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                               style: TextStyle(
                                                 fontSize: 8.r,
                                                 color: AppColor.strongDimGray,
-                                                fontFamily: 'Tajawal',
+                                                fontFamily: 'Tajawal',package: 'yousentech_pos_dashboard'
                                               ),
                                             ),
                                           ])),

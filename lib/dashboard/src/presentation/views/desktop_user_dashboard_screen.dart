@@ -160,7 +160,7 @@ class _DesktopUserDashboardState extends State<DesktopUserDashboard> {
                                                       color: AppColor.darkTeal,
                                                       fontWeight:
                                                           FontWeight.w400,
-                                                      fontFamily: 'Tajawal'),
+                                                      fontFamily: 'Tajawal',package: 'yousentech_pos_dashboard'),
                                                 ),
                                                 TextSpan(
                                                   text: sessionController
@@ -182,7 +182,7 @@ class _DesktopUserDashboardState extends State<DesktopUserDashboard> {
                                                       color: AppColor.white,
                                                       fontWeight:
                                                           FontWeight.w400,
-                                                      fontFamily: 'Tajawal'),
+                                                      fontFamily: 'Tajawal',package: 'yousentech_pos_dashboard'),
                                                 ),
                                               ],
                                             ),
@@ -198,7 +198,7 @@ class _DesktopUserDashboardState extends State<DesktopUserDashboard> {
                                                       color: AppColor.darkTeal,
                                                       fontWeight:
                                                           FontWeight.w400,
-                                                      fontFamily: 'Tajawal'),
+                                                      fontFamily: 'Tajawal',package: 'yousentech_pos_dashboard'),
                                                 ),
                                                 TextSpan(
                                                   text: sessionController
@@ -220,7 +220,7 @@ class _DesktopUserDashboardState extends State<DesktopUserDashboard> {
                                                       color: AppColor.white,
                                                       fontWeight:
                                                           FontWeight.w400,
-                                                      fontFamily: 'Tajawal'),
+                                                      fontFamily: 'Tajawal',package: 'yousentech_pos_dashboard'),
                                                 ),
                                               ],
                                             ),
@@ -744,7 +744,7 @@ class _DesktopUserDashboardState extends State<DesktopUserDashboard> {
                                                         .isbestsellertab.value
                                                     ? AppColor.strongDimGray
                                                     : AppColor.cyanTeal,
-                                                fontFamily: 'Tajawal',
+                                                fontFamily: 'Tajawal',package: 'yousentech_pos_dashboard'
                                               ),
                                             ),
                                             // get the number
@@ -753,7 +753,7 @@ class _DesktopUserDashboardState extends State<DesktopUserDashboard> {
                                               style: TextStyle(
                                                 fontSize: 8.r,
                                                 color: AppColor.strongDimGray,
-                                                fontFamily: 'Tajawal',
+                                                fontFamily: 'Tajawal',package: 'yousentech_pos_dashboard'
                                               ),
                                             ),
                                           ])),
