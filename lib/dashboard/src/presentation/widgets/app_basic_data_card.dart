@@ -457,6 +457,7 @@ class _CardloadingdataState extends State<Cardloadingdata> {
                                     message: "synchronization".tr,
                                     child: SvgPicture.asset(
                                       'assets/image/sync.svg',
+                                      package: 'yousentech_pos_dashboard',
                                       clipBehavior: Clip.antiAlias,
                                       fit: BoxFit.fill,
                                       width: !widget.ishide ? 20.r : 8.r,

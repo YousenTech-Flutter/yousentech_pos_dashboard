@@ -313,6 +313,7 @@ class paymentDataRow extends StatelessWidget {
                     children: [
                       SvgPicture.asset(
                         icon,
+                        package: 'yousentech_pos_dashboard',
                         clipBehavior: Clip.antiAlias,
                         fit: BoxFit.fill,
                         width: 10.r,

@@ -47,6 +47,7 @@ class TotalCard extends StatelessWidget {
                 children: [
                   SvgPicture.asset(
                     info.icon,
+                    package: 'yousentech_pos_dashboard',
                     clipBehavior: Clip.antiAlias,
                     fit: BoxFit.fill,
                     width: 20.r,
