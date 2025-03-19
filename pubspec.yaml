@@ -17,46 +17,46 @@ dependencies:
   font_awesome_flutter: ^10.7.0
   popover:
 
-  pos_shared_preferences:
-    git:
-      url: https://github.com/YousenTech-Flutter/yousentech_pos_shared_preferences.git
-      ref: master
-  shared_widgets:
-    git:
-      url: https://github.com/YousenTech-Flutter/yousentech_pos_shared_widgets.git
-      ref: master
-  yousentech_authentication:
-    git:
-      url: https://github.com/YousenTech-Flutter/yousentech_authentication.git
-      ref: master
-  yousentech_pos_loading_synchronizing_data:
-    git:
-      url: https://github.com/YousenTech-Flutter/yousentech_pos_loading_synchronizing_data.git
-      ref: master
-  yousentech_pos_basic_data_management:
-    git:
-      url: https://github.com/YousenTech-Flutter/yousentech_pos_basic_data_management.git
-      ref: master
-  yousentech_pos_session:
-    git:
-      url: https://github.com/YousenTech-Flutter/yousentech_pos_session.git
-      ref: master
-  yousentech_pos_session_list_with_report:
-    git:
-      url: https://github.com/YousenTech-Flutter/yousentech_pos_session_list_with_report.git
-      ref: master
-  yousentech_pos_final_report:
-    git:
-      url: https://github.com/YousenTech-Flutter/yousentech_pos_final_report.git
-      ref: master
-  yousentech_pos_payment:
-    git:
-      url: https://github.com/YousenTech-Flutter/yousentech_pos_payment.git
-      ref: master
-  yousentech_pos_notification_history:
-    git:
-      url: https://github.com/YousenTech-Flutter/yousentech_pos_notification_history.git
-      ref: master
+  # pos_shared_preferences:
+  #   git:
+  #     url: https://github.com/YousenTech-Flutter/yousentech_pos_shared_preferences.git
+  #     ref: master
+  # shared_widgets:
+  #   git:
+  #     url: https://github.com/YousenTech-Flutter/yousentech_pos_shared_widgets.git
+  #     ref: master
+  # yousentech_authentication:
+  #   git:
+  #     url: https://github.com/YousenTech-Flutter/yousentech_authentication.git
+  #     ref: master
+  # yousentech_pos_loading_synchronizing_data:
+  #   git:
+  #     url: https://github.com/YousenTech-Flutter/yousentech_pos_loading_synchronizing_data.git
+  #     ref: master
+  # yousentech_pos_basic_data_management:
+  #   git:
+  #     url: https://github.com/YousenTech-Flutter/yousentech_pos_basic_data_management.git
+  #     ref: master
+  # yousentech_pos_session:
+  #   git:
+  #     url: https://github.com/YousenTech-Flutter/yousentech_pos_session.git
+  #     ref: master
+  # yousentech_pos_session_list_with_report:
+  #   git:
+  #     url: https://github.com/YousenTech-Flutter/yousentech_pos_session_list_with_report.git
+  #     ref: master
+  # yousentech_pos_final_report:
+  #   git:
+  #     url: https://github.com/YousenTech-Flutter/yousentech_pos_final_report.git
+  #     ref: master
+  # yousentech_pos_payment:
+  #   git:
+  #     url: https://github.com/YousenTech-Flutter/yousentech_pos_payment.git
+  #     ref: master
+  # yousentech_pos_notification_history:
+  #   git:
+  #     url: https://github.com/YousenTech-Flutter/yousentech_pos_notification_history.git
+  #     ref: master
 dev_dependencies:
   flutter_test:
     sdk: flutter
