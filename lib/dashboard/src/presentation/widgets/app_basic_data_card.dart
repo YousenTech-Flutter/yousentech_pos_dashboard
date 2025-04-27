@@ -298,11 +298,13 @@ class Cardloadingdata extends StatefulWidget {
   SideUserMenu? menu;
   Widget? contentpage;
   bool ishide;
+  String? subtitel;
   Cardloadingdata(
       {super.key,
       required this.e,
       this.menu,
       this.contentpage,
+      this.subtitel,
       this.ishide = false});
 
   @override
@@ -374,26 +376,37 @@ class _CardloadingdataState extends State<Cardloadingdata> {
                 SizedBox(
                   height: 0.01.sh,
                 ),
-                InkWell(
-                  onTap: () async {
-                    bool isTrustedDevice =
-                        await MacAddressHelper.isTrustedDevice();
-                    if (isTrustedDevice) {
-                      if (widget.menu != null) {
-                        updateSelectedMenu(
-                            menu: widget.menu!,
-                            contentpage: widget.contentpage!);
-                        updatecontent();
-                      }
-                    }
-                  },
-                  child: Text(
-                    widget.e.key.name.toString().tr,
-                    style: TextStyle(
-                        fontSize: 10.r,
-                        color: AppColor.darkCyan,
-                        fontWeight: FontWeight.w700),
-                  ),
+                Row(
+                  children: [
+                    InkWell(
+                      onTap: () async {
+                        bool isTrustedDevice =
+                            await MacAddressHelper.isTrustedDevice();
+                        if (isTrustedDevice) {
+                          if (widget.menu != null) {
+                            updateSelectedMenu(
+                                menu: widget.menu!,
+                                contentpage: widget.contentpage!);
+                            updatecontent();
+                          }
+                        }
+                      },
+                      child: Text(
+                        widget.e.key.name.toString().tr,
+                        style: TextStyle(
+                            fontSize: 10.r,
+                            color: AppColor.darkCyan,
+                            fontWeight: FontWeight.w700),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 3.r,
+                    ),
+                    Text(
+                      " ( ${(controller.itemdata[widget.e.key.name.toString()]?['local'] ?? 0).toString()} ${widget.subtitel})",
+                      style: TextStyle(fontSize: 8.r, color: AppColor.gray),
+                    )
+                  ],
                 ),
                 SizedBox(
                   height: 0.015.sh,

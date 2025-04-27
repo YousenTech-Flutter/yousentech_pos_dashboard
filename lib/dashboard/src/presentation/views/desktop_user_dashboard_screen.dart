@@ -326,7 +326,9 @@ class _DesktopUserDashboardState extends State<DesktopUserDashboard> {
                 e: loaddata.entries
                     .firstWhere((element) => element.key == Loaddata.products),
                 menu: SideUserMenu.products,
+                subtitel:"productess".tr ,
                 contentpage: const ProductListScreen(),
+
               ),
               SizedBox(
                 width: 10.r,
@@ -335,6 +337,7 @@ class _DesktopUserDashboardState extends State<DesktopUserDashboard> {
                 e: loaddata.entries
                     .firstWhere((element) => element.key == Loaddata.customers),
                 menu: SideUserMenu.customers,
+                subtitel: "custmerss".tr,
                 contentpage: const CustomersListScreen(),
               ),
               // filter
