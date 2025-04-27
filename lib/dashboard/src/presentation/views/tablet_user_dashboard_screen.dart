@@ -13,11 +13,10 @@ import 'package:pos_shared_preferences/models/final_report_info.dart';
 import 'package:pos_shared_preferences/models/pos_session/posSession.dart';
 import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:shared_widgets/config/app_colors.dart';
-import 'package:shared_widgets/shared_widgets/app_loading.dart';
 import 'package:shared_widgets/shared_widgets/progress_bar_with_text.dart';
 import 'package:shared_widgets/utils/response_result.dart';
 import 'package:yousentech_pos_basic_data_management/basic_data_management/src/customer/presentation/views/customers_list_screen.dart';
-import 'package:yousentech_pos_basic_data_management/basic_data_management/src/products/presentation/views/product_list_screen.dart';
+import 'package:yousentech_pos_basic_data_management/basic_data_management/src/products/presentation/product_list_screen.dart';
 import 'package:yousentech_pos_dashboard/dashboard/config/app_enums.dart';
 import 'package:yousentech_pos_dashboard/dashboard/config/app_list.dart';
 import 'package:yousentech_pos_dashboard/dashboard/src/presentation/views/user_dashboard_screen.dart';
@@ -329,6 +328,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                         (element) => element.key == Loaddata.products),
                     menu: SideUserMenu.products,
                     contentpage: const ProductListScreen(),
+                    subtitel:"productess".tr ,
                   ),
                   SizedBox(
                     height: 10.r,
@@ -338,6 +338,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                         (element) => element.key == Loaddata.customers),
                     menu: SideUserMenu.customers,
                     contentpage: const CustomersListScreen(),
+                    subtitel: "custmerss".tr,
                   ),
                 ],
               ),

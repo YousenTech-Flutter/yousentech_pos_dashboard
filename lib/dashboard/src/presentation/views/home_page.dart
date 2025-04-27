@@ -9,9 +9,9 @@ import 'package:shared_widgets/utils/screens_size.dart';
 import 'package:yousentech_pos_basic_data_management/basic_data_management/src/account_journal/presentation/account_journal_list_screen.dart';
 import 'package:yousentech_pos_basic_data_management/basic_data_management/src/account_tax/presentation/account_tax_list_screen.dart';
 import 'package:yousentech_pos_basic_data_management/basic_data_management/src/customer/presentation/views/customers_list_screen.dart';
-import 'package:yousentech_pos_basic_data_management/basic_data_management/src/pos_categories/presentation/views/pos_categories_list_screen.dart';
+import 'package:yousentech_pos_basic_data_management/basic_data_management/src/pos_categories/presentation/pos_categories_list_screen.dart';
 import 'package:yousentech_pos_basic_data_management/basic_data_management/src/product_unit/presentation/pos_product_unit_list_screen.dart';
-import 'package:yousentech_pos_basic_data_management/basic_data_management/src/products/presentation/views/product_list_screen.dart';
+import 'package:yousentech_pos_basic_data_management/basic_data_management/src/products/presentation/product_list_screen.dart';
 import 'package:yousentech_pos_dashboard/dashboard/config/app_enums.dart';
 import 'package:yousentech_pos_dashboard/dashboard/config/app_list.dart';
 import 'package:yousentech_pos_dashboard/dashboard/src/presentation/views/user_dashboard_screen.dart';
@@ -344,47 +344,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                             title: 'Reports',
                                           ),
                                         ],
-                                        // menuContent(
-                                        //   selectedsideUserMenu:
-                                        //       SideUserMenu.configuration,
-                                        //   onTap: () {
-                                        //     updateSelectedMenu(
-                                        //         menu:
-                                        //             SideUserMenu.configuration,
-                                        //         contentpage: Container());
-                                        //     updatecontent();
-                                        //   },
-                                        //   showtitel: false,
-                                        //   icon: 'setting_menu_icon',
-                                        //   title: 'Settings',
-                                        // ),
-                                        // menuContent(
-                                        //   selectedsideUserMenu:
-                                        //       SideUserMenu.databaseInfoSetting,
-                                        //   onTap: () async {
-                                        //     updateSelectedMenu(
-                                        //         menu: SideUserMenu.databaseInfoSetting,
-                                        //         contentpage: const ShowLoadedData());
-                                        //     updatecontent();
-                                        //   },
-                                        //   showtitel: false,
-                                        //   icon: 'database_menu_icon',
-                                        //   title: 'Database_Info_Setting',
-                                        // ),
-                                        // menuContent(
-                                        //   selectedsideUserMenu:
-                                        //       SideUserMenu.dataManagement,
-                                        //   onTap: () async {
-                                        //     updateSelectedMenu(
-                                        //         menu:
-                                        //             SideUserMenu.dataManagement,
-                                        //         contentpage: Container());
-                                        //     updatecontent();
-                                        //   },
-                                        //   icon: 'management_menu_icon',
-                                        //   showtitel: false,
-                                        //   title: 'data_Management',
-                                        // ),
                                       ],
                                     ),
                                   )

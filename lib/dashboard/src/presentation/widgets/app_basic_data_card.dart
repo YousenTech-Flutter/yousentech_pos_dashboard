@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:shared_widgets/config/app_colors.dart';
-import 'package:shared_widgets/config/app_enum.dart';
+import 'package:shared_widgets/config/app_enums.dart';
 import 'package:shared_widgets/shared_widgets/app_snack_bar.dart';
 import 'package:shared_widgets/utils/mac_address_helper.dart';
 import 'package:yousentech_pos_basic_data_management/basic_data_management/utils/define_type_function.dart';
@@ -21,10 +21,12 @@ class CardLoadingdataTablet extends StatefulWidget {
   SideUserMenu? menu;
   Widget? contentpage;
   bool ishide;
+  String? subtitel;
   CardLoadingdataTablet(
       {super.key,
       required this.e,
       this.menu,
+      this.subtitel,
       this.contentpage,
       this.ishide = false});
 
@@ -58,16 +60,8 @@ class _CardLoadingdataTabletState extends State<CardLoadingdataTablet> {
     loadingDataController.update(['card_loading_data']);
   }
 
-  // Future getsCountLocalAndRemote() async {
-  //   await loadingDataController.getitems();
-  // }
-
   @override
   void initState() {
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    //   getsCountLocalAndRemote();
-    // });
-
     super.initState();
   }
 
@@ -112,32 +106,44 @@ class _CardLoadingdataTabletState extends State<CardLoadingdataTablet> {
                           SizedBox(
                             width: 10.r,
                           ),
-                          InkWell(
-                            onTap: () async {
-                              bool isTrustedDevice =
-                                  await MacAddressHelper.isTrustedDevice();
-                              if (isTrustedDevice) {
-                                if (widget.menu != null) {
-                                  updateSelectedMenu(
-                                      menu: widget.menu!,
-                                      contentpage: widget.contentpage!);
-                                  updatecontent();
-                                }
-                              }
-                            },
-                            child: Text(
-                              widget.e.key.name.toString().tr,
-                              style: TextStyle(
-                                  fontSize: 10.r,
-                                  color: AppColor.dimGray,
-                                  fontWeight: FontWeight.w700),
-                            ),
+                          Row(
+                            children: [
+                              InkWell(
+                                onTap: () async {
+                                  bool isTrustedDevice =
+                                      await MacAddressHelper.isTrustedDevice();
+                                  if (isTrustedDevice) {
+                                    if (widget.menu != null) {
+                                      updateSelectedMenu(
+                                          menu: widget.menu!,
+                                          contentpage: widget.contentpage!);
+                                      updatecontent();
+                                    }
+                                  }
+                                },
+                                child: Text(
+                                  widget.e.key.name.toString().tr,
+                                  style: TextStyle(
+                                      fontSize: 10.r,
+                                      color: AppColor.darkCyan,
+                                      fontWeight: FontWeight.w700),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 3.r,
+                              ),
+                              Text(
+                                " ( ${(controller.itemdata[widget.e.key.name.toString()]?['local'] ?? 0).toString()} ${widget.subtitel})",
+                                style: TextStyle(
+                                    fontSize: 8.r, color: AppColor.gray),
+                              )
+                            ],
                           ),
                         ],
                       ),
-                      // SizedBox(
-                      //   height: 10.r,
-                      // ),
+                      SizedBox(
+                        height: 0.015.sh,
+                      ),
                       Padding(
                         padding: EdgeInsets.all(8.0.r),
                         child: LinearProgress(
@@ -572,7 +578,8 @@ class _LinearProgressState extends State<LinearProgress> {
                     fontSize: 10.r,
                     color: AppColor.gray,
                     fontWeight: FontWeight.w400,
-                    fontFamily: 'Tajawal',package: 'yousentech_pos_dashboard'),
+                    fontFamily: 'Tajawal',
+                    package: 'yousentech_pos_dashboard'),
               ),
               // get the number
               TextSpan(
@@ -581,7 +588,8 @@ class _LinearProgressState extends State<LinearProgress> {
                     fontSize: 10.r,
                     color: AppColor.gunmetalGray,
                     fontWeight: FontWeight.w400,
-                    fontFamily: 'Tajawal',package: 'yousentech_pos_dashboard'),
+                    fontFamily: 'Tajawal',
+                    package: 'yousentech_pos_dashboard'),
               ),
             ],
           ),

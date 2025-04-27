@@ -1,39 +1,19 @@
 // ignore_for_file: unused_field, use_build_context_synchronously, camel_case_types, must_be_immutable
-
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart' as intl;
-import 'package:intl/intl.dart';
-import 'package:popover/popover.dart';
-import 'package:pos_shared_preferences/helper/app_enum.dart';
 import 'package:pos_shared_preferences/models/final_report_info.dart';
-import 'package:pos_shared_preferences/models/pos_session/posSession.dart';
-import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:shared_widgets/config/app_colors.dart';
 import 'package:shared_widgets/shared_widgets/app_loading.dart';
-import 'package:shared_widgets/shared_widgets/progress_bar_with_text.dart';
 import 'package:shared_widgets/utils/response_result.dart';
 import 'package:shared_widgets/utils/screens_size.dart';
-import 'package:yousentech_pos_basic_data_management/basic_data_management/src/customer/presentation/views/customers_list_screen.dart';
-import 'package:yousentech_pos_basic_data_management/basic_data_management/src/products/presentation/views/product_list_screen.dart';
-import 'package:yousentech_pos_dashboard/dashboard/config/app_enums.dart';
-import 'package:yousentech_pos_dashboard/dashboard/config/app_list.dart';
 import 'package:yousentech_pos_dashboard/dashboard/src/presentation/views/desktop_user_dashboard_screen.dart';
 import 'package:yousentech_pos_dashboard/dashboard/src/presentation/views/tablet_user_dashboard_screen.dart';
-import 'package:yousentech_pos_dashboard/dashboard/src/presentation/widgets/app_basic_data_card.dart';
-import 'package:yousentech_pos_dashboard/dashboard/src/presentation/widgets/invoices_types_summery_cards.dart';
 import 'package:yousentech_pos_final_report/final_report/src/domain/final_report_viewmodel.dart';
-import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/config/app_enums.dart';
-import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/config/app_list.dart';
 import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/src/domain/loading_synchronizing_data_viewmodel.dart';
 import 'package:yousentech_pos_session/pos_session/src/domain/session_service.dart';
 import 'package:yousentech_pos_session/pos_session/src/domain/session_viewmodel.dart';
-import 'package:yousentech_pos_session/pos_session/src/presentation/session_close_screen.dart';
 
 // import 'package:syncfusion_flutter_charts/charts.dart';
 class UserDashboard extends StatefulWidget {
