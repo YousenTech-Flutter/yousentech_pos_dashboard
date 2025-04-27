@@ -170,10 +170,7 @@ class _CardLoadingdataTabletState extends State<CardLoadingdataTablet> {
                               ? InkWell(
                                   onTap: () async {
                                     loadingDataController.isUpdate.value = true;
-                                    bool isTrustedDevice =
-                                        await MacAddressHelper
-                                            .isTrustedDevice();
-                                    if (isTrustedDevice) {
+                                    
                                       var result =
                                           await synchronizeBasedOnModelType(
                                               type: widget.e.key.toString());
@@ -206,9 +203,6 @@ class _CardLoadingdataTabletState extends State<CardLoadingdataTablet> {
                                           false;
                                       controller.update(['card_loading_data']);
                                       controller.update(['loading']);
-                                    }
-                                    loadingDataController.isUpdate.value =
-                                        false;
                                   },
                                   child: Container(
                                     width: 20.w,
@@ -432,13 +426,8 @@ class _CardloadingdataState extends State<Cardloadingdata> {
                               ? InkWell(
                                   onTap: () async {
                                     loadingDataController.isUpdate.value = true;
-                                    bool isTrustedDevice =
-                                        await MacAddressHelper
-                                            .isTrustedDevice();
-                                    if (isTrustedDevice) {
-                                      var result =
-                                          await synchronizeBasedOnModelType(
-                                              type: widget.e.key.toString());
+                                    
+                                      var result =await synchronizeBasedOnModelType(type: widget.e.key.toString());
 
                                       if (result == true) {
                                         appSnackBar(
@@ -468,9 +457,6 @@ class _CardloadingdataState extends State<Cardloadingdata> {
                                           false;
                                       controller.update(['card_loading_data']);
                                       controller.update(['loading']);
-                                    }
-                                    loadingDataController.isUpdate.value =
-                                        false;
                                   },
                                   child: Tooltip(
                                     message: "synchronization".tr,
