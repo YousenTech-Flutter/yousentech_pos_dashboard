@@ -13,6 +13,7 @@ import 'package:pos_shared_preferences/models/final_report_info.dart';
 import 'package:pos_shared_preferences/models/pos_session/posSession.dart';
 import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:shared_widgets/config/app_colors.dart';
+import 'package:shared_widgets/config/app_styles.dart';
 import 'package:shared_widgets/shared_widgets/app_loading.dart';
 import 'package:shared_widgets/shared_widgets/progress_bar_with_text.dart';
 import 'package:shared_widgets/utils/response_result.dart';
@@ -144,6 +145,13 @@ class _DesktopUserDashboardState extends State<DesktopUserDashboard> {
                                               color: AppColor.white,
                                               fontWeight: FontWeight.w700),
                                         ),
+                                        Text(
+                                                "( ${"session_no".tr} : ${SharedPr.currentSaleSession?.id} )",
+                                                style:
+                                                    AppStyle.stylew400.copyWith(
+                                                  color: AppColor.lavenderGray,
+                                                  fontSize: 7.r,
+                                                )),
                                         SizedBox(
                                           height: 0.01.sh,
                                         ),
