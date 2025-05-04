@@ -144,6 +144,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                               color: AppColor.white,
                                               fontWeight: FontWeight.w700),
                                         ),
+                                        if(SharedPr.currentSaleSession !=null && SharedPr.currentSaleSession!.state== SessionState.openSession)
                                         Text(
                                                 "( ${"session_no".tr} : ${SharedPr.currentSaleSession?.id} )",
                                                 style:
