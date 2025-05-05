@@ -168,7 +168,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                                   text:
                                                       '${'sessionStartTime'.tr}  ',
                                                   style: TextStyle(
-                                                      fontSize: 0.008.sw,
+                                                      fontSize: 10.r,
                                                       color: AppColor.darkTeal,
                                                       fontWeight:
                                                           FontWeight.w400,
@@ -192,7 +192,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                                                   ""))
                                                       : '',
                                                   style: TextStyle(
-                                                      fontSize: 0.008.sw,
+                                                      fontSize: 10.r,
                                                       color: AppColor.white,
                                                       fontWeight:
                                                           FontWeight.w400,
@@ -210,7 +210,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                                   text:
                                                       '${'sessionCloseTime'.tr}  ',
                                                   style: TextStyle(
-                                                      fontSize: 0.008.sw,
+                                                      fontSize: 10.r,
                                                       color: AppColor.darkTeal,
                                                       fontWeight:
                                                           FontWeight.w400,
@@ -234,7 +234,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                                                   ""))
                                                       : '',
                                                   style: TextStyle(
-                                                      fontSize: 0.008.sw,
+                                                      fontSize: 10.r,
                                                       color: AppColor.white,
                                                       fontWeight:
                                                           FontWeight.w400,
