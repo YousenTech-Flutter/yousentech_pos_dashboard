@@ -555,8 +555,10 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                         child: SingleChildScrollView(
                                           child: Column(
                                             children: [
-                                              ...List.generate(data.length,
-                                                  (index) {
+                                              ...List.generate(
+                                                  data.length >= 3
+                                                      ? 3
+                                                      : data.length, (index) {
                                                 opsity -= (opsity /
                                                     (data.length + 1));
                                                 return Column(

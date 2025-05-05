@@ -92,7 +92,7 @@ class CustomCard extends StatelessWidget {
                               Text(
                                 "(${"vat_included".tr})",
                                 style: TextStyle(
-                                  fontSize: 8.r,
+                                  fontSize: 9.r,
                                   color: AppColor.lavenderGray,
                                 ),
                               ),
