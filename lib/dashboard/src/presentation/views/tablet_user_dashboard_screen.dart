@@ -634,7 +634,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                                           .withOpacity(opsity),
                                                     ),
                                                     SizedBox(
-                                                      height: 1.r,
+                                                      height: 10.r,
                                                     ),
                                                   ],
                                                 );
