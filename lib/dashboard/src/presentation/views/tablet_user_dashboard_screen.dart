@@ -583,62 +583,6 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                                   ],
                                                 );
                                               }),
-                                              ...List.generate(
-                                                  data.length >= 3
-                                                      ? 3
-                                                      : data.length, (index) {
-                                                opsity -= (opsity /
-                                                    (data.length + 1));
-                                                return Column(
-                                                  children: [
-                                                    ProgressBarWithText(
-                                                      text:
-                                                          '(${indector![index]}) ${controller.formatter.format((data[index] / sum) * 100)} %',
-                                                      percentage: double.parse(
-                                                          controller.formatter
-                                                              .format(
-                                                                  data[index] /
-                                                                      sum)),
-                                                      backgroundColor:
-                                                          AppColor.cyanTeal,
-                                                      progressColor: AppColor
-                                                          .cyanTeal
-                                                          .withOpacity(opsity),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 10.r,
-                                                    ),
-                                                  ],
-                                                );
-                                              }),
-                                              ...List.generate(
-                                                  data.length >= 3
-                                                      ? 3
-                                                      : data.length, (index) {
-                                                opsity -= (opsity /
-                                                    (data.length + 1));
-                                                return Column(
-                                                  children: [
-                                                    ProgressBarWithText(
-                                                      text:
-                                                          '(${indector![index]}) ${controller.formatter.format((data[index] / sum) * 100)} %',
-                                                      percentage: double.parse(
-                                                          controller.formatter
-                                                              .format(
-                                                                  data[index] /
-                                                                      sum)),
-                                                      backgroundColor:
-                                                          AppColor.cyanTeal,
-                                                      progressColor: AppColor
-                                                          .cyanTeal
-                                                          .withOpacity(opsity),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 10.r,
-                                                    ),
-                                                  ],
-                                                );
-                                              }),
                                             ],
                                           ),
                                         ),
@@ -1155,6 +1099,53 @@ stockAlertsItem({required FinalReportController controller}) {
       const Divider(
         height: 0,
       ),
+      ...List.generate(length, (index) {
+        LessProductsBasedInAvailableQty? item =
+            controller.finalReportInfo == null
+                ? null
+                : controller
+                    .finalReportInfo!.lessProductsBasedInAvailableQty![index];
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: 5.r,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    item?.getProductNameBasedOnLang ?? "",
+                    style: TextStyle(
+                        fontSize: 7.r,
+                        color: AppColor.strongDimGray,
+                        fontWeight: FontWeight.w700),
+                  ),
+                ),
+                Expanded(
+                  flex: 3,
+                  child: Center(
+                    child: Text(
+                      '${item?.availableQty ?? ""} ${'packs'.tr}',
+                      style: TextStyle(
+                          fontSize: 7.r,
+                          color: AppColor.strongDimGray,
+                          fontWeight: FontWeight.w700),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10.r,
+            ),
+            if (index != length - 1)
+              const Divider(
+                height: 0,
+              )
+          ],
+        );
+      }),
       ...List.generate(length, (index) {
         LessProductsBasedInAvailableQty? item =
             controller.finalReportInfo == null
