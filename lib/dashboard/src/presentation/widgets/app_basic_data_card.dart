@@ -141,9 +141,9 @@ class _CardLoadingdataTabletState extends State<CardLoadingdataTablet> {
                           ),
                         ],
                       ),
-                      SizedBox(
-                        height: 10.r,
-                      ),
+                      // SizedBox(
+                      //   height: 5.r,
+                      // ),
                       Padding(
                         padding: EdgeInsets.all(8.0.r),
                         child: LinearProgress(
