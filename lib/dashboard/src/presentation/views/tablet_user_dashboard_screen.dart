@@ -532,7 +532,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
 
                       return Expanded(
                           child: Container(
-                              height: 130.r,
+                              height: 140.r,
                               padding: EdgeInsets.all(10.r),
                               decoration: BoxDecoration(
                                   color: AppColor.white,
@@ -639,7 +639,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                     return Expanded(
                       flex: 2,
                       child: Container(
-                          height: 130.r,
+                          height: 140.r,
                           padding: EdgeInsets.all(10.r),
                           decoration: BoxDecoration(
                               color: AppColor.white,
@@ -723,7 +723,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                     return Expanded(
                       flex: 1,
                       child: Container(
-                          height: 130.r,
+                          height: 140.r,
                           padding: EdgeInsets.all(10.r),
                           decoration: BoxDecoration(
                               color: AppColor.white,
@@ -825,7 +825,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                       return Expanded(
                         flex: 2,
                         child: Container(
-                            height: 130.r,
+                            height: 140.r,
                             padding: EdgeInsets.all(10.r),
                             decoration: BoxDecoration(
                                 color: AppColor.white,
@@ -861,7 +861,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                             TextSpan(
                                               text: theTopSession,
                                               style: TextStyle(
-                                                  fontSize: 8.r,
+                                                  fontSize: 9.r,
                                                   color: controller
                                                           .isbestsellertab.value
                                                       ? AppColor.strongDimGray
@@ -896,7 +896,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                           Text(
                                             best_seller.first![1].toString(),
                                             style: TextStyle(
-                                              fontSize: 8.r,
+                                              fontSize: 9.r,
                                               color: controller
                                                       .isbestsellertab.value
                                                   ? AppColor.cyanTeal
@@ -1146,56 +1146,6 @@ stockAlertsItem({required FinalReportController controller}) {
           ],
         );
       }),
-      const Divider(
-        height: 0,
-      ),
-      ...List.generate(length, (index) {
-        LessProductsBasedInAvailableQty? item =
-            controller.finalReportInfo == null
-                ? null
-                : controller
-                    .finalReportInfo!.lessProductsBasedInAvailableQty![index];
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 5.r,
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    item?.getProductNameBasedOnLang ?? "",
-                    style: TextStyle(
-                        fontSize: 9.r,
-                        color: AppColor.strongDimGray,
-                        fontWeight: FontWeight.w700),
-                  ),
-                ),
-                Expanded(
-                  flex: 3,
-                  child: Center(
-                    child: Text(
-                      '${item?.availableQty ?? ""} ${'packs'.tr}',
-                      style: TextStyle(
-                          fontSize: 9.r,
-                          color: AppColor.strongDimGray,
-                          fontWeight: FontWeight.w700),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 10.r,
-            ),
-            if (index != length - 1)
-              const Divider(
-                height: 0,
-              )
-          ],
-        );
-      }),
     ]),
   );
 }
@@ -1217,7 +1167,7 @@ class paymentHeaderRow extends StatelessWidget {
                   child: Text(
                     e.toString().tr,
                     style: TextStyle(
-                        fontSize: 7.r,
+                        fontSize: 9.r,
                         color: AppColor.strongDimGray,
                         fontWeight:
                             isbold ? FontWeight.w700 : FontWeight.normal),
@@ -1325,7 +1275,7 @@ class paymentDataRow extends StatelessWidget {
                           '${data[index]}',
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                            fontSize: 7.r,
+                            fontSize: 9.r,
                             color: AppColor.strongDimGray,
                           ),
                         ),
@@ -1341,7 +1291,7 @@ class paymentDataRow extends StatelessWidget {
                       child: Text(
                         '${data[index]} ${isPymentMethod && index == 1 ? "S.R".tr : ''}',
                         style: TextStyle(
-                          fontSize: 7.r,
+                          fontSize: 9.r,
                           overflow: TextOverflow.ellipsis,
                           color: isPymentMethod
                               ? index == 1
