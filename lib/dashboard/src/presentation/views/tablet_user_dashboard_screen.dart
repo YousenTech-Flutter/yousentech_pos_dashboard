@@ -517,14 +517,19 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                 GetBuilder<FinalReportController>(
                     id: "session_card",
                     builder: (controller) {
-                      var data = controller
+                      List<double>? data = controller
                           .finalReportInfo?.productBasedCategories
                           ?.map((e) => e.totalQty!)
                           .toList();
-                      var indector = controller
+                      data!.addAll(data);
+                      data!.addAll(data);
+
+                      List<String>? indector = controller
                           .finalReportInfo?.productBasedCategories
                           ?.map((e) => e.getProductNameBasedOnLang)
                           .toList();
+                      indector!.addAll(indector);
+                      indector!.addAll(indector);
                       double sum = data == null || data.isEmpty
                           ? 0.0
                           : data.reduce((a, b) => a + b);
