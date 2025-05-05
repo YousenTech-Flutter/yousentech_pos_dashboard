@@ -73,7 +73,7 @@ class _CardLoadingdataTabletState extends State<CardLoadingdataTablet> {
           return Container(
             padding: EdgeInsets.all(10.r),
             width: 0.3.sw,
-            height: 88.r,
+            height: 77.5.r,
             decoration: BoxDecoration(
               color: AppColor.white,
               borderRadius: BorderRadius.circular(10.r),
@@ -142,7 +142,7 @@ class _CardLoadingdataTabletState extends State<CardLoadingdataTablet> {
                         ],
                       ),
                       SizedBox(
-                        height: 0.015.sh,
+                        height: 10.r,
                       ),
                       Padding(
                         padding: EdgeInsets.all(8.0.r),
