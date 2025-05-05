@@ -706,8 +706,16 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                                       .basedSellingProduct ==
                                                   null
                                               ? 0
-                                              : controller.finalReportInfo!
-                                                  .basedSellingProduct!.length))
+                                              : controller
+                                                          .finalReportInfo!
+                                                          .basedSellingProduct!
+                                                          .length >=
+                                                      3
+                                                  ? 3
+                                                  : controller
+                                                      .finalReportInfo!
+                                                      .basedSellingProduct!
+                                                      .length))
                             ],
                           )),
                     );
@@ -796,8 +804,12 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                       separatorBuilder: (context, index) {
                                         return const Divider();
                                       },
-                                      itemCount: controller
-                                          .invoicePaymentMethod.length))
+                                      itemCount: controller.invoicePaymentMethod
+                                                  .length >=
+                                              3
+                                          ? 3
+                                          : controller
+                                              .invoicePaymentMethod.length))
                             ],
                           )),
                     );
@@ -997,9 +1009,15 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                                                 null
                                                             ? 0
                                                             : controller
-                                                                .finalReportInfo!
-                                                                .topSession!
-                                                                .length))
+                                                                        .finalReportInfo!
+                                                                        .topSession!
+                                                                        .length >=
+                                                                    3
+                                                                ? 3
+                                                                : controller
+                                                                    .finalReportInfo!
+                                                                    .topSession!
+                                                                    .length))
                                           ],
                                         ),
                                         Column(
@@ -1041,7 +1059,10 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                                           );
                                                     },
                                                     itemCount:
-                                                        best_seller.length)),
+                                                        best_seller.length >= 3
+                                                            ? 3
+                                                            : best_seller
+                                                                .length)),
                                           ],
                                         ),
                                       ],
