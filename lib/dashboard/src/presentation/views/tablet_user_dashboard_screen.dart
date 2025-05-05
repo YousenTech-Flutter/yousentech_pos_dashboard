@@ -517,19 +517,14 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                 GetBuilder<FinalReportController>(
                     id: "session_card",
                     builder: (controller) {
-                      List<double>? data = controller
+                      var data = controller
                           .finalReportInfo?.productBasedCategories
                           ?.map((e) => e.totalQty!)
                           .toList();
-                      data!.addAll(data);
-                      data!.addAll(data);
-
-                      List<String>? indector = controller
+                      var indector = controller
                           .finalReportInfo?.productBasedCategories
                           ?.map((e) => e.getProductNameBasedOnLang)
                           .toList();
-                      indector!.addAll(indector);
-                      indector!.addAll(indector);
                       double sum = data == null || data.isEmpty
                           ? 0.0
                           : data.reduce((a, b) => a + b);
@@ -560,6 +555,62 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                         child: SingleChildScrollView(
                                           child: Column(
                                             children: [
+                                              ...List.generate(
+                                                  data.length >= 3
+                                                      ? 3
+                                                      : data.length, (index) {
+                                                opsity -= (opsity /
+                                                    (data.length + 1));
+                                                return Column(
+                                                  children: [
+                                                    ProgressBarWithText(
+                                                      text:
+                                                          '(${indector![index]}) ${controller.formatter.format((data[index] / sum) * 100)} %',
+                                                      percentage: double.parse(
+                                                          controller.formatter
+                                                              .format(
+                                                                  data[index] /
+                                                                      sum)),
+                                                      backgroundColor:
+                                                          AppColor.cyanTeal,
+                                                      progressColor: AppColor
+                                                          .cyanTeal
+                                                          .withOpacity(opsity),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 1.r,
+                                                    ),
+                                                  ],
+                                                );
+                                              }),
+                                              ...List.generate(
+                                                  data.length >= 3
+                                                      ? 3
+                                                      : data.length, (index) {
+                                                opsity -= (opsity /
+                                                    (data.length + 1));
+                                                return Column(
+                                                  children: [
+                                                    ProgressBarWithText(
+                                                      text:
+                                                          '(${indector![index]}) ${controller.formatter.format((data[index] / sum) * 100)} %',
+                                                      percentage: double.parse(
+                                                          controller.formatter
+                                                              .format(
+                                                                  data[index] /
+                                                                      sum)),
+                                                      backgroundColor:
+                                                          AppColor.cyanTeal,
+                                                      progressColor: AppColor
+                                                          .cyanTeal
+                                                          .withOpacity(opsity),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 1.r,
+                                                    ),
+                                                  ],
+                                                );
+                                              }),
                                               ...List.generate(
                                                   data.length >= 3
                                                       ? 3
