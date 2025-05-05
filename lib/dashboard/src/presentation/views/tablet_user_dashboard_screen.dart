@@ -144,14 +144,18 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                               color: AppColor.white,
                                               fontWeight: FontWeight.w700),
                                         ),
-                                        if(SharedPr.currentSaleSession !=null && SharedPr.currentSaleSession!.state== SessionState.openSession)
-                                        Text(
-                                                "( ${"session_no".tr} : ${SharedPr.currentSaleSession?.id} )",
-                                                style:
-                                                    AppStyle.stylew400.copyWith(
-                                                  color: AppColor.lavenderGray,
-                                                  fontSize: 7.r,
-                                                )),
+                                        if (SharedPr.currentSaleSession !=
+                                                null &&
+                                            SharedPr.currentSaleSession!
+                                                    .state ==
+                                                SessionState.openSession)
+                                          Text(
+                                              "( ${"session_no".tr} : ${SharedPr.currentSaleSession?.id} )",
+                                              style:
+                                                  AppStyle.stylew400.copyWith(
+                                                color: AppColor.lavenderGray,
+                                                fontSize: 7.r,
+                                              )),
                                         SizedBox(
                                           height: 0.01.sh,
                                         ),
@@ -168,7 +172,9 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                                       color: AppColor.darkTeal,
                                                       fontWeight:
                                                           FontWeight.w400,
-                                                      fontFamily: 'Tajawal',package: 'yousentech_pos_dashboard'),
+                                                      fontFamily: 'Tajawal',
+                                                      package:
+                                                          'yousentech_pos_dashboard'),
                                                 ),
                                                 TextSpan(
                                                   text: sessionController
@@ -190,7 +196,9 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                                       color: AppColor.white,
                                                       fontWeight:
                                                           FontWeight.w400,
-                                                      fontFamily: 'Tajawal',package: 'yousentech_pos_dashboard'),
+                                                      fontFamily: 'Tajawal',
+                                                      package:
+                                                          'yousentech_pos_dashboard'),
                                                 ),
                                               ],
                                             ),
@@ -206,7 +214,9 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                                       color: AppColor.darkTeal,
                                                       fontWeight:
                                                           FontWeight.w400,
-                                                      fontFamily: 'Tajawal',package: 'yousentech_pos_dashboard'),
+                                                      fontFamily: 'Tajawal',
+                                                      package:
+                                                          'yousentech_pos_dashboard'),
                                                 ),
                                                 TextSpan(
                                                   text: sessionController
@@ -228,7 +238,9 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                                       color: AppColor.white,
                                                       fontWeight:
                                                           FontWeight.w400,
-                                                      fontFamily: 'Tajawal',package: 'yousentech_pos_dashboard'),
+                                                      fontFamily: 'Tajawal',
+                                                      package:
+                                                          'yousentech_pos_dashboard'),
                                                 ),
                                               ],
                                             ),
@@ -337,10 +349,10 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                         (element) => element.key == Loaddata.products),
                     menu: SideUserMenu.products,
                     contentpage: const ProductListScreen(),
-                    subtitel:"productess".tr ,
+                    subtitel: "productess".tr,
                   ),
                   SizedBox(
-                    height: 10.r,
+                    height: 5.r,
                   ),
                   CardLoadingdataTablet(
                     e: loaddata.entries.firstWhere(
@@ -847,22 +859,24 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                             TextSpan(
                                               text: theTopSession,
                                               style: TextStyle(
-                                                fontSize: 8.r,
-                                                color: controller
-                                                        .isbestsellertab.value
-                                                    ? AppColor.strongDimGray
-                                                    : AppColor.cyanTeal,
-                                                fontFamily: 'Tajawal',package: 'yousentech_pos_dashboard'
-                                              ),
+                                                  fontSize: 8.r,
+                                                  color: controller
+                                                          .isbestsellertab.value
+                                                      ? AppColor.strongDimGray
+                                                      : AppColor.cyanTeal,
+                                                  fontFamily: 'Tajawal',
+                                                  package:
+                                                      'yousentech_pos_dashboard'),
                                             ),
                                             // get the number
                                             TextSpan(
                                               text: ' ${'S.R'.tr}',
                                               style: TextStyle(
-                                                fontSize: 8.r,
-                                                color: AppColor.strongDimGray,
-                                                fontFamily: 'Tajawal',package: 'yousentech_pos_dashboard'
-                                              ),
+                                                  fontSize: 8.r,
+                                                  color: AppColor.strongDimGray,
+                                                  fontFamily: 'Tajawal',
+                                                  package:
+                                                      'yousentech_pos_dashboard'),
                                             ),
                                           ])),
                                         ],
