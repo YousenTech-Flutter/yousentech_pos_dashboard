@@ -1117,7 +1117,7 @@ stockAlertsItem({required FinalReportController controller}) {
                   child: Text(
                     item?.getProductNameBasedOnLang ?? "",
                     style: TextStyle(
-                        fontSize: 7.r,
+                        fontSize: 9.r,
                         color: AppColor.strongDimGray,
                         fontWeight: FontWeight.w700),
                   ),
@@ -1128,7 +1128,7 @@ stockAlertsItem({required FinalReportController controller}) {
                     child: Text(
                       '${item?.availableQty ?? ""} ${'packs'.tr}',
                       style: TextStyle(
-                          fontSize: 7.r,
+                          fontSize: 9.r,
                           color: AppColor.strongDimGray,
                           fontWeight: FontWeight.w700),
                     ),
@@ -1146,6 +1146,9 @@ stockAlertsItem({required FinalReportController controller}) {
           ],
         );
       }),
+      const Divider(
+        height: 0,
+      ),
       ...List.generate(length, (index) {
         LessProductsBasedInAvailableQty? item =
             controller.finalReportInfo == null
