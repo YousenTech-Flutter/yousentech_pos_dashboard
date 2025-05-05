@@ -597,7 +597,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                     builder: (controller) {
                       return Expanded(
                           child: Container(
-                              height: 130.r,
+                              height: 140.r,
                               padding: EdgeInsets.all(10.r),
                               decoration: BoxDecoration(
                                   color: AppColor.white,
@@ -1096,56 +1096,6 @@ stockAlertsItem({required FinalReportController controller}) {
       SizedBox(
         height: 5.r,
       ),
-      const Divider(
-        height: 0,
-      ),
-      ...List.generate(length, (index) {
-        LessProductsBasedInAvailableQty? item =
-            controller.finalReportInfo == null
-                ? null
-                : controller
-                    .finalReportInfo!.lessProductsBasedInAvailableQty![index];
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 5.r,
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    item?.getProductNameBasedOnLang ?? "",
-                    style: TextStyle(
-                        fontSize: 9.r,
-                        color: AppColor.strongDimGray,
-                        fontWeight: FontWeight.w700),
-                  ),
-                ),
-                Expanded(
-                  flex: 3,
-                  child: Center(
-                    child: Text(
-                      '${item?.availableQty ?? ""} ${'packs'.tr}',
-                      style: TextStyle(
-                          fontSize: 9.r,
-                          color: AppColor.strongDimGray,
-                          fontWeight: FontWeight.w700),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 10.r,
-            ),
-            if (index != length - 1)
-              const Divider(
-                height: 0,
-              )
-          ],
-        );
-      }),
       const Divider(
         height: 0,
       ),
