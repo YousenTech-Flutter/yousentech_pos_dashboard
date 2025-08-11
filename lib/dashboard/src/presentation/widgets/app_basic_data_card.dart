@@ -141,9 +141,9 @@ class _CardLoadingdataTabletState extends State<CardLoadingdataTablet> {
                           ),
                         ],
                       ),
-                      SizedBox(
-                        height: 0.015.sh,
-                      ),
+                      // SizedBox(
+                      //   height: 5.r,
+                      // ),
                       Padding(
                         padding: EdgeInsets.all(8.0.r),
                         child: LinearProgress(
@@ -170,39 +170,38 @@ class _CardLoadingdataTabletState extends State<CardLoadingdataTablet> {
                               ? InkWell(
                                   onTap: () async {
                                     loadingDataController.isUpdate.value = true;
-                                    
-                                      var result =
-                                          await synchronizeBasedOnModelType(
-                                              type: widget.e.key.toString());
 
-                                      if (result == true) {
-                                        appSnackBar(
-                                            message: 'synchronized'.tr,
-                                            messageType: MessageTypes.success,
-                                            isDismissible: false);
-                                      } else if (result == false) {
-                                        appSnackBar(
-                                            message:
-                                                'synchronized_successfully'.tr,
-                                            messageType: MessageTypes.success,
-                                            isDismissible: false);
-                                      } else if (result is String) {
-                                        appSnackBar(
-                                          message: result,
-                                          messageType:
-                                              MessageTypes.connectivityOff,
-                                        );
-                                      } else {
-                                        appSnackBar(
-                                            message:
-                                                'synchronization_problem'.tr,
-                                            messageType: MessageTypes.success,
-                                            isDismissible: false);
-                                      }
-                                      loadingDataController.isUpdate.value =
-                                          false;
-                                      controller.update(['card_loading_data']);
-                                      controller.update(['loading']);
+                                    var result =
+                                        await synchronizeBasedOnModelType(
+                                            type: widget.e.key.toString());
+
+                                    if (result == true) {
+                                      appSnackBar(
+                                          message: 'synchronized'.tr,
+                                          messageType: MessageTypes.success,
+                                          isDismissible: false);
+                                    } else if (result == false) {
+                                      appSnackBar(
+                                          message:
+                                              'synchronized_successfully'.tr,
+                                          messageType: MessageTypes.success,
+                                          isDismissible: false);
+                                    } else if (result is String) {
+                                      appSnackBar(
+                                        message: result,
+                                        messageType:
+                                            MessageTypes.connectivityOff,
+                                      );
+                                    } else {
+                                      appSnackBar(
+                                          message: 'synchronization_problem'.tr,
+                                          messageType: MessageTypes.success,
+                                          isDismissible: false);
+                                    }
+                                    loadingDataController.isUpdate.value =
+                                        false;
+                                    controller.update(['card_loading_data']);
+                                    controller.update(['loading']);
                                   },
                                   child: Container(
                                     width: 20.w,
@@ -426,37 +425,38 @@ class _CardloadingdataState extends State<Cardloadingdata> {
                               ? InkWell(
                                   onTap: () async {
                                     loadingDataController.isUpdate.value = true;
-                                    
-                                      var result =await synchronizeBasedOnModelType(type: widget.e.key.toString());
 
-                                      if (result == true) {
-                                        appSnackBar(
-                                            message: 'synchronized'.tr,
-                                            messageType: MessageTypes.success,
-                                            isDismissible: false);
-                                      } else if (result == false) {
-                                        appSnackBar(
-                                            message:
-                                                'synchronized_successfully'.tr,
-                                            messageType: MessageTypes.success,
-                                            isDismissible: false);
-                                      } else if (result is String) {
-                                        appSnackBar(
-                                          message: result,
-                                          messageType:
-                                              MessageTypes.connectivityOff,
-                                        );
-                                      } else {
-                                        appSnackBar(
-                                            message:
-                                                'synchronization_problem'.tr,
-                                            messageType: MessageTypes.success,
-                                            isDismissible: false);
-                                      }
-                                      loadingDataController.isUpdate.value =
-                                          false;
-                                      controller.update(['card_loading_data']);
-                                      controller.update(['loading']);
+                                    var result =
+                                        await synchronizeBasedOnModelType(
+                                            type: widget.e.key.toString());
+
+                                    if (result == true) {
+                                      appSnackBar(
+                                          message: 'synchronized'.tr,
+                                          messageType: MessageTypes.success,
+                                          isDismissible: false);
+                                    } else if (result == false) {
+                                      appSnackBar(
+                                          message:
+                                              'synchronized_successfully'.tr,
+                                          messageType: MessageTypes.success,
+                                          isDismissible: false);
+                                    } else if (result is String) {
+                                      appSnackBar(
+                                        message: result,
+                                        messageType:
+                                            MessageTypes.connectivityOff,
+                                      );
+                                    } else {
+                                      appSnackBar(
+                                          message: 'synchronization_problem'.tr,
+                                          messageType: MessageTypes.success,
+                                          isDismissible: false);
+                                    }
+                                    loadingDataController.isUpdate.value =
+                                        false;
+                                    controller.update(['card_loading_data']);
+                                    controller.update(['loading']);
                                   },
                                   child: Tooltip(
                                     message: "synchronization".tr,

@@ -590,7 +590,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   icon is IconData
                       ? Icon(
                           icon,
-                          size: 10.r,
+                          size: showtitel ? 15.r : 20.r,
                           color: !showtitel
                               ? isselected
                                   ? AppColor.cyanTeal
@@ -604,8 +604,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       : SvgPicture.asset(
                           "assets/image/$icon.svg",
                           package: 'yousentech_pos_dashboard',
-                          width: 15.r,
-                          height: 15.r,
+                          width: showtitel ? 15.r : 20.r,
+                          height: showtitel ? 15.r : 20.r,
                           color: !showtitel
                               ? isselected
                                   ? AppColor.cyanTeal

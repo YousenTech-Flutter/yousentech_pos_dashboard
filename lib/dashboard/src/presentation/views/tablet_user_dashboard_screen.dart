@@ -144,14 +144,18 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                               color: AppColor.white,
                                               fontWeight: FontWeight.w700),
                                         ),
-                                        if(SharedPr.currentSaleSession !=null && SharedPr.currentSaleSession!.state== SessionState.openSession)
-                                        Text(
-                                                "( ${"session_no".tr} : ${SharedPr.currentSaleSession?.id} )",
-                                                style:
-                                                    AppStyle.stylew400.copyWith(
-                                                  color: AppColor.lavenderGray,
-                                                  fontSize: 7.r,
-                                                )),
+                                        if (SharedPr.currentSaleSession !=
+                                                null &&
+                                            SharedPr.currentSaleSession!
+                                                    .state ==
+                                                SessionState.openSession)
+                                          Text(
+                                              "( ${"session_no".tr} : ${SharedPr.currentSaleSession?.id} )",
+                                              style:
+                                                  AppStyle.stylew400.copyWith(
+                                                color: AppColor.lavenderGray,
+                                                fontSize: 7.r,
+                                              )),
                                         SizedBox(
                                           height: 0.01.sh,
                                         ),
@@ -164,11 +168,13 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                                   text:
                                                       '${'sessionStartTime'.tr}  ',
                                                   style: TextStyle(
-                                                      fontSize: 0.008.sw,
+                                                      fontSize: 10.r,
                                                       color: AppColor.darkTeal,
                                                       fontWeight:
                                                           FontWeight.w400,
-                                                      fontFamily: 'Tajawal',package: 'yousentech_pos_dashboard'),
+                                                      fontFamily: 'Tajawal',
+                                                      package:
+                                                          'yousentech_pos_dashboard'),
                                                 ),
                                                 TextSpan(
                                                   text: sessionController
@@ -186,11 +192,13 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                                                   ""))
                                                       : '',
                                                   style: TextStyle(
-                                                      fontSize: 0.008.sw,
+                                                      fontSize: 10.r,
                                                       color: AppColor.white,
                                                       fontWeight:
                                                           FontWeight.w400,
-                                                      fontFamily: 'Tajawal',package: 'yousentech_pos_dashboard'),
+                                                      fontFamily: 'Tajawal',
+                                                      package:
+                                                          'yousentech_pos_dashboard'),
                                                 ),
                                               ],
                                             ),
@@ -202,11 +210,13 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                                   text:
                                                       '${'sessionCloseTime'.tr}  ',
                                                   style: TextStyle(
-                                                      fontSize: 0.008.sw,
+                                                      fontSize: 10.r,
                                                       color: AppColor.darkTeal,
                                                       fontWeight:
                                                           FontWeight.w400,
-                                                      fontFamily: 'Tajawal',package: 'yousentech_pos_dashboard'),
+                                                      fontFamily: 'Tajawal',
+                                                      package:
+                                                          'yousentech_pos_dashboard'),
                                                 ),
                                                 TextSpan(
                                                   text: sessionController
@@ -224,11 +234,13 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                                                   ""))
                                                       : '',
                                                   style: TextStyle(
-                                                      fontSize: 0.008.sw,
+                                                      fontSize: 10.r,
                                                       color: AppColor.white,
                                                       fontWeight:
                                                           FontWeight.w400,
-                                                      fontFamily: 'Tajawal',package: 'yousentech_pos_dashboard'),
+                                                      fontFamily: 'Tajawal',
+                                                      package:
+                                                          'yousentech_pos_dashboard'),
                                                 ),
                                               ],
                                             ),
@@ -337,10 +349,10 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                         (element) => element.key == Loaddata.products),
                     menu: SideUserMenu.products,
                     contentpage: const ProductListScreen(),
-                    subtitel:"productess".tr ,
+                    subtitel: "productess".tr,
                   ),
                   SizedBox(
-                    height: 10.r,
+                    height: 5.r,
                   ),
                   CardLoadingdataTablet(
                     e: loaddata.entries.firstWhere(
@@ -520,7 +532,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
 
                       return Expanded(
                           child: Container(
-                              height: 130.r,
+                              height: 140.r,
                               padding: EdgeInsets.all(10.r),
                               decoration: BoxDecoration(
                                   color: AppColor.white,
@@ -543,8 +555,10 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                         child: SingleChildScrollView(
                                           child: Column(
                                             children: [
-                                              ...List.generate(data.length,
-                                                  (index) {
+                                              ...List.generate(
+                                                  data.length >= 3
+                                                      ? 3
+                                                      : data.length, (index) {
                                                 opsity -= (opsity /
                                                     (data.length + 1));
                                                 return Column(
@@ -564,7 +578,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                                           .withOpacity(opsity),
                                                     ),
                                                     SizedBox(
-                                                      height: 1.r,
+                                                      height: 10.r,
                                                     ),
                                                   ],
                                                 );
@@ -583,7 +597,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                     builder: (controller) {
                       return Expanded(
                           child: Container(
-                              height: 130.r,
+                              height: 140.r,
                               padding: EdgeInsets.all(10.r),
                               decoration: BoxDecoration(
                                   color: AppColor.white,
@@ -625,7 +639,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                     return Expanded(
                       flex: 2,
                       child: Container(
-                          height: 130.r,
+                          height: 140.r,
                           padding: EdgeInsets.all(10.r),
                           decoration: BoxDecoration(
                               color: AppColor.white,
@@ -692,8 +706,16 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                                       .basedSellingProduct ==
                                                   null
                                               ? 0
-                                              : controller.finalReportInfo!
-                                                  .basedSellingProduct!.length))
+                                              : controller
+                                                          .finalReportInfo!
+                                                          .basedSellingProduct!
+                                                          .length >=
+                                                      3
+                                                  ? 3
+                                                  : controller
+                                                      .finalReportInfo!
+                                                      .basedSellingProduct!
+                                                      .length))
                             ],
                           )),
                     );
@@ -709,7 +731,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                     return Expanded(
                       flex: 1,
                       child: Container(
-                          height: 130.r,
+                          height: 140.r,
                           padding: EdgeInsets.all(10.r),
                           decoration: BoxDecoration(
                               color: AppColor.white,
@@ -782,8 +804,12 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                       separatorBuilder: (context, index) {
                                         return const Divider();
                                       },
-                                      itemCount: controller
-                                          .invoicePaymentMethod.length))
+                                      itemCount: controller.invoicePaymentMethod
+                                                  .length >=
+                                              3
+                                          ? 3
+                                          : controller
+                                              .invoicePaymentMethod.length))
                             ],
                           )),
                     );
@@ -811,7 +837,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                       return Expanded(
                         flex: 2,
                         child: Container(
-                            height: 130.r,
+                            height: 140.r,
                             padding: EdgeInsets.all(10.r),
                             decoration: BoxDecoration(
                                 color: AppColor.white,
@@ -847,22 +873,24 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                             TextSpan(
                                               text: theTopSession,
                                               style: TextStyle(
-                                                fontSize: 8.r,
-                                                color: controller
-                                                        .isbestsellertab.value
-                                                    ? AppColor.strongDimGray
-                                                    : AppColor.cyanTeal,
-                                                fontFamily: 'Tajawal',package: 'yousentech_pos_dashboard'
-                                              ),
+                                                  fontSize: 9.r,
+                                                  color: controller
+                                                          .isbestsellertab.value
+                                                      ? AppColor.strongDimGray
+                                                      : AppColor.cyanTeal,
+                                                  fontFamily: 'Tajawal',
+                                                  package:
+                                                      'yousentech_pos_dashboard'),
                                             ),
                                             // get the number
                                             TextSpan(
                                               text: ' ${'S.R'.tr}',
                                               style: TextStyle(
-                                                fontSize: 8.r,
-                                                color: AppColor.strongDimGray,
-                                                fontFamily: 'Tajawal',package: 'yousentech_pos_dashboard'
-                                              ),
+                                                  fontSize: 8.r,
+                                                  color: AppColor.strongDimGray,
+                                                  fontFamily: 'Tajawal',
+                                                  package:
+                                                      'yousentech_pos_dashboard'),
                                             ),
                                           ])),
                                         ],
@@ -880,7 +908,7 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                           Text(
                                             best_seller.first![1].toString(),
                                             style: TextStyle(
-                                              fontSize: 8.r,
+                                              fontSize: 9.r,
                                               color: controller
                                                       .isbestsellertab.value
                                                   ? AppColor.cyanTeal
@@ -981,9 +1009,15 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                                                 null
                                                             ? 0
                                                             : controller
-                                                                .finalReportInfo!
-                                                                .topSession!
-                                                                .length))
+                                                                        .finalReportInfo!
+                                                                        .topSession!
+                                                                        .length >=
+                                                                    3
+                                                                ? 3
+                                                                : controller
+                                                                    .finalReportInfo!
+                                                                    .topSession!
+                                                                    .length))
                                           ],
                                         ),
                                         Column(
@@ -1025,7 +1059,10 @@ class _TabletUserDashboardState extends State<TabletUserDashboard> {
                                                           );
                                                     },
                                                     itemCount:
-                                                        best_seller.length)),
+                                                        best_seller.length >= 3
+                                                            ? 3
+                                                            : best_seller
+                                                                .length)),
                                           ],
                                         ),
                                       ],
@@ -1101,7 +1138,7 @@ stockAlertsItem({required FinalReportController controller}) {
                   child: Text(
                     item?.getProductNameBasedOnLang ?? "",
                     style: TextStyle(
-                        fontSize: 7.r,
+                        fontSize: 9.r,
                         color: AppColor.strongDimGray,
                         fontWeight: FontWeight.w700),
                   ),
@@ -1112,7 +1149,7 @@ stockAlertsItem({required FinalReportController controller}) {
                     child: Text(
                       '${item?.availableQty ?? ""} ${'packs'.tr}',
                       style: TextStyle(
-                          fontSize: 7.r,
+                          fontSize: 9.r,
                           color: AppColor.strongDimGray,
                           fontWeight: FontWeight.w700),
                     ),
@@ -1151,7 +1188,7 @@ class paymentHeaderRow extends StatelessWidget {
                   child: Text(
                     e.toString().tr,
                     style: TextStyle(
-                        fontSize: 7.r,
+                        fontSize: 9.r,
                         color: AppColor.strongDimGray,
                         fontWeight:
                             isbold ? FontWeight.w700 : FontWeight.normal),
@@ -1259,7 +1296,7 @@ class paymentDataRow extends StatelessWidget {
                           '${data[index]}',
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                            fontSize: 7.r,
+                            fontSize: 9.r,
                             color: AppColor.strongDimGray,
                           ),
                         ),
@@ -1275,7 +1312,7 @@ class paymentDataRow extends StatelessWidget {
                       child: Text(
                         '${data[index]} ${isPymentMethod && index == 1 ? "S.R".tr : ''}',
                         style: TextStyle(
-                          fontSize: 7.r,
+                          fontSize: 9.r,
                           overflow: TextOverflow.ellipsis,
                           color: isPymentMethod
                               ? index == 1
