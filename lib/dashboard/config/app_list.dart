@@ -46,7 +46,8 @@ var sideUserMenu = {
       "pos_account_journal_list",
       [Icons.payment, const PosAccountJournalListScreen()]
     ]
-  ]
+  ],
+  SideUserMenu.invoiceReturn: [],
 };
 List<String> dashBoardFilter = [
   'today',

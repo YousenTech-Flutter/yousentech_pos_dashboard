@@ -13,7 +13,8 @@ enum SideUserMenu {
   accountTax,
   accountJournal,
   databaseInfoSetting,
-  dataManagement
+  dataManagement,
+  invoiceReturn
 }
 
 enum InfoTotalCard {

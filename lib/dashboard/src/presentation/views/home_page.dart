@@ -15,8 +15,10 @@ import 'package:yousentech_pos_basic_data_management/basic_data_management/src/p
 import 'package:yousentech_pos_dashboard/dashboard/config/app_enums.dart';
 import 'package:yousentech_pos_dashboard/dashboard/config/app_list.dart';
 import 'package:yousentech_pos_dashboard/dashboard/src/presentation/views/user_dashboard_screen.dart';
+import 'package:yousentech_pos_invoice/invoices/presentation/return_invoice_preparation_screen.dart';
 import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/src/domain/loading_synchronizing_data_viewmodel.dart';
 import 'package:yousentech_pos_notification_history/notification_history/presentation/widgets/expandable_message_widget.dart';
+import 'package:yousentech_pos_session/pos_session/src/domain/session_viewmodel.dart';
 import 'package:yousentech_pos_session_list_with_report/sessions_list_with_report/presentation/session_list_screen.dart';
 import '../../domain/dashboard_viewmodel.dart';
 import '../widgets/progress_bar.dart';
@@ -327,6 +329,22 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                           icon: 'calculate_menu_icon',
                                           title: 'pos_account_journal_list',
                                         ),
+                                        
+                                menuContent(
+                                  selectedsideUserMenu:SideUserMenu.invoiceReturn,
+                                  onTap: () {
+                                    Get.put(SessionController()).isPosted.value = true;
+                                    Get.put(SessionController()).isPreviousScreen.value = false;
+
+                                    updateSelectedMenu(
+                                        menu: SideUserMenu.invoiceReturn,
+                                        contentpage: const PreviousInvoiceScreen());
+                                    updatecontent();
+                                  },
+                                  icon: 'refun_invoice',
+                                  showtitel: false,
+                                  title: 'invoice_return_n',
+                                ),
                                         if (SharedPr.userObj!
                                             .showFinalReportForAllSessions!) ...[
                                           menuContent(
@@ -451,6 +469,21 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                           icon: 'calculate_menu_icon',
                                           title: 'pos_account_journal_list',
                                         ),
+                                        
+                                menuContent(
+                                  selectedsideUserMenu:SideUserMenu.invoiceReturn,
+                                  onTap: () {
+                                    Get.put(SessionController()).isPosted.value = true;
+                                    Get.put(SessionController()).isPreviousScreen.value = false;
+
+                                    updateSelectedMenu(
+                                        menu: SideUserMenu.invoiceReturn,
+                                        contentpage: const PreviousInvoiceScreen());
+                                    updatecontent();
+                                  },
+                                  icon: 'refun_invoice',
+                                  title: 'invoice_return_n',
+                                ),
                                         if (SharedPr.userObj!
                                             .showFinalReportForAllSessions!) ...[
                                           menuContent(
