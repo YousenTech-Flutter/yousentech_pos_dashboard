@@ -329,22 +329,28 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                           icon: 'calculate_menu_icon',
                                           title: 'pos_account_journal_list',
                                         ),
-                                        
-                                menuContent(
-                                  selectedsideUserMenu:SideUserMenu.invoiceReturn,
-                                  onTap: () {
-                                    Get.put(SessionController()).isPosted.value = true;
-                                    Get.put(SessionController()).isPreviousScreen.value = false;
+                                        menuContent(
+                                          selectedsideUserMenu:
+                                              SideUserMenu.invoiceReturn,
+                                          onTap: () {
+                                            Get.put(SessionController())
+                                                .isPosted
+                                                .value = true;
+                                            Get.put(SessionController())
+                                                .isPreviousScreen
+                                                .value = false;
 
-                                    updateSelectedMenu(
-                                        menu: SideUserMenu.invoiceReturn,
-                                        contentpage: const PreviousInvoiceScreen());
-                                    updatecontent();
-                                  },
-                                  icon: 'refun_invoice',
-                                  showtitel: false,
-                                  title: 'invoice_return_n',
-                                ),
+                                            updateSelectedMenu(
+                                                menu:
+                                                    SideUserMenu.invoiceReturn,
+                                                contentpage:
+                                                    const PreviousInvoiceScreen());
+                                            updatecontent();
+                                          },
+                                          icon: 'refun_invoice',
+                                          showtitel: false,
+                                          title: 'invoice_return_n',
+                                        ),
                                         if (SharedPr.userObj!
                                             .showFinalReportForAllSessions!) ...[
                                           menuContent(
@@ -469,21 +475,28 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                           icon: 'calculate_menu_icon',
                                           title: 'pos_account_journal_list',
                                         ),
-                                        
-                                menuContent(
-                                  selectedsideUserMenu:SideUserMenu.invoiceReturn,
-                                  onTap: () {
-                                    Get.put(SessionController()).isPosted.value = true;
-                                    Get.put(SessionController()).isPreviousScreen.value = false;
 
-                                    updateSelectedMenu(
-                                        menu: SideUserMenu.invoiceReturn,
-                                        contentpage: const PreviousInvoiceScreen());
-                                    updatecontent();
-                                  },
-                                  icon: 'refun_invoice',
-                                  title: 'invoice_return_n',
-                                ),
+                                        menuContent(
+                                          selectedsideUserMenu:
+                                              SideUserMenu.invoiceReturn,
+                                          onTap: () {
+                                            Get.put(SessionController())
+                                                .isPosted
+                                                .value = true;
+                                            Get.put(SessionController())
+                                                .isPreviousScreen
+                                                .value = false;
+
+                                            updateSelectedMenu(
+                                                menu:
+                                                    SideUserMenu.invoiceReturn,
+                                                contentpage:
+                                                    const PreviousInvoiceScreen());
+                                            updatecontent();
+                                          },
+                                          icon: 'refun_invoice',
+                                          title: 'invoice_return_n',
+                                        ),
                                         if (SharedPr.userObj!
                                             .showFinalReportForAllSessions!) ...[
                                           menuContent(
