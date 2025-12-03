@@ -61,6 +61,10 @@ dependencies:
     git:
       url: https://github.com/YousenTech-Flutter/yousentech_pos_invoice.git
       ref: master
+  yousentech_pos_setting:
+    git:
+      url: https://github.com/YousenTech-Flutter/yousentech_pos_setting.git
+      ref: master
   fl_chart: ^1.1.0
 dev_dependencies:
   flutter_test:
@@ -70,6 +74,7 @@ dev_dependencies:
 
 dependency_overrides:
   network_info_plus: ^4.0.2
+  fl_chart: ^0.69.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

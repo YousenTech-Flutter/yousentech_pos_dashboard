@@ -7,20 +7,13 @@ import 'package:shared_widgets/config/app_colors.dart';
 import 'package:shared_widgets/config/app_images.dart';
 import 'package:shared_widgets/shared_widgets/custom_app_bar.dart';
 import 'package:shared_widgets/utils/responsive_helpers/size_helper_extenstions.dart';
-import 'package:tablet_new_ui/core/config/app_colors.dart';
-import 'package:tablet_new_ui/core/config/custom_app_bar.dart';
-import 'package:tablet_new_ui/features/customer/presentation/views/customer_screen.dart';
-import 'package:tablet_new_ui/features/dashboard/presentation/views/dashboard.dart';
-import 'package:tablet_new_ui/features/product/presentation/views/product_screen.dart';
-import 'package:tablet_new_ui/features/dashboard/presentation/widgets/progress_bar.dart';
-import 'package:tablet_new_ui/features/reportes/presentation/views/report_session.dart';
-import 'package:tablet_new_ui/features/setting/setting_screen.dart';
-import 'package:tablet_new_ui/responsive_helpers/size_helper_extenstions.dart';
 import 'package:yousentech_pos_basic_data_management/basic_data_management/src/customer/presentation/views/customer_screen.dart';
 import 'package:yousentech_pos_basic_data_management/basic_data_management/src/products/presentation/product_screen.dart';
 import 'package:yousentech_pos_dashboard/dashboard/src/presentation/views/dashboard.dart';
 import 'package:yousentech_pos_dashboard/dashboard/src/presentation/widgets/progress_bar.dart';
 import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/src/domain/loading_synchronizing_data_viewmodel.dart';
+import 'package:yousentech_pos_session_list_with_report/sessions_list_with_report/presentation/report_session.dart';
+import 'package:yousentech_pos_setting/setting/presentation/setting_screen.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});

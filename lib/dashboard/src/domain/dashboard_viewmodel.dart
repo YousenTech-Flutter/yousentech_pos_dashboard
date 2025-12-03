@@ -3,8 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yousentech_pos_dashboard/dashboard/config/app_enums.dart';
-
-import '../presentation/views/user_dashboard_screen_old.dart';
+import 'package:yousentech_pos_dashboard/dashboard/src/presentation/views/dashboard.dart';
 import 'dashboard_service.dart';
 
 class DashboardController extends GetxController {
@@ -12,7 +11,8 @@ class DashboardController extends GetxController {
   late AnimationController animationController;
   SideUserMenu selectedMenu = SideUserMenu.dashboard;
   SideUserMenu? preselectedMenu;
-  Widget content = const UserDashboard();
+  // Widget content = const UserDashboard();
+  Widget content =  Dashboard();
   SideUserMenu? sufelectedMenu = SideUserMenu
       .values[SideUserMenu.values.indexOf(SideUserMenu.dashboard) + 1];
   int? selectedSubMenu;

@@ -24,6 +24,7 @@ import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/src/domai
 import 'package:yousentech_pos_session/pos_session/config/app_enums.dart';
 import 'package:yousentech_pos_session/pos_session/src/domain/session_service.dart';
 import 'package:yousentech_pos_session/pos_session/src/domain/session_viewmodel.dart';
+import 'package:yousentech_pos_session/pos_session/src/presentation/close_session.dart';
 
 class Dashboard extends StatefulWidget {
   Dashboard({super.key});
