@@ -1,0 +1,324 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first, must_be_immutable
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:pos_shared_preferences/pos_shared_preferences.dart';
+import 'package:shared_widgets/config/app_colors.dart';
+import 'package:shared_widgets/config/app_images.dart';
+import 'package:shared_widgets/shared_widgets/custom_app_bar.dart';
+import 'package:shared_widgets/utils/responsive_helpers/size_helper_extenstions.dart';
+import 'package:tablet_new_ui/core/config/app_colors.dart';
+import 'package:tablet_new_ui/core/config/custom_app_bar.dart';
+import 'package:tablet_new_ui/features/customer/presentation/views/customer_screen.dart';
+import 'package:tablet_new_ui/features/dashboard/presentation/views/dashboard.dart';
+import 'package:tablet_new_ui/features/product/presentation/views/product_screen.dart';
+import 'package:tablet_new_ui/features/dashboard/presentation/widgets/progress_bar.dart';
+import 'package:tablet_new_ui/features/reportes/presentation/views/report_session.dart';
+import 'package:tablet_new_ui/features/setting/setting_screen.dart';
+import 'package:tablet_new_ui/responsive_helpers/size_helper_extenstions.dart';
+import 'package:yousentech_pos_basic_data_management/basic_data_management/src/customer/presentation/views/customer_screen.dart';
+import 'package:yousentech_pos_basic_data_management/basic_data_management/src/products/presentation/product_screen.dart';
+import 'package:yousentech_pos_dashboard/dashboard/src/presentation/views/dashboard.dart';
+import 'package:yousentech_pos_dashboard/dashboard/src/presentation/widgets/progress_bar.dart';
+import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/src/domain/loading_synchronizing_data_viewmodel.dart';
+
+class Home extends StatefulWidget {
+  const Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  LoadingDataController loadingDataController = Get.put(
+    LoadingDataController(),
+  );
+  int _navIndex = 0;
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        // resizeToAvoidBottomInset: _navIndex == 4  ? false : null,
+        resizeToAvoidBottomInset:false,
+        appBar: customAppBar(
+          context: context,
+          onDarkModeChanged: () {
+            setState(() {});
+          },
+        ),
+        backgroundColor:
+            SharedPr.isDarkMode! ? AppColor. darkModeBackgroundColor : Color(0xFFDDDDDD),
+        body: Container(
+          width: Get.width,
+          decoration: BoxDecoration(
+            color: SharedPr.isDarkMode! ? AppColor.darkModeBackgroundColor : null,
+            gradient:
+                SharedPr.isDarkMode!
+                    ? null
+                    : LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [const Color(0xFFF0F9FF), Colors.white],
+                    ),
+          ),
+          child: Stack(
+            children: [
+              Positioned(
+                top: context.setHeight(10),
+                right: context.setWidth(-170),
+                child: SvgPicture.asset(
+                  AppImages.imageBackground,
+                  package: 'shared_widgets',
+                ),
+              ),
+              Positioned(
+                top: context.setHeight(0),
+                right: SharedPr.lang == "ar" ? context.setWidth(5) : null,
+                left: SharedPr.lang == "ar" ? null : context.setWidth(5),
+                bottom: context.setHeight(0),
+                child: GetBuilder<LoadingDataController>(
+                    id: "loading",
+                    builder: (loadingcontext) {
+                      return Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: context.setHeight(14),
+                        horizontal: context.setWidth(10),
+                      ),
+                      child: Container(
+                        width: context.setWidth(84),
+                        clipBehavior: Clip.antiAlias,
+                        decoration: ShapeDecoration(
+                          color:
+                              SharedPr.isDarkMode!
+                                  ? null
+                                  : Colors.white.withValues(alpha: 0.70),
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                              width: SharedPr.isDarkMode! ? 0.60 : 1,
+                              color:
+                                  SharedPr.isDarkMode!
+                                      ? AppColor.darkModeBackgroundColor
+                                      : Colors.white.withValues(alpha: 0.50),
+                            ),
+                            borderRadius: BorderRadius.circular(
+                              context.setMinSize(16),
+                            ),
+                          ),
+                        ),
+                        child: LayoutBuilder(
+                          builder: (context, constraints) {
+                            return ConstrainedBox(
+                              constraints: BoxConstraints(
+                                minHeight: constraints.maxHeight,
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  BottomNavigationBar(
+                                    name: "home",
+                                    image: AppImages.home,
+                                    onTap: () {
+                                      _navIndex = 0;
+                                      // setState(() {});
+                                      loadingDataController.update(["loading"]);
+                                    },
+                                    isSelect: _navIndex == 0,
+                                  ),
+                                  BottomNavigationBar(
+                                    name: "dashboard",
+                                    image:AppImages.frame1,
+                                    onTap: () {
+                                      _navIndex = 1;
+                                      // setState(() {});
+                                      loadingDataController.update(["loading"]);
+                                    },
+                                    isSelect: _navIndex == 1,
+                                  ),
+                                  BottomNavigationBar(
+                                    name: "products",
+                                    image:AppImages.productList,
+                                    onTap: () {
+                                      _navIndex = 2;
+                                      // setState(() {});
+                                      loadingDataController.update(["loading"]);
+                                    },
+                                    isSelect: _navIndex == 2,
+                                  ),
+                                  BottomNavigationBar(
+                                    name: "customers",
+                                    image: AppImages.customers,
+                                    onTap: () {
+                                      _navIndex = 3;
+                                      // setState(() {});
+                                      loadingDataController.update(["loading"]);
+                                    },
+                                    isSelect: _navIndex == 3,
+                                  ),
+                                  // BottomNavigationBar(
+                                  //   name: "invoice_return",
+                                  //   image: "Frame 2095586631",
+                                  //   onTap: () {
+                                  //     _navIndex = 3;
+                                  //     setState(() {});
+                                  //   },
+                                  //   isSelect: _navIndex == 3,
+                                  // ),
+                                  BottomNavigationBar(
+                                    name: "Reports",
+                                    image:AppImages.reports,
+                                    onTap: () {
+                                      _navIndex = 4;
+                                      // setState(() {});
+                                      loadingDataController.update(["loading"]);
+                                    },
+                                    isSelect: _navIndex == 4,
+                                  ),
+                                  BottomNavigationBar(
+                                    name: "Settings",
+                                    image:AppImages.setting,
+                                    onTap: () {
+                                      _navIndex = 5;
+                                      // setState(() {});
+                                      loadingDataController.update(["loading"]);
+                                    },
+                                    isSelect: _navIndex == 5,
+                                  ),
+                                  
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    );
+                  }
+                ),
+              ),
+              Positioned.fill(
+                right: SharedPr.lang == "ar" ? context.setWidth(95) : 0.0,
+                left: SharedPr.lang == "ar" ? 0.0 : context.setWidth(95),
+                top: 0,
+                child: GetBuilder<LoadingDataController>(
+                  id: "loading",
+                  builder: (loadingcontext) {
+                    return loadingDataController.isLoad.value
+                        ? const ProgressWidget()
+                        : getHomeMenu(_navIndex);
+                  }
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class BottomNavigationBar extends StatelessWidget {
+  String image;
+  void Function()? onTap;
+  bool isSelect;
+  String name;
+  BottomNavigationBar({
+    super.key,
+    required this.image,
+    required this.onTap,
+    this.isSelect = false,
+    required this.name,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: context.setWidth(11),
+              vertical: context.setHeight(8),
+            ),
+            child: Container(
+              width: double.infinity,
+              height: context.setHeight(50),
+              decoration: ShapeDecoration(
+                color:
+                    isSelect
+                        ? SharedPr.isDarkMode!
+                            ? const Color(0x1916A6B7)
+                            : const Color(0xFFD5F1F5)
+                        : null,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(context.setMinSize(12)),
+                ),
+              ),
+              child:
+                  name == "logout"
+                      ? Center(
+                        child: SvgPicture.asset(
+                          AppImages.loginIcon,
+                          package: 'shared_widgets',
+                          width: context.setWidth(30),
+                          height: context.setHeight(30),
+                          color: const Color(0xFFF20C10),
+                        ),
+                      )
+                      : Padding(
+                        padding: EdgeInsets.all(name == "create_invoice" ||  name == "home" ? context.setMinSize(10) : 0),
+                        child: SvgPicture.asset(
+                          image,
+                          package: 'shared_widgets',
+                          width: context.setWidth(53),
+                          height: context.setHeight(53),
+                          color:
+                              isSelect
+                                  ? const Color(0xFF16A6B7)
+                                  : SharedPr.isDarkMode!
+                                  ? Colors.white
+                                  : const Color(0xFF362C2C),
+                        ),
+                      ),
+            ),
+          ),
+          Text(
+            name.tr,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color:
+                  isSelect
+                      ? const Color(0xFF16A6B7)
+                      : SharedPr.isDarkMode!
+                      ? Colors.white
+                      : const Color(0xFF362C2C),
+              fontSize: context.setSp(12),
+              fontFamily: 'Tajawal',
+              fontWeight: FontWeight.w800,
+              height: 1.40,
+            ),
+          ),
+          SizedBox(height: context.setHeight(5)),
+        ],
+      ),
+    );
+  }
+}
+
+Widget getHomeMenu(int index) {
+  switch (index) {
+    case 0:
+      return Dashboard();
+    case 1:
+      return Container();
+    case 2:
+      return ProductScreen();
+    case 3:
+      return CustomerScreen();
+    case 4:
+      return ReportSession();
+    case 5:
+      return SettingScreen();
+    default:
+      return Container();
+  }
+}

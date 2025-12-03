@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pos_shared_preferences/models/pos_session/posSession.dart';
 import 'package:pos_shared_preferences/pos_shared_preferences.dart';
@@ -12,13 +11,15 @@ import 'package:shared_widgets/shared_widgets/app_loading.dart';
 import 'package:shared_widgets/shared_widgets/app_snack_bar.dart';
 import 'package:shared_widgets/shared_widgets/app_text_field.dart';
 import 'package:shared_widgets/utils/response_result.dart';
+import 'package:shared_widgets/utils/responsive_helpers/size_helper_extenstions.dart';
+import 'package:shared_widgets/utils/responsive_helpers/size_provider.dart';
 import 'package:yousentech_pos_session/pos_session/src/domain/session_viewmodel.dart';
-import 'package:yousentech_pos_session/pos_session/src/presentation/session_screen.dart';
 
 void startNewSession({required BuildContext context}) {
-  SessionController sessionController = Get.isRegistered<SessionController>()
-      ? Get.find<SessionController>()
-      : Get.put(SessionController());
+  SessionController sessionController =
+      Get.isRegistered<SessionController>()
+          ? Get.find<SessionController>()
+          : Get.put(SessionController());
   final formKey = GlobalKey<FormState>();
   FocusNode focusPrice = FocusNode();
   WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -28,103 +29,150 @@ void startNewSession({required BuildContext context}) {
   onPressed() async {
     sessionController.isLoading.value = true;
     ResponseResult result = await sessionController.openOrResumeSession(
-        balance: sessionController.price.text.isNotEmpty
-            ? double.parse(sessionController.price.text)
-            : 0.0);
+      balance:
+          sessionController.price.text.isNotEmpty
+              ? double.parse(sessionController.price.text)
+              : 0.0,
+    );
     if (result.status) {
       await sessionController.posSessionsData();
       List<PosSession> sessionObj = sessionController.posSessionsList;
       sessionController.price.text = '';
       await SharedPr.setCurrentSaleSessionId(
-          currentSaleSessionId: sessionObj.last);
+        currentSaleSessionId: sessionObj.last,
+      );
       sessionController.isLoading.value = false;
       Get.close(1);
-      Get.to(() => const SessionScreen());
+      // Get.to(() => const InvoiceScreen());
+      Get.to(() =>  InvoiceHome());
       sessionController.update(['Sessionbutton']);
     } else {
       sessionController.isLoading.value = false;
       appSnackBar(
-          message: result.message,
-          messageType: MessageTypes.error,
-          isDismissible: false);
+        message: result.message,
+        messageType: MessageTypes.error,
+        isDismissible: false,
+      );
     }
   }
 
-  CustomDialog.getInstance()
-      .dialogcontent(
+  dialogcontent(
     barrierDismissible: true,
-    content: Container(
-      height: 150.h,
-      width: 100.w,
-      padding: EdgeInsets.all(20.r),
-      child: Obx(() => IgnorePointer(
-          ignoring: sessionController.isLoading.value,
-          child: Stack(children: [
-            Form(
-              key: formKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "startNewSession".tr,
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 12.r),
-                  ),
-                  SizedBox(height: 10.r),
+    content: Builder(
+      builder: (context) {
+        return SizeProvider(
+          baseSize: Size(context.setWidth(454.48), context.setHeight(220)),
+          width: context.setWidth(454.48),
+          height: context.setHeight(220),
+          child: Container(
+            width: context.setWidth(454.48),
+            height: context.setHeight(220),
+            padding: EdgeInsets.all(context.setMinSize(20)),
+            child: Obx(
+              () => IgnorePointer(
+                ignoring: sessionController.isLoading.value,
+                child: Stack(
+                  children: [
+                    Form(
+                      key: formKey,
+                      child: Column(
+                        spacing: context.setHeight(20),
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "startNewSession".tr,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color:
+                                  SharedPr.isDarkMode!
+                                      ? Colors.white
+                                      : const Color(0xFF2E2E2E),
+                              fontSize: context.setSp(20.03),
+                              fontFamily: 'Tajawal',
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
 
-                  ContainerTextField(
-                      width: 100.w,
-                      height: 30.h,
-                      fontSize: 3.w,
-                      borderColor: AppColor.silverGray,
-                      iconcolor: AppColor.silverGray,
-                      hintcolor: AppColor.silverGray,
-                      showLable: true,
-                      isAddOrEdit: true,
-                      borderRadius: 5.r,
-                      controller: sessionController.price,
-                      focusNode: focusPrice,
-                      prefixIcon: Icon(
-                        Icons.price_change_outlined,
-                        size: 4.sp,
-                        color: AppColor.silverGray,
+                          ContainerTextField(
+                            controller: sessionController.price,
+                            focusNode: focusPrice,
+                            width: context.screenWidth,
+                            height: context.setHeight(51.28),
+                            fontSize: context.setSp(12),
+                            testFontSize:context.setSp(16) ,
+                            borderColor:
+                                !SharedPr.isDarkMode!
+                                    ? Color(0xFFC2C3CB)
+                                    : null,
+                            fillColor:
+                                !SharedPr.isDarkMode!
+                                    ? Colors.white.withValues(alpha: 0.43)
+                                    : const Color(0xFF2B2B2B),
+                            hintcolor:
+                                !SharedPr.isDarkMode!
+                                    ? Color(0xFF585858)
+                                    : const Color(0xFFC2C3CB),
+                            color:
+                                !SharedPr.isDarkMode!
+                                    ? Color(0xFF585858)
+                                    : const Color(0xFFC2C3CB),
+                            isAddOrEdit: true,
+                            borderRadius: context.setMinSize(5),
+                            hintText: 'openingBalanceSession'.tr,
+                            labelText: 'openingBalanceSession'.tr,
+
+                            prefixIcon: Icon(
+                              Icons.price_change_outlined,
+                              size: context.setMinSize(25),
+                              color: const Color(0xFF16A6B7),
+                            ),
+                            keyboardType: TextInputType.number,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(
+                                RegExp('[0-9\$]+'),
+                              ),
+                            ],
+
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "requiedField".tr;
+                              }
+                              return null;
+                            },
+                            onFieldSubmitted: (value) async {
+                              onPressed();
+                            },
+                          ),
+                          Spacer(),
+                          ButtonElevated(
+                            height: context.setHeight(35),
+                            text: "startNewSession".tr,
+                            borderRadius: context.setMinSize(5),
+                            textStyle: TextStyle(
+                              fontSize: context.setSp(14),
+                              color: AppColor.white,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Tajawal',
+                            ),
+                            backgroundColor: AppColor.cyanTeal,
+                            onPressed: onPressed,
+                          ), // Return an empty widget when not loading
+                        ],
                       ),
-                      inputFormatters: [
-                        FilteringTextInputFormatter.allow(RegExp('[0-9\$]+')),
-                      ],
-                      hintText: 'openingBalanceSession'.tr,
-                      labelText: 'openingBalanceSession'.tr,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "requiedField".tr;
-                        }
-                        return null;
-                      },
-                      onFieldSubmitted: (value) async {
-                        onPressed();
-                      }),
-                  SizedBox(height: 10.r),
-                  ButtonElevated(
-                      width: 100.w,
-                      height: 30.h,
-                      text: "startNewSession".tr,
-                      borderRadius: 9,
-                      textStyle:
-                          TextStyle(fontSize: 3.w, color: AppColor.white),
-                      backgroundColor: AppColor.cyanTeal,
-                      onPressed:
-                          onPressed) // Return an empty widget when not loading
-                ],
+                    ),
+                    sessionController.isLoading.value
+                        ? const LoadingWidget()
+                        : Container(),
+                  ],
+                ),
               ),
             ),
-            sessionController.isLoading.value
-                ? const LoadingWidget()
-                : Container(),
-          ]))),
+          ),
+        );
+      },
     ),
     context: context,
-  )
-      .then((_) {
+  ).then((_) {
     sessionController.price.text = '';
   });
 }

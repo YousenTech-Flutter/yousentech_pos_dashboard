@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yousentech_pos_dashboard/dashboard/config/app_enums.dart';
 
-import '../presentation/views/user_dashboard_screen.dart';
+import '../presentation/views/user_dashboard_screen_old.dart';
 import 'dashboard_service.dart';
 
 class DashboardController extends GetxController {

@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_final_fields
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:shared_widgets/config/app_colors.dart';
-import 'package:shared_widgets/config/app_styles.dart';
+import 'package:shared_widgets/config/app_images.dart';
+import 'package:shared_widgets/utils/responsive_helpers/size_helper_extenstions.dart';
 import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/src/domain/loading_item_count_controller.dart';
 import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/src/domain/loading_synchronizing_data_viewmodel.dart';
 
@@ -16,10 +17,12 @@ class ProgressWidget extends StatefulWidget {
 }
 
 class _ProgressWidgetState extends State<ProgressWidget> {
-  LoadingDataController loadingDataController =
-      Get.put(LoadingDataController());
-  final LoadingItemsCountController _loadingItemsCountController =
-      Get.put(LoadingItemsCountController());
+  LoadingDataController loadingDataController = Get.put(
+    LoadingDataController(),
+  );
+  final LoadingItemsCountController _loadingItemsCountController = Get.put(
+    LoadingItemsCountController(),
+  );
   var _overlayPortalController = OverlayPortalController();
   @override
   void initState() {
@@ -30,73 +33,111 @@ class _ProgressWidgetState extends State<ProgressWidget> {
   @override
   Widget build(BuildContext context) {
     return OverlayPortal(
-        controller: _overlayPortalController,
-        overlayChildBuilder: (context) {
-          return Positioned(
-            child: Material(
-                color: AppColor.white.withOpacity(0.6),
-                child: Obx(() {
-                  return Center(
-                    child: SizedBox(
-                      width: Get.width / 5,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            'assets/image/logoGif.gif',
-                            package: 'yousentech_pos_dashboard',
-                            fit: BoxFit.contain,
-                            width: 50.r,
-                            height: 50.r,
-                            filterQuality: FilterQuality.high,
+      controller: _overlayPortalController,
+      overlayChildBuilder: (context) {
+        return Positioned(
+          child: Material(
+            color: SharedPr.isDarkMode! ?AppColor. darkModeBackgroundColor : Color(0xFFDDDDDD),
+            child: Obx(() {
+              return Center(
+                child: SizedBox(
+                  width: context.setWidth(454.48),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        AppImages.logoGif,
+                        package: 'shared_widgets',
+                        fit: BoxFit.contain,
+                        width: context.setMinSize(50),
+                        height: context.setMinSize(50),
+                        filterQuality: FilterQuality.high,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(context.setMinSize(8)),
+                        child: Directionality(
+                          textDirection: TextDirection.ltr,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "${loadingDataController.loadTital.value} ",
+                                style: TextStyle(
+                                  color:
+                                      SharedPr.isDarkMode!
+                                          ? const Color(0xFFDDDDDD)
+                                          : const Color(0xFF2E2E2E),
+                                  fontSize: context.setSp(16),
+                                  fontFamily: 'Tajawal',
+                                  fontWeight: FontWeight.w500,
+                                  height: 1.43,
+                                ),
+                              ),
+                              loadingDataController.isLoadData.value
+                                  ? Text(
+                                    "...",
+                                    style: TextStyle(
+                                      color:
+                                          SharedPr.isDarkMode!
+                                              ? const Color(0xFFDDDDDD)
+                                              : const Color(0xFF2E2E2E),
+                                      fontSize: context.setSp(16),
+                                      fontFamily: 'Tajawal',
+                                      fontWeight: FontWeight.w500,
+                                      height: 1.43,
+                                    ),
+                                  )
+                                  : Text(
+                                    "( ${_loadingItemsCountController.loadingItemCount.value.toString()} ",
+                                    style: TextStyle(
+                                      color:
+                                          SharedPr.isDarkMode!
+                                              ? const Color(0xFFDDDDDD)
+                                              : const Color(0xFF2E2E2E),
+                                      fontSize: context.setSp(16),
+                                      fontFamily: 'Tajawal',
+                                      fontWeight: FontWeight.w500,
+                                      height: 1.43,
+                                    ),
+                                  ),
+                              loadingDataController.isLoadData.value
+                                  ? Container()
+                                  : Text(
+                                    "/ ${loadingDataController.lengthRemote.value} )",
+                                    style: TextStyle(
+                                      color:
+                                          SharedPr.isDarkMode!
+                                              ? const Color(0xFFDDDDDD)
+                                              : const Color(0xFF2E2E2E),
+                                      fontSize: context.setSp(16),
+                                      fontFamily: 'Tajawal',
+                                      fontWeight: FontWeight.w500,
+                                      height: 1.43,
+                                    ),
+                                  ),
+                            ],
                           ),
-                          Padding(
-                            padding: EdgeInsets.all(8.0.r),
-                            child: Directionality(
-                              textDirection: TextDirection.ltr,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                      "${loadingDataController.loadTital.value} ",
-                                      style: AppStyle.stylenormal.copyWith(
-                                          color: AppColor.gray,
-                                          fontSize: 10.r)),
-                                  loadingDataController.isLoadData.value
-                                      ? Text("...",
-                                          style: AppStyle.stylenormal.copyWith(
-                                              color: AppColor.gray,
-                                              fontSize: 10.r))
-                                      : Text(
-                                          "( ${_loadingItemsCountController.loadingItemCount.value.toString()} ",
-                                          style: AppStyle.stylenormal.copyWith(
-                                              color: AppColor.gray,
-                                              fontSize: 10.r)),
-                                  loadingDataController.isLoadData.value
-                                      ? Container()
-                                      : Text(
-                                          "/ ${loadingDataController.lengthRemote.value} )",
-                                          style: AppStyle.stylenormal.copyWith(
-                                              color: AppColor.gray,
-                                              fontSize: 10.r)),
-                                ],
+                        ),
+                      ),
+                      (loadingDataController.isLoad.value)
+                          ? SizedBox(
+                            width: context.setWidth(454.48),
+                            child: LinearProgressIndicator(
+                              color: AppColor.cyanTeal,
+                              borderRadius: BorderRadius.circular(
+                                context.setMinSize(10),
                               ),
                             ),
-                          ),
-                          (loadingDataController.isLoad.value)
-                              ? SizedBox(
-                                  width: Get.width / 7,
-                                  child: LinearProgressIndicator(
-                                      color: AppColor.cyanTeal,
-                                      borderRadius:
-                                          BorderRadius.circular(10.r)))
-                              : Container()
-                        ],
-                      ),
-                    ),
-                  );
-                })),
-          );
-        });
+                          )
+                          : Container(),
+                    ],
+                  ),
+                ),
+              );
+            }),
+          ),
+        );
+      },
+    );
   }
 }
