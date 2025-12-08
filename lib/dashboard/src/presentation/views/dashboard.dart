@@ -749,7 +749,7 @@ class ProductAndCustomerCard extends StatelessWidget {
                     title: "Update_All".tr,
                     onTap: () async {
                       var result = await loadingDataController.updateAll(
-                        name: title,
+                        name: title=="products" ?Loaddata.products.toString() :Loaddata.customers.toString(),
                       );
                       if (result == true) {
                         appSnackBar(
@@ -778,12 +778,8 @@ class ProductAndCustomerCard extends StatelessWidget {
                       isHaveBackColor: false,
                       title: '',
                       onTap: () async {
-                        Type typex = getModelClass(title);
-                        print("typex=================$typex");
-                        print("products=================${Loaddata.products.toString()}");
-                        print("customers=================${Loaddata.customers.toString()}");
                         loadingDataController.isUpdate.value = true;
-                        var result = await synchronizeBasedOnModelType(type: title);
+                        var result = await synchronizeBasedOnModelType(type: title=="products" ?Loaddata.products.toString() :Loaddata.customers.toString() );
                         if (result == true) {
                           appSnackBar(
                             message: 'synchronized'.tr,
