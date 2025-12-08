@@ -21,6 +21,7 @@ import 'package:yousentech_pos_basic_data_management/basic_data_management/utils
 import 'package:yousentech_pos_final_report/final_report/src/domain/final_report_viewmodel.dart';
 import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/config/app_enums.dart';
 import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/src/domain/loading_synchronizing_data_viewmodel.dart';
+import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/utils/define_type_function.dart';
 import 'package:yousentech_pos_session/pos_session/config/app_enums.dart';
 import 'package:yousentech_pos_session/pos_session/src/domain/session_service.dart';
 import 'package:yousentech_pos_session/pos_session/src/domain/session_viewmodel.dart';
@@ -310,7 +311,7 @@ class _DashboardState extends State<Dashboard> {
                                                         .spaceBetween,
                                                 children: [
                                                   ...salesTitals.map(
-                                                    (e) => GestureDetector(
+                                                    (e) => InkWell(
                                                       onTap: () async {
                                                         await controller
                                                             .updateSalesPerformanceTab(
@@ -777,6 +778,8 @@ class ProductAndCustomerCard extends StatelessWidget {
                       isHaveBackColor: false,
                       title: '',
                       onTap: () async {
+                        Type typex = getModelClass(title);
+                        print("typex=================$typex");
                         loadingDataController.isUpdate.value = true;
                         var result = await synchronizeBasedOnModelType(type: title);
                         if (result == true) {
@@ -833,7 +836,7 @@ class SyncButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: onTap,
       child: Container(
         height: context.setHeight(38.91),
@@ -1160,7 +1163,7 @@ class ButtonsToContinueOrStop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: onTap,
       child: Container(
         height: context.setHeight(46),
