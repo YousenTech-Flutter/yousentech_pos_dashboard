@@ -780,6 +780,8 @@ class ProductAndCustomerCard extends StatelessWidget {
                       onTap: () async {
                         Type typex = getModelClass(title);
                         print("typex=================$typex");
+                        print("products=================${Loaddata.products.toString()}");
+                        print("customers=================${Loaddata.customers.toString()}");
                         loadingDataController.isUpdate.value = true;
                         var result = await synchronizeBasedOnModelType(type: title);
                         if (result == true) {
