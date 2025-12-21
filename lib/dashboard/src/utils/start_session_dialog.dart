@@ -5,6 +5,7 @@ import 'package:pos_shared_preferences/models/pos_session/posSession.dart';
 import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:shared_widgets/config/app_colors.dart';
 import 'package:shared_widgets/config/app_enums.dart';
+import 'package:shared_widgets/config/app_theme.dart';
 import 'package:shared_widgets/shared_widgets/app_button.dart';
 import 'package:shared_widgets/shared_widgets/app_dialog.dart';
 import 'package:shared_widgets/shared_widgets/app_loading.dart';
@@ -17,10 +18,9 @@ import 'package:yousentech_pos_invoice/invoices/presentation/invoice_home.dart';
 import 'package:yousentech_pos_session/pos_session/src/domain/session_viewmodel.dart';
 
 void startNewSession({required BuildContext context}) {
-  SessionController sessionController =
-      Get.isRegistered<SessionController>()
-          ? Get.find<SessionController>()
-          : Get.put(SessionController());
+  SessionController sessionController = Get.isRegistered<SessionController>()
+      ? Get.find<SessionController>()
+      : Get.put(SessionController());
   final formKey = GlobalKey<FormState>();
   FocusNode focusPrice = FocusNode();
   WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -30,10 +30,9 @@ void startNewSession({required BuildContext context}) {
   onPressed() async {
     sessionController.isLoading.value = true;
     ResponseResult result = await sessionController.openOrResumeSession(
-      balance:
-          sessionController.price.text.isNotEmpty
-              ? double.parse(sessionController.price.text)
-              : 0.0,
+      balance: sessionController.price.text.isNotEmpty
+          ? double.parse(sessionController.price.text)
+          : 0.0,
     );
     if (result.status) {
       await sessionController.posSessionsData();
@@ -45,7 +44,7 @@ void startNewSession({required BuildContext context}) {
       sessionController.isLoading.value = false;
       Get.close(1);
       // Get.to(() => const InvoiceScreen());
-      Get.to(() =>  InvoiceHome());
+      Get.to(() => InvoiceHome());
       sessionController.update(['Sessionbutton']);
     } else {
       sessionController.isLoading.value = false;
@@ -84,10 +83,7 @@ void startNewSession({required BuildContext context}) {
                             "startNewSession".tr,
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              color:
-                                  SharedPr.isDarkMode!
-                                      ? Colors.white
-                                      : const Color(0xFF2E2E2E),
+                              color: Theme.of(context).colorScheme.onPrimary,
                               fontSize: context.setSp(20.03),
                               fontFamily: 'Tajawal',
                               fontWeight: FontWeight.w700,
@@ -100,32 +96,25 @@ void startNewSession({required BuildContext context}) {
                             width: context.screenWidth,
                             height: context.setHeight(51.28),
                             fontSize: context.setSp(12),
-                            testFontSize:context.setSp(16) ,
-                            borderColor:
-                                !SharedPr.isDarkMode!
-                                    ? Color(0xFFC2C3CB)
-                                    : null,
-                            fillColor:
-                                !SharedPr.isDarkMode!
-                                    ? Colors.white.withValues(alpha: 0.43)
-                                    : const Color(0xFF2B2B2B),
-                            hintcolor:
-                                !SharedPr.isDarkMode!
-                                    ? Color(0xFF585858)
-                                    : const Color(0xFFC2C3CB),
-                            color:
-                                !SharedPr.isDarkMode!
-                                    ? Color(0xFF585858)
-                                    : const Color(0xFFC2C3CB),
+                            testFontSize: context.setSp(16),
+                            borderColor: Theme.of(context)
+                                .extension<CustomTheme>()!
+                                .hintcolor,
+                            fillColor: Theme.of(context)
+                                .extension<CustomTheme>()!
+                                .fillColor,
+                            hintcolor: Theme.of(context)
+                                .extension<CustomTheme>()!
+                                .hintcolor,
+                            color: Theme.of(context).colorScheme.onSurface,
                             isAddOrEdit: true,
                             borderRadius: context.setMinSize(5),
                             hintText: 'openingBalanceSession'.tr,
                             labelText: 'openingBalanceSession'.tr,
-
                             prefixIcon: Icon(
                               Icons.price_change_outlined,
                               size: context.setMinSize(25),
-                              color: const Color(0xFF16A6B7),
+                              color: AppColor.appColor,
                             ),
                             keyboardType: TextInputType.number,
                             inputFormatters: [
@@ -133,7 +122,6 @@ void startNewSession({required BuildContext context}) {
                                 RegExp('[0-9\$]+'),
                               ),
                             ],
-
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return "requiedField".tr;

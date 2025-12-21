@@ -37,7 +37,7 @@ class _ProgressWidgetState extends State<ProgressWidget> {
       overlayChildBuilder: (context) {
         return Positioned(
           child: Material(
-            color: SharedPr.isDarkMode! ?AppColor. darkModeBackgroundColor : Color(0xFFDDDDDD),
+            color:Theme.of(context).scaffoldBackgroundColor,
             child: Obx(() {
               return Center(
                 child: SizedBox(
@@ -63,12 +63,8 @@ class _ProgressWidgetState extends State<ProgressWidget> {
                               Text(
                                 "${loadingDataController.loadTital.value} ",
                                 style: TextStyle(
-                                  color:
-                                      SharedPr.isDarkMode!
-                                          ? const Color(0xFFDDDDDD)
-                                          : const Color(0xFF2E2E2E),
+                                  color:Theme.of(context).colorScheme.onPrimary,
                                   fontSize: context.setSp(16),
-                                  fontFamily: 'Tajawal',
                                   fontWeight: FontWeight.w500,
                                   height: 1.43,
                                 ),
@@ -77,12 +73,8 @@ class _ProgressWidgetState extends State<ProgressWidget> {
                                   ? Text(
                                     "...",
                                     style: TextStyle(
-                                      color:
-                                          SharedPr.isDarkMode!
-                                              ? const Color(0xFFDDDDDD)
-                                              : const Color(0xFF2E2E2E),
+                                      color:Theme.of(context).colorScheme.onPrimary,
                                       fontSize: context.setSp(16),
-                                      fontFamily: 'Tajawal',
                                       fontWeight: FontWeight.w500,
                                       height: 1.43,
                                     ),
@@ -90,12 +82,8 @@ class _ProgressWidgetState extends State<ProgressWidget> {
                                   : Text(
                                     "( ${_loadingItemsCountController.loadingItemCount.value.toString()} ",
                                     style: TextStyle(
-                                      color:
-                                          SharedPr.isDarkMode!
-                                              ? const Color(0xFFDDDDDD)
-                                              : const Color(0xFF2E2E2E),
+                                      color:Theme.of(context).colorScheme.onPrimary,
                                       fontSize: context.setSp(16),
-                                      fontFamily: 'Tajawal',
                                       fontWeight: FontWeight.w500,
                                       height: 1.43,
                                     ),
@@ -105,12 +93,8 @@ class _ProgressWidgetState extends State<ProgressWidget> {
                                   : Text(
                                     "/ ${loadingDataController.lengthRemote.value} )",
                                     style: TextStyle(
-                                      color:
-                                          SharedPr.isDarkMode!
-                                              ? const Color(0xFFDDDDDD)
-                                              : const Color(0xFF2E2E2E),
+                                      color:Theme.of(context).colorScheme.onPrimary,
                                       fontSize: context.setSp(16),
-                                      fontFamily: 'Tajawal',
                                       fontWeight: FontWeight.w500,
                                       height: 1.43,
                                     ),

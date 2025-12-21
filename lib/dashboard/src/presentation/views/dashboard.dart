@@ -14,6 +14,8 @@ import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:shared_widgets/config/app_colors.dart';
 import 'package:shared_widgets/config/app_enums.dart';
 import 'package:shared_widgets/config/app_images.dart';
+import 'package:shared_widgets/config/app_theme.dart';
+import 'package:shared_widgets/config/theme_controller.dart';
 import 'package:shared_widgets/shared_widgets/app_loading.dart';
 import 'package:shared_widgets/shared_widgets/app_snack_bar.dart';
 import 'package:shared_widgets/utils/responsive_helpers/size_helper_extenstions.dart';
@@ -21,7 +23,6 @@ import 'package:yousentech_pos_basic_data_management/basic_data_management/utils
 import 'package:yousentech_pos_final_report/final_report/src/domain/final_report_viewmodel.dart';
 import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/config/app_enums.dart';
 import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/src/domain/loading_synchronizing_data_viewmodel.dart';
-import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/utils/define_type_function.dart';
 import 'package:yousentech_pos_session/pos_session/config/app_enums.dart';
 import 'package:yousentech_pos_session/pos_session/src/domain/session_service.dart';
 import 'package:yousentech_pos_session/pos_session/src/domain/session_viewmodel.dart';
@@ -251,201 +252,186 @@ class _DashboardState extends State<Dashboard> {
                           GetBuilder<FinalReportController>(
                             id: "sales_performance",
                             builder: (controller) {
-                              return Container(
-                                decoration: ShapeDecoration(
-                                  color:
-                                      SharedPr.isDarkMode!
-                                          ? Colors.black.withValues(alpha: 0.17)
-                                          : Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    side: BorderSide(
-                                      width: 1,
-                                      color:
-                                          SharedPr.isDarkMode!
-                                              ? Colors.white.withValues(
-                                                alpha: 0.50,
-                                              )
-                                              : const Color(0xFFE7E7E8),
+                              return Obx(() {
+      return Container(
+                                    decoration: ShapeDecoration(
+                                      color:Theme.of(context).extension<CustomTheme>()!.preferredSizeBackground,
+                                      shape: RoundedRectangleBorder(
+                                        side: BorderSide(
+                                          width: 1,
+                                          color:
+                                              Get.find<ThemeController>().isDarkMode.value
+                                                  ? Colors.white.withValues(
+                                                    alpha: 0.50,
+                                                  )
+                                                  : const Color(0xFFE7E7E8),
+                                        ),
+                                        borderRadius: BorderRadius.circular(
+                                          context.setMinSize(16),
+                                        ),
+                                      ),
                                     ),
-                                    borderRadius: BorderRadius.circular(
-                                      context.setMinSize(16),
-                                    ),
-                                  ),
-                                ),
-                                height: context.setHeight(291.77),
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    vertical: context.setHeight(13.5),
-                                    horizontal: context.setWidth(20.93),
-                                  ),
-                                  child: Column(
-                                    spacing: context.setHeight(10),
-                                    children: [
-                                      Row(
+                                    height: context.setHeight(291.77),
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                        vertical: context.setHeight(13.5),
+                                        horizontal: context.setWidth(20.93),
+                                      ),
+                                      child: Column(
+                                        spacing: context.setHeight(10),
                                         children: [
-                                          Container(
-                                            // height: context.setHeight(39),
-                                            // width: context.setWidth(249.06),
-                                            decoration: ShapeDecoration(
-                                              color:
-                                                  SharedPr.isDarkMode!
-                                                      ? const Color(0xFF2D2A2A)
-                                                      : const Color(0xFFF5F5F5),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                      context.setMinSize(14.77),
-                                                    ),
-                                              ),
-                                            ),
-                                            child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                horizontal: context.setWidth(
-                                                  10,
+                                          Row(
+                                            children: [
+                                              Container(
+                                                // height: context.setHeight(39),
+                                                // width: context.setWidth(249.06),
+                                                decoration: ShapeDecoration(
+                                                  color:Theme.of(context).colorScheme.onPrimary,
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                          context.setMinSize(14.77),
+                                                        ),
+                                                  ),
                                                 ),
-                                                vertical: context.setHeight(7),
-                                              ),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  ...salesTitals.map(
-                                                    (e) => InkWell(
-                                                      onTap: () async {
-                                                        await controller
-                                                            .updateSalesPerformanceTab(
-                                                              type: salesTitals
-                                                                  .indexOf(e),
-                                                            );
-                                                      },
-                                                      child: Container(
-                                                        height: context
-                                                            .setHeight(27),
-                                                        decoration:
-                                                            salesTitals.indexOf(
-                                                                      e,
-                                                                    ) ==
-                                                                    controller
-                                                                        .salesPerformanceTab
-                                                                ? ShapeDecoration(
-                                                                  color:
-                                                                      SharedPr.isDarkMode!
-                                                                          ? Colors
-                                                                              .black
-                                                                          : Colors
-                                                                              .white,
-                                                                  shape: RoundedRectangleBorder(
-                                                                    side: BorderSide(
-                                                                      width: 1,
-                                                                      color:
-                                                                          SharedPr.isDarkMode!
-                                                                              ? Colors.black
-                                                                              : const Color(
-                                                                                0xFFE7E7E8,
-                                                                              ),
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                          8,
+                                                child: Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                    horizontal: context.setWidth(
+                                                      10,
+                                                    ),
+                                                    vertical: context.setHeight(7),
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      ...salesTitals.map(
+                                                        (e) => InkWell(
+                                                          onTap: () async {
+                                                            await controller
+                                                                .updateSalesPerformanceTab(
+                                                                  type: salesTitals
+                                                                      .indexOf(e),
+                                                                );
+                                                          },
+                                                          child: Container(
+                                                            height: context
+                                                                .setHeight(27),
+                                                            decoration:
+                                                                salesTitals.indexOf(
+                                                                          e,
+                                                                        ) ==
+                                                                        controller
+                                                                            .salesPerformanceTab
+                                                                    ? ShapeDecoration(
+                                                                      color:Theme.of(context).colorScheme.onPrimary,
+                                                                      shape: RoundedRectangleBorder(
+                                                                        side: BorderSide(
+                                                                          width: 1,
+                                                                          color:Theme.of(context).colorScheme.onPrimary,
                                                                         ),
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(
+                                                                              8,
+                                                                            ),
+                                                                      ),
+                                                                    )
+                                                                    : null,
+                                                            child: Padding(
+                                                              padding:
+                                                                  EdgeInsets.symmetric(
+                                                                    horizontal:
+                                                                        context
+                                                                            .setWidth(
+                                                                              19.1,
+                                                                            ),
                                                                   ),
-                                                                )
-                                                                : null,
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsets.symmetric(
-                                                                horizontal:
-                                                                    context
-                                                                        .setWidth(
-                                                                          19.1,
-                                                                        ),
-                                                              ),
-                                                          child: Center(
-                                                            child: Text(
-                                                              e.tr,
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .center,
-                                                              style: TextStyle(
-                                                                color:
-                                                                    salesTitals.indexOf(
-                                                                              e,
-                                                                            ) ==
-                                                                            controller.salesPerformanceTab
-                                                                        ? SharedPr.isDarkMode!
-                                                                            ? Colors.white
-                                                                            : const Color(
-                                                                              0xFF01343A,
-                                                                            )
-                                                                        : const Color(
-                                                                          0xFF898989,
-                                                                        ),
-                                                                fontSize:
-                                                                    context
-                                                                        .setSp(
-                                                                          14,
-                                                                        ),
-                                                                fontFamily:
-                                                                    'Tajawal',
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                height: 1.14,
+                                                              child: Obx(() {
+                                        return Center(
+                                                                    child: Text(
+                                                                      e.tr,
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .center,
+                                                                      style: TextStyle(
+                                                                        color:
+                                                                            salesTitals.indexOf(
+                                                                                      e,
+                                                                                    ) ==
+                                                                                    controller.salesPerformanceTab
+                                                                                ? Get.find<ThemeController>().isDarkMode.value
+                                                                                    ? Colors.white
+                                                                                    : const Color(
+                                                                                      0xFF01343A,
+                                                                                    )
+                                                                                : const Color(
+                                                                                  0xFF898989,
+                                                                                ),
+                                                                        fontSize:
+                                                                            context
+                                                                                .setSp(
+                                                                                  14,
+                                                                                ),
+                                                                        fontFamily:
+                                                                            'Tajawal',
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .w500,
+                                                                        height: 1.14,
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                                }
                                                               ),
                                                             ),
                                                           ),
                                                         ),
                                                       ),
-                                                    ),
+                                                    ],
                                                   ),
-                                                ],
+                                                ),
                                               ),
-                                            ),
+                                              const Spacer(),
+                                              Text(
+                                                'sales_performance'.tr,
+                                                textAlign: TextAlign.right,
+                                                style: TextStyle(
+                                                  fontSize: context.setSp(16),
+                                                  fontWeight: FontWeight.w700,
+                                                  height: 1.50,
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                          const Spacer(),
-                                          Text(
-                                            'sales_performance'.tr,
-                                            textAlign: TextAlign.right,
-                                            style: TextStyle(
-                                              color:
-                                                  SharedPr.isDarkMode!
-                                                      ? Colors.white
-                                                      : const Color(0xFF2E2E2E),
-                                              fontSize: context.setSp(16),
-                                              fontFamily: 'Tajawal',
-                                              fontWeight: FontWeight.w700,
-                                              height: 1.50,
+                                          Expanded(
+                                            child: Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                horizontal: context.setWidth(16),
+                                                vertical: context.setHeight(16),
+                                              ),
+                                              child: LayoutBuilder(
+                                                builder: (context, boxConstraints) {
+                                                  return SizedBox(
+                                                    height:
+                                                        boxConstraints.maxHeight,
+                                                    child: _SalesLineChart(
+                                                      tab:
+                                                          controller
+                                                              .salesPerformanceTab,
+                                                      finalReportController:
+                                                          finalReportController,
+                                                    ),
+                                                  );
+                                                },
+                                              ),
                                             ),
                                           ),
                                         ],
                                       ),
-                                      Expanded(
-                                        child: Padding(
-                                          padding: EdgeInsets.symmetric(
-                                            horizontal: context.setWidth(16),
-                                            vertical: context.setHeight(16),
-                                          ),
-                                          child: LayoutBuilder(
-                                            builder: (context, boxConstraints) {
-                                              return SizedBox(
-                                                height:
-                                                    boxConstraints.maxHeight,
-                                                child: _SalesLineChart(
-                                                  tab:
-                                                      controller
-                                                          .salesPerformanceTab,
-                                                  finalReportController:
-                                                      finalReportController,
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                                    ),
+                                  );
+                                }
                               );
                             },
                           ),
@@ -495,92 +481,88 @@ class AmountTotalCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: context.setHeight(97),
-      decoration: ShapeDecoration(
-        color:
-            SharedPr.isDarkMode!
-                ? Colors.black.withValues(alpha: 0.17)
-                : Colors.white,
-        shape: RoundedRectangleBorder(
-          side: BorderSide(
-            width: 1,
+    return Obx(() {
+      return Container(
+          height: context.setHeight(97),
+          decoration: ShapeDecoration(
             color:
-                SharedPr.isDarkMode!
-                    ? Colors.white.withValues(alpha: 0.50)
-                    : const Color(0xFFE7E7E8),
-          ),
-          borderRadius: BorderRadius.circular(context.setMinSize(16)),
-        ),
-      ),
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: context.setWidth(16),
-          vertical: context.setHeight(Platform.isWindows ? 10 : 16),
-        ),
-        child: Row(
-          spacing: context.setWidth(10),
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SvgPicture.asset(
-              image,
-              package: 'shared_widgets',
-              width: context.setWidth(50),
-              height: context.setHeight(50),
+                Get.find<ThemeController>().isDarkMode.value
+                    ? Colors.black.withValues(alpha: 0.17)
+                    : Colors.white,
+            shape: RoundedRectangleBorder(
+              side: BorderSide(
+                width: 1,
+                color:
+                    Get.find<ThemeController>().isDarkMode.value
+                        ? Colors.white.withValues(alpha: 0.50)
+                        : const Color(0xFFE7E7E8),
+              ),
+              borderRadius: BorderRadius.circular(context.setMinSize(16)),
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              spacing: context.setHeight(10),
+          ),
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: context.setWidth(16),
+              vertical: context.setHeight(Platform.isWindows ? 10 : 16),
+            ),
+            child: Row(
+              spacing: context.setWidth(10),
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    color:
-                        SharedPr.isDarkMode!
-                            // ? const Color(0xFF9C9C9C)
-                            ? Color(0xFFB1B3BC)
-                            : const Color(0xFF463F3F),
-                    fontSize: context.setSp(16),
-                    fontFamily: 'Tajawal',
-                    fontWeight: FontWeight.w500,
-                    height: 1.67,
-                  ),
+                SvgPicture.asset(
+                  image,
+                  package: 'shared_widgets',
+                  width: context.setWidth(50),
+                  height: context.setHeight(50),
                 ),
-                Row(
-                  spacing: context.setWidth(5),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  spacing: context.setHeight(10),
                   children: [
                     Text(
-                      total,
-                      textAlign: TextAlign.right,
+                      title,
                       style: TextStyle(
                         color:
-                            SharedPr.isDarkMode!
-                                ? const Color(0xFFDDDDDD)
-                                : const Color(0xFF2E2E2E),
-                        fontSize: context.setSp(18),
+                            Get.find<ThemeController>().isDarkMode.value
+                                // ? const Color(0xFF9C9C9C)
+                                ? Color(0xFFB1B3BC)
+                                : const Color(0xFF463F3F),
+                        fontSize: context.setSp(16),
                         fontFamily: 'Tajawal',
-                        fontWeight: FontWeight.w700,
-                        height: 1.78,
+                        fontWeight: FontWeight.w500,
+                        height: 1.67,
                       ),
                     ),
-                    SvgPicture.asset(
-                      AppImages.riyal,
-                      package: 'shared_widgets',
-                      width: context.setWidth(12.2),
-                      height: context.setHeight(12.2),
-                      color:
-                          SharedPr.isDarkMode!
-                              ? const Color(0xFFDDDDDD)
-                              : const Color(0xFF2E2E2E),
+                    Row(
+                      spacing: context.setWidth(5),
+                      children: [
+                        Text(
+                          total,
+                          textAlign: TextAlign.right,
+                          style: TextStyle(
+                            fontSize: context.setSp(18),
+                            fontFamily: 'Tajawal',
+                            fontWeight: FontWeight.w700,
+                            height: 1.78,
+                          ),
+                        ),
+                        SvgPicture.asset(
+                          AppImages.riyal,
+                          package: 'shared_widgets',
+                          width: context.setWidth(12.2),
+                          height: context.setHeight(12.2),
+                          color:Theme.of(context).colorScheme.onSurface,
+                        ),
+                      ],
                     ),
                   ],
                 ),
               ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      }
     );
   }
 }
@@ -602,21 +584,20 @@ class ProductAndCustomerCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Builder(
-      builder: (context) {
-        return Container(
+    return Obx(() {
+      return Container(
           height: context.setHeight(215),
           padding: const EdgeInsets.all(16),
           decoration: ShapeDecoration(
             color:
-                SharedPr.isDarkMode!
+                Get.find<ThemeController>().isDarkMode.value
                     ? Colors.black.withValues(alpha: 0.17)
                     : Colors.white.withValues(alpha: 0.50),
             shape: RoundedRectangleBorder(
               side: BorderSide(
                 width: 1,
                 color:
-                    SharedPr.isDarkMode!
+                    Get.find<ThemeController>().isDarkMode.value
                         ? Colors.white.withValues(alpha: 0.50)
                         : const Color(0xFFE7E7E8),
                 // Colors.white.withValues(alpha: 0.50),
@@ -635,7 +616,7 @@ class ProductAndCustomerCard extends StatelessWidget {
                     height: context.setHeight(40),
                     decoration: ShapeDecoration(
                       color:
-                          SharedPr.isDarkMode!
+                          Get.find<ThemeController>().isDarkMode.value
                               ? const Color(0x1918BBCD)
                               : const Color(0x1916A6B7),
                       shape: RoundedRectangleBorder(
@@ -656,7 +637,7 @@ class ProductAndCustomerCard extends StatelessWidget {
                   Text.rich(
                     TextSpan(
                       style: TextStyle(
-                        color: const Color(0xFF16A6B7),
+                        color: AppColor.appColor,
                         fontSize: context.setSp(14),
                         fontFamily: 'Tajawal',
                         fontWeight: FontWeight.w700,
@@ -678,7 +659,7 @@ class ProductAndCustomerCard extends StatelessWidget {
                   // Text(
                   //   remoteAndLocalCount,
                   //   style: TextStyle(
-                  //     color: const Color(0xFF16A6B7),
+                  //     color: AppColor.appColor,
                   //     fontSize: context.setSp(14),
                   //     fontFamily: 'Tajawal',
                   //     fontWeight: FontWeight.w700,
@@ -692,12 +673,7 @@ class ProductAndCustomerCard extends StatelessWidget {
                 title.tr,
                 textAlign: TextAlign.right,
                 style: TextStyle(
-                  color:
-                      SharedPr.isDarkMode!
-                          ? const Color(0xFFEEEEEE)
-                          : const Color(0xFF2E2E2E),
                   fontSize: context.setSp(18),
-                  fontFamily: 'Tajawal',
                   fontWeight: FontWeight.w700,
                   height: 1.56,
                 ),
@@ -710,12 +686,8 @@ class ProductAndCustomerCard extends StatelessWidget {
                     'Sync: $syncData %',
                     textAlign: TextAlign.right,
                     style: TextStyle(
-                      color:
-                          SharedPr.isDarkMode!
-                              ? Color(0xFFB1B3BC)
-                              : const Color(0xFF4B5563),
+                      color:Theme.of(context).textTheme.labelSmall!.color,
                       fontSize: context.setSp(14),
-                      fontFamily: 'Tajawal',
                       fontWeight: FontWeight.w400,
                       height: 1.43,
                     ),
@@ -731,13 +703,10 @@ class ProductAndCustomerCard extends StatelessWidget {
                   minHeight: 8,
                   borderRadius: BorderRadius.circular(9999),
                   backgroundColor:
-                      SharedPr.isDarkMode!
+                      Get.find<ThemeController>().isDarkMode.value
                           ? const Color(0x26F7F7F7)
                           : const Color(0x268B8B8B),
-                  color:
-                      SharedPr.isDarkMode!
-                          ? const Color(0xFF18BBCD)
-                          : const Color(0xFF16A6B7),
+                  color:AppColor.appColor,
                 ),
               ),
               SizedBox(height: context.setHeight(24)),
@@ -836,57 +805,60 @@ class SyncButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: Container(
-        height: context.setHeight(38.91),
-        width:
-            isHaveBackColor ? context.setWidth(139) : context.setWidth(56.20),
-        decoration: ShapeDecoration(
-          color: isHaveBackColor ? const Color(0xFF16A6B7) : null,
-          shape: RoundedRectangleBorder(
-            side:
+      child: Obx(() {
+      return Container(
+            height: context.setHeight(38.91),
+            width:
+                isHaveBackColor ? context.setWidth(139) : context.setWidth(56.20),
+            decoration: ShapeDecoration(
+              color: isHaveBackColor ? AppColor.appColor : null,
+              shape: RoundedRectangleBorder(
+                side:
+                    isHaveBackColor
+                        ? BorderSide.none
+                        : BorderSide(width: 1.01, color: const Color(0xFF898383)),
+                borderRadius: BorderRadius.circular(context.setMinSize(30.54)),
+              ),
+              shadows:
+                  isHaveBackColor
+                      ? [
+                        BoxShadow(
+                          color: Color(0x3316A6B7),
+                          blurRadius: 30,
+                          offset: Offset(0, 4),
+                          spreadRadius: 0,
+                        ),
+                      ]
+                      : [],
+            ),
+            child:
                 isHaveBackColor
-                    ? BorderSide.none
-                    : BorderSide(width: 1.01, color: const Color(0xFF898383)),
-            borderRadius: BorderRadius.circular(context.setMinSize(30.54)),
-          ),
-          shadows:
-              isHaveBackColor
-                  ? [
-                    BoxShadow(
-                      color: Color(0x3316A6B7),
-                      blurRadius: 30,
-                      offset: Offset(0, 4),
-                      spreadRadius: 0,
+                    ? Center(
+                      child: Text(
+                        title,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color:
+                              Get.find<ThemeController>().isDarkMode.value
+                                  ? const Color(0xFF042B2F)
+                                  : Colors.white,
+                          fontSize: context.setSp(15.13),
+                          fontFamily: 'Tajawal',
+                          fontWeight: FontWeight.w400,
+                          height: 1.43,
+                        ),
+                      ),
+                    )
+                    : Center(
+                      child: SvgPicture.asset(
+                        AppImages.syncImage2,
+                        package: 'shared_widgets',
+                        // width: context.setWidth(16.86),
+                        // height: context.setHeight(17.75),
+                      ),
                     ),
-                  ]
-                  : [],
-        ),
-        child:
-            isHaveBackColor
-                ? Center(
-                  child: Text(
-                    title,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color:
-                          SharedPr.isDarkMode!
-                              ? const Color(0xFF042B2F)
-                              : Colors.white,
-                      fontSize: context.setSp(15.13),
-                      fontFamily: 'Tajawal',
-                      fontWeight: FontWeight.w400,
-                      height: 1.43,
-                    ),
-                  ),
-                )
-                : Center(
-                  child: SvgPicture.asset(
-                    AppImages.syncImage2,
-                    package: 'shared_widgets',
-                    // width: context.setWidth(16.86),
-                    // height: context.setHeight(17.75),
-                  ),
-                ),
+          );
+        }
       ),
     );
   }
@@ -903,243 +875,220 @@ class PosCard extends StatefulWidget {
 class _PosCardState extends State<PosCard> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: context.setHeight(215),
-      decoration: ShapeDecoration(
-        color:
-            SharedPr.isDarkMode!
-                ? Colors.black.withValues(alpha: 0.17)
-                : Colors.white.withValues(alpha: 0.47),
-        shape: RoundedRectangleBorder(
-          side: BorderSide(
-            width: 1,
+    return Obx(() {
+      return Container(
+          height: context.setHeight(215),
+          decoration: ShapeDecoration(
             color:
-                SharedPr.isDarkMode!
-                    ? Colors.white.withValues(alpha: 0.50)
-                    : const Color(0xFFE7E7E8),
-            //  Colors.white.withValues(alpha: 0.50),
-          ),
-          borderRadius: BorderRadius.circular(context.setMinSize(20)),
-        ),
-      ),
-
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: context.setHeight(24),
-          horizontal: context.setWidth(24),
-        ),
-        child: Column(
-          spacing: context.setHeight(6),
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  spacing: context.setWidth(8),
-                  children: [
-                    SvgPicture.asset(
-                      AppImages.pos,
-                      package: 'shared_widgets',
-                      width: context.setWidth(24),
-                      height: context.setHeight(24),
-                    ),
-                    SizedBox(
-                      width: context.setWidth(198.75),
-                      child: Text(
-                        SharedPr.currentPosObject!.name.toString(),
-                        style: TextStyle(
-                          color:
-                              SharedPr.isDarkMode!
-                                  ? const Color(0xFFDDDDDD)
-                                  : const Color(0xFF2E2E2E),
-                          fontSize: context.setSp(20),
-                          fontFamily: 'Tajawal',
-                          fontWeight: FontWeight.w600,
-                          overflow: TextOverflow.ellipsis,
-                          height: 1.40,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  spacing: context.setWidth(8),
-                  children: [
-                    Text(
-                      widget.sessionController.sessionAmountOprationCard.isEmpty
-                          ? "0.0"
-                          : 
-                          widget.sessionController.formatter.format(
-                            widget
-                                    .sessionController
-                                    .sessionAmountOprationCard["session_amount_opration"]["total_out_invoice"] ??
-                                0.0,
-                          ),
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color:
-                            SharedPr.isDarkMode!
-                                ? const Color(0xFFDDDDDD)
-                                : const Color(0xFF2E2E2E),
-                        fontSize: context.setSp(20),
-                        fontFamily: 'Tajawal',
-                        fontWeight: FontWeight.w600,
-                        height: 1.56,
-                      ),
-                    ),
-                    SvgPicture.asset(
-                      AppImages.riyal,
-                      package: 'shared_widgets',
-                      width: context.setWidth(13),
-                      height: context.setHeight(13),
-                      color:
-                          SharedPr.isDarkMode!
-                              ? const Color(0xFFDDDDDD)
-                              : const Color(0xFF2E2E2E),
-                    ),
-                  ],
-                ),
-              ],
+                Get.find<ThemeController>().isDarkMode.value
+                    ? Colors.black.withValues(alpha: 0.17)
+                    : Colors.white.withValues(alpha: 0.47),
+            shape: RoundedRectangleBorder(
+              side: BorderSide(
+                width: 1,
+                color:
+                    Get.find<ThemeController>().isDarkMode.value
+                        ? Colors.white.withValues(alpha: 0.50)
+                        : const Color(0xFFE7E7E8),
+                //  Colors.white.withValues(alpha: 0.50),
+              ),
+              borderRadius: BorderRadius.circular(context.setMinSize(20)),
             ),
-            Row(
+          ),
+        
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: context.setHeight(24),
+              horizontal: context.setWidth(24),
+            ),
+            child: Column(
+              spacing: context.setHeight(6),
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
-                  spacing: context.setWidth(8),
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SvgPicture.asset(
-                      AppImages.data,
-                      package: 'shared_widgets',
-                      width: context.setWidth(18),
-                      height: context.setHeight(18),
+                    Row(
+                      spacing: context.setWidth(8),
+                      children: [
+                        SvgPicture.asset(
+                          AppImages.pos,
+                          package: 'shared_widgets',
+                          width: context.setWidth(24),
+                          height: context.setHeight(24),
+                        ),
+                        SizedBox(
+                          width: context.setWidth(198.75),
+                          child: Text(
+                            SharedPr.currentPosObject!.name.toString(),
+                            style: TextStyle(
+                              fontSize: context.setSp(20),
+                              fontWeight: FontWeight.w600,
+                              overflow: TextOverflow.ellipsis,
+                              height: 1.40,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    Text.rich(
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      spacing: context.setWidth(8),
+                      children: [
+                        Text(
+                          widget.sessionController.sessionAmountOprationCard.isEmpty
+                              ? "0.0"
+                              : 
+                              widget.sessionController.formatter.format(
+                                widget
+                                        .sessionController
+                                        .sessionAmountOprationCard["session_amount_opration"]["total_out_invoice"] ??
+                                    0.0,
+                              ),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: context.setSp(20),
+                            fontWeight: FontWeight.w600,
+                            height: 1.56,
+                          ),
+                        ),
+                        SvgPicture.asset(
+                          AppImages.riyal,
+                          package: 'shared_widgets',
+                          width: context.setWidth(13),
+                          height: context.setHeight(13),
+                          color:Theme.of(context).colorScheme.onSurface,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      spacing: context.setWidth(8),
+                      children: [
+                        SvgPicture.asset(
+                          AppImages.data,
+                          package: 'shared_widgets',
+                          width: context.setWidth(18),
+                          height: context.setHeight(18),
+                        ),
+                        Text.rich(
+                          style: TextStyle(
+                            fontSize: context.setSp(context.setSp(14)),
+                            fontWeight: FontWeight.w400,
+                            height: 2.50,
+                          ),
+                          TextSpan(
+                            children: [
+                              // TextSpan(text: "date_time".tr),
+                              // TextSpan(text: '  :   '),
+                              TextSpan(
+                                text:
+                                    widget
+                                                .sessionController
+                                                .posSessionsList
+                                                .isEmpty ||
+                                            widget
+                                                    .sessionController
+                                                    .posSessionsList
+                                                    .last
+                                                    .startTime ==
+                                                ''
+                                        ? formatDateTime(null)
+                                        : formatDateTime(
+                                          widget
+                                              .sessionController
+                                              .posSessionsList
+                                              .last
+                                              .startTime!,
+                                        ),
+                              ),
+                            ],
+                          ),
+                          textAlign: TextAlign.right,
+                        ),
+                      ],
+                    ),
+        
+                    Text(
+                      'total_sales'.tr,
                       style: TextStyle(
-                        color:
-                            SharedPr.isDarkMode!
-                                ? const Color(0xFFD4D4D4)
-                                : const Color(0xFF2E2E2E),
-                        fontSize: context.setSp(context.setSp(14)),
-                        fontFamily: 'Tajawal',
+                        fontSize: context.setSp(14),
                         fontWeight: FontWeight.w400,
                         height: 2.50,
                       ),
-                      TextSpan(
-                        children: [
-                          // TextSpan(text: "date_time".tr),
-                          // TextSpan(text: '  :   '),
-                          TextSpan(
-                            text:
-                                widget
-                                            .sessionController
-                                            .posSessionsList
-                                            .isEmpty ||
-                                        widget
-                                                .sessionController
-                                                .posSessionsList
-                                                .last
-                                                .startTime ==
-                                            ''
-                                    ? formatDateTime(null)
-                                    : formatDateTime(
-                                      widget
-                                          .sessionController
-                                          .posSessionsList
-                                          .last
-                                          .startTime!,
-                                    ),
-                          ),
-                        ],
-                      ),
-                      textAlign: TextAlign.right,
                     ),
                   ],
                 ),
-
-                Text(
-                  'total_sales'.tr,
-                  style: TextStyle(
-                    color:
-                        SharedPr.isDarkMode!
-                            ? const Color(0xFFD4D4D4)
-                            : const Color(0xFF2E2E2E),
-                    fontSize: context.setSp(14),
-                    fontFamily: 'Tajawal',
-                    fontWeight: FontWeight.w400,
-                    height: 2.50,
-                  ),
-                ),
-              ],
-            ),
-
-            Spacer(),
-            if (widget.sessionController.posSessionsList.isEmpty ||
-                widget.sessionController.posSessionsList.last.state ==
-                    SessionState.closedSession) ...[
-              ButtonsToContinueOrStop(
-                onTap: () {
-                  widget.sessionController.sessionStartOrResumOnTap(context: context);
-                },
-                image: AppImages.stop,
-                data: "startNewSession".tr,
-                addBorderSide: false,
-                color: const Color(0xFFF2AC57),
-              ),
-            ],
-            if (widget.sessionController.posSessionsList.isNotEmpty &&
-                widget.sessionController.posSessionsList.last.state ==
-                    SessionState.openSession) ...[
-              Row(
-                spacing: context.setWidth(9.7),
-                children: [
-                  if (widget.sessionController
-                      .checkStartOrResumeSessionAppearance()) ...[
-                    Expanded(
-                      // flex: 3,
-                      child: ButtonsToContinueOrStop(
-                        onTap: () {
-                          widget.sessionController.sessionStartOrResumOnTap(context: context,);
-                        },
-                        image:AppImages.stop,
-                        data: "ResumeSession".tr,
-                        addBorderSide: false,
-                        color: const Color(0xFFF2AC57),
-                      ),
-                    ),
-                  ],
-                  Expanded(
-                    // flex:
-                    //     !widget.sessionController
-                    //             .checkStartOrResumeSessionAppearance()
-                    //         ? 3
-                    //         : 2,
-                    child: ButtonsToContinueOrStop(
-                      onTap: () async {
-                        widget.sessionController.isLoading.value = true;
-                        await widget.sessionController.uploadData();
-                        widget.sessionController.isLoading.value = false;
-                        Get.to(() => CloseSession());
-                      },
-                      image:AppImages.continueImage,
-                      data: "closeSession".tr,
-                      addBorderSide: true,
-                      color: const Color(0x2BF20C10),
-                      // SharedPr.isDarkMode!
-                      //     ? Colors.black.withValues(alpha: 0.17)
-                      //     : const Color(0x2B665959),
-                    ),
+        
+                Spacer(),
+                if (widget.sessionController.posSessionsList.isEmpty ||
+                    widget.sessionController.posSessionsList.last.state ==
+                        SessionState.closedSession) ...[
+                  ButtonsToContinueOrStop(
+                    onTap: () {
+                      widget.sessionController.sessionStartOrResumOnTap(context: context);
+                    },
+                    image: AppImages.stop,
+                    data: "startNewSession".tr,
+                    addBorderSide: false,
+                    color: const Color(0xFFF2AC57),
                   ),
                 ],
-              ),
-            ],
-          ],
-        ),
-      ),
+                if (widget.sessionController.posSessionsList.isNotEmpty &&
+                    widget.sessionController.posSessionsList.last.state ==
+                        SessionState.openSession) ...[
+                  Row(
+                    spacing: context.setWidth(9.7),
+                    children: [
+                      if (widget.sessionController
+                          .checkStartOrResumeSessionAppearance()) ...[
+                        Expanded(
+                          // flex: 3,
+                          child: ButtonsToContinueOrStop(
+                            onTap: () {
+                              widget.sessionController.sessionStartOrResumOnTap(context: context,);
+                            },
+                            image:AppImages.stop,
+                            data: "ResumeSession".tr,
+                            addBorderSide: false,
+                            color: const Color(0xFFF2AC57),
+                          ),
+                        ),
+                      ],
+                      Expanded(
+                        // flex:
+                        //     !widget.sessionController
+                        //             .checkStartOrResumeSessionAppearance()
+                        //         ? 3
+                        //         : 2,
+                        child: ButtonsToContinueOrStop(
+                          onTap: () async {
+                            widget.sessionController.isLoading.value = true;
+                            await widget.sessionController.uploadData();
+                            widget.sessionController.isLoading.value = false;
+                            Get.to(() => CloseSession());
+                          },
+                          image:AppImages.continueImage,
+                          data: "closeSession".tr,
+                          addBorderSide: true,
+                          color: const Color(0x2BF20C10),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ],
+            ),
+          ),
+        );
+      }
     );
   }
 }
@@ -1163,63 +1112,66 @@ class ButtonsToContinueOrStop extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: Container(
-        height: context.setHeight(46),
-        decoration: ShapeDecoration(
-          color: color,
-          shape: RoundedRectangleBorder(
-            side:
-                addBorderSide
-                    ? BorderSide(
-                      width: 1,
-                      color:
-                          SharedPr.isDarkMode!
-                              ? Colors.black.withValues(alpha: 0.17)
-                              : Colors.white.withValues(alpha: 0.50),
-                    )
-                    : BorderSide.none,
-            borderRadius: BorderRadius.circular(context.setMinSize(9)),
-          ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          spacing: context.setWidth(5),
-          children: [
-            SvgPicture.asset(
-              image,
-              package: 'shared_widgets',
-              width: context.setWidth(28.5),
-              height: context.setHeight(28.5),
-              color:
-                  addBorderSide
-                      ? SharedPr.isDarkMode!
-                          ? const Color(0xFFF68889)
-                          : const Color(0xFFE94043)
-                      : AppColor.black,
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: context.setHeight(4.3)),
-              child: Center(
-                child: Text(
-                  data,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color:
-                        addBorderSide
-                            ? SharedPr.isDarkMode!
-                                ? const Color(0xFFF68889)
-                                : const Color(0xFFE94043)
-                            : const Color(0xFF032A2E),
-                    fontSize: context.setSp(16.10),
-                    fontFamily: 'Tajawal',
-                    fontWeight: FontWeight.w500,
-                    height: 1.43,
-                  ),
-                ),
+      child:Obx(() {
+      return Container(
+            height: context.setHeight(46),
+            decoration: ShapeDecoration(
+              color: color,
+              shape: RoundedRectangleBorder(
+                side:
+                    addBorderSide
+                        ? BorderSide(
+                          width: 1,
+                          color:
+                              Get.find<ThemeController>().isDarkMode.value
+                                  ? Colors.black.withValues(alpha: 0.17)
+                                  : Colors.white.withValues(alpha: 0.50),
+                        )
+                        : BorderSide.none,
+                borderRadius: BorderRadius.circular(context.setMinSize(9)),
               ),
             ),
-          ],
-        ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: context.setWidth(5),
+              children: [
+                SvgPicture.asset(
+                  image,
+                  package: 'shared_widgets',
+                  width: context.setWidth(28.5),
+                  height: context.setHeight(28.5),
+                  color:
+                      addBorderSide
+                          ? Get.find<ThemeController>().isDarkMode.value
+                              ? const Color(0xFFF68889)
+                              : const Color(0xFFE94043)
+                          : AppColor.black,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: context.setHeight(4.3)),
+                  child: Center(
+                    child: Text(
+                      data,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color:
+                            addBorderSide
+                                ? Get.find<ThemeController>().isDarkMode.value
+                                    ? const Color(0xFFF68889)
+                                    : const Color(0xFFE94043)
+                                : const Color(0xFF032A2E),
+                        fontSize: context.setSp(16.10),
+                        fontFamily: 'Tajawal',
+                        fontWeight: FontWeight.w500,
+                        height: 1.43,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        }
       ),
     );
   }
@@ -1312,95 +1264,98 @@ class _SalesLineChartState extends State<_SalesLineChart> {
 
   @override
   Widget build(BuildContext context) {
-    return LineChart(
-      LineChartData(
-        gridData: FlGridData(show: true, drawVerticalLine: false),
-        titlesData: FlTitlesData(
-          rightTitles: const AxisTitles(
-            sideTitles: SideTitles(showTitles: false),
-          ),
-          topTitles: const AxisTitles(
-            sideTitles: SideTitles(showTitles: false),
-          ),
-          leftTitles: AxisTitles(
-            sideTitles: SideTitles(
-              showTitles: true,
-              reservedSize: context.setWidth(40),
-              getTitlesWidget: (v, meta) {
-                // احسب كل قيمة تريدها بناءً على maxY
-                final interval = calculateYInterval(maxY); // دالة اللي سويناها
-                if (v % interval != 0) return const SizedBox.shrink();
-                return Text(
-                  v.toInt().toString(),
-                  style: TextStyle(
-                    color:
-                        SharedPr.isDarkMode!
-                            ? Color(0xFFB1B3BC)
-                            : const Color(0xFF01343A),
-                    fontSize: context.setSp(12.30),
-                    fontFamily: 'Tajawal',
-                    fontWeight: FontWeight.w400,
-                    height: 1.40,
-                  ),
-                );
-              },
-            ),
-          ),
-          bottomTitles: AxisTitles(
-            sideTitles: SideTitles(
-              showTitles: true,
-              interval: 1,
-              getTitlesWidget: (v, meta) {
-                final index = v.toInt();
-                if (index >= 0 && index < bottomTitles.length) {
-                  return Text(
-                    bottomTitles[index],
-                    style: TextStyle(
-                      color:
-                          SharedPr.isDarkMode!
-                              ? Color(0xFFB1B3BC)
-                              : const Color(0xFF01343A),
-                      fontSize: context.setSp(12.30),
-                      fontFamily: 'Tajawal',
-                      fontWeight: FontWeight.w400,
-                      height: 1.40,
-                    ),
-                  );
-                } else {
-                  return const SizedBox.shrink(); // ما يعرض شيء
-                }
-              },
-            ),
-          ),
-        ),
-        borderData: FlBorderData(show: false),
-        minX: 0,
-        maxX: bottomTitles.length - 1,
-        minY: minY,
-        maxY: maxY,
-        lineBarsData: [
-          LineChartBarData(
-            spots: _spots,
-            isCurved: false,
-            barWidth: 6,
-            color: const Color(0xFF16A6B7),
-            dotData: FlDotData(show: true),
-            belowBarData: BarAreaData(
-              show: true,
-              gradient: LinearGradient(
-                colors: [
-                  const Color(0xFF16A6B7),
-                  SharedPr.isDarkMode!
-                      ? const Color(0x00241E1E)
-                      : Colors.white.withValues(alpha: 0),
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
+    return Obx(() {
+      return LineChart(
+          LineChartData(
+            gridData: FlGridData(show: true, drawVerticalLine: false),
+            titlesData: FlTitlesData(
+              rightTitles: const AxisTitles(
+                sideTitles: SideTitles(showTitles: false),
+              ),
+              topTitles: const AxisTitles(
+                sideTitles: SideTitles(showTitles: false),
+              ),
+              leftTitles: AxisTitles(
+                sideTitles: SideTitles(
+                  showTitles: true,
+                  reservedSize: context.setWidth(40),
+                  getTitlesWidget: (v, meta) {
+                    // احسب كل قيمة تريدها بناءً على maxY
+                    final interval = calculateYInterval(maxY); // دالة اللي سويناها
+                    if (v % interval != 0) return const SizedBox.shrink();
+                    return Text(
+                      v.toInt().toString(),
+                      style: TextStyle(
+                        color:
+                            Get.find<ThemeController>().isDarkMode.value
+                                ? Color(0xFFB1B3BC)
+                                : const Color(0xFF01343A),
+                        fontSize: context.setSp(12.30),
+                        fontFamily: 'Tajawal',
+                        fontWeight: FontWeight.w400,
+                        height: 1.40,
+                      ),
+                    );
+                  },
+                ),
+              ),
+              bottomTitles: AxisTitles(
+                sideTitles: SideTitles(
+                  showTitles: true,
+                  interval: 1,
+                  getTitlesWidget: (v, meta) {
+                    final index = v.toInt();
+                    if (index >= 0 && index < bottomTitles.length) {
+                      return Text(
+                        bottomTitles[index],
+                        style: TextStyle(
+                          color:
+                              Get.find<ThemeController>().isDarkMode.value
+                                  ? Color(0xFFB1B3BC)
+                                  : const Color(0xFF01343A),
+                          fontSize: context.setSp(12.30),
+                          fontFamily: 'Tajawal',
+                          fontWeight: FontWeight.w400,
+                          height: 1.40,
+                        ),
+                      );
+                    } else {
+                      return const SizedBox.shrink(); // ما يعرض شيء
+                    }
+                  },
+                ),
               ),
             ),
+            borderData: FlBorderData(show: false),
+            minX: 0,
+            maxX: bottomTitles.length - 1,
+            minY: minY,
+            maxY: maxY,
+            lineBarsData: [
+              LineChartBarData(
+                spots: _spots,
+                isCurved: false,
+                barWidth: 6,
+                color: AppColor.appColor,
+                dotData: FlDotData(show: true),
+                belowBarData: BarAreaData(
+                  show: true,
+                  gradient: LinearGradient(
+                    colors: [
+                      AppColor.appColor,
+                      Get.find<ThemeController>().isDarkMode.value
+                          ? const Color(0x00241E1E)
+                          : Colors.white.withValues(alpha: 0),
+                    ],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      }
     );
   }
 }
@@ -1429,141 +1384,133 @@ class BestSellingProducts extends StatelessWidget {
       );
       total = products.fold<double>(0, (sum, p) => sum + (p.totalPrice!));
     }
-    return Container(
-      width: context.screenWidth,
-      height: context.setHeight(123.7),
-      padding: const EdgeInsets.all(16),
-      decoration: ShapeDecoration(
-        color:
-            SharedPr.isDarkMode!
-                ? Colors.black.withValues(alpha: 0.17)
-                : Colors.white,
-        shape: RoundedRectangleBorder(
-          side: BorderSide(
-            width: 1,
+    return Obx(() {
+        return Container(
+          width: context.screenWidth,
+          height: context.setHeight(123.7),
+          padding: const EdgeInsets.all(16),
+          decoration: ShapeDecoration(
             color:
-                SharedPr.isDarkMode!
-                    ? Colors.white.withValues(alpha: 0.50)
-                    : const Color(0xFFE7E7E8),
+                Get.find<ThemeController>().isDarkMode.value
+                    ? Colors.black.withValues(alpha: 0.17)
+                    : Colors.white,
+            shape: RoundedRectangleBorder(
+              side: BorderSide(
+                width: 1,
+                color:
+                    Get.find<ThemeController>().isDarkMode.value
+                        ? Colors.white.withValues(alpha: 0.50)
+                        : const Color(0xFFE7E7E8),
+              ),
+              borderRadius: BorderRadius.circular(context.setMinSize(16)),
+            ),
+            shadows: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.05),
+                blurRadius: 8,
+                offset: const Offset(0, 3),
+              ),
+            ],
           ),
-          borderRadius: BorderRadius.circular(context.setMinSize(16)),
-        ),
-        shadows: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 8,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
-      child: LayoutBuilder(
-        builder: (context, boxConstraints) {
-          return SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: SingleChildScrollView(
-              child: Column(
-                spacing: context.setHeight(16),
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'best_selling_products'.tr,
-                    style: TextStyle(
-                      color: SharedPr.isDarkMode! ? Colors.white : Colors.black,
-                      fontSize: context.setSp(15.36),
-                      fontFamily: 'Tajawal',
-                      fontWeight: FontWeight.w700,
-                      height: 1.23,
-                    ),
-                  ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: Row(
-                      spacing: context.setWidth(7.75),
-                      children:
-                          products.map((p) {
-                            final value = p.totalPrice!;
-                            final color =
-                                colors[products.indexOf(p) % colors.length];
-                            final flex =
-                                ((value / total) * boxConstraints.maxWidth);
-                            return Container(
-                              width: flex,
-                              height: context.setHeight(11),
-                              decoration: ShapeDecoration(
-                                color: color,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(
-                                    context.setMinSize(12.72),
-                                  ),
-                                ),
-                              ),
-                            );
-                          }).toList(),
-                    ),
-                  ),
-                  Row(
-                    spacing: context.setWidth(23),
+          child: LayoutBuilder(
+            builder: (context, boxConstraints) {
+              return SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: SingleChildScrollView(
+                  child: Column(
+                    spacing: context.setHeight(16),
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      ...products.map(
-                        (p) => Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              p.getProductNameBasedOnLang,
-                              textAlign: TextAlign.right,
-                              style: TextStyle(
-                                color:
-                                    SharedPr.isDarkMode!
-                                        ? Colors.white
-                                        : Colors.black,
-                                fontSize: context.setSp(11.55),
-                                fontFamily: 'Tajawal',
-                                fontWeight: FontWeight.w500,
-                                height: 1.23,
-                              ),
-                            ),
-                            Row(
-                              spacing: context.setWidth(10),
-                              children: [
-                                Text(
-                                  (p.totalPrice).toString(),
-                                  textAlign: TextAlign.right,
-                                  style: TextStyle(
-                                    color:
-                                        SharedPr.isDarkMode!
-                                            ? Colors.white
-                                            : Colors.black,
-                                    fontSize: context.setSp(14.85),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w700,
-                                    height: 1.33,
-                                  ),
-                                ),
-                                Container(
-                                  width: context.setWidth(20),
-                                  height: context.setHeight(6),
+                      Text(
+                        'best_selling_products'.tr,
+                        style: TextStyle(
+                          fontSize: context.setSp(15.36),
+                          fontWeight: FontWeight.w700,
+                          height: 1.23,
+                        ),
+                      ),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Row(
+                          spacing: context.setWidth(7.75),
+                          children:
+                              products.map((p) {
+                                final value = p.totalPrice!;
+                                final color =
+                                    colors[products.indexOf(p) % colors.length];
+                                final flex =
+                                    ((value / total) * boxConstraints.maxWidth);
+                                return Container(
+                                  width: flex,
+                                  height: context.setHeight(11),
                                   decoration: ShapeDecoration(
-                                    color:
-                                        colors[products.indexOf(p) %
-                                            colors.length],
+                                    color: color,
                                     shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(6.60),
+                                      borderRadius: BorderRadius.circular(
+                                        context.setMinSize(12.72),
+                                      ),
                                     ),
                                   ),
+                                );
+                              }).toList(),
+                        ),
+                      ),
+                      Row(
+                        spacing: context.setWidth(23),
+                        children: [
+                          ...products.map(
+                            (p) => Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  p.getProductNameBasedOnLang,
+                                  textAlign: TextAlign.right,
+                                  style: TextStyle(
+                                    fontSize: context.setSp(11.55),
+                                    fontWeight: FontWeight.w500,
+                                    height: 1.23,
+                                  ),
+                                ),
+                                Row(
+                                  spacing: context.setWidth(10),
+                                  children: [
+                                    Text(
+                                      (p.totalPrice).toString(),
+                                      textAlign: TextAlign.right,
+                                      style: TextStyle(
+                                        fontSize: context.setSp(14.85),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w700,
+                                        height: 1.33,
+                                      ),
+                                    ),
+                                    Container(
+                                      width: context.setWidth(20),
+                                      height: context.setHeight(6),
+                                      decoration: ShapeDecoration(
+                                        color:
+                                            colors[products.indexOf(p) %
+                                                colors.length],
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(6.60),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
-              ),
-            ),
-          );
-        },
-      ),
+                ),
+              );
+            },
+          ),
+        );
+      }
     );
   }
 }
@@ -1581,7 +1528,7 @@ class BestSellingCategoriesChart extends StatefulWidget {
 class _BestSellingCategoriesChartState
     extends State<BestSellingCategoriesChart> {
   List<Color> colorList = [
-    const Color(0xFF16A6B7),
+    AppColor.appColor,
     const Color(0xFFFFC300),
     const Color(0xFF8DD3C7),
   ];
@@ -1625,125 +1572,83 @@ class _BestSellingCategoriesChartState
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height:
-        Platform.isWindows ? context.setHeight(257) :  widget.finalReportController.finalReportInfo != null &&
-                  widget
-                      .finalReportController
-                      .finalReportInfo!
-                      .productBasedCategories!
-                      .isNotEmpty
-              ? null
-              : 
-              context.setHeight(257),
-      decoration: ShapeDecoration(
-        color:
-            SharedPr.isDarkMode!
-                ? Colors.black.withValues(alpha: 0.17)
-                : Colors.white,
-        shape: RoundedRectangleBorder(
-          side: BorderSide(
-            width: 1,
-            color:
-                SharedPr.isDarkMode!
-                    ? Colors.white.withValues(alpha: 0.50)
-                    : const Color(0xFFE7E7E8),
-          ),
-          borderRadius: BorderRadius.circular(16),
-        ),
-        shadows: [
-          BoxShadow(
-            color: Color(0x0C000000),
-            blurRadius: 2,
-            offset: Offset(0, 1),
-            spreadRadius: 0,
-          ),
-        ],
-      ),
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: context.setWidth(16),
-          vertical: context.setHeight(16),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Title
-            Align(
-              alignment: Alignment.centerRight,
-              child: Text(
-                'best_product_by_cat'.tr,
-                style: TextStyle(
-                  color:
-                      SharedPr.isDarkMode!
-                          ? Colors.white
-                          : const Color(0xFF2E2E2E),
-                  fontSize: context.setSp(16),
-                  fontFamily: 'Tajawal',
-                  fontWeight: FontWeight.w700,
-                  height: 1.50,
-                ),
-              ),
-            ),
-            if (widget.finalReportController.finalReportInfo != null &&
-                widget
-                    .finalReportController
-                    .finalReportInfo!
-                    .productBasedCategories!
-                    .isNotEmpty) ...[
-              // Chart + Legend
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  // Legend
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ...widget
+    return Obx(() {
+        return Container(
+          height:
+            Platform.isWindows ? context.setHeight(257) :  widget.finalReportController.finalReportInfo != null &&
+                      widget
                           .finalReportController
                           .finalReportInfo!
                           .productBasedCategories!
-                          .map(
-                            (item) => _legendItem(
-                              text: item.getProductNameBasedOnLang,
-                              color:
-                                  colorList[widget
-                                          .finalReportController
-                                          .finalReportInfo!
-                                          .productBasedCategories!
-                                          .indexOf(item) %
-                                      colorList.length],
-                              context: context,
-                              percentage:
-                                  totalQtyAll == 0
-                                      ? 0
-                                      : ((item.totalQty! / totalQtyAll) * 100)
-                                          .roundToDouble(),
-                            ),
-                          ),
-                    ],
+                          .isNotEmpty
+                  ? null
+                  : 
+                  context.setHeight(257),
+          decoration: ShapeDecoration(
+            color:
+                Get.find<ThemeController>().isDarkMode.value
+                    ? Colors.black.withValues(alpha: 0.17)
+                    : Colors.white,
+            shape: RoundedRectangleBorder(
+              side: BorderSide(
+                width: 1,
+                color:
+                    Get.find<ThemeController>().isDarkMode.value
+                        ? Colors.white.withValues(alpha: 0.50)
+                        : const Color(0xFFE7E7E8),
+              ),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            shadows: [
+              BoxShadow(
+                color: Color(0x0C000000),
+                blurRadius: 2,
+                offset: Offset(0, 1),
+                spreadRadius: 0,
+              ),
+            ],
+          ),
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: context.setWidth(16),
+              vertical: context.setHeight(16),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Title
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    'best_product_by_cat'.tr,
+                    style: TextStyle(
+                      fontSize: context.setSp(16),
+                      fontWeight: FontWeight.w700,
+                      height: 1.50,
+                    ),
                   ),
-                  // Pie Chart (Donut)
-                  SizedBox(
-                    width: context.setWidth(300),
-                    height: context.setHeight(150),
-                    child: PieChart(
-                      PieChartData(
-                        sectionsSpace: context.setWidth(3.9),
-                        // centerSpaceRadius:context.setWidth(40),
-                        sections: [
+                ),
+                if (widget.finalReportController.finalReportInfo != null &&
+                    widget
+                        .finalReportController
+                        .finalReportInfo!
+                        .productBasedCategories!
+                        .isNotEmpty) ...[
+                  // Chart + Legend
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // Legend
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
                           ...widget
                               .finalReportController
                               .finalReportInfo!
                               .productBasedCategories!
                               .map(
-                                (item) => PieChartSectionData(
-                                  value:
-                                      totalQtyAll == 0
-                                          ? 0
-                                          : ((item.totalQty! / totalQtyAll) *
-                                                  100)
-                                              .roundToDouble(),
+                                (item) => _legendItem(
+                                  text: item.getProductNameBasedOnLang,
                                   color:
                                       colorList[widget
                                               .finalReportController
@@ -1751,20 +1656,60 @@ class _BestSellingCategoriesChartState
                                               .productBasedCategories!
                                               .indexOf(item) %
                                           colorList.length],
-                                  radius: context.setMinSize(33.5),
-                                  showTitle: false,
+                                  context: context,
+                                  percentage:
+                                      totalQtyAll == 0
+                                          ? 0
+                                          : ((item.totalQty! / totalQtyAll) * 100)
+                                              .roundToDouble(),
                                 ),
                               ),
                         ],
                       ),
-                    ),
+                      // Pie Chart (Donut)
+                      SizedBox(
+                        width: context.setWidth(300),
+                        height: context.setHeight(150),
+                        child: PieChart(
+                          PieChartData(
+                            sectionsSpace: context.setWidth(3.9),
+                            // centerSpaceRadius:context.setWidth(40),
+                            sections: [
+                              ...widget
+                                  .finalReportController
+                                  .finalReportInfo!
+                                  .productBasedCategories!
+                                  .map(
+                                    (item) => PieChartSectionData(
+                                      value:
+                                          totalQtyAll == 0
+                                              ? 0
+                                              : ((item.totalQty! / totalQtyAll) *
+                                                      100)
+                                                  .roundToDouble(),
+                                      color:
+                                          colorList[widget
+                                                  .finalReportController
+                                                  .finalReportInfo!
+                                                  .productBasedCategories!
+                                                  .indexOf(item) %
+                                              colorList.length],
+                                      radius: context.setMinSize(33.5),
+                                      showTitle: false,
+                                    ),
+                                  ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
-              ),
-            ],
-          ],
-        ),
-      ),
+              ],
+            ),
+          ),
+        );
+      }
     );
   }
 }
