@@ -1242,8 +1242,7 @@ class _SalesLineChartState extends State<_SalesLineChart> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      return LineChart(
+    return  LineChart(
           LineChartData(
             gridData: FlGridData(show: true, drawVerticalLine: false),
             titlesData: FlTitlesData(
@@ -1264,10 +1263,10 @@ class _SalesLineChartState extends State<_SalesLineChart> {
                     return Text(
                       v.toInt().toString(),
                       style: TextStyle(
-                        color:
-                            Get.find<ThemeController>().isDarkMode.value
-                                ? Color(0xFFB1B3BC)
-                                : const Color(0xFF01343A),
+                        // color:
+                            // Get.find<ThemeController>().isDarkMode.value
+                            //     ? Color(0xFFB1B3BC)
+                            //     : const Color(0xFF01343A),
                         fontSize: context.setSp(12.30),
                         fontFamily: 'Tajawal',
                         fontWeight: FontWeight.w400,
@@ -1287,10 +1286,10 @@ class _SalesLineChartState extends State<_SalesLineChart> {
                       return Text(
                         bottomTitles[index],
                         style: TextStyle(
-                          color:
-                              Get.find<ThemeController>().isDarkMode.value
-                                  ? Color(0xFFB1B3BC)
-                                  : const Color(0xFF01343A),
+                          // color:
+                          //     Get.find<ThemeController>().isDarkMode.value
+                          //         ? Color(0xFFB1B3BC)
+                          //         : const Color(0xFF01343A),
                           fontSize: context.setSp(12.30),
                           fontFamily: 'Tajawal',
                           fontWeight: FontWeight.w400,
@@ -1333,8 +1332,7 @@ class _SalesLineChartState extends State<_SalesLineChart> {
             ],
           ),
         );
-      }
-    );
+     
   }
 }
 
@@ -1362,20 +1360,16 @@ class BestSellingProducts extends StatelessWidget {
       );
       total = products.fold<double>(0, (sum, p) => sum + (p.totalPrice!));
     }
-    return Obx(() {
-        return Container(
+    return  Container(
           width: context.screenWidth,
           height: context.setHeight(123.7),
           padding: const EdgeInsets.all(16),
           decoration: ShapeDecoration(
-            color:
-                Get.find<ThemeController>().isDarkMode.value
-                    ? Colors.black.withValues(alpha: 0.17)
-                    : Colors.white,
+            color:Theme.of(context).extension<CustomTheme>()!.cardColor,
             shape: RoundedRectangleBorder(
               side: BorderSide(
                 width: 1,
-                color:Theme.of(context).colorScheme.onBackground,
+                color:Theme.of(context).extension<CustomTheme>()!.cardBorderColor,
               ),
               borderRadius: BorderRadius.circular(context.setMinSize(16)),
             ),
@@ -1485,8 +1479,7 @@ class BestSellingProducts extends StatelessWidget {
             },
           ),
         );
-      }
-    );
+     
   }
 }
 
@@ -1547,8 +1540,7 @@ class _BestSellingCategoriesChartState
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-        return Container(
+    return  Container(
           height:
             Platform.isWindows ? context.setHeight(257) :  widget.finalReportController.finalReportInfo != null &&
                       widget
@@ -1560,17 +1552,11 @@ class _BestSellingCategoriesChartState
                   : 
                   context.setHeight(257),
           decoration: ShapeDecoration(
-            color:
-                Get.find<ThemeController>().isDarkMode.value
-                    ? Colors.black.withValues(alpha: 0.17)
-                    : Colors.white,
+            color:Theme.of(context).extension<CustomTheme>()!.cardColor,
             shape: RoundedRectangleBorder(
               side: BorderSide(
                 width: 1,
-                color:
-                    Get.find<ThemeController>().isDarkMode.value
-                        ? Colors.white.withValues(alpha: 0.50)
-                        : const Color(0xFFE7E7E8),
+                color:Theme.of(context).extension<CustomTheme>()!.cardBorderColor,
               ),
               borderRadius: BorderRadius.circular(16),
             ),
@@ -1684,8 +1670,7 @@ class _BestSellingCategoriesChartState
             ),
           ),
         );
-      }
-    );
+      
   }
 }
 
