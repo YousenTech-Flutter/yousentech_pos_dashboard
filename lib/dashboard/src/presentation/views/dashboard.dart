@@ -94,11 +94,11 @@ class _DashboardState extends State<Dashboard> {
                             spacing: context.setHeight(16),
                             children: [
                               GetBuilder<SessionController>(
-                                id: "session_amount_opration_card",
-                                builder: (controller) {
-                                  return PosCard(sessionController: sessioncontroller);
-                                }
-                              ),
+                                  id: "session_amount_opration_card",
+                                  builder: (controller) {
+                                    return PosCard(
+                                        sessionController: sessioncontroller);
+                                  }),
                               GetBuilder<FinalReportController>(
                                 id: "session_card",
                                 builder: (controller) {
@@ -134,25 +134,20 @@ class _DashboardState extends State<Dashboard> {
                                 child: GetBuilder<LoadingDataController>(
                                   id: 'card_loading_data',
                                   builder: (controller) {
-                                    int remote =
-                                        loadingDataController.itemdata[Loaddata
-                                            .customers
-                                            .name
-                                            .toString()]["remote"];
-                                    int local =
-                                        loadingDataController.itemdata[Loaddata
-                                            .customers
-                                            .name
-                                            .toString()]["local"];
+                                    int remote = loadingDataController.itemdata[
+                                            Loaddata.customers.name.toString()]
+                                        ["remote"];
+                                    int local = loadingDataController.itemdata[
+                                            Loaddata.customers.name.toString()]
+                                        ["local"];
                                     return ProductAndCustomerCard(
                                       loadingDataController:
                                           loadingDataController,
-                                      image:AppImages.partner,
+                                      image: AppImages.partner,
                                       title: 'customers',
-                                      syncData:
-                                          remote == 0
-                                              ? "0"
-                                              : local > remote
+                                      syncData: remote == 0
+                                          ? "0"
+                                          : local > remote
                                               ? (remote /
                                                       (local == 0 ? 1 : local) *
                                                       100)
@@ -168,25 +163,20 @@ class _DashboardState extends State<Dashboard> {
                                 child: GetBuilder<LoadingDataController>(
                                   id: 'card_loading_data',
                                   builder: (controller) {
-                                    int remote =
-                                        loadingDataController.itemdata[Loaddata
-                                            .products
-                                            .name
-                                            .toString()]["remote"];
-                                    int local =
-                                        loadingDataController.itemdata[Loaddata
-                                            .products
-                                            .name
-                                            .toString()]["local"];
+                                    int remote = loadingDataController.itemdata[
+                                            Loaddata.products.name.toString()]
+                                        ["remote"];
+                                    int local = loadingDataController.itemdata[
+                                            Loaddata.products.name.toString()]
+                                        ["local"];
                                     return ProductAndCustomerCard(
                                       loadingDataController:
                                           loadingDataController,
-                                      image:AppImages.product,
+                                      image: AppImages.product,
                                       title: "products",
-                                      syncData:
-                                          remote == 0
-                                              ? "0"
-                                              : local > remote
+                                      syncData: remote == 0
+                                          ? "0"
+                                          : local > remote
                                               ? (remote /
                                                       (local == 0 ? 1 : local) *
                                                       100)
@@ -212,12 +202,11 @@ class _DashboardState extends State<Dashboard> {
                                     child: AmountTotalCard(
                                       title: InfoTotalCard.totalSales.text.tr,
                                       total: controller.formatter.format(
-                                        controller
-                                                .finalReportInfo
+                                        controller.finalReportInfo
                                                 ?.totalOutInvoice ??
                                             0.0,
                                       ),
-                                      image:AppImages.div2,
+                                      image: AppImages.div2,
                                       color: const Color(0xFF27AE60),
                                     ),
                                   ),
@@ -236,12 +225,11 @@ class _DashboardState extends State<Dashboard> {
                                     child: AmountTotalCard(
                                       title: InfoTotalCard.totalReturns.text.tr,
                                       total: controller.formatter.format(
-                                        controller
-                                                .finalReportInfo
+                                        controller.finalReportInfo
                                                 ?.totalOutRefund ??
                                             0.0,
                                       ),
-                                      image:AppImages.div,
+                                      image: AppImages.div,
                                       color: const Color(0xFFF2AC57),
                                     ),
                                   ),
@@ -253,186 +241,195 @@ class _DashboardState extends State<Dashboard> {
                             id: "sales_performance",
                             builder: (controller) {
                               return Obx(() {
-      return Container(
-                                    decoration: ShapeDecoration(
-                                      color:Theme.of(context).extension<CustomTheme>()!.preferredSizeBackground,
-                                      shape: RoundedRectangleBorder(
-                                        side: BorderSide(
-                                          width: 1,
-                                          color:
-                                              Get.find<ThemeController>().isDarkMode.value
-                                                  ? Colors.white.withValues(
-                                                    alpha: 0.50,
-                                                  )
-                                                  : const Color(0xFFE7E7E8),
-                                        ),
-                                        borderRadius: BorderRadius.circular(
-                                          context.setMinSize(16),
-                                        ),
+                                return Container(
+                                  decoration: ShapeDecoration(
+                                    color: Theme.of(context)
+                                        .extension<CustomTheme>()!
+                                        .cardColor,
+                                    shape: RoundedRectangleBorder(
+                                      side: BorderSide(
+                                        width: 1,
+                                        color: Theme.of(context)
+                                            .extension<CustomTheme>()!
+                                            .cardBorderColor,
+                                      ),
+                                      borderRadius: BorderRadius.circular(
+                                        context.setMinSize(16),
                                       ),
                                     ),
-                                    height: context.setHeight(291.77),
-                                    child: Padding(
-                                      padding: EdgeInsets.symmetric(
-                                        vertical: context.setHeight(13.5),
-                                        horizontal: context.setWidth(20.93),
-                                      ),
-                                      child: Column(
-                                        spacing: context.setHeight(10),
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Container(
-                                                // height: context.setHeight(39),
-                                                // width: context.setWidth(249.06),
-                                                decoration: ShapeDecoration(
-                                                  color:Theme.of(context).colorScheme.onPrimary,
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                          context.setMinSize(14.77),
-                                                        ),
+                                  ),
+                                  height: context.setHeight(291.77),
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      vertical: context.setHeight(13.5),
+                                      horizontal: context.setWidth(20.93),
+                                    ),
+                                    child: Column(
+                                      spacing: context.setHeight(10),
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Container(
+                                              // height: context.setHeight(39),
+                                              // width: context.setWidth(249.06),
+                                              decoration: ShapeDecoration(
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .onPrimary,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                    context.setMinSize(14.77),
                                                   ),
                                                 ),
-                                                child: Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                    horizontal: context.setWidth(
-                                                      10,
-                                                    ),
-                                                    vertical: context.setHeight(7),
+                                              ),
+                                              child: Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                  horizontal: context.setWidth(
+                                                    10,
                                                   ),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      ...salesTitals.map(
-                                                        (e) => InkWell(
-                                                          onTap: () async {
-                                                            await controller
-                                                                .updateSalesPerformanceTab(
-                                                                  type: salesTitals
-                                                                      .indexOf(e),
-                                                                );
-                                                          },
-                                                          child: Container(
-                                                            height: context
-                                                                .setHeight(27),
-                                                            decoration:
-                                                                salesTitals.indexOf(
-                                                                          e,
-                                                                        ) ==
-                                                                        controller
-                                                                            .salesPerformanceTab
-                                                                    ? ShapeDecoration(
-                                                                      color:Theme.of(context).colorScheme.onPrimary,
-                                                                      shape: RoundedRectangleBorder(
-                                                                        side: BorderSide(
-                                                                          width: 1,
-                                                                          color:Theme.of(context).colorScheme.onPrimary,
-                                                                        ),
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(
-                                                                              8,
-                                                                            ),
-                                                                      ),
-                                                                    )
-                                                                    : null,
-                                                            child: Padding(
-                                                              padding:
-                                                                  EdgeInsets.symmetric(
-                                                                    horizontal:
-                                                                        context
-                                                                            .setWidth(
-                                                                              19.1,
-                                                                            ),
-                                                                  ),
-                                                              child: Obx(() {
-                                        return Center(
-                                                                    child: Text(
-                                                                      e.tr,
-                                                                      textAlign:
-                                                                          TextAlign
-                                                                              .center,
-                                                                      style: TextStyle(
-                                                                        color:
-                                                                            salesTitals.indexOf(
-                                                                                      e,
-                                                                                    ) ==
-                                                                                    controller.salesPerformanceTab
-                                                                                ? Get.find<ThemeController>().isDarkMode.value
-                                                                                    ? Colors.white
-                                                                                    : const Color(
-                                                                                      0xFF01343A,
-                                                                                    )
-                                                                                : const Color(
-                                                                                  0xFF898989,
-                                                                                ),
-                                                                        fontSize:
-                                                                            context
-                                                                                .setSp(
-                                                                                  14,
-                                                                                ),
-                                                                        fontFamily:
-                                                                            'Tajawal',
-                                                                        fontWeight:
-                                                                            FontWeight
-                                                                                .w500,
-                                                                        height: 1.14,
-                                                                      ),
+                                                  vertical:
+                                                      context.setHeight(7),
+                                                ),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    ...salesTitals.map(
+                                                      (e) => InkWell(
+                                                        onTap: () async {
+                                                          await controller
+                                                              .updateSalesPerformanceTab(
+                                                            type: salesTitals
+                                                                .indexOf(e),
+                                                          );
+                                                        },
+                                                        child: Container(
+                                                          height: context
+                                                              .setHeight(27),
+                                                          decoration: salesTitals
+                                                                      .indexOf(
+                                                                    e,
+                                                                  ) ==
+                                                                  controller
+                                                                      .salesPerformanceTab
+                                                              ? ShapeDecoration(
+                                                                  color: Theme.of(
+                                                                          context)
+                                                                      .colorScheme
+                                                                      .onPrimary,
+                                                                  shape:
+                                                                      RoundedRectangleBorder(
+                                                                    side:
+                                                                        BorderSide(
+                                                                      width: 1,
+                                                                      color: Theme.of(
+                                                                              context)
+                                                                          .colorScheme
+                                                                          .onPrimary,
                                                                     ),
-                                                                  );
-                                                                }
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .circular(
+                                                                      8,
+                                                                    ),
+                                                                  ),
+                                                                )
+                                                              : null,
+                                                          child: Padding(
+                                                            padding: EdgeInsets
+                                                                .symmetric(
+                                                              horizontal:
+                                                                  context
+                                                                      .setWidth(
+                                                                19.1,
                                                               ),
                                                             ),
+                                                            child:  Center(
+                                                                child: Text(
+                                                                  e.tr,
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: salesTitals.indexOf(
+                                                                              e,
+                                                                            ) ==
+                                                                            controller.salesPerformanceTab
+                                                                        ? Get.find<ThemeController>().isDarkMode.value
+                                                                            ? Colors.white
+                                                                            : const Color(
+                                                                                0xFF01343A,
+                                                                              )
+                                                                        : const Color(
+                                                                            0xFF898989,
+                                                                          ),
+                                                                    fontSize:
+                                                                        context
+                                                                            .setSp(
+                                                                      14,
+                                                                    ),
+                                                                    fontFamily:
+                                                                        'Tajawal',
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                    height:
+                                                                        1.14,
+                                                                  ),
+                                                                ),
+                                                              )
+                                                           
                                                           ),
                                                         ),
                                                       ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                              const Spacer(),
-                                              Text(
-                                                'sales_performance'.tr,
-                                                textAlign: TextAlign.right,
-                                                style: TextStyle(
-                                                  fontSize: context.setSp(16),
-                                                  fontWeight: FontWeight.w700,
-                                                  height: 1.50,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Expanded(
-                                            child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                horizontal: context.setWidth(16),
-                                                vertical: context.setHeight(16),
-                                              ),
-                                              child: LayoutBuilder(
-                                                builder: (context, boxConstraints) {
-                                                  return SizedBox(
-                                                    height:
-                                                        boxConstraints.maxHeight,
-                                                    child: _SalesLineChart(
-                                                      tab:
-                                                          controller
-                                                              .salesPerformanceTab,
-                                                      finalReportController:
-                                                          finalReportController,
                                                     ),
-                                                  );
-                                                },
+                                                  ],
+                                                ),
                                               ),
                                             ),
+                                            const Spacer(),
+                                            Text(
+                                              'sales_performance'.tr,
+                                              textAlign: TextAlign.right,
+                                              style: TextStyle(
+                                                fontSize: context.setSp(16),
+                                                fontWeight: FontWeight.w700,
+                                                height: 1.50,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding: EdgeInsets.symmetric(
+                                              horizontal: context.setWidth(16),
+                                              vertical: context.setHeight(16),
+                                            ),
+                                            child: LayoutBuilder(
+                                              builder:
+                                                  (context, boxConstraints) {
+                                                return SizedBox(
+                                                  height:
+                                                      boxConstraints.maxHeight,
+                                                  child: _SalesLineChart(
+                                                    tab: controller
+                                                        .salesPerformanceTab,
+                                                    finalReportController:
+                                                        finalReportController,
+                                                  ),
+                                                );
+                                              },
+                                            ),
                                           ),
-                                        ],
-                                      ),
+                                        ),
+                                      ],
                                     ),
-                                  );
-                                }
-                              );
+                                  ),
+                                );
+                              });
                             },
                           ),
                           GetBuilder<FinalReportController>(
@@ -481,79 +478,78 @@ class AmountTotalCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
-          height: context.setHeight(97),
-          decoration: ShapeDecoration(
-            color:  Theme.of(context).extension<CustomTheme>()!.cardColor,
-            shape: RoundedRectangleBorder(
-              side: BorderSide(
-                width: 1,
-                color: Theme.of(context).extension<CustomTheme>()!.cardBorderColor,
-                // color:
-                //     Get.find<ThemeController>().isDarkMode.value
-                //         ? Colors.white.withValues(alpha: 0.50)
-                //         : const Color(0xFFE7E7E8),
-              ),
-              borderRadius: BorderRadius.circular(context.setMinSize(16)),
-            ),
+    return Container(
+      height: context.setHeight(97),
+      decoration: ShapeDecoration(
+        color: Theme.of(context).extension<CustomTheme>()!.cardColor,
+        shape: RoundedRectangleBorder(
+          side: BorderSide(
+            width: 1,
+            color: Theme.of(context).extension<CustomTheme>()!.cardBorderColor,
+            // color:
+            //     Get.find<ThemeController>().isDarkMode.value
+            //         ? Colors.white.withValues(alpha: 0.50)
+            //         : const Color(0xFFE7E7E8),
           ),
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: context.setWidth(16),
-              vertical: context.setHeight(Platform.isWindows ? 10 : 16),
+          borderRadius: BorderRadius.circular(context.setMinSize(16)),
+        ),
+      ),
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: context.setWidth(16),
+          vertical: context.setHeight(Platform.isWindows ? 10 : 16),
+        ),
+        child: Row(
+          spacing: context.setWidth(10),
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SvgPicture.asset(
+              image,
+              package: 'shared_widgets',
+              width: context.setWidth(50),
+              height: context.setHeight(50),
             ),
-            child: Row(
-              spacing: context.setWidth(10),
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              spacing: context.setHeight(10),
               children: [
-                SvgPicture.asset(
-                  image,
-                  package: 'shared_widgets',
-                  width: context.setWidth(50),
-                  height: context.setHeight(50),
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: context.setSp(16),
+                    fontWeight: FontWeight.w500,
+                    height: 1.67,
+                  ),
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  spacing: context.setHeight(10),
+                Row(
+                  spacing: context.setWidth(5),
                   children: [
                     Text(
-                      title,
+                      total,
+                      textAlign: TextAlign.right,
                       style: TextStyle(
-                        fontSize: context.setSp(16),
-                        fontWeight: FontWeight.w500,
-                        height: 1.67,
+                        fontSize: context.setSp(18),
+                        fontFamily: 'Tajawal',
+                        fontWeight: FontWeight.w700,
+                        height: 1.78,
                       ),
                     ),
-                    Row(
-                      spacing: context.setWidth(5),
-                      children: [
-                        Text(
-                          total,
-                          textAlign: TextAlign.right,
-                          style: TextStyle(
-                            fontSize: context.setSp(18),
-                            fontFamily: 'Tajawal',
-                            fontWeight: FontWeight.w700,
-                            height: 1.78,
-                          ),
-                        ),
-                        SvgPicture.asset(
-                          AppImages.riyal,
-                          package: 'shared_widgets',
-                          width: context.setWidth(12.2),
-                          height: context.setHeight(12.2),
-                          color:Theme.of(context).colorScheme.onSurface,
-                        ),
-                      ],
+                    SvgPicture.asset(
+                      AppImages.riyal,
+                      package: 'shared_widgets',
+                      width: context.setWidth(12.2),
+                      height: context.setHeight(12.2),
+                      color: Theme.of(context).colorScheme.onSurface,
                     ),
                   ],
                 ),
               ],
             ),
-          ),
-        );
-     
+          ],
+        ),
+      ),
+    );
   }
 }
 
@@ -574,16 +570,18 @@ class ProductAndCustomerCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      return Container(
+    return Obx(
+      () {
+        return Container(
           height: context.setHeight(215),
           padding: const EdgeInsets.all(16),
           decoration: ShapeDecoration(
-            color:Theme.of(context).extension<CustomTheme>()!.cardColor,
+            color: Theme.of(context).extension<CustomTheme>()!.cardColor,
             shape: RoundedRectangleBorder(
               side: BorderSide(
                 width: 1,
-                color:Theme.of(context).extension<CustomTheme>()!.cardBorderColor,
+                color:
+                    Theme.of(context).extension<CustomTheme>()!.cardBorderColor,
                 // Colors.white.withValues(alpha: 0.50),
               ),
               borderRadius: BorderRadius.circular(context.setMinSize(20)),
@@ -599,10 +597,9 @@ class ProductAndCustomerCard extends StatelessWidget {
                     width: context.setWidth(40),
                     height: context.setHeight(40),
                     decoration: ShapeDecoration(
-                      color:
-                          Get.find<ThemeController>().isDarkMode.value
-                              ? const Color(0x1918BBCD)
-                              : const Color(0x1916A6B7),
+                      color: Get.find<ThemeController>().isDarkMode.value
+                          ? const Color(0x1918BBCD)
+                          : const Color(0x1916A6B7),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
                           context.setMinSize(11),
@@ -662,7 +659,6 @@ class ProductAndCustomerCard extends StatelessWidget {
                   height: 1.56,
                 ),
               ),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -670,7 +666,7 @@ class ProductAndCustomerCard extends StatelessWidget {
                     'Sync: $syncData %',
                     textAlign: TextAlign.right,
                     style: TextStyle(
-                      color:Theme.of(context).textTheme.labelSmall!.color,
+                      color: Theme.of(context).textTheme.labelSmall!.color,
                       fontSize: context.setSp(14),
                       fontWeight: FontWeight.w400,
                       height: 1.43,
@@ -686,11 +682,10 @@ class ProductAndCustomerCard extends StatelessWidget {
                   value: double.parse(syncData) / 100,
                   minHeight: 8,
                   borderRadius: BorderRadius.circular(9999),
-                  backgroundColor:
-                      Get.find<ThemeController>().isDarkMode.value
-                          ? const Color(0x26F7F7F7)
-                          : const Color(0x268B8B8B),
-                  color:AppColor.appColor,
+                  backgroundColor: Get.find<ThemeController>().isDarkMode.value
+                      ? const Color(0x26F7F7F7)
+                      : const Color(0x268B8B8B),
+                  color: AppColor.appColor,
                 ),
               ),
               SizedBox(height: context.setHeight(24)),
@@ -700,12 +695,14 @@ class ProductAndCustomerCard extends StatelessWidget {
                   SyncButton(
                     isHaveBackColor: true,
                     title: "Update_All".tr,
-                    titleColor:  Get.find<ThemeController>().isDarkMode.value
-                                  ? const Color(0xFF042B2F)
-                                  : Colors.white,
+                    titleColor: Get.find<ThemeController>().isDarkMode.value
+                        ? const Color(0xFF042B2F)
+                        : Colors.white,
                     onTap: () async {
                       var result = await loadingDataController.updateAll(
-                        name: title=="products" ?Loaddata.products.toString() :Loaddata.customers.toString(),
+                        name: title == "products"
+                            ? Loaddata.products.toString()
+                            : Loaddata.customers.toString(),
                       );
                       if (result == true) {
                         appSnackBar(
@@ -734,11 +731,14 @@ class ProductAndCustomerCard extends StatelessWidget {
                       isHaveBackColor: false,
                       title: '',
                       titleColor: Get.find<ThemeController>().isDarkMode.value
-                                  ? const Color(0xFF042B2F)
-                                  : Colors.white,
+                          ? const Color(0xFF042B2F)
+                          : Colors.white,
                       onTap: () async {
                         loadingDataController.isUpdate.value = true;
-                        var result = await synchronizeBasedOnModelType(type: title=="products" ?Loaddata.products.toString() :Loaddata.customers.toString() );
+                        var result = await synchronizeBasedOnModelType(
+                            type: title == "products"
+                                ? Loaddata.products.toString()
+                                : Loaddata.customers.toString());
                         if (result == true) {
                           appSnackBar(
                             message: 'synchronized'.tr,
@@ -796,59 +796,53 @@ class SyncButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
-      child: Container(
-            height: context.setHeight(38.91),
-            width:
-                isHaveBackColor ? context.setWidth(139) : context.setWidth(56.20),
-            decoration: ShapeDecoration(
-              color: isHaveBackColor ? AppColor.appColor : null,
-              shape: RoundedRectangleBorder(
-                side:
-                    isHaveBackColor
-                        ? BorderSide.none
-                        : BorderSide(width: 1.01, color: const Color(0xFF898383)),
-                borderRadius: BorderRadius.circular(context.setMinSize(30.54)),
-              ),
-              shadows:
-                  isHaveBackColor
-                      ? [
-                        BoxShadow(
-                          color: Color(0x3316A6B7),
-                          blurRadius: 30,
-                          offset: Offset(0, 4),
-                          spreadRadius: 0,
-                        ),
-                      ]
-                      : [],
+        onTap: onTap,
+        child: Container(
+          height: context.setHeight(38.91),
+          width:
+              isHaveBackColor ? context.setWidth(139) : context.setWidth(56.20),
+          decoration: ShapeDecoration(
+            color: isHaveBackColor ? AppColor.appColor : null,
+            shape: RoundedRectangleBorder(
+              side: isHaveBackColor
+                  ? BorderSide.none
+                  : BorderSide(width: 1.01, color: const Color(0xFF898383)),
+              borderRadius: BorderRadius.circular(context.setMinSize(30.54)),
             ),
-            child:
-                isHaveBackColor
-                    ? Center(
-                      child: Text(
-                        title,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color:titleColor,
-                              
-                          fontSize: context.setSp(15.13),
-                          fontFamily: 'Tajawal',
-                          fontWeight: FontWeight.w400,
-                          height: 1.43,
-                        ),
-                      ),
-                    )
-                    : Center(
-                      child: SvgPicture.asset(
-                        AppImages.syncImage2,
-                        package: 'shared_widgets',
-                        // width: context.setWidth(16.86),
-                        // height: context.setHeight(17.75),
-                      ),
+            shadows: isHaveBackColor
+                ? [
+                    BoxShadow(
+                      color: Color(0x3316A6B7),
+                      blurRadius: 30,
+                      offset: Offset(0, 4),
+                      spreadRadius: 0,
                     ),
-          )
-       
-    );
+                  ]
+                : [],
+          ),
+          child: isHaveBackColor
+              ? Center(
+                  child: Text(
+                    title,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: titleColor,
+                      fontSize: context.setSp(15.13),
+                      fontFamily: 'Tajawal',
+                      fontWeight: FontWeight.w400,
+                      height: 1.43,
+                    ),
+                  ),
+                )
+              : Center(
+                  child: SvgPicture.asset(
+                    AppImages.syncImage2,
+                    package: 'shared_widgets',
+                    // width: context.setWidth(16.86),
+                    // height: context.setHeight(17.75),
+                  ),
+                ),
+        ));
   }
 }
 
@@ -863,213 +857,203 @@ class PosCard extends StatefulWidget {
 class _PosCardState extends State<PosCard> {
   @override
   Widget build(BuildContext context) {
-    return  Container(
-          height: context.setHeight(215),
-          decoration: ShapeDecoration(
-            color:Theme.of(context).extension<CustomTheme>()!.cardColor,
-            shape: RoundedRectangleBorder(
-              side: BorderSide(
-                width: 1,
-                color:Theme.of(context).extension<CustomTheme>()!.cardBorderColor,
-                //  Colors.white.withValues(alpha: 0.50),
-              ),
-              borderRadius: BorderRadius.circular(context.setMinSize(20)),
-            ),
+    return Container(
+      height: context.setHeight(215),
+      decoration: ShapeDecoration(
+        color: Theme.of(context).extension<CustomTheme>()!.cardColor,
+        shape: RoundedRectangleBorder(
+          side: BorderSide(
+            width: 1,
+            color: Theme.of(context).extension<CustomTheme>()!.cardBorderColor,
+            //  Colors.white.withValues(alpha: 0.50),
           ),
-        
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: context.setHeight(24),
-              horizontal: context.setWidth(24),
-            ),
-            child: Column(
-              spacing: context.setHeight(6),
+          borderRadius: BorderRadius.circular(context.setMinSize(20)),
+        ),
+      ),
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          vertical: context.setHeight(24),
+          horizontal: context.setWidth(24),
+        ),
+        child: Column(
+          spacing: context.setHeight(6),
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  spacing: context.setWidth(8),
                   children: [
-                    Row(
-                      spacing: context.setWidth(8),
-                      children: [
-                        SvgPicture.asset(
-                          AppImages.pos,
-                          package: 'shared_widgets',
-                          width: context.setWidth(24),
-                          height: context.setHeight(24),
-                        ),
-                        SizedBox(
-                          width: context.setWidth(198.75),
-                          child: Text(
-                            SharedPr.currentPosObject!.name.toString(),
-                            style: TextStyle(
-                              fontSize: context.setSp(20),
-                              fontWeight: FontWeight.w600,
-                              overflow: TextOverflow.ellipsis,
-                              height: 1.40,
-                            ),
-                          ),
-                        ),
-                      ],
+                    SvgPicture.asset(
+                      AppImages.pos,
+                      package: 'shared_widgets',
+                      width: context.setWidth(24),
+                      height: context.setHeight(24),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      spacing: context.setWidth(8),
-                      children: [
-                        Text(
-                          widget.sessionController.sessionAmountOprationCard.isEmpty
-                              ? "0.0"
-                              : 
-                              widget.sessionController.formatter.format(
-                                widget
-                                        .sessionController
-                                        .sessionAmountOprationCard["session_amount_opration"]["total_out_invoice"] ??
-                                    0.0,
-                              ),
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: context.setSp(20),
-                            fontWeight: FontWeight.w600,
-                            height: 1.56,
-                          ),
+                    SizedBox(
+                      width: context.setWidth(198.75),
+                      child: Text(
+                        SharedPr.currentPosObject!.name.toString(),
+                        style: TextStyle(
+                          fontSize: context.setSp(20),
+                          fontWeight: FontWeight.w600,
+                          overflow: TextOverflow.ellipsis,
+                          height: 1.40,
                         ),
-                        SvgPicture.asset(
-                          AppImages.riyal,
-                          package: 'shared_widgets',
-                          width: context.setWidth(13),
-                          height: context.setHeight(13),
-                          color:Theme.of(context).colorScheme.onSurface,
-                        ),
-                      ],
+                      ),
                     ),
                   ],
                 ),
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  spacing: context.setWidth(8),
                   children: [
-                    Row(
-                      spacing: context.setWidth(8),
-                      children: [
-                        SvgPicture.asset(
-                          AppImages.data,
-                          package: 'shared_widgets',
-                          width: context.setWidth(18),
-                          height: context.setHeight(18),
-                        ),
-                        Text.rich(
-                          style: TextStyle(
-                            fontSize: context.setSp(context.setSp(14)),
-                            fontWeight: FontWeight.w400,
-                            height: 2.50,
-                          ),
-                          TextSpan(
-                            children: [
-                              // TextSpan(text: "date_time".tr),
-                              // TextSpan(text: '  :   '),
-                              TextSpan(
-                                text:
-                                    widget
-                                                .sessionController
-                                                .posSessionsList
-                                                .isEmpty ||
-                                            widget
-                                                    .sessionController
-                                                    .posSessionsList
-                                                    .last
-                                                    .startTime ==
-                                                ''
-                                        ? formatDateTime(null)
-                                        : formatDateTime(
-                                          widget
-                                              .sessionController
-                                              .posSessionsList
-                                              .last
-                                              .startTime!,
-                                        ),
-                              ),
-                            ],
-                          ),
-                          textAlign: TextAlign.right,
-                        ),
-                      ],
-                    ),
-        
                     Text(
-                      'total_sales'.tr,
+                      widget.sessionController.sessionAmountOprationCard.isEmpty
+                          ? "0.0"
+                          : widget.sessionController.formatter.format(
+                              widget.sessionController
+                                              .sessionAmountOprationCard[
+                                          "session_amount_opration"]
+                                      ["total_out_invoice"] ??
+                                  0.0,
+                            ),
+                      textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: context.setSp(14),
+                        fontSize: context.setSp(20),
+                        fontWeight: FontWeight.w600,
+                        height: 1.56,
+                      ),
+                    ),
+                    SvgPicture.asset(
+                      AppImages.riyal,
+                      package: 'shared_widgets',
+                      width: context.setWidth(13),
+                      height: context.setHeight(13),
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  spacing: context.setWidth(8),
+                  children: [
+                    SvgPicture.asset(
+                      AppImages.data,
+                      package: 'shared_widgets',
+                      width: context.setWidth(18),
+                      height: context.setHeight(18),
+                    ),
+                    Text.rich(
+                      style: TextStyle(
+                        fontSize: context.setSp(context.setSp(14)),
                         fontWeight: FontWeight.w400,
                         height: 2.50,
                       ),
+                      TextSpan(
+                        children: [
+                          // TextSpan(text: "date_time".tr),
+                          // TextSpan(text: '  :   '),
+                          TextSpan(
+                            text: widget.sessionController.posSessionsList
+                                        .isEmpty ||
+                                    widget.sessionController.posSessionsList
+                                            .last.startTime ==
+                                        ''
+                                ? formatDateTime(null)
+                                : formatDateTime(
+                                    widget.sessionController.posSessionsList
+                                        .last.startTime!,
+                                  ),
+                          ),
+                        ],
+                      ),
+                      textAlign: TextAlign.right,
                     ),
                   ],
                 ),
-        
-                Spacer(),
-                if (widget.sessionController.posSessionsList.isEmpty ||
-                    widget.sessionController.posSessionsList.last.state ==
-                        SessionState.closedSession) ...[
-                  ButtonsToContinueOrStop(
-                    onTap: () {
-                      widget.sessionController.sessionStartOrResumOnTap(context: context);
-                    },
-                    image: AppImages.stop,
-                    data: "startNewSession".tr,
-                    addBorderSide: false,
-                    color: const Color(0xFFF2AC57),
+                Text(
+                  'total_sales'.tr,
+                  style: TextStyle(
+                    fontSize: context.setSp(14),
+                    fontWeight: FontWeight.w400,
+                    height: 2.50,
                   ),
-                ],
-                if (widget.sessionController.posSessionsList.isNotEmpty &&
-                    widget.sessionController.posSessionsList.last.state ==
-                        SessionState.openSession) ...[
-                  Row(
-                    spacing: context.setWidth(9.7),
-                    children: [
-                      if (widget.sessionController
-                          .checkStartOrResumeSessionAppearance()) ...[
-                        Expanded(
-                          // flex: 3,
-                          child: ButtonsToContinueOrStop(
-                            onTap: () {
-                              widget.sessionController.sessionStartOrResumOnTap(context: context,);
-                            },
-                            image:AppImages.stop,
-                            data: "ResumeSession".tr,
-                            addBorderSide: false,
-                            color: const Color(0xFFF2AC57),
-                          ),
-                        ),
-                      ],
-                      Expanded(
-                        // flex:
-                        //     !widget.sessionController
-                        //             .checkStartOrResumeSessionAppearance()
-                        //         ? 3
-                        //         : 2,
-                        child: ButtonsToContinueOrStop(
-                          onTap: () async {
-                            widget.sessionController.isLoading.value = true;
-                            await widget.sessionController.uploadData();
-                            widget.sessionController.isLoading.value = false;
-                            Get.to(() => CloseSession());
-                          },
-                          image:AppImages.continueImage,
-                          data: "closeSession".tr,
-                          addBorderSide: true,
-                          color: const Color(0x2BF20C10),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+                ),
               ],
             ),
-          ),
-        );
-      
+            Spacer(),
+            if (widget.sessionController.posSessionsList.isEmpty ||
+                widget.sessionController.posSessionsList.last.state ==
+                    SessionState.closedSession) ...[
+              ButtonsToContinueOrStop(
+                onTap: () {
+                  widget.sessionController
+                      .sessionStartOrResumOnTap(context: context);
+                },
+                image: AppImages.stop,
+                data: "startNewSession".tr,
+                addBorderSide: false,
+                color: const Color(0xFFF2AC57),
+              ),
+            ],
+            if (widget.sessionController.posSessionsList.isNotEmpty &&
+                widget.sessionController.posSessionsList.last.state ==
+                    SessionState.openSession) ...[
+              Row(
+                spacing: context.setWidth(9.7),
+                children: [
+                  if (widget.sessionController
+                      .checkStartOrResumeSessionAppearance()) ...[
+                    Expanded(
+                      // flex: 3,
+                      child: ButtonsToContinueOrStop(
+                        onTap: () {
+                          widget.sessionController.sessionStartOrResumOnTap(
+                            context: context,
+                          );
+                        },
+                        image: AppImages.stop,
+                        data: "ResumeSession".tr,
+                        addBorderSide: false,
+                        color: const Color(0xFFF2AC57),
+                      ),
+                    ),
+                  ],
+                  Expanded(
+                    // flex:
+                    //     !widget.sessionController
+                    //             .checkStartOrResumeSessionAppearance()
+                    //         ? 3
+                    //         : 2,
+                    child: ButtonsToContinueOrStop(
+                      onTap: () async {
+                        widget.sessionController.isLoading.value = true;
+                        await widget.sessionController.uploadData();
+                        widget.sessionController.isLoading.value = false;
+                        Get.to(() => CloseSession());
+                      },
+                      image: AppImages.continueImage,
+                      data: "closeSession".tr,
+                      addBorderSide: true,
+                      color: const Color(0x2BF20C10),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ],
+        ),
+      ),
+    );
   }
 }
 
@@ -1091,76 +1075,69 @@ class ButtonsToContinueOrStop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
-      child: Container(
-            height: context.setHeight(46),
-            decoration: ShapeDecoration(
-              color: color,
-              shape: RoundedRectangleBorder(
-                side:
-                    addBorderSide
-                        ? BorderSide(
-                          width: 1,
-                          color:
-                              Get.find<ThemeController>().isDarkMode.value
-                                  ? Colors.black.withValues(alpha: 0.17)
-                                  : Colors.white.withValues(alpha: 0.50),
-                        )
-                        : BorderSide.none,
-                borderRadius: BorderRadius.circular(context.setMinSize(9)),
-              ),
+        onTap: onTap,
+        child: Container(
+          height: context.setHeight(46),
+          decoration: ShapeDecoration(
+            color: color,
+            shape: RoundedRectangleBorder(
+              side: addBorderSide
+                  ? BorderSide(
+                      width: 1,
+                      color: Get.find<ThemeController>().isDarkMode.value
+                          ? Colors.black.withValues(alpha: 0.17)
+                          : Colors.white.withValues(alpha: 0.50),
+                    )
+                  : BorderSide.none,
+              borderRadius: BorderRadius.circular(context.setMinSize(9)),
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              spacing: context.setWidth(5),
-              children: [
-                SvgPicture.asset(
-                  image,
-                  package: 'shared_widgets',
-                  width: context.setWidth(28.5),
-                  height: context.setHeight(28.5),
-                  color:
-                      addBorderSide
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            spacing: context.setWidth(5),
+            children: [
+              SvgPicture.asset(
+                image,
+                package: 'shared_widgets',
+                width: context.setWidth(28.5),
+                height: context.setHeight(28.5),
+                color: addBorderSide
+                    ? Get.find<ThemeController>().isDarkMode.value
+                        ? const Color(0xFFF68889)
+                        : const Color(0xFFE94043)
+                    : AppColor.black,
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: context.setHeight(4.3)),
+                child: Center(
+                  child: Text(
+                    data,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: addBorderSide
                           ? Get.find<ThemeController>().isDarkMode.value
                               ? const Color(0xFFF68889)
                               : const Color(0xFFE94043)
-                          : AppColor.black,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: context.setHeight(4.3)),
-                  child: Center(
-                    child: Text(
-                      data,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color:
-                            addBorderSide
-                                ? Get.find<ThemeController>().isDarkMode.value
-                                    ? const Color(0xFFF68889)
-                                    : const Color(0xFFE94043)
-                                : const Color(0xFF032A2E),
-                        fontSize: context.setSp(16.10),
-                        fontFamily: 'Tajawal',
-                        fontWeight: FontWeight.w500,
-                        height: 1.43,
-                      ),
+                          : const Color(0xFF032A2E),
+                      fontSize: context.setSp(16.10),
+                      fontFamily: 'Tajawal',
+                      fontWeight: FontWeight.w500,
+                      height: 1.43,
                     ),
                   ),
                 ),
-              ],
-            ),
-          )
-       
-    );
+              ),
+            ],
+          ),
+        ));
   }
 }
 
 String formatDateTime(String? odooDateTime) {
   // 1. نحول النص القادم من Odoo إلى DateTime
-  DateTime date =
-      odooDateTime == null || odooDateTime == ''
-          ? DateTime.now()
-          : DateTime.parse(odooDateTime);
+  DateTime date = odooDateTime == null || odooDateTime == ''
+      ? DateTime.now()
+      : DateTime.parse(odooDateTime);
 
   // 2. ننسق التاريخ حسب اللغة
   String formattedDate = intl.DateFormat(
@@ -1242,104 +1219,103 @@ class _SalesLineChartState extends State<_SalesLineChart> {
 
   @override
   Widget build(BuildContext context) {
-    return  LineChart(
-          LineChartData(
-            gridData: FlGridData(show: true, drawVerticalLine: false),
-            titlesData: FlTitlesData(
-              rightTitles: const AxisTitles(
-                sideTitles: SideTitles(showTitles: false),
-              ),
-              topTitles: const AxisTitles(
-                sideTitles: SideTitles(showTitles: false),
-              ),
-              leftTitles: AxisTitles(
-                sideTitles: SideTitles(
-                  showTitles: true,
-                  reservedSize: context.setWidth(40),
-                  getTitlesWidget: (v, meta) {
-                    // احسب كل قيمة تريدها بناءً على maxY
-                    final interval = calculateYInterval(maxY); // دالة اللي سويناها
-                    if (v % interval != 0) return const SizedBox.shrink();
-                    return Text(
-                      v.toInt().toString(),
-                      style: TextStyle(
-                        // color:
-                            // Get.find<ThemeController>().isDarkMode.value
-                            //     ? Color(0xFFB1B3BC)
-                            //     : const Color(0xFF01343A),
-                        fontSize: context.setSp(12.30),
-                        fontFamily: 'Tajawal',
-                        fontWeight: FontWeight.w400,
-                        height: 1.40,
-                      ),
-                    );
-                  },
-                ),
-              ),
-              bottomTitles: AxisTitles(
-                sideTitles: SideTitles(
-                  showTitles: true,
-                  interval: 1,
-                  getTitlesWidget: (v, meta) {
-                    final index = v.toInt();
-                    if (index >= 0 && index < bottomTitles.length) {
-                      return Text(
-                        bottomTitles[index],
-                        style: TextStyle(
-                          // color:
-                          //     Get.find<ThemeController>().isDarkMode.value
-                          //         ? Color(0xFFB1B3BC)
-                          //         : const Color(0xFF01343A),
-                          fontSize: context.setSp(12.30),
-                          fontFamily: 'Tajawal',
-                          fontWeight: FontWeight.w400,
-                          height: 1.40,
-                        ),
-                      );
-                    } else {
-                      return const SizedBox.shrink(); // ما يعرض شيء
-                    }
-                  },
-                ),
+    return LineChart(
+      LineChartData(
+        gridData: FlGridData(show: true, drawVerticalLine: false),
+        titlesData: FlTitlesData(
+          rightTitles: const AxisTitles(
+            sideTitles: SideTitles(showTitles: false),
+          ),
+          topTitles: const AxisTitles(
+            sideTitles: SideTitles(showTitles: false),
+          ),
+          leftTitles: AxisTitles(
+            sideTitles: SideTitles(
+              showTitles: true,
+              reservedSize: context.setWidth(40),
+              getTitlesWidget: (v, meta) {
+                // احسب كل قيمة تريدها بناءً على maxY
+                final interval = calculateYInterval(maxY); // دالة اللي سويناها
+                if (v % interval != 0) return const SizedBox.shrink();
+                return Text(
+                  v.toInt().toString(),
+                  style: TextStyle(
+                    // color:
+                    // Get.find<ThemeController>().isDarkMode.value
+                    //     ? Color(0xFFB1B3BC)
+                    //     : const Color(0xFF01343A),
+                    fontSize: context.setSp(12.30),
+                    fontFamily: 'Tajawal',
+                    fontWeight: FontWeight.w400,
+                    height: 1.40,
+                  ),
+                );
+              },
+            ),
+          ),
+          bottomTitles: AxisTitles(
+            sideTitles: SideTitles(
+              showTitles: true,
+              interval: 1,
+              getTitlesWidget: (v, meta) {
+                final index = v.toInt();
+                if (index >= 0 && index < bottomTitles.length) {
+                  return Text(
+                    bottomTitles[index],
+                    style: TextStyle(
+                      // color:
+                      //     Get.find<ThemeController>().isDarkMode.value
+                      //         ? Color(0xFFB1B3BC)
+                      //         : const Color(0xFF01343A),
+                      fontSize: context.setSp(12.30),
+                      fontFamily: 'Tajawal',
+                      fontWeight: FontWeight.w400,
+                      height: 1.40,
+                    ),
+                  );
+                } else {
+                  return const SizedBox.shrink(); // ما يعرض شيء
+                }
+              },
+            ),
+          ),
+        ),
+        borderData: FlBorderData(show: false),
+        minX: 0,
+        maxX: bottomTitles.length - 1,
+        minY: minY,
+        maxY: maxY,
+        lineBarsData: [
+          LineChartBarData(
+            spots: _spots,
+            isCurved: false,
+            barWidth: 6,
+            color: AppColor.appColor,
+            dotData: FlDotData(show: true),
+            belowBarData: BarAreaData(
+              show: true,
+              gradient: LinearGradient(
+                colors: [
+                  AppColor.appColor,
+                  Get.find<ThemeController>().isDarkMode.value
+                      ? const Color(0x00241E1E)
+                      : Colors.white.withValues(alpha: 0),
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
               ),
             ),
-            borderData: FlBorderData(show: false),
-            minX: 0,
-            maxX: bottomTitles.length - 1,
-            minY: minY,
-            maxY: maxY,
-            lineBarsData: [
-              LineChartBarData(
-                spots: _spots,
-                isCurved: false,
-                barWidth: 6,
-                color: AppColor.appColor,
-                dotData: FlDotData(show: true),
-                belowBarData: BarAreaData(
-                  show: true,
-                  gradient: LinearGradient(
-                    colors: [
-                      AppColor.appColor,
-                      Get.find<ThemeController>().isDarkMode.value
-                          ? const Color(0x00241E1E)
-                          : Colors.white.withValues(alpha: 0),
-                    ],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                  ),
-                ),
-              ),
-            ],
           ),
-        );
-     
+        ],
+      ),
+    );
   }
 }
 
 class BestSellingProducts extends StatelessWidget {
   FinalReportController finalReportController;
   BestSellingProducts({Key? key, required this.finalReportController})
-    : super(key: key);
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -1360,133 +1336,130 @@ class BestSellingProducts extends StatelessWidget {
       );
       total = products.fold<double>(0, (sum, p) => sum + (p.totalPrice!));
     }
-    return  Container(
-          width: context.screenWidth,
-          height: context.setHeight(123.7),
-          padding: const EdgeInsets.all(16),
-          decoration: ShapeDecoration(
-            color:Theme.of(context).extension<CustomTheme>()!.cardColor,
-            shape: RoundedRectangleBorder(
-              side: BorderSide(
-                width: 1,
-                color:Theme.of(context).extension<CustomTheme>()!.cardBorderColor,
-              ),
-              borderRadius: BorderRadius.circular(context.setMinSize(16)),
-            ),
-            shadows: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.05),
-                blurRadius: 8,
-                offset: const Offset(0, 3),
-              ),
-            ],
+    return Container(
+      width: context.screenWidth,
+      height: context.setHeight(123.7),
+      padding: const EdgeInsets.all(16),
+      decoration: ShapeDecoration(
+        color: Theme.of(context).extension<CustomTheme>()!.cardColor,
+        shape: RoundedRectangleBorder(
+          side: BorderSide(
+            width: 1,
+            color: Theme.of(context).extension<CustomTheme>()!.cardBorderColor,
           ),
-          child: LayoutBuilder(
-            builder: (context, boxConstraints) {
-              return SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: SingleChildScrollView(
-                  child: Column(
-                    spacing: context.setHeight(16),
-                    crossAxisAlignment: CrossAxisAlignment.start,
+          borderRadius: BorderRadius.circular(context.setMinSize(16)),
+        ),
+        shadows: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 8,
+            offset: const Offset(0, 3),
+          ),
+        ],
+      ),
+      child: LayoutBuilder(
+        builder: (context, boxConstraints) {
+          return SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: SingleChildScrollView(
+              child: Column(
+                spacing: context.setHeight(16),
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'best_selling_products'.tr,
+                    style: TextStyle(
+                      fontSize: context.setSp(15.36),
+                      fontWeight: FontWeight.w700,
+                      height: 1.23,
+                    ),
+                  ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Row(
+                      spacing: context.setWidth(7.75),
+                      children: products.map((p) {
+                        final value = p.totalPrice!;
+                        final color =
+                            colors[products.indexOf(p) % colors.length];
+                        final flex =
+                            ((value / total) * boxConstraints.maxWidth);
+                        return Container(
+                          width: flex,
+                          height: context.setHeight(11),
+                          decoration: ShapeDecoration(
+                            color: color,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                context.setMinSize(12.72),
+                              ),
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                  Row(
+                    spacing: context.setWidth(23),
                     children: [
-                      Text(
-                        'best_selling_products'.tr,
-                        style: TextStyle(
-                          fontSize: context.setSp(15.36),
-                          fontWeight: FontWeight.w700,
-                          height: 1.23,
-                        ),
-                      ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Row(
-                          spacing: context.setWidth(7.75),
-                          children:
-                              products.map((p) {
-                                final value = p.totalPrice!;
-                                final color =
-                                    colors[products.indexOf(p) % colors.length];
-                                final flex =
-                                    ((value / total) * boxConstraints.maxWidth);
-                                return Container(
-                                  width: flex,
-                                  height: context.setHeight(11),
-                                  decoration: ShapeDecoration(
-                                    color: color,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(
-                                        context.setMinSize(12.72),
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              }).toList(),
-                        ),
-                      ),
-                      Row(
-                        spacing: context.setWidth(23),
-                        children: [
-                          ...products.map(
-                            (p) => Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                      ...products.map(
+                        (p) => Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              p.getProductNameBasedOnLang,
+                              textAlign: TextAlign.right,
+                              style: TextStyle(
+                                fontSize: context.setSp(11.55),
+                                fontWeight: FontWeight.w500,
+                                height: 1.23,
+                              ),
+                            ),
+                            Row(
+                              spacing: context.setWidth(10),
                               children: [
                                 Text(
-                                  p.getProductNameBasedOnLang,
+                                  (p.totalPrice).toString(),
                                   textAlign: TextAlign.right,
                                   style: TextStyle(
-                                    fontSize: context.setSp(11.55),
-                                    fontWeight: FontWeight.w500,
-                                    height: 1.23,
+                                    fontSize: context.setSp(14.85),
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w700,
+                                    height: 1.33,
                                   ),
                                 ),
-                                Row(
-                                  spacing: context.setWidth(10),
-                                  children: [
-                                    Text(
-                                      (p.totalPrice).toString(),
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        fontSize: context.setSp(14.85),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w700,
-                                        height: 1.33,
-                                      ),
+                                Container(
+                                  width: context.setWidth(20),
+                                  height: context.setHeight(6),
+                                  decoration: ShapeDecoration(
+                                    color: colors[
+                                        products.indexOf(p) % colors.length],
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(6.60),
                                     ),
-                                    Container(
-                                      width: context.setWidth(20),
-                                      height: context.setHeight(6),
-                                      decoration: ShapeDecoration(
-                                        color:
-                                            colors[products.indexOf(p) %
-                                                colors.length],
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(6.60),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                                  ),
                                 ),
                               ],
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ],
                   ),
-                ),
-              );
-            },
-          ),
-        );
-     
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
   }
 }
 
 class BestSellingCategoriesChart extends StatefulWidget {
   FinalReportController finalReportController;
   BestSellingCategoriesChart({Key? key, required this.finalReportController})
-    : super(key: key);
+      : super(key: key);
 
   @override
   State<BestSellingCategoriesChart> createState() =>
@@ -1501,21 +1474,13 @@ class _BestSellingCategoriesChartState
     const Color(0xFF8DD3C7),
   ];
   double get totalQtyAll {
-  return widget.finalReportController.finalReportInfo != null &&
-        widget
-            .finalReportController
-            .finalReportInfo!
-            .productBasedCategories!
-            .isNotEmpty
-      ? widget
-          .finalReportController
-          .finalReportInfo!
-          .productBasedCategories!
-          .fold(0.0, (sum, item) => sum + item.totalQty!)
-      : 0.0;
-}
-
-
+    return widget.finalReportController.finalReportInfo != null &&
+            widget.finalReportController.finalReportInfo!
+                .productBasedCategories!.isNotEmpty
+        ? widget.finalReportController.finalReportInfo!.productBasedCategories!
+            .fold(0.0, (sum, item) => sum + item.totalQty!)
+        : 0.0;
+  }
 
   // double totalQtyAll = 0.0;
   @override
@@ -1540,137 +1505,117 @@ class _BestSellingCategoriesChartState
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
-          height:
-            Platform.isWindows ? context.setHeight(257) :  widget.finalReportController.finalReportInfo != null &&
-                      widget
-                          .finalReportController
-                          .finalReportInfo!
-                          .productBasedCategories!
-                          .isNotEmpty
-                  ? null
-                  : 
-                  context.setHeight(257),
-          decoration: ShapeDecoration(
-            color:Theme.of(context).extension<CustomTheme>()!.cardColor,
-            shape: RoundedRectangleBorder(
-              side: BorderSide(
-                width: 1,
-                color:Theme.of(context).extension<CustomTheme>()!.cardBorderColor,
-              ),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            shadows: [
-              BoxShadow(
-                color: Color(0x0C000000),
-                blurRadius: 2,
-                offset: Offset(0, 1),
-                spreadRadius: 0,
-              ),
-            ],
+    return Container(
+      height: Platform.isWindows
+          ? context.setHeight(257)
+          : widget.finalReportController.finalReportInfo != null &&
+                  widget.finalReportController.finalReportInfo!
+                      .productBasedCategories!.isNotEmpty
+              ? null
+              : context.setHeight(257),
+      decoration: ShapeDecoration(
+        color: Theme.of(context).extension<CustomTheme>()!.cardColor,
+        shape: RoundedRectangleBorder(
+          side: BorderSide(
+            width: 1,
+            color: Theme.of(context).extension<CustomTheme>()!.cardBorderColor,
           ),
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: context.setWidth(16),
-              vertical: context.setHeight(16),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Title
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    'best_product_by_cat'.tr,
-                    style: TextStyle(
-                      fontSize: context.setSp(16),
-                      fontWeight: FontWeight.w700,
-                      height: 1.50,
-                    ),
-                  ),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        shadows: [
+          BoxShadow(
+            color: Color(0x0C000000),
+            blurRadius: 2,
+            offset: Offset(0, 1),
+            spreadRadius: 0,
+          ),
+        ],
+      ),
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: context.setWidth(16),
+          vertical: context.setHeight(16),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Title
+            Align(
+              alignment: Alignment.centerRight,
+              child: Text(
+                'best_product_by_cat'.tr,
+                style: TextStyle(
+                  fontSize: context.setSp(16),
+                  fontWeight: FontWeight.w700,
+                  height: 1.50,
                 ),
-                if (widget.finalReportController.finalReportInfo != null &&
-                    widget
-                        .finalReportController
-                        .finalReportInfo!
-                        .productBasedCategories!
-                        .isNotEmpty) ...[
-                  // Chart + Legend
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              ),
+            ),
+            if (widget.finalReportController.finalReportInfo != null &&
+                widget.finalReportController.finalReportInfo!
+                    .productBasedCategories!.isNotEmpty) ...[
+              // Chart + Legend
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // Legend
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Legend
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ...widget
-                              .finalReportController
-                              .finalReportInfo!
-                              .productBasedCategories!
-                              .map(
-                                (item) => _legendItem(
-                                  text: item.getProductNameBasedOnLang,
-                                  color:
-                                      colorList[widget
-                                              .finalReportController
-                                              .finalReportInfo!
-                                              .productBasedCategories!
-                                              .indexOf(item) %
-                                          colorList.length],
-                                  context: context,
-                                  percentage:
-                                      totalQtyAll == 0
-                                          ? 0
-                                          : ((item.totalQty! / totalQtyAll) * 100)
-                                              .roundToDouble(),
-                                ),
-                              ),
-                        ],
-                      ),
-                      // Pie Chart (Donut)
-                      SizedBox(
-                        width: context.setWidth(300),
-                        height: context.setHeight(150),
-                        child: PieChart(
-                          PieChartData(
-                            sectionsSpace: context.setWidth(3.9),
-                            // centerSpaceRadius:context.setWidth(40),
-                            sections: [
-                              ...widget
-                                  .finalReportController
-                                  .finalReportInfo!
-                                  .productBasedCategories!
-                                  .map(
-                                    (item) => PieChartSectionData(
-                                      value:
-                                          totalQtyAll == 0
-                                              ? 0
-                                              : ((item.totalQty! / totalQtyAll) *
-                                                      100)
-                                                  .roundToDouble(),
-                                      color:
-                                          colorList[widget
-                                                  .finalReportController
-                                                  .finalReportInfo!
-                                                  .productBasedCategories!
-                                                  .indexOf(item) %
-                                              colorList.length],
-                                      radius: context.setMinSize(33.5),
-                                      showTitle: false,
-                                    ),
-                                  ),
-                            ],
-                          ),
+                      ...widget.finalReportController.finalReportInfo!
+                          .productBasedCategories!
+                          .map(
+                        (item) => _legendItem(
+                          text: item.getProductNameBasedOnLang,
+                          color: colorList[widget.finalReportController
+                                  .finalReportInfo!.productBasedCategories!
+                                  .indexOf(item) %
+                              colorList.length],
+                          context: context,
+                          percentage: totalQtyAll == 0
+                              ? 0
+                              : ((item.totalQty! / totalQtyAll) * 100)
+                                  .roundToDouble(),
                         ),
                       ),
                     ],
                   ),
+                  // Pie Chart (Donut)
+                  SizedBox(
+                    width: context.setWidth(300),
+                    height: context.setHeight(150),
+                    child: PieChart(
+                      PieChartData(
+                        sectionsSpace: context.setWidth(3.9),
+                        // centerSpaceRadius:context.setWidth(40),
+                        sections: [
+                          ...widget.finalReportController.finalReportInfo!
+                              .productBasedCategories!
+                              .map(
+                            (item) => PieChartSectionData(
+                              value: totalQtyAll == 0
+                                  ? 0
+                                  : ((item.totalQty! / totalQtyAll) * 100)
+                                      .roundToDouble(),
+                              color: colorList[widget.finalReportController
+                                      .finalReportInfo!.productBasedCategories!
+                                      .indexOf(item) %
+                                  colorList.length],
+                              radius: context.setMinSize(33.5),
+                              showTitle: false,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
-              ],
-            ),
-          ),
-        );
-      
+              ),
+            ],
+          ],
+        ),
+      ),
+    );
   }
 }
 
