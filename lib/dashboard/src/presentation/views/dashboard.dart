@@ -1643,7 +1643,7 @@ Widget _legendItem({
         Text(
           text,
           style: TextStyle(
-            color: const Color(0xFF6E6E6E),
+            color: Theme.of(context).textTheme.labelSmall!.color,
             fontSize: context.setSp(14),
             fontFamily: 'Tajawal',
             fontWeight: FontWeight.w400,
@@ -1653,7 +1653,7 @@ Widget _legendItem({
         Text(
           "$percentage %",
           style: TextStyle(
-            color: const Color(0xFF6E6E6E),
+            color: Theme.of(context).textTheme.labelSmall!.color,
             fontSize: context.setSp(14),
             fontFamily: 'Tajawal',
             fontWeight: FontWeight.w400,

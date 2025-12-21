@@ -37,7 +37,7 @@ class _HomeState extends State<Home> {
         appBar: customAppBar(
           context: context,
           onDarkModeChanged: () {
-            setState(() {});
+            // setState(() {});
           },
         ),
         body: Obx(() {
