@@ -289,7 +289,7 @@ class BottomNavigationBar extends StatelessWidget {
             style: TextStyle(
               color: isSelect
                   ? AppColor.appColor
-                  : Theme.of(context).colorScheme.onPrimary,
+                  : Theme.of(context).colorScheme.onSurface,
               fontSize: context.setSp(12),
               fontFamily: 'Tajawal',
               fontWeight: FontWeight.w800,

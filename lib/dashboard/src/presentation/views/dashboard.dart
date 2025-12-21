@@ -481,21 +481,17 @@ class AmountTotalCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      return Container(
+    return  Container(
           height: context.setHeight(97),
           decoration: ShapeDecoration(
-            color:
-                Get.find<ThemeController>().isDarkMode.value
-                    ? Colors.black.withValues(alpha: 0.17)
-                    : Colors.white,
+            color:  Theme.of(context).extension<CustomTheme>()!.cardEmplBackgroundColor,
             shape: RoundedRectangleBorder(
               side: BorderSide(
                 width: 1,
-                color:
-                    Get.find<ThemeController>().isDarkMode.value
-                        ? Colors.white.withValues(alpha: 0.50)
-                        : const Color(0xFFE7E7E8),
+                // color:
+                //     Get.find<ThemeController>().isDarkMode.value
+                //         ? Colors.white.withValues(alpha: 0.50)
+                //         : const Color(0xFFE7E7E8),
               ),
               borderRadius: BorderRadius.circular(context.setMinSize(16)),
             ),
@@ -523,13 +519,7 @@ class AmountTotalCard extends StatelessWidget {
                     Text(
                       title,
                       style: TextStyle(
-                        color:
-                            Get.find<ThemeController>().isDarkMode.value
-                                // ? const Color(0xFF9C9C9C)
-                                ? Color(0xFFB1B3BC)
-                                : const Color(0xFF463F3F),
                         fontSize: context.setSp(16),
-                        fontFamily: 'Tajawal',
                         fontWeight: FontWeight.w500,
                         height: 1.67,
                       ),
@@ -562,8 +552,7 @@ class AmountTotalCard extends StatelessWidget {
             ),
           ),
         );
-      }
-    );
+     
   }
 }
 
@@ -589,17 +578,11 @@ class ProductAndCustomerCard extends StatelessWidget {
           height: context.setHeight(215),
           padding: const EdgeInsets.all(16),
           decoration: ShapeDecoration(
-            color:
-                Get.find<ThemeController>().isDarkMode.value
-                    ? Colors.black.withValues(alpha: 0.17)
-                    : Colors.white.withValues(alpha: 0.50),
+            color:Theme.of(context).extension<CustomTheme>()!.cardEmplBackgroundColor,
             shape: RoundedRectangleBorder(
               side: BorderSide(
                 width: 1,
-                color:
-                    Get.find<ThemeController>().isDarkMode.value
-                        ? Colors.white.withValues(alpha: 0.50)
-                        : const Color(0xFFE7E7E8),
+                color:Theme.of(context).colorScheme.onBackground,
                 // Colors.white.withValues(alpha: 0.50),
               ),
               borderRadius: BorderRadius.circular(context.setMinSize(20)),
@@ -875,21 +858,14 @@ class PosCard extends StatefulWidget {
 class _PosCardState extends State<PosCard> {
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      return Container(
+    return  Container(
           height: context.setHeight(215),
           decoration: ShapeDecoration(
-            color:
-                Get.find<ThemeController>().isDarkMode.value
-                    ? Colors.black.withValues(alpha: 0.17)
-                    : Colors.white.withValues(alpha: 0.47),
+            color:Theme.of(context).extension<CustomTheme>()!.cardEmplBackgroundColor,
             shape: RoundedRectangleBorder(
               side: BorderSide(
                 width: 1,
-                color:
-                    Get.find<ThemeController>().isDarkMode.value
-                        ? Colors.white.withValues(alpha: 0.50)
-                        : const Color(0xFFE7E7E8),
+                color:Theme.of(context).colorScheme.onBackground,
                 //  Colors.white.withValues(alpha: 0.50),
               ),
               borderRadius: BorderRadius.circular(context.setMinSize(20)),
@@ -1088,8 +1064,7 @@ class _PosCardState extends State<PosCard> {
             ),
           ),
         );
-      }
-    );
+      
   }
 }
 
@@ -1397,10 +1372,7 @@ class BestSellingProducts extends StatelessWidget {
             shape: RoundedRectangleBorder(
               side: BorderSide(
                 width: 1,
-                color:
-                    Get.find<ThemeController>().isDarkMode.value
-                        ? Colors.white.withValues(alpha: 0.50)
-                        : const Color(0xFFE7E7E8),
+                color:Theme.of(context).colorScheme.onBackground,
               ),
               borderRadius: BorderRadius.circular(context.setMinSize(16)),
             ),
