@@ -133,12 +133,12 @@ class _DashboardState extends State<Dashboard> {
                                 child: GetBuilder<LoadingDataController>(
                                   id: 'card_loading_data',
                                   builder: (controller) {
-                                    int remote =
-                                        loadingDataController.itemdata[Loaddata
+                                    int remote = loadingDataController.itemdata.isEmpty ? 0:
+                                    loadingDataController.itemdata[Loaddata
                                             .customers
                                             .name
                                             .toString()]["remote"];
-                                    int local =
+                                    int local = loadingDataController.itemdata.isEmpty ? 0 :
                                         loadingDataController.itemdata[Loaddata
                                             .customers
                                             .name
@@ -167,12 +167,12 @@ class _DashboardState extends State<Dashboard> {
                                 child: GetBuilder<LoadingDataController>(
                                   id: 'card_loading_data',
                                   builder: (controller) {
-                                    int remote =
+                                    int remote = loadingDataController.itemdata.isEmpty ? 0 :
                                         loadingDataController.itemdata[Loaddata
                                             .products
                                             .name
                                             .toString()]["remote"];
-                                    int local =
+                                    int local = loadingDataController.itemdata.isEmpty ? 0 :
                                         loadingDataController.itemdata[Loaddata
                                             .products
                                             .name
