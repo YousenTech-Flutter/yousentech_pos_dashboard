@@ -488,6 +488,7 @@ class AmountTotalCard extends StatelessWidget {
             shape: RoundedRectangleBorder(
               side: BorderSide(
                 width: 1,
+                color: Theme.of(context).extension<CustomTheme>()!.cardBorderColor,
                 // color:
                 //     Get.find<ThemeController>().isDarkMode.value
                 //         ? Colors.white.withValues(alpha: 0.50)
@@ -582,7 +583,7 @@ class ProductAndCustomerCard extends StatelessWidget {
             shape: RoundedRectangleBorder(
               side: BorderSide(
                 width: 1,
-                color:Theme.of(context).colorScheme.onBackground,
+                color:Theme.of(context).extension<CustomTheme>()!.cardBorderColor,
                 // Colors.white.withValues(alpha: 0.50),
               ),
               borderRadius: BorderRadius.circular(context.setMinSize(20)),
@@ -699,6 +700,9 @@ class ProductAndCustomerCard extends StatelessWidget {
                   SyncButton(
                     isHaveBackColor: true,
                     title: "Update_All".tr,
+                    titleColor:  Get.find<ThemeController>().isDarkMode.value
+                                  ? const Color(0xFF042B2F)
+                                  : Colors.white,
                     onTap: () async {
                       var result = await loadingDataController.updateAll(
                         name: title=="products" ?Loaddata.products.toString() :Loaddata.customers.toString(),
@@ -729,6 +733,9 @@ class ProductAndCustomerCard extends StatelessWidget {
                     child: SyncButton(
                       isHaveBackColor: false,
                       title: '',
+                      titleColor: Get.find<ThemeController>().isDarkMode.value
+                                  ? const Color(0xFF042B2F)
+                                  : Colors.white,
                       onTap: () async {
                         loadingDataController.isUpdate.value = true;
                         var result = await synchronizeBasedOnModelType(type: title=="products" ?Loaddata.products.toString() :Loaddata.customers.toString() );
@@ -776,11 +783,13 @@ class ProductAndCustomerCard extends StatelessWidget {
 class SyncButton extends StatelessWidget {
   bool isHaveBackColor;
   String title;
+  Color titleColor;
   void Function()? onTap;
   SyncButton({
     required this.isHaveBackColor,
     required this.title,
     required this.onTap,
+    required this.titleColor,
     super.key,
   });
 
@@ -788,8 +797,7 @@ class SyncButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: Obx(() {
-      return Container(
+      child: Container(
             height: context.setHeight(38.91),
             width:
                 isHaveBackColor ? context.setWidth(139) : context.setWidth(56.20),
@@ -821,10 +829,8 @@ class SyncButton extends StatelessWidget {
                         title,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          color:
-                              Get.find<ThemeController>().isDarkMode.value
-                                  ? const Color(0xFF042B2F)
-                                  : Colors.white,
+                          color:titleColor,
+                              
                           fontSize: context.setSp(15.13),
                           fontFamily: 'Tajawal',
                           fontWeight: FontWeight.w400,
@@ -840,9 +846,8 @@ class SyncButton extends StatelessWidget {
                         // height: context.setHeight(17.75),
                       ),
                     ),
-          );
-        }
-      ),
+          )
+       
     );
   }
 }
@@ -865,7 +870,7 @@ class _PosCardState extends State<PosCard> {
             shape: RoundedRectangleBorder(
               side: BorderSide(
                 width: 1,
-                color:Theme.of(context).colorScheme.onBackground,
+                color:Theme.of(context).extension<CustomTheme>()!.cardBorderColor,
                 //  Colors.white.withValues(alpha: 0.50),
               ),
               borderRadius: BorderRadius.circular(context.setMinSize(20)),
