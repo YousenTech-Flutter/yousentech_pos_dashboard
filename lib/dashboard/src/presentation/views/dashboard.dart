@@ -484,7 +484,7 @@ class AmountTotalCard extends StatelessWidget {
     return  Container(
           height: context.setHeight(97),
           decoration: ShapeDecoration(
-            color:  Theme.of(context).extension<CustomTheme>()!.cardEmplBackgroundColor,
+            color:  Theme.of(context).extension<CustomTheme>()!.cardColor,
             shape: RoundedRectangleBorder(
               side: BorderSide(
                 width: 1,
@@ -579,7 +579,7 @@ class ProductAndCustomerCard extends StatelessWidget {
           height: context.setHeight(215),
           padding: const EdgeInsets.all(16),
           decoration: ShapeDecoration(
-            color:Theme.of(context).extension<CustomTheme>()!.cardEmplBackgroundColor,
+            color:Theme.of(context).extension<CustomTheme>()!.cardColor,
             shape: RoundedRectangleBorder(
               side: BorderSide(
                 width: 1,
@@ -866,7 +866,7 @@ class _PosCardState extends State<PosCard> {
     return  Container(
           height: context.setHeight(215),
           decoration: ShapeDecoration(
-            color:Theme.of(context).extension<CustomTheme>()!.cardEmplBackgroundColor,
+            color:Theme.of(context).extension<CustomTheme>()!.cardColor,
             shape: RoundedRectangleBorder(
               side: BorderSide(
                 width: 1,
@@ -1092,8 +1092,7 @@ class ButtonsToContinueOrStop extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child:Obx(() {
-      return Container(
+      child: Container(
             height: context.setHeight(46),
             decoration: ShapeDecoration(
               color: color,
@@ -1150,9 +1149,8 @@ class ButtonsToContinueOrStop extends StatelessWidget {
                 ),
               ],
             ),
-          );
-        }
-      ),
+          )
+       
     );
   }
 }
