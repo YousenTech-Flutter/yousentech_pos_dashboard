@@ -63,7 +63,7 @@ class _ProgressWidgetState extends State<ProgressWidget> {
                               Text(
                                 "${loadingDataController.loadTital.value} ",
                                 style: TextStyle(
-                                  color:Theme.of(context).colorScheme.onPrimary,
+                                  color:Theme.of(context).colorScheme.onSurface,
                                   fontSize: context.setSp(16),
                                   fontWeight: FontWeight.w500,
                                   height: 1.43,
@@ -73,7 +73,7 @@ class _ProgressWidgetState extends State<ProgressWidget> {
                                   ? Text(
                                     "...",
                                     style: TextStyle(
-                                      color:Theme.of(context).colorScheme.onPrimary,
+                                      color:Theme.of(context).colorScheme.onSurface,
                                       fontSize: context.setSp(16),
                                       fontWeight: FontWeight.w500,
                                       height: 1.43,
@@ -82,7 +82,7 @@ class _ProgressWidgetState extends State<ProgressWidget> {
                                   : Text(
                                     "( ${_loadingItemsCountController.loadingItemCount.value.toString()} ",
                                     style: TextStyle(
-                                      color:Theme.of(context).colorScheme.onPrimary,
+                                      color:Theme.of(context).colorScheme.onSurface,
                                       fontSize: context.setSp(16),
                                       fontWeight: FontWeight.w500,
                                       height: 1.43,
