@@ -860,7 +860,8 @@ class _PosCardState extends State<PosCard> {
     return Container(
       height: context.setHeight(215),
       decoration: ShapeDecoration(
-        color: Theme.of(context).extension<CustomTheme>()!.cardColor,
+        color:Get.find<ThemeController>().isDarkMode.value ? Colors.white : Colors.black  ,
+        // Theme.of(context).extension<CustomTheme>()!.cardColor,
         shape: RoundedRectangleBorder(
           side: BorderSide(
             width: 1,
