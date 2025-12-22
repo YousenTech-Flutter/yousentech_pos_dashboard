@@ -35,94 +35,94 @@ class _ProgressWidgetState extends State<ProgressWidget> {
     return OverlayPortal(
       controller: _overlayPortalController,
       overlayChildBuilder: (context) {
-        print("============ProgressWidget");
-        return Obx(() {
-          print("============ProgressWidget Obx");
-            return Positioned(
-              child: Material(
-                    color:  Color(0xFFDDDDDD),
-                    child: Center(
-                      child: SizedBox(
-                        width: context.setWidth(454.48),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              AppImages.logoGif,
-                              package: 'shared_widgets',
-                              fit: BoxFit.contain,
-                              width: context.setMinSize(50),
-                              height: context.setMinSize(50),
-                              filterQuality: FilterQuality.high,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.all(context.setMinSize(8)),
-                              child: Directionality(
-                                textDirection: TextDirection.ltr,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      "${loadingDataController.loadTital.value} ",
-                                      style: TextStyle(
-                                        color: AppColor.black,
-                                        fontSize: context.setSp(16),
-                                        fontWeight: FontWeight.w500,
-                                        height: 1.43,
-                                      ),
-                                    ),
-                                    loadingDataController.isLoadData.value
-                                        ? Text(
-                                            "...",
-                                            style: TextStyle(
-                                              color: AppColor.black,
-                                              fontSize: context.setSp(16),
-                                              fontWeight: FontWeight.w500,
-                                              height: 1.43,
-                                            ),
-                                          )
-                                        : Text(
-                                            "( ${_loadingItemsCountController.loadingItemCount.value.toString()} ",
-                                            style: TextStyle(
-                                              color: AppColor.black,
-                                              fontSize: context.setSp(16),
-                                              fontWeight: FontWeight.w500,
-                                              height: 1.43,
-                                            ),
-                                          ),
-                                    loadingDataController.isLoadData.value
-                                        ? Container()
-                                        : Text(
-                                            "/ ${loadingDataController.lengthRemote.value} )",
-                                            style: TextStyle(
-                                              color: AppColor.black,
-                                              fontSize: context.setSp(16),
-                                              fontWeight: FontWeight.w500,
-                                              height: 1.43,
-                                            ),
-                                          ),
-                                  ],
+        return Positioned(
+          child: Material(
+            color:Get.find<ThemeController>().isDarkMode.value  ? AppColor. darkModeBackgroundColor : Color(0xFFDDDDDD),
+            child:  Center(
+                child: SizedBox(
+                  width: context.setWidth(454.48),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        AppImages.logoGif,
+                        package: 'shared_widgets',
+                        fit: BoxFit.contain,
+                        width: context.setMinSize(50),
+                        height: context.setMinSize(50),
+                        filterQuality: FilterQuality.high,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(context.setMinSize(8)),
+                        child: Directionality(
+                          textDirection: TextDirection.ltr,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "${loadingDataController.loadTital.value} ",
+                                style: TextStyle(
+                                  color:Get.find<ThemeController>().isDarkMode.value 
+                                          ? AppColor.white : AppColor.black,
+                                  fontSize: context.setSp(16),
+                                  fontWeight: FontWeight.w500,
+                                  height: 1.43,
                                 ),
                               ),
-                            ),
-                            (loadingDataController.isLoad.value)
-                                ? SizedBox(
-                                    width: context.setWidth(454.48),
-                                    child: LinearProgressIndicator(
-                                      color: AppColor.cyanTeal,
-                                      borderRadius: BorderRadius.circular(
-                                        context.setMinSize(10),
-                                      ),
+                              loadingDataController.isLoadData.value
+                                  ? Text(
+                                    "...",
+                                    style: TextStyle(
+                                      color:Get.find<ThemeController>().isDarkMode.value 
+                                          ? AppColor.white : AppColor.black,
+                                      fontSize: context.setSp(16),
+                                      fontWeight: FontWeight.w500,
+                                      height: 1.43,
                                     ),
                                   )
-                                : Container(),
-                          ],
+                                  : Text(
+                                    "( ${_loadingItemsCountController.loadingItemCount.value.toString()} ",
+                                    style: TextStyle(
+                                      color:Get.find<ThemeController>().isDarkMode.value 
+                                          ? AppColor.white : AppColor.black,
+                                      fontSize: context.setSp(16),
+                                      fontWeight: FontWeight.w500,
+                                      height: 1.43,
+                                    ),
+                                  ),
+                              loadingDataController.isLoadData.value
+                                  ? Container()
+                                  : Text(
+                                    "/ ${loadingDataController.lengthRemote.value} )",
+                                    style: TextStyle(
+                                      color:Get.find<ThemeController>().isDarkMode.value 
+                                          ? AppColor.white : AppColor.black,
+                                      fontSize: context.setSp(16),
+                                      fontWeight: FontWeight.w500,
+                                      height: 1.43,
+                                    ),
+                                  ),
+                            ],
+                          ),
                         ),
                       ),
-                    ))
-              
-            );
-          }
+                      (loadingDataController.isLoad.value)
+                          ? SizedBox(
+                            width: context.setWidth(454.48),
+                            child: LinearProgressIndicator(
+                              color: AppColor.cyanTeal,
+                              borderRadius: BorderRadius.circular(
+                                context.setMinSize(10),
+                              ),
+                            ),
+                          )
+                          : Container(),
+                    ],
+                  ),
+                ),
+              )
+            
+          ),
         );
       },
     );
