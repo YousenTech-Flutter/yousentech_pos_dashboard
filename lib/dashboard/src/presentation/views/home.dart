@@ -35,6 +35,7 @@ class _HomeState extends State<Home> {
         return 
         SafeArea(
           child: Scaffold(
+            backgroundColor:Get.find<ThemeController>().isDarkMode.value  ? AppColor. darkModeBackgroundColor : Color(0xFFDDDDDD),
             // resizeToAvoidBottomInset: _navIndex == 4  ? false : null,
             resizeToAvoidBottomInset:false,
             appBar: customAppBar(
@@ -43,8 +44,7 @@ class _HomeState extends State<Home> {
                 // setState(() {});
               },
             ),
-            backgroundColor:
-                Get.find<ThemeController>().isDarkMode.value  ? AppColor. darkModeBackgroundColor : Color(0xFFDDDDDD),
+            
             body: Container(
               width: Get.width,
               decoration: BoxDecoration(
