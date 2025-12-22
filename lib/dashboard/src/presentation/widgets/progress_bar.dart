@@ -35,6 +35,7 @@ class _ProgressWidgetState extends State<ProgressWidget> {
     return OverlayPortal(
       controller: _overlayPortalController,
       overlayChildBuilder: (context) {
+        print("============ProgressWidget");
         return Positioned(
           child: Material(
                 color: Get.find<ThemeController>().isDarkMode.value
