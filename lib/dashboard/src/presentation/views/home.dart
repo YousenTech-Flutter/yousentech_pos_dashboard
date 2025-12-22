@@ -30,6 +30,7 @@ class _HomeState extends State<Home> {
   int _navIndex = 0;
   @override
   Widget build(BuildContext context) {
+    print("Home=============");
     return 
         SafeArea(
           child: Scaffold(
