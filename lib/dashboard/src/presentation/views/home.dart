@@ -30,8 +30,10 @@ class _HomeState extends State<Home> {
   int _navIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-        return SafeArea(
+    return 
+    // Obx(() {
+    //     return 
+        SafeArea(
           child: Scaffold(
             // resizeToAvoidBottomInset: _navIndex == 4  ? false : null,
             resizeToAvoidBottomInset:false,
@@ -207,8 +209,8 @@ class _HomeState extends State<Home> {
             ),
           ),
         );
-      }
-    );
+    //   }
+    // );
   }
 }
 
