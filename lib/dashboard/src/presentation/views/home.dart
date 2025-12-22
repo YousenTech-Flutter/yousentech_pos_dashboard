@@ -196,6 +196,7 @@ class _HomeState extends State<Home> {
                     child: GetBuilder<LoadingDataController>(
                       id: "loading",
                       builder: (loadingcontext) {
+                        print("loading=========${loadingDataController.isLoad.value}");
                         return loadingDataController.isLoad.value
                             ? const ProgressWidget()
                             : getHomeMenu(_navIndex);
