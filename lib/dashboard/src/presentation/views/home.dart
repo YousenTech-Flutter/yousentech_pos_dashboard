@@ -30,8 +30,7 @@ class _HomeState extends State<Home> {
   int _navIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      return SafeArea(
+    return  SafeArea(
         child: Scaffold(
           backgroundColor: Get.find<ThemeController>().isDarkMode.value
               ? AppColor.darkModeBackgroundColor
@@ -226,7 +225,7 @@ class _HomeState extends State<Home> {
           ),
         ),
       );
-    });
+   
   }
 }
 
