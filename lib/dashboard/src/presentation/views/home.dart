@@ -32,6 +32,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     print("Home=============");
     return Obx(() {
+      print("Home Obx=============");
         return SafeArea(
               child: Scaffold(
                 backgroundColor:Get.find<ThemeController>().isDarkMode.value  ? AppColor. darkModeBackgroundColor : Color(0xFFDDDDDD),
