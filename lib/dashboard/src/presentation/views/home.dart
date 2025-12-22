@@ -199,7 +199,7 @@ class _HomeState extends State<Home> {
                       id: "loading",
                       builder: (loadingcontext) {
                         print("============loading2222");
-                        return loadingDataController.isLoad.value
+                        return loadingcontext.isLoad.value
                             ? Container():Container();
                             // const ProgressWidget()
                             // :  getHomeMenu(_navIndex);
