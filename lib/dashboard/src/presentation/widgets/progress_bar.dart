@@ -38,7 +38,7 @@ class _ProgressWidgetState extends State<ProgressWidget> {
         return Positioned(
           child: Obx(() {
               return Material(
-                color: Get.find<ThemeController>().isDarkMode.value  ? AppColor. darkModeBackgroundColor : Color(0xFFDDDDDD),
+                // color: Get.find<ThemeController>().isDarkMode.value  ? AppColor. darkModeBackgroundColor : Color(0xFFDDDDDD),
                 child:  Center(
                     child: SizedBox(
                       width: context.setWidth(454.48),
@@ -63,8 +63,8 @@ class _ProgressWidgetState extends State<ProgressWidget> {
                                   Text(
                                     "${loadingDataController.loadTital.value} ",
                                     style: TextStyle(
-                                      color:Get.find<ThemeController>().isDarkMode.value 
-                                              ? AppColor.white : AppColor.black,
+                                      // color:Get.find<ThemeController>().isDarkMode.value 
+                                      //         ? AppColor.white : AppColor.black,
                                       fontSize: context.setSp(16),
                                       fontWeight: FontWeight.w500,
                                       height: 1.43,
@@ -74,8 +74,8 @@ class _ProgressWidgetState extends State<ProgressWidget> {
                                       ? Text(
                                         "...",
                                         style: TextStyle(
-                                          color:Get.find<ThemeController>().isDarkMode.value 
-                                              ? AppColor.white : AppColor.black,
+                                          // color:Get.find<ThemeController>().isDarkMode.value 
+                                          //     ? AppColor.white : AppColor.black,
                                           fontSize: context.setSp(16),
                                           fontWeight: FontWeight.w500,
                                           height: 1.43,
@@ -84,8 +84,8 @@ class _ProgressWidgetState extends State<ProgressWidget> {
                                       : Text(
                                         "( ${_loadingItemsCountController.loadingItemCount.value.toString()} ",
                                         style: TextStyle(
-                                          color:Get.find<ThemeController>().isDarkMode.value 
-                                              ? AppColor.white : AppColor.black,
+                                          // color:Get.find<ThemeController>().isDarkMode.value 
+                                          //     ? AppColor.white : AppColor.black,
                                           fontSize: context.setSp(16),
                                           fontWeight: FontWeight.w500,
                                           height: 1.43,
@@ -96,8 +96,8 @@ class _ProgressWidgetState extends State<ProgressWidget> {
                                       : Text(
                                         "/ ${loadingDataController.lengthRemote.value} )",
                                         style: TextStyle(
-                                          color:Get.find<ThemeController>().isDarkMode.value 
-                                              ? AppColor.white : AppColor.black,
+                                          // color:Get.find<ThemeController>().isDarkMode.value 
+                                          //     ? AppColor.white : AppColor.black,
                                           fontSize: context.setSp(16),
                                           fontWeight: FontWeight.w500,
                                           height: 1.43,
