@@ -36,8 +36,7 @@ class _ProgressWidgetState extends State<ProgressWidget> {
       controller: _overlayPortalController,
       overlayChildBuilder: (context) {
         return Positioned(
-          child: Obx(() {
-            return Material(
+          child: Material(
                 color: Get.find<ThemeController>().isDarkMode.value
                     ? AppColor.darkModeBackgroundColor
                     : Color(0xFFDDDDDD),
@@ -135,8 +134,8 @@ class _ProgressWidgetState extends State<ProgressWidget> {
                       ],
                     ),
                   ),
-                ));
-          }),
+                ))
+          
         );
       },
     );
