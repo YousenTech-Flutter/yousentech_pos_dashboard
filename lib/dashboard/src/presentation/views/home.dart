@@ -30,194 +30,185 @@ class _HomeState extends State<Home> {
   int _navIndex = 0;
   @override
   Widget build(BuildContext context) {
-    print("Home=============");
-    return Container();
-    // Obx(() {
-    //   final themeCtrl = Get.find<ThemeController>();
-    //   print("Home Obx=============");
-    //     return SafeArea(
-    //           child: Scaffold(
-    //             backgroundColor:themeCtrl.isDarkMode.value  ? AppColor. darkModeBackgroundColor : Color(0xFFDDDDDD),
-    //             body: Container(),
-    //             // backgroundColor:Get.find<ThemeController>().isDarkMode.value  ? AppColor. darkModeBackgroundColor : Color(0xFFDDDDDD),
-    //             // // resizeToAvoidBottomInset: _navIndex == 4  ? false : null,
-    //             // resizeToAvoidBottomInset:false,
-    //             // appBar: customAppBar(
-    //             //   context: context,
-    //             //   onDarkModeChanged: () {
-    //             //     // setState(() {});
-    //             //   },
-    //             // ),
-                
-    //             // body: Container(
-    //             //   width: Get.width,
-    //             //   decoration: BoxDecoration(
-    //             //     color: Get.find<ThemeController>().isDarkMode.value  ? AppColor.darkModeBackgroundColor : null,
-    //             //     gradient:
-    //             //         Get.find<ThemeController>().isDarkMode.value 
-    //             //             ? null
-    //             //             : LinearGradient(
-    //             //               begin: Alignment.topCenter,
-    //             //               end: Alignment.bottomCenter,
-    //             //               colors: [const Color(0xFFF0F9FF), Colors.white],
-    //             //             ),
-    //             //   ),
-    //             //   child: Stack(
-    //             //     children: [
-    //             //       Positioned(
-    //             //         top: context.setHeight(10),
-    //             //         right: context.setWidth(-170),
-    //             //         child: SvgPicture.asset(
-    //             //           AppImages.imageBackground,
-    //             //           package: 'shared_widgets',
-    //             //         ),
-    //             //       ),
-    //             //       Positioned(
-    //             //         top: context.setHeight(0),
-    //             //         right: SharedPr.lang == "ar" ? context.setWidth(5) : null,
-    //             //         left: SharedPr.lang == "ar" ? null : context.setWidth(5),
-    //             //         bottom: context.setHeight(0),
-    //             //         child: GetBuilder<LoadingDataController>(
-    //             //             id: "loading",
-    //             //             builder: (loadingcontext) {
-    //             //               return Padding(
-    //             //               padding: EdgeInsets.symmetric(
-    //             //                 vertical: context.setHeight(14),
-    //             //                 horizontal: context.setWidth(10),
-    //             //               ),
-    //             //               child: Container(
-    //             //                 width: context.setWidth(84),
-    //             //                 clipBehavior: Clip.antiAlias,
-    //             //                 decoration: ShapeDecoration(
-    //             //                   color:
-    //             //                       Get.find<ThemeController>().isDarkMode.value 
-    //             //                           ? null
-    //             //                           : Colors.white.withValues(alpha: 0.70),
-    //             //                   shape: RoundedRectangleBorder(
-    //             //                     side: BorderSide(
-    //             //                       width: Get.find<ThemeController>().isDarkMode.value  ? 0.60 : 1,
-    //             //                       color:
-    //             //                           Get.find<ThemeController>().isDarkMode.value 
-    //             //                               ? AppColor.darkModeBackgroundColor
-    //             //                               : Colors.white.withValues(alpha: 0.50),
-    //             //                     ),
-    //             //                     borderRadius: BorderRadius.circular(
-    //             //                       context.setMinSize(16),
-    //             //                     ),
-    //             //                   ),
-    //             //                 ),
-    //             //                 child: LayoutBuilder(
-    //             //                   builder: (context, constraints) {
-    //             //                     return ConstrainedBox(
-    //             //                       constraints: BoxConstraints(
-    //             //                         minHeight: constraints.maxHeight,
-    //             //                       ),
-    //             //                       child: Column(
-    //             //                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    //             //                         children: [
-    //             //                           BottomNavigationBar(
-    //             //                             name: "home",
-    //             //                             image: AppImages.home,
-    //             //                             onTap: () {
-    //             //                               _navIndex = 0;
-    //             //                               // setState(() {});
-    //             //                               loadingDataController.update(["loading"]);
-    //             //                             },
-    //             //                             isSelect: _navIndex == 0,
-    //             //                           ),
-    //             //                           BottomNavigationBar(
-    //             //                             name: "dashboard",
-    //             //                             image:AppImages.frame1,
-    //             //                             onTap: () {
-    //             //                               _navIndex = 1;
-    //             //                               // setState(() {});
-    //             //                               loadingDataController.update(["loading"]);
-    //             //                             },
-    //             //                             isSelect: _navIndex == 1,
-    //             //                           ),
-    //             //                           BottomNavigationBar(
-    //             //                             name: "products",
-    //             //                             image:AppImages.productList,
-    //             //                             onTap: () {
-    //             //                               _navIndex = 2;
-    //             //                               // setState(() {});
-    //             //                               loadingDataController.update(["loading"]);
-    //             //                             },
-    //             //                             isSelect: _navIndex == 2,
-    //             //                           ),
-    //             //                           BottomNavigationBar(
-    //             //                             name: "customers",
-    //             //                             image: AppImages.customers,
-    //             //                             onTap: () {
-    //             //                               _navIndex = 3;
-    //             //                               // setState(() {});
-    //             //                               loadingDataController.update(["loading"]);
-    //             //                             },
-    //             //                             isSelect: _navIndex == 3,
-    //             //                           ),
-    //             //                           // BottomNavigationBar(
-    //             //                           //   name: "invoice_return",
-    //             //                           //   image: "Frame 2095586631",
-    //             //                           //   onTap: () {
-    //             //                           //     _navIndex = 3;
-    //             //                           //     setState(() {});
-    //             //                           //   },
-    //             //                           //   isSelect: _navIndex == 3,
-    //             //                           // ),
-    //             //                           BottomNavigationBar(
-    //             //                             name: "Reports",
-    //             //                             image:AppImages.reports,
-    //             //                             onTap: () {
-    //             //                               _navIndex = 4;
-    //             //                               // setState(() {});
-    //             //                               loadingDataController.update(["loading"]);
-    //             //                             },
-    //             //                             isSelect: _navIndex == 4,
-    //             //                           ),
-    //             //                           BottomNavigationBar(
-    //             //                             name: "Settings",
-    //             //                             image:AppImages.setting,
-    //             //                             onTap: () {
-    //             //                               _navIndex = 5;
-    //             //                               // setState(() {});
-    //             //                               loadingDataController.update(["loading"]);
-    //             //                             },
-    //             //                             isSelect: _navIndex == 5,
-    //             //                           ),
-                                          
-    //             //                         ],
-    //             //                       ),
-    //             //                     );
-    //             //                   },
-    //             //                 ),
-    //             //               ),
-    //             //             );
-    //             //           }
-    //             //         ),
-    //             //       ),
-    //             //       // Positioned.fill(
-    //             //       //   right: SharedPr.lang == "ar" ? context.setWidth(95) : 0.0,
-    //             //       //   left: SharedPr.lang == "ar" ? 0.0 : context.setWidth(95),
-    //             //       //   top: 0,
-    //             //       //   child: GetBuilder<LoadingDataController>(
-    //             //       //     id: "loading",
-    //             //       //     builder: (loadingcontext) {
-    //             //       //       print("============loading2222");
-    //             //       //       return loadingDataController.isLoad.value
-    //             //       //           ? const ProgressWidget()
-    //             //       //           :  getHomeMenu(_navIndex);
-    //             //       //     }
-    //             //       //   ),
-    //             //       // ),
-    //             //     ],
-    //             //   ),
-    //             // ),
-              
-    //           ),
-    //         );
-    //       }
-    //     );
-  
+    return Obx(() {
+        return SafeArea(
+          child: Scaffold(
+            // resizeToAvoidBottomInset: _navIndex == 4  ? false : null,
+            resizeToAvoidBottomInset:false,
+            appBar: customAppBar(
+              context: context,
+              onDarkModeChanged: () {
+                // setState(() {});
+              },
+            ),
+            backgroundColor:
+                Get.find<ThemeController>().isDarkMode.value  ? AppColor. darkModeBackgroundColor : Color(0xFFDDDDDD),
+            body: Container(
+              width: Get.width,
+              decoration: BoxDecoration(
+                color: Get.find<ThemeController>().isDarkMode.value  ? AppColor.darkModeBackgroundColor : null,
+                gradient:
+                    Get.find<ThemeController>().isDarkMode.value 
+                        ? null
+                        : LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [const Color(0xFFF0F9FF), Colors.white],
+                        ),
+              ),
+              child: Stack(
+                children: [
+                  Positioned(
+                    top: context.setHeight(10),
+                    right: context.setWidth(-170),
+                    child: SvgPicture.asset(
+                      AppImages.imageBackground,
+                      package: 'shared_widgets',
+                    ),
+                  ),
+                  Positioned(
+                    top: context.setHeight(0),
+                    right: SharedPr.lang == "ar" ? context.setWidth(5) : null,
+                    left: SharedPr.lang == "ar" ? null : context.setWidth(5),
+                    bottom: context.setHeight(0),
+                    child: GetBuilder<LoadingDataController>(
+                        id: "loading",
+                        builder: (loadingcontext) {
+                          return Padding(
+                          padding: EdgeInsets.symmetric(
+                            vertical: context.setHeight(14),
+                            horizontal: context.setWidth(10),
+                          ),
+                          child: Container(
+                            width: context.setWidth(84),
+                            clipBehavior: Clip.antiAlias,
+                            decoration: ShapeDecoration(
+                              color:
+                                  Get.find<ThemeController>().isDarkMode.value 
+                                      ? null
+                                      : Colors.white.withValues(alpha: 0.70),
+                              shape: RoundedRectangleBorder(
+                                side: BorderSide(
+                                  width: Get.find<ThemeController>().isDarkMode.value  ? 0.60 : 1,
+                                  color:
+                                      Get.find<ThemeController>().isDarkMode.value 
+                                          ? AppColor.darkModeBackgroundColor
+                                          : Colors.white.withValues(alpha: 0.50),
+                                ),
+                                borderRadius: BorderRadius.circular(
+                                  context.setMinSize(16),
+                                ),
+                              ),
+                            ),
+                            child: LayoutBuilder(
+                              builder: (context, constraints) {
+                                return ConstrainedBox(
+                                  constraints: BoxConstraints(
+                                    minHeight: constraints.maxHeight,
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      BottomNavigationBar(
+                                        name: "home",
+                                        image: AppImages.home,
+                                        onTap: () {
+                                          _navIndex = 0;
+                                          // setState(() {});
+                                          loadingDataController.update(["loading"]);
+                                        },
+                                        isSelect: _navIndex == 0,
+                                      ),
+                                      BottomNavigationBar(
+                                        name: "dashboard",
+                                        image:AppImages.frame1,
+                                        onTap: () {
+                                          _navIndex = 1;
+                                          // setState(() {});
+                                          loadingDataController.update(["loading"]);
+                                        },
+                                        isSelect: _navIndex == 1,
+                                      ),
+                                      BottomNavigationBar(
+                                        name: "products",
+                                        image:AppImages.productList,
+                                        onTap: () {
+                                          _navIndex = 2;
+                                          // setState(() {});
+                                          loadingDataController.update(["loading"]);
+                                        },
+                                        isSelect: _navIndex == 2,
+                                      ),
+                                      BottomNavigationBar(
+                                        name: "customers",
+                                        image: AppImages.customers,
+                                        onTap: () {
+                                          _navIndex = 3;
+                                          // setState(() {});
+                                          loadingDataController.update(["loading"]);
+                                        },
+                                        isSelect: _navIndex == 3,
+                                      ),
+                                      // BottomNavigationBar(
+                                      //   name: "invoice_return",
+                                      //   image: "Frame 2095586631",
+                                      //   onTap: () {
+                                      //     _navIndex = 3;
+                                      //     setState(() {});
+                                      //   },
+                                      //   isSelect: _navIndex == 3,
+                                      // ),
+                                      BottomNavigationBar(
+                                        name: "Reports",
+                                        image:AppImages.reports,
+                                        onTap: () {
+                                          _navIndex = 4;
+                                          // setState(() {});
+                                          loadingDataController.update(["loading"]);
+                                        },
+                                        isSelect: _navIndex == 4,
+                                      ),
+                                      BottomNavigationBar(
+                                        name: "Settings",
+                                        image:AppImages.setting,
+                                        onTap: () {
+                                          _navIndex = 5;
+                                          // setState(() {});
+                                          loadingDataController.update(["loading"]);
+                                        },
+                                        isSelect: _navIndex == 5,
+                                      ),
+                                      
+                                    ],
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        );
+                      }
+                    ),
+                  ),
+                  Positioned.fill(
+                    right: SharedPr.lang == "ar" ? context.setWidth(95) : 0.0,
+                    left: SharedPr.lang == "ar" ? 0.0 : context.setWidth(95),
+                    top: 0,
+                    child: GetBuilder<LoadingDataController>(
+                      id: "loading",
+                      builder: (loadingcontext) {
+                        return loadingDataController.isLoad.value
+                            ? const ProgressWidget()
+                            : getHomeMenu(_navIndex);
+                      }
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      }
+    );
   }
 }
 
