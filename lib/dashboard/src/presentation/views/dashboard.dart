@@ -100,24 +100,24 @@ class _DashboardState extends State<Dashboard> {
                                     return PosCard(
                                         sessionController: sessioncontroller);
                                   }),
-                              GetBuilder<FinalReportController>(
-                                id: "session_card",
-                                builder: (controller) {
-                                  return PaymentDataCard(
-                                    finalReportController:
-                                        finalReportController,
-                                  );
-                                },
-                              ),
-                              GetBuilder<FinalReportController>(
-                                id: "session_card",
-                                builder: (controller) {
-                                  return BestSellingProducts(
-                                    finalReportController:
-                                        finalReportController,
-                                  );
-                                },
-                              ),
+                              // GetBuilder<FinalReportController>(
+                              //   id: "session_card",
+                              //   builder: (controller) {
+                              //     return PaymentDataCard(
+                              //       finalReportController:
+                              //           finalReportController,
+                              //     );
+                              //   },
+                              // ),
+                              // GetBuilder<FinalReportController>(
+                              //   id: "session_card",
+                              //   builder: (controller) {
+                              //     return BestSellingProducts(
+                              //       finalReportController:
+                              //           finalReportController,
+                              //     );
+                              //   },
+                              // ),
                             ],
                           );
                         },
