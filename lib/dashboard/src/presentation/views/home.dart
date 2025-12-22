@@ -202,23 +202,26 @@ class _HomeState extends State<Home> {
                         );
                       }),
                 ),
-                Positioned.fill(
-                  right: SharedPr.lang == "ar" ? context.setWidth(95) : 0.0,
-                  left: SharedPr.lang == "ar" ? 0.0 : context.setWidth(95),
-                  top: 0,
-                  child: 
-                  loadingDataController.isLoad.value
-                      ? const ProgressWidget()
-                      : 
-                      GetBuilder<LoadingDataController>(
-                          id: "loading",
-                          builder: (loadingcontext) {
-                            print("============loading2222");
-                            return
-                                // const ProgressWidget()
-                                // :
-                                getHomeMenu(_navIndex);
-                          }),
+                Obx( () {
+                    return Positioned.fill(
+                      right: SharedPr.lang == "ar" ? context.setWidth(95) : 0.0,
+                      left: SharedPr.lang == "ar" ? 0.0 : context.setWidth(95),
+                      top: 0,
+                      child: 
+                      loadingDataController.isLoad.value
+                          ? const ProgressWidget()
+                          : 
+                          GetBuilder<LoadingDataController>(
+                              id: "loading",
+                              builder: (loadingcontext) {
+                                print("============loading2222");
+                                return
+                                    // const ProgressWidget()
+                                    // :
+                                    getHomeMenu(_navIndex);
+                              }),
+                    );
+                  }
                 ),
               ],
             ),
