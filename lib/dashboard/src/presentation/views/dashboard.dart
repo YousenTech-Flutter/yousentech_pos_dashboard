@@ -908,227 +908,230 @@ class PosCard extends StatefulWidget {
 class _PosCardState extends State<PosCard> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: context.setHeight(215),
-      decoration: ShapeDecoration(
-        color: Get.find<ThemeController>().isDarkMode.value
-            ? Colors.black.withValues(alpha: 0.17)
-            : Colors.white.withValues(alpha: 0.47),
-        shape: RoundedRectangleBorder(
-          side: BorderSide(
-            width: 1,
+    return Obx(() {
+        return Container(
+          height: context.setHeight(215),
+          decoration: ShapeDecoration(
             color: Get.find<ThemeController>().isDarkMode.value
-                ? Colors.white.withValues(alpha: 0.50)
-                : const Color(0xFFE7E7E8),
-            //  Colors.white.withValues(alpha: 0.50),
+                ? Colors.black.withValues(alpha: 0.17)
+                : Colors.white.withValues(alpha: 0.47),
+            shape: RoundedRectangleBorder(
+              side: BorderSide(
+                width: 1,
+                color: Get.find<ThemeController>().isDarkMode.value
+                    ? Colors.white.withValues(alpha: 0.50)
+                    : const Color(0xFFE7E7E8),
+                //  Colors.white.withValues(alpha: 0.50),
+              ),
+              borderRadius: BorderRadius.circular(context.setMinSize(20)),
+            ),
           ),
-          borderRadius: BorderRadius.circular(context.setMinSize(20)),
-        ),
-      ),
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: context.setHeight(24),
-          horizontal: context.setWidth(24),
-        ),
-        child: Column(
-          spacing: context.setHeight(6),
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: context.setHeight(24),
+              horizontal: context.setWidth(24),
+            ),
+            child: Column(
+              spacing: context.setHeight(6),
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
-                  spacing: context.setWidth(8),
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SvgPicture.asset(
-                      AppImages.pos,
-                      package: 'shared_widgets',
-                      width: context.setWidth(24),
-                      height: context.setHeight(24),
+                    Row(
+                      spacing: context.setWidth(8),
+                      children: [
+                        SvgPicture.asset(
+                          AppImages.pos,
+                          package: 'shared_widgets',
+                          width: context.setWidth(24),
+                          height: context.setHeight(24),
+                        ),
+                        SizedBox(
+                          width: context.setWidth(198.75),
+                          child: Text(
+                            SharedPr.currentPosObject!.name.toString(),
+                            style: TextStyle(
+                              color: Get.find<ThemeController>().isDarkMode.value
+                                  ? const Color(0xFFDDDDDD)
+                                  : const Color(0xFF2E2E2E),
+                              fontSize: context.setSp(20),
+                              fontFamily: 'Tajawal',
+                              fontWeight: FontWeight.w600,
+                              overflow: TextOverflow.ellipsis,
+                              height: 1.40,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    SizedBox(
-                      width: context.setWidth(198.75),
-                      child: Text(
-                        SharedPr.currentPosObject!.name.toString(),
-                        style: TextStyle(
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      spacing: context.setWidth(8),
+                      children: [
+                        Text(
+                          widget.sessionController.sessionAmountOprationCard.isEmpty
+                              ? "0.0"
+                              : widget.sessionController.formatter.format(
+                                  widget.sessionController
+                                                  .sessionAmountOprationCard[
+                                              "session_amount_opration"]
+                                          ["total_out_invoice"] ??
+                                      0.0,
+                                ),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Get.find<ThemeController>().isDarkMode.value
+                                ? const Color(0xFFDDDDDD)
+                                : const Color(0xFF2E2E2E),
+                            fontSize: context.setSp(20),
+                            fontFamily: 'Tajawal',
+                            fontWeight: FontWeight.w600,
+                            height: 1.56,
+                          ),
+                        ),
+                        SvgPicture.asset(
+                          AppImages.riyal,
+                          package: 'shared_widgets',
+                          width: context.setWidth(13),
+                          height: context.setHeight(13),
                           color: Get.find<ThemeController>().isDarkMode.value
                               ? const Color(0xFFDDDDDD)
                               : const Color(0xFF2E2E2E),
-                          fontSize: context.setSp(20),
-                          fontFamily: 'Tajawal',
-                          fontWeight: FontWeight.w600,
-                          overflow: TextOverflow.ellipsis,
-                          height: 1.40,
                         ),
-                      ),
+                      ],
                     ),
                   ],
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  spacing: context.setWidth(8),
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    Row(
+                      spacing: context.setWidth(8),
+                      children: [
+                        SvgPicture.asset(
+                          AppImages.data,
+                          package: 'shared_widgets',
+                          width: context.setWidth(18),
+                          height: context.setHeight(18),
+                        ),
+                        Text.rich(
+                          style: TextStyle(
+                            color: Get.find<ThemeController>().isDarkMode.value
+                                ? const Color(0xFFD4D4D4)
+                                : const Color(0xFF2E2E2E),
+                            fontSize: context.setSp(context.setSp(14)),
+                            fontFamily: 'Tajawal',
+                            fontWeight: FontWeight.w400,
+                            height: 2.50,
+                          ),
+                          TextSpan(
+                            children: [
+                              // TextSpan(text: "date_time".tr),
+                              // TextSpan(text: '  :   '),
+                              TextSpan(
+                                text: widget.sessionController.posSessionsList
+                                            .isEmpty ||
+                                        widget.sessionController.posSessionsList
+                                                .last.startTime ==
+                                            ''
+                                    ? formatDateTime(null)
+                                    : formatDateTime(
+                                        widget.sessionController.posSessionsList
+                                            .last.startTime!,
+                                      ),
+                              ),
+                            ],
+                          ),
+                          textAlign: TextAlign.right,
+                        ),
+                      ],
+                    ),
                     Text(
-                      widget.sessionController.sessionAmountOprationCard.isEmpty
-                          ? "0.0"
-                          : widget.sessionController.formatter.format(
-                              widget.sessionController
-                                              .sessionAmountOprationCard[
-                                          "session_amount_opration"]
-                                      ["total_out_invoice"] ??
-                                  0.0,
-                            ),
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Get.find<ThemeController>().isDarkMode.value
-                            ? const Color(0xFFDDDDDD)
-                            : const Color(0xFF2E2E2E),
-                        fontSize: context.setSp(20),
-                        fontFamily: 'Tajawal',
-                        fontWeight: FontWeight.w600,
-                        height: 1.56,
-                      ),
-                    ),
-                    SvgPicture.asset(
-                      AppImages.riyal,
-                      package: 'shared_widgets',
-                      width: context.setWidth(13),
-                      height: context.setHeight(13),
-                      color: Get.find<ThemeController>().isDarkMode.value
-                          ? const Color(0xFFDDDDDD)
-                          : const Color(0xFF2E2E2E),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  spacing: context.setWidth(8),
-                  children: [
-                    SvgPicture.asset(
-                      AppImages.data,
-                      package: 'shared_widgets',
-                      width: context.setWidth(18),
-                      height: context.setHeight(18),
-                    ),
-                    Text.rich(
+                      'total_sales'.tr,
                       style: TextStyle(
                         color: Get.find<ThemeController>().isDarkMode.value
                             ? const Color(0xFFD4D4D4)
                             : const Color(0xFF2E2E2E),
-                        fontSize: context.setSp(context.setSp(14)),
+                        fontSize: context.setSp(14),
                         fontFamily: 'Tajawal',
                         fontWeight: FontWeight.w400,
                         height: 2.50,
                       ),
-                      TextSpan(
-                        children: [
-                          // TextSpan(text: "date_time".tr),
-                          // TextSpan(text: '  :   '),
-                          TextSpan(
-                            text: widget.sessionController.posSessionsList
-                                        .isEmpty ||
-                                    widget.sessionController.posSessionsList
-                                            .last.startTime ==
-                                        ''
-                                ? formatDateTime(null)
-                                : formatDateTime(
-                                    widget.sessionController.posSessionsList
-                                        .last.startTime!,
-                                  ),
-                          ),
-                        ],
-                      ),
-                      textAlign: TextAlign.right,
                     ),
                   ],
                 ),
-                Text(
-                  'total_sales'.tr,
-                  style: TextStyle(
-                    color: Get.find<ThemeController>().isDarkMode.value
-                        ? const Color(0xFFD4D4D4)
-                        : const Color(0xFF2E2E2E),
-                    fontSize: context.setSp(14),
-                    fontFamily: 'Tajawal',
-                    fontWeight: FontWeight.w400,
-                    height: 2.50,
-                  ),
-                ),
-              ],
-            ),
-            Spacer(),
-            if (widget.sessionController.posSessionsList.isEmpty ||
-                widget.sessionController.posSessionsList.last.state ==
-                    SessionState.closedSession) ...[
-              ButtonsToContinueOrStop(
-                onTap: () {
-                  widget.sessionController
-                      .sessionStartOrResumOnTap(context: context);
-                },
-                image: AppImages.stop,
-                data: "startNewSession".tr,
-                addBorderSide: false,
-                color: const Color(0xFFF2AC57),
-              ),
-            ],
-            if (widget.sessionController.posSessionsList.isNotEmpty &&
-                widget.sessionController.posSessionsList.last.state ==
-                    SessionState.openSession) ...[
-              Row(
-                spacing: context.setWidth(9.7),
-                children: [
-                  if (widget.sessionController
-                      .checkStartOrResumeSessionAppearance()) ...[
-                    Expanded(
-                      // flex: 3,
-                      child: ButtonsToContinueOrStop(
-                        onTap: () {
-                          widget.sessionController.sessionStartOrResumOnTap(
-                            context: context,
-                          );
-                        },
-                        image: AppImages.stop,
-                        data: "ResumeSession".tr,
-                        addBorderSide: false,
-                        color: const Color(0xFFF2AC57),
-                      ),
-                    ),
-                  ],
-                  Expanded(
-                    // flex:
-                    //     !widget.sessionController
-                    //             .checkStartOrResumeSessionAppearance()
-                    //         ? 3
-                    //         : 2,
-                    child: ButtonsToContinueOrStop(
-                      onTap: () async {
-                        widget.sessionController.isLoading.value = true;
-                        await widget.sessionController.uploadData();
-                        widget.sessionController.isLoading.value = false;
-                        Get.to(() => CloseSession());
-                      },
-                      image: AppImages.continueImage,
-                      data: "closeSession".tr,
-                      addBorderSide: true,
-                      color: const Color(0x2BF20C10),
-                      // Get.find<ThemeController>().isDarkMode.value
-                      //     ? Colors.black.withValues(alpha: 0.17)
-                      //     : const Color(0x2B665959),
-                    ),
+                Spacer(),
+                if (widget.sessionController.posSessionsList.isEmpty ||
+                    widget.sessionController.posSessionsList.last.state ==
+                        SessionState.closedSession) ...[
+                  ButtonsToContinueOrStop(
+                    onTap: () {
+                      widget.sessionController
+                          .sessionStartOrResumOnTap(context: context);
+                    },
+                    image: AppImages.stop,
+                    data: "startNewSession".tr,
+                    addBorderSide: false,
+                    color: const Color(0xFFF2AC57),
                   ),
                 ],
-              ),
-            ],
-          ],
-        ),
-      ),
+                if (widget.sessionController.posSessionsList.isNotEmpty &&
+                    widget.sessionController.posSessionsList.last.state ==
+                        SessionState.openSession) ...[
+                  Row(
+                    spacing: context.setWidth(9.7),
+                    children: [
+                      if (widget.sessionController
+                          .checkStartOrResumeSessionAppearance()) ...[
+                        Expanded(
+                          // flex: 3,
+                          child: ButtonsToContinueOrStop(
+                            onTap: () {
+                              widget.sessionController.sessionStartOrResumOnTap(
+                                context: context,
+                              );
+                            },
+                            image: AppImages.stop,
+                            data: "ResumeSession".tr,
+                            addBorderSide: false,
+                            color: const Color(0xFFF2AC57),
+                          ),
+                        ),
+                      ],
+                      Expanded(
+                        // flex:
+                        //     !widget.sessionController
+                        //             .checkStartOrResumeSessionAppearance()
+                        //         ? 3
+                        //         : 2,
+                        child: ButtonsToContinueOrStop(
+                          onTap: () async {
+                            widget.sessionController.isLoading.value = true;
+                            await widget.sessionController.uploadData();
+                            widget.sessionController.isLoading.value = false;
+                            Get.to(() => CloseSession());
+                          },
+                          image: AppImages.continueImage,
+                          data: "closeSession".tr,
+                          addBorderSide: true,
+                          color: const Color(0x2BF20C10),
+                          // Get.find<ThemeController>().isDarkMode.value
+                          //     ? Colors.black.withValues(alpha: 0.17)
+                          //     : const Color(0x2B665959),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ],
+            ),
+          ),
+        );
+      }
     );
   }
 }
