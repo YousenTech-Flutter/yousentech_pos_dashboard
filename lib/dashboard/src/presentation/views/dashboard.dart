@@ -90,6 +90,7 @@ class _DashboardState extends State<Dashboard> {
                       child: GetBuilder<SessionController>(
                         id: "Sessionbutton",
                         builder: (sessioncontroller) {
+                          print("Sessionbutton==========");
                           return Column(
                             spacing: context.setHeight(16),
                             children: [
@@ -122,359 +123,360 @@ class _DashboardState extends State<Dashboard> {
                         },
                       ),
                     ),
-                    Expanded(
-                      flex: 5,
-                      child: Column(
-                        spacing: context.setHeight(16),
-                        children: [
-                          Row(
-                            spacing: context.setWidth(16),
-                            children: [
-                              Expanded(
-                                child: GetBuilder<LoadingDataController>(
-                                  id: 'card_loading_data',
-                                  builder: (controller) {
-                                    int remote =
-                                        loadingDataController.itemdata.isEmpty
-                                            ? 0
-                                            : loadingDataController.itemdata[
-                                                Loaddata.customers.name
-                                                    .toString()]["remote"];
-                                    int local =
-                                        loadingDataController.itemdata.isEmpty
-                                            ? 0
-                                            : loadingDataController.itemdata[
-                                                Loaddata.customers.name
-                                                    .toString()]["local"];
-                                    return ProductAndCustomerCard(
-                                      loadingDataController:
-                                          loadingDataController,
-                                      image: AppImages.partner,
-                                      title: 'customers',
-                                      syncData: remote == 0
-                                          ? "0"
-                                          : local > remote
-                                              ? (remote /
-                                                      (local == 0 ? 1 : local) *
-                                                      100)
-                                                  .toStringAsFixed(0)
-                                              : ((local / remote) * 100)
-                                                  .toStringAsFixed(0),
-                                      remoteAndLocalCount: "$remote / $local",
-                                    );
-                                  },
-                                ),
-                              ),
-                              Expanded(
-                                child: GetBuilder<LoadingDataController>(
-                                  id: 'card_loading_data',
-                                  builder: (controller) {
-                                    int remote =
-                                        loadingDataController.itemdata.isEmpty
-                                            ? 0
-                                            : loadingDataController.itemdata[
-                                                Loaddata.products.name
-                                                    .toString()]["remote"];
-                                    int local =
-                                        loadingDataController.itemdata.isEmpty
-                                            ? 0
-                                            : loadingDataController.itemdata[
-                                                Loaddata.products.name
-                                                    .toString()]["local"];
-                                    return ProductAndCustomerCard(
-                                      loadingDataController:
-                                          loadingDataController,
-                                      image: AppImages.product,
-                                      title: "products",
-                                      syncData: remote == 0
-                                          ? "0"
-                                          : local > remote
-                                              ? (remote /
-                                                      (local == 0 ? 1 : local) *
-                                                      100)
-                                                  .toStringAsFixed(0)
-                                              : ((local / remote) * 100)
-                                                  .toStringAsFixed(0),
-                                      remoteAndLocalCount: "$remote / $local",
-                                    );
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                          GetBuilder<FinalReportController>(
-                            id: "session_card",
-                            builder: (controller) {
-                              return Row(
-                                spacing: context.setWidth(16),
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Expanded(
-                                    child: AmountTotalCard(
-                                      title: InfoTotalCard.totalSales.text.tr,
-                                      total: controller.formatter.format(
-                                        controller.finalReportInfo
-                                                ?.totalOutInvoice ??
-                                            0.0,
-                                      ),
-                                      image: AppImages.div2,
-                                      color: const Color(0xFF27AE60),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: AmountTotalCard(
-                                      title: InfoTotalCard.netIncome.text.tr,
-                                      total: controller.formatter.format(
-                                        controller.finalReportInfo?.netSales ??
-                                            0.0,
-                                      ),
-                                      image: AppImages.div1,
-                                      color: const Color(0x1916A6B7),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: AmountTotalCard(
-                                      title: InfoTotalCard.totalReturns.text.tr,
-                                      total: controller.formatter.format(
-                                        controller.finalReportInfo
-                                                ?.totalOutRefund ??
-                                            0.0,
-                                      ),
-                                      image: AppImages.div,
-                                      color: const Color(0xFFF2AC57),
-                                    ),
-                                  ),
-                                ],
-                              );
-                            },
-                          ),
-                          Container(
-                            decoration: ShapeDecoration(
-                              color:
-                                  Get.find<ThemeController>().isDarkMode.value
-                                      ? Colors.black.withValues(alpha: 0.17)
-                                      : Colors.white,
-                              shape: RoundedRectangleBorder(
-                                side: BorderSide(
-                                  width: 1,
-                                  color: Get.find<ThemeController>()
-                                          .isDarkMode
-                                          .value
-                                      ? Colors.white.withValues(
-                                          alpha: 0.50,
-                                        )
-                                      : const Color(0xFFE7E7E8),
-                                ),
-                                borderRadius: BorderRadius.circular(
-                                  context.setMinSize(16),
-                                ),
-                              ),
-                            ),
-                            height: context.setHeight(291.77),
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                vertical: context.setHeight(13.5),
-                                horizontal: context.setWidth(20.93),
-                              ),
-                              child: Column(
-                                spacing: context.setHeight(10),
-                                children: [
-                                  Row(
-                                    children: [
-                                      Container(
-                                        // height: context.setHeight(39),
-                                        // width: context.setWidth(249.06),
-                                        decoration: ShapeDecoration(
-                                          color: Get.find<ThemeController>()
-                                                  .isDarkMode
-                                                  .value
-                                              ? const Color(0xFF2D2A2A)
-                                              : const Color(0xFFF5F5F5),
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(
-                                              context.setMinSize(14.77),
-                                            ),
-                                          ),
-                                        ),
-                                        child: Padding(
-                                          padding: EdgeInsets.symmetric(
-                                            horizontal: context.setWidth(
-                                              10,
-                                            ),
-                                            vertical: context.setHeight(7),
-                                          ),
-                                          child:
-                                              GetBuilder<FinalReportController>(
-                                                  id: "sales_performance",
-                                                  builder: (controller) {
-                                                    return Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        ...salesTitals.map(
-                                                          (e) => InkWell(
-                                                            onTap: () async {
-                                                              await controller
-                                                                  .updateSalesPerformanceTab(
-                                                                type: salesTitals
-                                                                    .indexOf(e),
-                                                              );
-                                                            },
-                                                            child: Obx(() {
-                                                                return Container(
-                                                                  height: context
-                                                                      .setHeight(
-                                                                          27),
-                                                                  decoration: salesTitals
-                                                                              .indexOf(
-                                                                            e,
-                                                                          ) ==
-                                                                          controller
-                                                                              .salesPerformanceTab
-                                                                      ? ShapeDecoration(
-                                                                          color: Get.find<ThemeController>()
-                                                                                  .isDarkMode
-                                                                                  .value
-                                                                              ? Colors
-                                                                                  .black
-                                                                              : Colors
-                                                                                  .white,
-                                                                          shape:
-                                                                              RoundedRectangleBorder(
-                                                                            side:
-                                                                                BorderSide(
-                                                                              width:
-                                                                                  1,
-                                                                              color: Get.find<ThemeController>().isDarkMode.value
-                                                                                  ? Colors.black
-                                                                                  : const Color(
-                                                                                      0xFFE7E7E8,
-                                                                                    ),
-                                                                            ),
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(
-                                                                              8,
-                                                                            ),
-                                                                          ),
-                                                                        )
-                                                                      : null,
-                                                                  child: Padding(
-                                                                    padding: EdgeInsets
-                                                                        .symmetric(
-                                                                      horizontal:
-                                                                          context
-                                                                              .setWidth(
-                                                                        19.1,
-                                                                      ),
-                                                                    ),
-                                                                    child: Center(
-                                                                      child: Text(
-                                                                        e.tr,
-                                                                        textAlign:
-                                                                            TextAlign
-                                                                                .center,
-                                                                        style:
-                                                                            TextStyle(
-                                                                          color: salesTitals.indexOf(
-                                                                                    e,
-                                                                                  ) ==
-                                                                                  controller.salesPerformanceTab
-                                                                              ? Get.find<ThemeController>().isDarkMode.value
-                                                                                  ? Colors.white
-                                                                                  : const Color(
-                                                                                      0xFF01343A,
-                                                                                    )
-                                                                              : const Color(
-                                                                                  0xFF898989,
-                                                                                ),
-                                                                          fontSize:
-                                                                              context
-                                                                                  .setSp(
-                                                                            14,
-                                                                          ),
-                                                                          fontFamily:
-                                                                              'Tajawal',
-                                                                          fontWeight:
-                                                                              FontWeight
-                                                                                  .w500,
-                                                                          height:
-                                                                              1.14,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                );
-                                                              }
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    );
-                                                  }),
-                                        ),
-                                      ),
-                                      const Spacer(),
-                                      Text(
-                                        'sales_performance'.tr,
-                                        textAlign: TextAlign.right,
-                                        style: TextStyle(
-                                          color: Get.find<ThemeController>()
-                                                  .isDarkMode
-                                                  .value
-                                              ? Colors.white
-                                              : const Color(0xFF2E2E2E),
-                                          fontSize: context.setSp(16),
-                                          fontFamily: 'Tajawal',
-                                          fontWeight: FontWeight.w700,
-                                          height: 1.50,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  GetBuilder<FinalReportController>(
-                                      id: "sales_performance",
-                                      builder: (controller) {
-                                        return Expanded(
-                                          child: Padding(
-                                            padding: EdgeInsets.symmetric(
-                                              horizontal: context.setWidth(16),
-                                              vertical: context.setHeight(16),
-                                            ),
-                                            child: LayoutBuilder(
-                                              builder:
-                                                  (context, boxConstraints) {
-                                                return SizedBox(
-                                                  height:
-                                                      boxConstraints.maxHeight,
-                                                  child: _SalesLineChart(
-                                                    tab: controller
-                                                        .salesPerformanceTab,
-                                                    finalReportController:
-                                                        finalReportController,
-                                                  ),
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                        );
-                                      }),
-                                ],
-                              ),
-                            ),
-                          ),
-                          GetBuilder<FinalReportController>(
-                            id: "session_card",
-                            builder: (controller) {
-                              return BestSellingCategoriesChart(
-                                finalReportController: finalReportController,
-                              );
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
+                    // Expanded(
+                    //   flex: 5,
+                    //   child: Column(
+                    //     spacing: context.setHeight(16),
+                    //     children: [
+                    //       Row(
+                    //         spacing: context.setWidth(16),
+                    //         children: [
+                    //           Expanded(
+                    //             child: GetBuilder<LoadingDataController>(
+                    //               id: 'card_loading_data',
+                    //               builder: (controller) {
+                    //                 int remote =
+                    //                     loadingDataController.itemdata.isEmpty
+                    //                         ? 0
+                    //                         : loadingDataController.itemdata[
+                    //                             Loaddata.customers.name
+                    //                                 .toString()]["remote"];
+                    //                 int local =
+                    //                     loadingDataController.itemdata.isEmpty
+                    //                         ? 0
+                    //                         : loadingDataController.itemdata[
+                    //                             Loaddata.customers.name
+                    //                                 .toString()]["local"];
+                    //                 return ProductAndCustomerCard(
+                    //                   loadingDataController:
+                    //                       loadingDataController,
+                    //                   image: AppImages.partner,
+                    //                   title: 'customers',
+                    //                   syncData: remote == 0
+                    //                       ? "0"
+                    //                       : local > remote
+                    //                           ? (remote /
+                    //                                   (local == 0 ? 1 : local) *
+                    //                                   100)
+                    //                               .toStringAsFixed(0)
+                    //                           : ((local / remote) * 100)
+                    //                               .toStringAsFixed(0),
+                    //                   remoteAndLocalCount: "$remote / $local",
+                    //                 );
+                    //               },
+                    //             ),
+                    //           ),
+                    //           Expanded(
+                    //             child: GetBuilder<LoadingDataController>(
+                    //               id: 'card_loading_data',
+                    //               builder: (controller) {
+                    //                 int remote =
+                    //                     loadingDataController.itemdata.isEmpty
+                    //                         ? 0
+                    //                         : loadingDataController.itemdata[
+                    //                             Loaddata.products.name
+                    //                                 .toString()]["remote"];
+                    //                 int local =
+                    //                     loadingDataController.itemdata.isEmpty
+                    //                         ? 0
+                    //                         : loadingDataController.itemdata[
+                    //                             Loaddata.products.name
+                    //                                 .toString()]["local"];
+                    //                 return ProductAndCustomerCard(
+                    //                   loadingDataController:
+                    //                       loadingDataController,
+                    //                   image: AppImages.product,
+                    //                   title: "products",
+                    //                   syncData: remote == 0
+                    //                       ? "0"
+                    //                       : local > remote
+                    //                           ? (remote /
+                    //                                   (local == 0 ? 1 : local) *
+                    //                                   100)
+                    //                               .toStringAsFixed(0)
+                    //                           : ((local / remote) * 100)
+                    //                               .toStringAsFixed(0),
+                    //                   remoteAndLocalCount: "$remote / $local",
+                    //                 );
+                    //               },
+                    //             ),
+                    //           ),
+                    //         ],
+                    //       ),
+                    //       GetBuilder<FinalReportController>(
+                    //         id: "session_card",
+                    //         builder: (controller) {
+                    //           return Row(
+                    //             spacing: context.setWidth(16),
+                    //             mainAxisAlignment:
+                    //                 MainAxisAlignment.spaceBetween,
+                    //             children: [
+                    //               Expanded(
+                    //                 child: AmountTotalCard(
+                    //                   title: InfoTotalCard.totalSales.text.tr,
+                    //                   total: controller.formatter.format(
+                    //                     controller.finalReportInfo
+                    //                             ?.totalOutInvoice ??
+                    //                         0.0,
+                    //                   ),
+                    //                   image: AppImages.div2,
+                    //                   color: const Color(0xFF27AE60),
+                    //                 ),
+                    //               ),
+                    //               Expanded(
+                    //                 child: AmountTotalCard(
+                    //                   title: InfoTotalCard.netIncome.text.tr,
+                    //                   total: controller.formatter.format(
+                    //                     controller.finalReportInfo?.netSales ??
+                    //                         0.0,
+                    //                   ),
+                    //                   image: AppImages.div1,
+                    //                   color: const Color(0x1916A6B7),
+                    //                 ),
+                    //               ),
+                    //               Expanded(
+                    //                 child: AmountTotalCard(
+                    //                   title: InfoTotalCard.totalReturns.text.tr,
+                    //                   total: controller.formatter.format(
+                    //                     controller.finalReportInfo
+                    //                             ?.totalOutRefund ??
+                    //                         0.0,
+                    //                   ),
+                    //                   image: AppImages.div,
+                    //                   color: const Color(0xFFF2AC57),
+                    //                 ),
+                    //               ),
+                    //             ],
+                    //           );
+                    //         },
+                    //       ),
+                    //       Container(
+                    //         decoration: ShapeDecoration(
+                    //           color:
+                    //               Get.find<ThemeController>().isDarkMode.value
+                    //                   ? Colors.black.withValues(alpha: 0.17)
+                    //                   : Colors.white,
+                    //           shape: RoundedRectangleBorder(
+                    //             side: BorderSide(
+                    //               width: 1,
+                    //               color: Get.find<ThemeController>()
+                    //                       .isDarkMode
+                    //                       .value
+                    //                   ? Colors.white.withValues(
+                    //                       alpha: 0.50,
+                    //                     )
+                    //                   : const Color(0xFFE7E7E8),
+                    //             ),
+                    //             borderRadius: BorderRadius.circular(
+                    //               context.setMinSize(16),
+                    //             ),
+                    //           ),
+                    //         ),
+                    //         height: context.setHeight(291.77),
+                    //         child: Padding(
+                    //           padding: EdgeInsets.symmetric(
+                    //             vertical: context.setHeight(13.5),
+                    //             horizontal: context.setWidth(20.93),
+                    //           ),
+                    //           child: Column(
+                    //             spacing: context.setHeight(10),
+                    //             children: [
+                    //               Row(
+                    //                 children: [
+                    //                   Container(
+                    //                     // height: context.setHeight(39),
+                    //                     // width: context.setWidth(249.06),
+                    //                     decoration: ShapeDecoration(
+                    //                       color: Get.find<ThemeController>()
+                    //                               .isDarkMode
+                    //                               .value
+                    //                           ? const Color(0xFF2D2A2A)
+                    //                           : const Color(0xFFF5F5F5),
+                    //                       shape: RoundedRectangleBorder(
+                    //                         borderRadius: BorderRadius.circular(
+                    //                           context.setMinSize(14.77),
+                    //                         ),
+                    //                       ),
+                    //                     ),
+                    //                     child: Padding(
+                    //                       padding: EdgeInsets.symmetric(
+                    //                         horizontal: context.setWidth(
+                    //                           10,
+                    //                         ),
+                    //                         vertical: context.setHeight(7),
+                    //                       ),
+                    //                       child:
+                    //                           GetBuilder<FinalReportController>(
+                    //                               id: "sales_performance",
+                    //                               builder: (controller) {
+                    //                                 return Row(
+                    //                                   mainAxisAlignment:
+                    //                                       MainAxisAlignment
+                    //                                           .spaceBetween,
+                    //                                   children: [
+                    //                                     ...salesTitals.map(
+                    //                                       (e) => InkWell(
+                    //                                         onTap: () async {
+                    //                                           await controller
+                    //                                               .updateSalesPerformanceTab(
+                    //                                             type: salesTitals
+                    //                                                 .indexOf(e),
+                    //                                           );
+                    //                                         },
+                    //                                         child: Obx(() {
+                    //                                             return Container(
+                    //                                               height: context
+                    //                                                   .setHeight(
+                    //                                                       27),
+                    //                                               decoration: salesTitals
+                    //                                                           .indexOf(
+                    //                                                         e,
+                    //                                                       ) ==
+                    //                                                       controller
+                    //                                                           .salesPerformanceTab
+                    //                                                   ? ShapeDecoration(
+                    //                                                       color: Get.find<ThemeController>()
+                    //                                                               .isDarkMode
+                    //                                                               .value
+                    //                                                           ? Colors
+                    //                                                               .black
+                    //                                                           : Colors
+                    //                                                               .white,
+                    //                                                       shape:
+                    //                                                           RoundedRectangleBorder(
+                    //                                                         side:
+                    //                                                             BorderSide(
+                    //                                                           width:
+                    //                                                               1,
+                    //                                                           color: Get.find<ThemeController>().isDarkMode.value
+                    //                                                               ? Colors.black
+                    //                                                               : const Color(
+                    //                                                                   0xFFE7E7E8,
+                    //                                                                 ),
+                    //                                                         ),
+                    //                                                         borderRadius:
+                    //                                                             BorderRadius.circular(
+                    //                                                           8,
+                    //                                                         ),
+                    //                                                       ),
+                    //                                                     )
+                    //                                                   : null,
+                    //                                               child: Padding(
+                    //                                                 padding: EdgeInsets
+                    //                                                     .symmetric(
+                    //                                                   horizontal:
+                    //                                                       context
+                    //                                                           .setWidth(
+                    //                                                     19.1,
+                    //                                                   ),
+                    //                                                 ),
+                    //                                                 child: Center(
+                    //                                                   child: Text(
+                    //                                                     e.tr,
+                    //                                                     textAlign:
+                    //                                                         TextAlign
+                    //                                                             .center,
+                    //                                                     style:
+                    //                                                         TextStyle(
+                    //                                                       color: salesTitals.indexOf(
+                    //                                                                 e,
+                    //                                                               ) ==
+                    //                                                               controller.salesPerformanceTab
+                    //                                                           ? Get.find<ThemeController>().isDarkMode.value
+                    //                                                               ? Colors.white
+                    //                                                               : const Color(
+                    //                                                                   0xFF01343A,
+                    //                                                                 )
+                    //                                                           : const Color(
+                    //                                                               0xFF898989,
+                    //                                                             ),
+                    //                                                       fontSize:
+                    //                                                           context
+                    //                                                               .setSp(
+                    //                                                         14,
+                    //                                                       ),
+                    //                                                       fontFamily:
+                    //                                                           'Tajawal',
+                    //                                                       fontWeight:
+                    //                                                           FontWeight
+                    //                                                               .w500,
+                    //                                                       height:
+                    //                                                           1.14,
+                    //                                                     ),
+                    //                                                   ),
+                    //                                                 ),
+                    //                                               ),
+                    //                                             );
+                    //                                           }
+                    //                                         ),
+                    //                                       ),
+                    //                                     ),
+                    //                                   ],
+                    //                                 );
+                    //                               }),
+                    //                     ),
+                    //                   ),
+                    //                   const Spacer(),
+                    //                   Text(
+                    //                     'sales_performance'.tr,
+                    //                     textAlign: TextAlign.right,
+                    //                     style: TextStyle(
+                    //                       color: Get.find<ThemeController>()
+                    //                               .isDarkMode
+                    //                               .value
+                    //                           ? Colors.white
+                    //                           : const Color(0xFF2E2E2E),
+                    //                       fontSize: context.setSp(16),
+                    //                       fontFamily: 'Tajawal',
+                    //                       fontWeight: FontWeight.w700,
+                    //                       height: 1.50,
+                    //                     ),
+                    //                   ),
+                    //                 ],
+                    //               ),
+                    //               GetBuilder<FinalReportController>(
+                    //                   id: "sales_performance",
+                    //                   builder: (controller) {
+                    //                     return Expanded(
+                    //                       child: Padding(
+                    //                         padding: EdgeInsets.symmetric(
+                    //                           horizontal: context.setWidth(16),
+                    //                           vertical: context.setHeight(16),
+                    //                         ),
+                    //                         child: LayoutBuilder(
+                    //                           builder:
+                    //                               (context, boxConstraints) {
+                    //                             return SizedBox(
+                    //                               height:
+                    //                                   boxConstraints.maxHeight,
+                    //                               child: _SalesLineChart(
+                    //                                 tab: controller
+                    //                                     .salesPerformanceTab,
+                    //                                 finalReportController:
+                    //                                     finalReportController,
+                    //                               ),
+                    //                             );
+                    //                           },
+                    //                         ),
+                    //                       ),
+                    //                     );
+                    //                   }),
+                    //             ],
+                    //           ),
+                    //         ),
+                    //       ),
+                    //       GetBuilder<FinalReportController>(
+                    //         id: "session_card",
+                    //         builder: (controller) {
+                    //           return BestSellingCategoriesChart(
+                    //             finalReportController: finalReportController,
+                    //           );
+                    //         },
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
+                  
                   ],
                 ),
               ],
