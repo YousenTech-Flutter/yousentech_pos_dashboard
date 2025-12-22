@@ -65,420 +65,431 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     print("============Dashboard");
-    return Obx(() {
-        return Stack(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(
-                top: context.setHeight(16),
-                bottom: context.setHeight(5),
-                right: context.setWidth(20.5),
-                left: context.setWidth(20.5),
-              ),
-              child: SingleChildScrollView(
-                child: Column(
-                  spacing: context.setHeight(16),
-                  mainAxisAlignment: MainAxisAlignment.start,
+    return Stack(
+      children: [
+        Padding(
+          padding: EdgeInsets.only(
+            top: context.setHeight(16),
+            bottom: context.setHeight(5),
+            right: context.setWidth(20.5),
+            left: context.setWidth(20.5),
+          ),
+          child: SingleChildScrollView(
+            child: Column(
+              spacing: context.setHeight(16),
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  spacing: context.setWidth(16),
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      spacing: context.setWidth(16),
-                      children: [
-                        Expanded(
-                          flex: 3,
-                          child: GetBuilder<SessionController>(
-                            id: "Sessionbutton",
-                            builder: (sessioncontroller) {
-                              return Column(
-                                spacing: context.setHeight(16),
+                    Expanded(
+                      flex: 3,
+                      child: GetBuilder<SessionController>(
+                        id: "Sessionbutton",
+                        builder: (sessioncontroller) {
+                          return Column(
+                            spacing: context.setHeight(16),
+                            children: [
+                              GetBuilder<SessionController>(
+                                  id: "session_amount_opration_card",
+                                  builder: (controller) {
+                                    return PosCard(
+                                        sessionController: sessioncontroller);
+                                  }),
+                              GetBuilder<FinalReportController>(
+                                id: "session_card",
+                                builder: (controller) {
+                                  return PaymentDataCard(
+                                    finalReportController:
+                                        finalReportController,
+                                  );
+                                },
+                              ),
+                              GetBuilder<FinalReportController>(
+                                id: "session_card",
+                                builder: (controller) {
+                                  return BestSellingProducts(
+                                    finalReportController:
+                                        finalReportController,
+                                  );
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      ),
+                    ),
+                    Expanded(
+                      flex: 5,
+                      child: Column(
+                        spacing: context.setHeight(16),
+                        children: [
+                          Row(
+                            spacing: context.setWidth(16),
+                            children: [
+                              Expanded(
+                                child: GetBuilder<LoadingDataController>(
+                                  id: 'card_loading_data',
+                                  builder: (controller) {
+                                    int remote =
+                                        loadingDataController.itemdata.isEmpty
+                                            ? 0
+                                            : loadingDataController.itemdata[
+                                                Loaddata.customers.name
+                                                    .toString()]["remote"];
+                                    int local =
+                                        loadingDataController.itemdata.isEmpty
+                                            ? 0
+                                            : loadingDataController.itemdata[
+                                                Loaddata.customers.name
+                                                    .toString()]["local"];
+                                    return ProductAndCustomerCard(
+                                      loadingDataController:
+                                          loadingDataController,
+                                      image: AppImages.partner,
+                                      title: 'customers',
+                                      syncData: remote == 0
+                                          ? "0"
+                                          : local > remote
+                                              ? (remote /
+                                                      (local == 0 ? 1 : local) *
+                                                      100)
+                                                  .toStringAsFixed(0)
+                                              : ((local / remote) * 100)
+                                                  .toStringAsFixed(0),
+                                      remoteAndLocalCount: "$remote / $local",
+                                    );
+                                  },
+                                ),
+                              ),
+                              Expanded(
+                                child: GetBuilder<LoadingDataController>(
+                                  id: 'card_loading_data',
+                                  builder: (controller) {
+                                    int remote =
+                                        loadingDataController.itemdata.isEmpty
+                                            ? 0
+                                            : loadingDataController.itemdata[
+                                                Loaddata.products.name
+                                                    .toString()]["remote"];
+                                    int local =
+                                        loadingDataController.itemdata.isEmpty
+                                            ? 0
+                                            : loadingDataController.itemdata[
+                                                Loaddata.products.name
+                                                    .toString()]["local"];
+                                    return ProductAndCustomerCard(
+                                      loadingDataController:
+                                          loadingDataController,
+                                      image: AppImages.product,
+                                      title: "products",
+                                      syncData: remote == 0
+                                          ? "0"
+                                          : local > remote
+                                              ? (remote /
+                                                      (local == 0 ? 1 : local) *
+                                                      100)
+                                                  .toStringAsFixed(0)
+                                              : ((local / remote) * 100)
+                                                  .toStringAsFixed(0),
+                                      remoteAndLocalCount: "$remote / $local",
+                                    );
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                          GetBuilder<FinalReportController>(
+                            id: "session_card",
+                            builder: (controller) {
+                              return Row(
+                                spacing: context.setWidth(16),
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  GetBuilder<SessionController>(
-                                    id: "session_amount_opration_card",
-                                    builder: (controller) {
-                                      return PosCard(sessionController: sessioncontroller);
-                                    }
+                                  Expanded(
+                                    child: AmountTotalCard(
+                                      title: InfoTotalCard.totalSales.text.tr,
+                                      total: controller.formatter.format(
+                                        controller.finalReportInfo
+                                                ?.totalOutInvoice ??
+                                            0.0,
+                                      ),
+                                      image: AppImages.div2,
+                                      color: const Color(0xFF27AE60),
+                                    ),
                                   ),
-                                  GetBuilder<FinalReportController>(
-                                    id: "session_card",
-                                    builder: (controller) {
-                                      return PaymentDataCard(
-                                        finalReportController:
-                                            finalReportController,
-                                      );
-                                    },
+                                  Expanded(
+                                    child: AmountTotalCard(
+                                      title: InfoTotalCard.netIncome.text.tr,
+                                      total: controller.formatter.format(
+                                        controller.finalReportInfo?.netSales ??
+                                            0.0,
+                                      ),
+                                      image: AppImages.div1,
+                                      color: const Color(0x1916A6B7),
+                                    ),
                                   ),
-                                  GetBuilder<FinalReportController>(
-                                    id: "session_card",
-                                    builder: (controller) {
-                                      return BestSellingProducts(
-                                        finalReportController:
-                                            finalReportController,
-                                      );
-                                    },
+                                  Expanded(
+                                    child: AmountTotalCard(
+                                      title: InfoTotalCard.totalReturns.text.tr,
+                                      total: controller.formatter.format(
+                                        controller.finalReportInfo
+                                                ?.totalOutRefund ??
+                                            0.0,
+                                      ),
+                                      image: AppImages.div,
+                                      color: const Color(0xFFF2AC57),
+                                    ),
                                   ),
                                 ],
                               );
                             },
                           ),
-                        ),
-                        Expanded(
-                          flex: 5,
-                          child: Column(
-                            spacing: context.setHeight(16),
-                            children: [
-                              Row(
-                                spacing: context.setWidth(16),
+                          Container(
+                            decoration: ShapeDecoration(
+                              color:
+                                  Get.find<ThemeController>().isDarkMode.value
+                                      ? Colors.black.withValues(alpha: 0.17)
+                                      : Colors.white,
+                              shape: RoundedRectangleBorder(
+                                side: BorderSide(
+                                  width: 1,
+                                  color: Get.find<ThemeController>()
+                                          .isDarkMode
+                                          .value
+                                      ? Colors.white.withValues(
+                                          alpha: 0.50,
+                                        )
+                                      : const Color(0xFFE7E7E8),
+                                ),
+                                borderRadius: BorderRadius.circular(
+                                  context.setMinSize(16),
+                                ),
+                              ),
+                            ),
+                            height: context.setHeight(291.77),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                vertical: context.setHeight(13.5),
+                                horizontal: context.setWidth(20.93),
+                              ),
+                              child: Column(
+                                spacing: context.setHeight(10),
                                 children: [
-                                  Expanded(
-                                    child: GetBuilder<LoadingDataController>(
-                                      id: 'card_loading_data',
-                                      builder: (controller) {
-                                        int remote = loadingDataController.itemdata.isEmpty ? 0:
-                                        loadingDataController.itemdata[Loaddata
-                                                .customers
-                                                .name
-                                                .toString()]["remote"];
-                                        int local = loadingDataController.itemdata.isEmpty ? 0 :
-                                            loadingDataController.itemdata[Loaddata
-                                                .customers
-                                                .name
-                                                .toString()]["local"];
-                                        return ProductAndCustomerCard(
-                                          loadingDataController:
-                                              loadingDataController,
-                                          image:AppImages.partner,
-                                          title: 'customers',
-                                          syncData:
-                                              remote == 0
-                                                  ? "0"
-                                                  : local > remote
-                                                  ? (remote /
-                                                          (local == 0 ? 1 : local) *
-                                                          100)
-                                                      .toStringAsFixed(0)
-                                                  : ((local / remote) * 100)
-                                                      .toStringAsFixed(0),
-                                          remoteAndLocalCount: "$remote / $local",
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: GetBuilder<LoadingDataController>(
-                                      id: 'card_loading_data',
-                                      builder: (controller) {
-                                        int remote = loadingDataController.itemdata.isEmpty ? 0 :
-                                            loadingDataController.itemdata[Loaddata
-                                                .products
-                                                .name
-                                                .toString()]["remote"];
-                                        int local = loadingDataController.itemdata.isEmpty ? 0 :
-                                            loadingDataController.itemdata[Loaddata
-                                                .products
-                                                .name
-                                                .toString()]["local"];
-                                        return ProductAndCustomerCard(
-                                          loadingDataController:
-                                              loadingDataController,
-                                          image:AppImages.product,
-                                          title: "products",
-                                          syncData:
-                                              remote == 0
-                                                  ? "0"
-                                                  : local > remote
-                                                  ? (remote /
-                                                          (local == 0 ? 1 : local) *
-                                                          100)
-                                                      .toStringAsFixed(0)
-                                                  : ((local / remote) * 100)
-                                                      .toStringAsFixed(0),
-                                          remoteAndLocalCount: "$remote / $local",
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              GetBuilder<FinalReportController>(
-                                id: "session_card",
-                                builder: (controller) {
-                                  return Row(
-                                    spacing: context.setWidth(16),
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                  Row(
                                     children: [
-                                      Expanded(
-                                        child: AmountTotalCard(
-                                          title: InfoTotalCard.totalSales.text.tr,
-                                          total: controller.formatter.format(
-                                            controller
-                                                    .finalReportInfo
-                                                    ?.totalOutInvoice ??
-                                                0.0,
+                                      Container(
+                                        // height: context.setHeight(39),
+                                        // width: context.setWidth(249.06),
+                                        decoration: ShapeDecoration(
+                                          color: Get.find<ThemeController>()
+                                                  .isDarkMode
+                                                  .value
+                                              ? const Color(0xFF2D2A2A)
+                                              : const Color(0xFFF5F5F5),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                              context.setMinSize(14.77),
+                                            ),
                                           ),
-                                          image:AppImages.div2,
-                                          color: const Color(0xFF27AE60),
                                         ),
-                                      ),
-                                      Expanded(
-                                        child: AmountTotalCard(
-                                          title: InfoTotalCard.netIncome.text.tr,
-                                          total: controller.formatter.format(
-                                            controller.finalReportInfo?.netSales ??
-                                                0.0,
+                                        child: Padding(
+                                          padding: EdgeInsets.symmetric(
+                                            horizontal: context.setWidth(
+                                              10,
+                                            ),
+                                            vertical: context.setHeight(7),
                                           ),
-                                          image: AppImages.div1,
-                                          color: const Color(0x1916A6B7),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: AmountTotalCard(
-                                          title: InfoTotalCard.totalReturns.text.tr,
-                                          total: controller.formatter.format(
-                                            controller
-                                                    .finalReportInfo
-                                                    ?.totalOutRefund ??
-                                                0.0,
-                                          ),
-                                          image:AppImages.div,
-                                          color: const Color(0xFFF2AC57),
-                                        ),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              ),
-                              GetBuilder<FinalReportController>(
-                                id: "sales_performance",
-                                builder: (controller) {
-                                  return Container(
-                                    decoration: ShapeDecoration(
-                                      color:
-                                          Get.find<ThemeController>().isDarkMode.value 
-                                              ? Colors.black.withValues(alpha: 0.17)
-                                              : Colors.white,
-                                      shape: RoundedRectangleBorder(
-                                        side: BorderSide(
-                                          width: 1,
-                                          color:
-                                              Get.find<ThemeController>().isDarkMode.value 
-                                                  ? Colors.white.withValues(
-                                                    alpha: 0.50,
-                                                  )
-                                                  : const Color(0xFFE7E7E8),
-                                        ),
-                                        borderRadius: BorderRadius.circular(
-                                          context.setMinSize(16),
-                                        ),
-                                      ),
-                                    ),
-                                    height: context.setHeight(291.77),
-                                    child: Padding(
-                                      padding: EdgeInsets.symmetric(
-                                        vertical: context.setHeight(13.5),
-                                        horizontal: context.setWidth(20.93),
-                                      ),
-                                      child: Column(
-                                        spacing: context.setHeight(10),
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Container(
-                                                // height: context.setHeight(39),
-                                                // width: context.setWidth(249.06),
-                                                decoration: ShapeDecoration(
-                                                  color:
-                                                      Get.find<ThemeController>().isDarkMode.value 
-                                                          ? const Color(0xFF2D2A2A)
-                                                          : const Color(0xFFF5F5F5),
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                          context.setMinSize(14.77),
-                                                        ),
-                                                  ),
-                                                ),
-                                                child: Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                    horizontal: context.setWidth(
-                                                      10,
-                                                    ),
-                                                    vertical: context.setHeight(7),
-                                                  ),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      ...salesTitals.map(
-                                                        (e) => InkWell(
-                                                          onTap: () async {
-                                                            await controller
-                                                                .updateSalesPerformanceTab(
-                                                                  type: salesTitals
-                                                                      .indexOf(e),
-                                                                );
-                                                          },
-                                                          child: Container(
-                                                            height: context
-                                                                .setHeight(27),
-                                                            decoration:
-                                                                salesTitals.indexOf(
-                                                                          e,
-                                                                        ) ==
-                                                                        controller
-                                                                            .salesPerformanceTab
-                                                                    ? ShapeDecoration(
-                                                                      color:
-                                                                          Get.find<ThemeController>().isDarkMode.value 
+                                          child:
+                                              GetBuilder<FinalReportController>(
+                                                  id: "sales_performance",
+                                                  builder: (controller) {
+                                                    return Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        ...salesTitals.map(
+                                                          (e) => InkWell(
+                                                            onTap: () async {
+                                                              await controller
+                                                                  .updateSalesPerformanceTab(
+                                                                type: salesTitals
+                                                                    .indexOf(e),
+                                                              );
+                                                            },
+                                                            child: Obx(() {
+                                                                return Container(
+                                                                  height: context
+                                                                      .setHeight(
+                                                                          27),
+                                                                  decoration: salesTitals
+                                                                              .indexOf(
+                                                                            e,
+                                                                          ) ==
+                                                                          controller
+                                                                              .salesPerformanceTab
+                                                                      ? ShapeDecoration(
+                                                                          color: Get.find<ThemeController>()
+                                                                                  .isDarkMode
+                                                                                  .value
                                                                               ? Colors
                                                                                   .black
                                                                               : Colors
                                                                                   .white,
-                                                                      shape: RoundedRectangleBorder(
-                                                                        side: BorderSide(
-                                                                          width: 1,
-                                                                          color:
-                                                                              Get.find<ThemeController>().isDarkMode.value 
+                                                                          shape:
+                                                                              RoundedRectangleBorder(
+                                                                            side:
+                                                                                BorderSide(
+                                                                              width:
+                                                                                  1,
+                                                                              color: Get.find<ThemeController>().isDarkMode.value
                                                                                   ? Colors.black
                                                                                   : const Color(
-                                                                                    0xFFE7E7E8,
-                                                                                  ),
-                                                                        ),
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(
+                                                                                      0xFFE7E7E8,
+                                                                                    ),
+                                                                            ),
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(
                                                                               8,
                                                                             ),
+                                                                          ),
+                                                                        )
+                                                                      : null,
+                                                                  child: Padding(
+                                                                    padding: EdgeInsets
+                                                                        .symmetric(
+                                                                      horizontal:
+                                                                          context
+                                                                              .setWidth(
+                                                                        19.1,
                                                                       ),
-                                                                    )
-                                                                    : null,
-                                                            child: Padding(
-                                                              padding:
-                                                                  EdgeInsets.symmetric(
-                                                                    horizontal:
-                                                                        context
-                                                                            .setWidth(
-                                                                              19.1,
-                                                                            ),
+                                                                    ),
+                                                                    child: Center(
+                                                                      child: Text(
+                                                                        e.tr,
+                                                                        textAlign:
+                                                                            TextAlign
+                                                                                .center,
+                                                                        style:
+                                                                            TextStyle(
+                                                                          color: salesTitals.indexOf(
+                                                                                    e,
+                                                                                  ) ==
+                                                                                  controller.salesPerformanceTab
+                                                                              ? Get.find<ThemeController>().isDarkMode.value
+                                                                                  ? Colors.white
+                                                                                  : const Color(
+                                                                                      0xFF01343A,
+                                                                                    )
+                                                                              : const Color(
+                                                                                  0xFF898989,
+                                                                                ),
+                                                                          fontSize:
+                                                                              context
+                                                                                  .setSp(
+                                                                            14,
+                                                                          ),
+                                                                          fontFamily:
+                                                                              'Tajawal',
+                                                                          fontWeight:
+                                                                              FontWeight
+                                                                                  .w500,
+                                                                          height:
+                                                                              1.14,
+                                                                        ),
+                                                                      ),
+                                                                    ),
                                                                   ),
-                                                              child: Center(
-                                                                child: Text(
-                                                                  e.tr,
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                  style: TextStyle(
-                                                                    color:
-                                                                        salesTitals.indexOf(
-                                                                                  e,
-                                                                                ) ==
-                                                                                controller.salesPerformanceTab
-                                                                            ? Get.find<ThemeController>().isDarkMode.value 
-                                                                                ? Colors.white
-                                                                                : const Color(
-                                                                                  0xFF01343A,
-                                                                                )
-                                                                            : const Color(
-                                                                              0xFF898989,
-                                                                            ),
-                                                                    fontSize:
-                                                                        context
-                                                                            .setSp(
-                                                                              14,
-                                                                            ),
-                                                                    fontFamily:
-                                                                        'Tajawal',
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
-                                                                    height: 1.14,
-                                                                  ),
-                                                                ),
-                                                              ),
+                                                                );
+                                                              }
                                                             ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    ],
+                                                      ],
+                                                    );
+                                                  }),
+                                        ),
+                                      ),
+                                      const Spacer(),
+                                      Text(
+                                        'sales_performance'.tr,
+                                        textAlign: TextAlign.right,
+                                        style: TextStyle(
+                                          color: Get.find<ThemeController>()
+                                                  .isDarkMode
+                                                  .value
+                                              ? Colors.white
+                                              : const Color(0xFF2E2E2E),
+                                          fontSize: context.setSp(16),
+                                          fontFamily: 'Tajawal',
+                                          fontWeight: FontWeight.w700,
+                                          height: 1.50,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  GetBuilder<FinalReportController>(
+                                      id: "sales_performance",
+                                      builder: (controller) {
+                                        return Expanded(
+                                          child: Padding(
+                                            padding: EdgeInsets.symmetric(
+                                              horizontal: context.setWidth(16),
+                                              vertical: context.setHeight(16),
+                                            ),
+                                            child: LayoutBuilder(
+                                              builder:
+                                                  (context, boxConstraints) {
+                                                return SizedBox(
+                                                  height:
+                                                      boxConstraints.maxHeight,
+                                                  child: _SalesLineChart(
+                                                    tab: controller
+                                                        .salesPerformanceTab,
+                                                    finalReportController:
+                                                        finalReportController,
                                                   ),
-                                                ),
-                                              ),
-                                              const Spacer(),
-                                              Text(
-                                                'sales_performance'.tr,
-                                                textAlign: TextAlign.right,
-                                                style: TextStyle(
-                                                  color:
-                                                      Get.find<ThemeController>().isDarkMode.value 
-                                                          ? Colors.white
-                                                          : const Color(0xFF2E2E2E),
-                                                  fontSize: context.setSp(16),
-                                                  fontFamily: 'Tajawal',
-                                                  fontWeight: FontWeight.w700,
-                                                  height: 1.50,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Expanded(
-                                            child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                horizontal: context.setWidth(16),
-                                                vertical: context.setHeight(16),
-                                              ),
-                                              child: LayoutBuilder(
-                                                builder: (context, boxConstraints) {
-                                                  return SizedBox(
-                                                    height:
-                                                        boxConstraints.maxHeight,
-                                                    child: _SalesLineChart(
-                                                      tab:
-                                                          controller
-                                                              .salesPerformanceTab,
-                                                      finalReportController:
-                                                          finalReportController,
-                                                    ),
-                                                  );
-                                                },
-                                              ),
+                                                );
+                                              },
                                             ),
                                           ),
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                },
+                                        );
+                                      }),
+                                ],
                               ),
-                              GetBuilder<FinalReportController>(
-                                id: "session_card",
-                                builder: (controller) {
-                                  return BestSellingCategoriesChart(
-                                    finalReportController: finalReportController,
-                                  );
-                                },
-                              ),
-                            ],
+                            ),
                           ),
-                        ),
-                      ],
+                          GetBuilder<FinalReportController>(
+                            id: "session_card",
+                            builder: (controller) {
+                              return BestSellingCategoriesChart(
+                                finalReportController: finalReportController,
+                              );
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
-              ),
+              ],
             ),
-            Obx(() {
-              if (sessionController.isLoading.value ||
-                  loadingDataController.isUpdate.value) {
-                return LoadingWidget(message: sessionController.message.value);
-              } else {
-                return Container(); // Return an empty widget when not loading
-              }
-            }),
-          ],
-        );
-      }
+          ),
+        ),
+        Obx(() {
+          if (sessionController.isLoading.value ||
+              loadingDataController.isUpdate.value) {
+            return LoadingWidget(message: sessionController.message.value);
+          } else {
+            return Container(); // Return an empty widget when not loading
+          }
+        }),
+      ],
     );
   }
 }
@@ -502,17 +513,15 @@ class AmountTotalCard extends StatelessWidget {
     return Container(
       height: context.setHeight(97),
       decoration: ShapeDecoration(
-        color:
-            Get.find<ThemeController>().isDarkMode.value 
-                ? Colors.black.withValues(alpha: 0.17)
-                : Colors.white,
+        color: Get.find<ThemeController>().isDarkMode.value
+            ? Colors.black.withValues(alpha: 0.17)
+            : Colors.white,
         shape: RoundedRectangleBorder(
           side: BorderSide(
             width: 1,
-            color:
-                Get.find<ThemeController>().isDarkMode.value 
-                    ? Colors.white.withValues(alpha: 0.50)
-                    : const Color(0xFFE7E7E8),
+            color: Get.find<ThemeController>().isDarkMode.value
+                ? Colors.white.withValues(alpha: 0.50)
+                : const Color(0xFFE7E7E8),
           ),
           borderRadius: BorderRadius.circular(context.setMinSize(16)),
         ),
@@ -540,11 +549,10 @@ class AmountTotalCard extends StatelessWidget {
                 Text(
                   title,
                   style: TextStyle(
-                    color:
-                        Get.find<ThemeController>().isDarkMode.value 
-                            // ? const Color(0xFF9C9C9C)
-                            ? Color(0xFFB1B3BC)
-                            : const Color(0xFF463F3F),
+                    color: Get.find<ThemeController>().isDarkMode.value
+                        // ? const Color(0xFF9C9C9C)
+                        ? Color(0xFFB1B3BC)
+                        : const Color(0xFF463F3F),
                     fontSize: context.setSp(16),
                     fontFamily: 'Tajawal',
                     fontWeight: FontWeight.w500,
@@ -558,10 +566,9 @@ class AmountTotalCard extends StatelessWidget {
                       total,
                       textAlign: TextAlign.right,
                       style: TextStyle(
-                        color:
-                            Get.find<ThemeController>().isDarkMode.value 
-                                ? const Color(0xFFDDDDDD)
-                                : const Color(0xFF2E2E2E),
+                        color: Get.find<ThemeController>().isDarkMode.value
+                            ? const Color(0xFFDDDDDD)
+                            : const Color(0xFF2E2E2E),
                         fontSize: context.setSp(18),
                         fontFamily: 'Tajawal',
                         fontWeight: FontWeight.w700,
@@ -573,10 +580,9 @@ class AmountTotalCard extends StatelessWidget {
                       package: 'shared_widgets',
                       width: context.setWidth(12.2),
                       height: context.setHeight(12.2),
-                      color:
-                          Get.find<ThemeController>().isDarkMode.value 
-                              ? const Color(0xFFDDDDDD)
-                              : const Color(0xFF2E2E2E),
+                      color: Get.find<ThemeController>().isDarkMode.value
+                          ? const Color(0xFFDDDDDD)
+                          : const Color(0xFF2E2E2E),
                     ),
                   ],
                 ),
@@ -612,17 +618,15 @@ class ProductAndCustomerCard extends StatelessWidget {
           height: context.setHeight(215),
           padding: const EdgeInsets.all(16),
           decoration: ShapeDecoration(
-            color:
-                Get.find<ThemeController>().isDarkMode.value 
-                    ? Colors.black.withValues(alpha: 0.17)
-                    : Colors.white.withValues(alpha: 0.50),
+            color: Get.find<ThemeController>().isDarkMode.value
+                ? Colors.black.withValues(alpha: 0.17)
+                : Colors.white.withValues(alpha: 0.50),
             shape: RoundedRectangleBorder(
               side: BorderSide(
                 width: 1,
-                color:
-                    Get.find<ThemeController>().isDarkMode.value 
-                        ? Colors.white.withValues(alpha: 0.50)
-                        : const Color(0xFFE7E7E8),
+                color: Get.find<ThemeController>().isDarkMode.value
+                    ? Colors.white.withValues(alpha: 0.50)
+                    : const Color(0xFFE7E7E8),
                 // Colors.white.withValues(alpha: 0.50),
               ),
               borderRadius: BorderRadius.circular(context.setMinSize(20)),
@@ -638,10 +642,9 @@ class ProductAndCustomerCard extends StatelessWidget {
                     width: context.setWidth(40),
                     height: context.setHeight(40),
                     decoration: ShapeDecoration(
-                      color:
-                          Get.find<ThemeController>().isDarkMode.value 
-                              ? const Color(0x1918BBCD)
-                              : const Color(0x1916A6B7),
+                      color: Get.find<ThemeController>().isDarkMode.value
+                          ? const Color(0x1918BBCD)
+                          : const Color(0x1916A6B7),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
                           context.setMinSize(11),
@@ -696,17 +699,15 @@ class ProductAndCustomerCard extends StatelessWidget {
                 title.tr,
                 textAlign: TextAlign.right,
                 style: TextStyle(
-                  color:
-                      Get.find<ThemeController>().isDarkMode.value 
-                          ? const Color(0xFFEEEEEE)
-                          : const Color(0xFF2E2E2E),
+                  color: Get.find<ThemeController>().isDarkMode.value
+                      ? const Color(0xFFEEEEEE)
+                      : const Color(0xFF2E2E2E),
                   fontSize: context.setSp(18),
                   fontFamily: 'Tajawal',
                   fontWeight: FontWeight.w700,
                   height: 1.56,
                 ),
               ),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -714,10 +715,9 @@ class ProductAndCustomerCard extends StatelessWidget {
                     'Sync: $syncData %',
                     textAlign: TextAlign.right,
                     style: TextStyle(
-                      color:
-                          Get.find<ThemeController>().isDarkMode.value 
-                              ? Color(0xFFB1B3BC)
-                              : const Color(0xFF4B5563),
+                      color: Get.find<ThemeController>().isDarkMode.value
+                          ? Color(0xFFB1B3BC)
+                          : const Color(0xFF4B5563),
                       fontSize: context.setSp(14),
                       fontFamily: 'Tajawal',
                       fontWeight: FontWeight.w400,
@@ -734,14 +734,12 @@ class ProductAndCustomerCard extends StatelessWidget {
                   value: double.parse(syncData) / 100,
                   minHeight: 8,
                   borderRadius: BorderRadius.circular(9999),
-                  backgroundColor:
-                      Get.find<ThemeController>().isDarkMode.value 
-                          ? const Color(0x26F7F7F7)
-                          : const Color(0x268B8B8B),
-                  color:
-                      Get.find<ThemeController>().isDarkMode.value 
-                          ? const Color(0xFF18BBCD)
-                          : const Color(0xFF16A6B7),
+                  backgroundColor: Get.find<ThemeController>().isDarkMode.value
+                      ? const Color(0x26F7F7F7)
+                      : const Color(0x268B8B8B),
+                  color: Get.find<ThemeController>().isDarkMode.value
+                      ? const Color(0xFF18BBCD)
+                      : const Color(0xFF16A6B7),
                 ),
               ),
               SizedBox(height: context.setHeight(24)),
@@ -753,7 +751,9 @@ class ProductAndCustomerCard extends StatelessWidget {
                     title: "Update_All".tr,
                     onTap: () async {
                       var result = await loadingDataController.updateAll(
-                        name: title=="products" ?Loaddata.products.toString() :Loaddata.customers.toString(),
+                        name: title == "products"
+                            ? Loaddata.products.toString()
+                            : Loaddata.customers.toString(),
                       );
                       if (result == true) {
                         appSnackBar(
@@ -783,7 +783,10 @@ class ProductAndCustomerCard extends StatelessWidget {
                       title: '',
                       onTap: () async {
                         loadingDataController.isUpdate.value = true;
-                        var result = await synchronizeBasedOnModelType(type: title=="products" ?Loaddata.products.toString() :Loaddata.customers.toString() );
+                        var result = await synchronizeBasedOnModelType(
+                            type: title == "products"
+                                ? Loaddata.products.toString()
+                                : Loaddata.customers.toString());
                         if (result == true) {
                           appSnackBar(
                             message: 'synchronized'.tr,
@@ -847,50 +850,46 @@ class SyncButton extends StatelessWidget {
         decoration: ShapeDecoration(
           color: isHaveBackColor ? const Color(0xFF16A6B7) : null,
           shape: RoundedRectangleBorder(
-            side:
-                isHaveBackColor
-                    ? BorderSide.none
-                    : BorderSide(width: 1.01, color: const Color(0xFF898383)),
+            side: isHaveBackColor
+                ? BorderSide.none
+                : BorderSide(width: 1.01, color: const Color(0xFF898383)),
             borderRadius: BorderRadius.circular(context.setMinSize(30.54)),
           ),
-          shadows:
-              isHaveBackColor
-                  ? [
-                    BoxShadow(
-                      color: Color(0x3316A6B7),
-                      blurRadius: 30,
-                      offset: Offset(0, 4),
-                      spreadRadius: 0,
-                    ),
-                  ]
-                  : [],
-        ),
-        child:
-            isHaveBackColor
-                ? Center(
-                  child: Text(
-                    title,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color:
-                          Get.find<ThemeController>().isDarkMode.value 
-                              ? const Color(0xFF042B2F)
-                              : Colors.white,
-                      fontSize: context.setSp(15.13),
-                      fontFamily: 'Tajawal',
-                      fontWeight: FontWeight.w400,
-                      height: 1.43,
-                    ),
+          shadows: isHaveBackColor
+              ? [
+                  BoxShadow(
+                    color: Color(0x3316A6B7),
+                    blurRadius: 30,
+                    offset: Offset(0, 4),
+                    spreadRadius: 0,
                   ),
-                )
-                : Center(
-                  child: SvgPicture.asset(
-                    AppImages.syncImage2,
-                    package: 'shared_widgets',
-                    // width: context.setWidth(16.86),
-                    // height: context.setHeight(17.75),
+                ]
+              : [],
+        ),
+        child: isHaveBackColor
+            ? Center(
+                child: Text(
+                  title,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Get.find<ThemeController>().isDarkMode.value
+                        ? const Color(0xFF042B2F)
+                        : Colors.white,
+                    fontSize: context.setSp(15.13),
+                    fontFamily: 'Tajawal',
+                    fontWeight: FontWeight.w400,
+                    height: 1.43,
                   ),
                 ),
+              )
+            : Center(
+                child: SvgPicture.asset(
+                  AppImages.syncImage2,
+                  package: 'shared_widgets',
+                  // width: context.setWidth(16.86),
+                  // height: context.setHeight(17.75),
+                ),
+              ),
       ),
     );
   }
@@ -910,23 +909,20 @@ class _PosCardState extends State<PosCard> {
     return Container(
       height: context.setHeight(215),
       decoration: ShapeDecoration(
-        color:
-            Get.find<ThemeController>().isDarkMode.value 
-                ? Colors.black.withValues(alpha: 0.17)
-                : Colors.white.withValues(alpha: 0.47),
+        color: Get.find<ThemeController>().isDarkMode.value
+            ? Colors.black.withValues(alpha: 0.17)
+            : Colors.white.withValues(alpha: 0.47),
         shape: RoundedRectangleBorder(
           side: BorderSide(
             width: 1,
-            color:
-                Get.find<ThemeController>().isDarkMode.value 
-                    ? Colors.white.withValues(alpha: 0.50)
-                    : const Color(0xFFE7E7E8),
+            color: Get.find<ThemeController>().isDarkMode.value
+                ? Colors.white.withValues(alpha: 0.50)
+                : const Color(0xFFE7E7E8),
             //  Colors.white.withValues(alpha: 0.50),
           ),
           borderRadius: BorderRadius.circular(context.setMinSize(20)),
         ),
       ),
-
       child: Padding(
         padding: EdgeInsets.symmetric(
           vertical: context.setHeight(24),
@@ -954,10 +950,9 @@ class _PosCardState extends State<PosCard> {
                       child: Text(
                         SharedPr.currentPosObject!.name.toString(),
                         style: TextStyle(
-                          color:
-                              Get.find<ThemeController>().isDarkMode.value 
-                                  ? const Color(0xFFDDDDDD)
-                                  : const Color(0xFF2E2E2E),
+                          color: Get.find<ThemeController>().isDarkMode.value
+                              ? const Color(0xFFDDDDDD)
+                              : const Color(0xFF2E2E2E),
                           fontSize: context.setSp(20),
                           fontFamily: 'Tajawal',
                           fontWeight: FontWeight.w600,
@@ -976,19 +971,18 @@ class _PosCardState extends State<PosCard> {
                     Text(
                       widget.sessionController.sessionAmountOprationCard.isEmpty
                           ? "0.0"
-                          : 
-                          widget.sessionController.formatter.format(
-                            widget
-                                    .sessionController
-                                    .sessionAmountOprationCard["session_amount_opration"]["total_out_invoice"] ??
-                                0.0,
-                          ),
+                          : widget.sessionController.formatter.format(
+                              widget.sessionController
+                                              .sessionAmountOprationCard[
+                                          "session_amount_opration"]
+                                      ["total_out_invoice"] ??
+                                  0.0,
+                            ),
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color:
-                            Get.find<ThemeController>().isDarkMode.value 
-                                ? const Color(0xFFDDDDDD)
-                                : const Color(0xFF2E2E2E),
+                        color: Get.find<ThemeController>().isDarkMode.value
+                            ? const Color(0xFFDDDDDD)
+                            : const Color(0xFF2E2E2E),
                         fontSize: context.setSp(20),
                         fontFamily: 'Tajawal',
                         fontWeight: FontWeight.w600,
@@ -1000,10 +994,9 @@ class _PosCardState extends State<PosCard> {
                       package: 'shared_widgets',
                       width: context.setWidth(13),
                       height: context.setHeight(13),
-                      color:
-                          Get.find<ThemeController>().isDarkMode.value 
-                              ? const Color(0xFFDDDDDD)
-                              : const Color(0xFF2E2E2E),
+                      color: Get.find<ThemeController>().isDarkMode.value
+                          ? const Color(0xFFDDDDDD)
+                          : const Color(0xFF2E2E2E),
                     ),
                   ],
                 ),
@@ -1024,10 +1017,9 @@ class _PosCardState extends State<PosCard> {
                     ),
                     Text.rich(
                       style: TextStyle(
-                        color:
-                            Get.find<ThemeController>().isDarkMode.value 
-                                ? const Color(0xFFD4D4D4)
-                                : const Color(0xFF2E2E2E),
+                        color: Get.find<ThemeController>().isDarkMode.value
+                            ? const Color(0xFFD4D4D4)
+                            : const Color(0xFF2E2E2E),
                         fontSize: context.setSp(context.setSp(14)),
                         fontFamily: 'Tajawal',
                         fontWeight: FontWeight.w400,
@@ -1038,25 +1030,16 @@ class _PosCardState extends State<PosCard> {
                           // TextSpan(text: "date_time".tr),
                           // TextSpan(text: '  :   '),
                           TextSpan(
-                            text:
-                                widget
-                                            .sessionController
-                                            .posSessionsList
-                                            .isEmpty ||
-                                        widget
-                                                .sessionController
-                                                .posSessionsList
-                                                .last
-                                                .startTime ==
-                                            ''
-                                    ? formatDateTime(null)
-                                    : formatDateTime(
-                                      widget
-                                          .sessionController
-                                          .posSessionsList
-                                          .last
-                                          .startTime!,
-                                    ),
+                            text: widget.sessionController.posSessionsList
+                                        .isEmpty ||
+                                    widget.sessionController.posSessionsList
+                                            .last.startTime ==
+                                        ''
+                                ? formatDateTime(null)
+                                : formatDateTime(
+                                    widget.sessionController.posSessionsList
+                                        .last.startTime!,
+                                  ),
                           ),
                         ],
                       ),
@@ -1064,14 +1047,12 @@ class _PosCardState extends State<PosCard> {
                     ),
                   ],
                 ),
-
                 Text(
                   'total_sales'.tr,
                   style: TextStyle(
-                    color:
-                        Get.find<ThemeController>().isDarkMode.value 
-                            ? const Color(0xFFD4D4D4)
-                            : const Color(0xFF2E2E2E),
+                    color: Get.find<ThemeController>().isDarkMode.value
+                        ? const Color(0xFFD4D4D4)
+                        : const Color(0xFF2E2E2E),
                     fontSize: context.setSp(14),
                     fontFamily: 'Tajawal',
                     fontWeight: FontWeight.w400,
@@ -1080,14 +1061,14 @@ class _PosCardState extends State<PosCard> {
                 ),
               ],
             ),
-
             Spacer(),
             if (widget.sessionController.posSessionsList.isEmpty ||
                 widget.sessionController.posSessionsList.last.state ==
                     SessionState.closedSession) ...[
               ButtonsToContinueOrStop(
                 onTap: () {
-                  widget.sessionController.sessionStartOrResumOnTap(context: context);
+                  widget.sessionController
+                      .sessionStartOrResumOnTap(context: context);
                 },
                 image: AppImages.stop,
                 data: "startNewSession".tr,
@@ -1107,9 +1088,11 @@ class _PosCardState extends State<PosCard> {
                       // flex: 3,
                       child: ButtonsToContinueOrStop(
                         onTap: () {
-                          widget.sessionController.sessionStartOrResumOnTap(context: context,);
+                          widget.sessionController.sessionStartOrResumOnTap(
+                            context: context,
+                          );
                         },
-                        image:AppImages.stop,
+                        image: AppImages.stop,
                         data: "ResumeSession".tr,
                         addBorderSide: false,
                         color: const Color(0xFFF2AC57),
@@ -1129,11 +1112,11 @@ class _PosCardState extends State<PosCard> {
                         widget.sessionController.isLoading.value = false;
                         Get.to(() => CloseSession());
                       },
-                      image:AppImages.continueImage,
+                      image: AppImages.continueImage,
                       data: "closeSession".tr,
                       addBorderSide: true,
                       color: const Color(0x2BF20C10),
-                      // Get.find<ThemeController>().isDarkMode.value 
+                      // Get.find<ThemeController>().isDarkMode.value
                       //     ? Colors.black.withValues(alpha: 0.17)
                       //     : const Color(0x2B665959),
                     ),
@@ -1172,16 +1155,14 @@ class ButtonsToContinueOrStop extends StatelessWidget {
         decoration: ShapeDecoration(
           color: color,
           shape: RoundedRectangleBorder(
-            side:
-                addBorderSide
-                    ? BorderSide(
-                      width: 1,
-                      color:
-                          Get.find<ThemeController>().isDarkMode.value 
-                              ? Colors.black.withValues(alpha: 0.17)
-                              : Colors.white.withValues(alpha: 0.50),
-                    )
-                    : BorderSide.none,
+            side: addBorderSide
+                ? BorderSide(
+                    width: 1,
+                    color: Get.find<ThemeController>().isDarkMode.value
+                        ? Colors.black.withValues(alpha: 0.17)
+                        : Colors.white.withValues(alpha: 0.50),
+                  )
+                : BorderSide.none,
             borderRadius: BorderRadius.circular(context.setMinSize(9)),
           ),
         ),
@@ -1194,12 +1175,11 @@ class ButtonsToContinueOrStop extends StatelessWidget {
               package: 'shared_widgets',
               width: context.setWidth(28.5),
               height: context.setHeight(28.5),
-              color:
-                  addBorderSide
-                      ? Get.find<ThemeController>().isDarkMode.value 
-                          ? const Color(0xFFF68889)
-                          : const Color(0xFFE94043)
-                      : AppColor.black,
+              color: addBorderSide
+                  ? Get.find<ThemeController>().isDarkMode.value
+                      ? const Color(0xFFF68889)
+                      : const Color(0xFFE94043)
+                  : AppColor.black,
             ),
             Padding(
               padding: EdgeInsets.only(top: context.setHeight(4.3)),
@@ -1208,12 +1188,11 @@ class ButtonsToContinueOrStop extends StatelessWidget {
                   data,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color:
-                        addBorderSide
-                            ? Get.find<ThemeController>().isDarkMode.value 
-                                ? const Color(0xFFF68889)
-                                : const Color(0xFFE94043)
-                            : const Color(0xFF032A2E),
+                    color: addBorderSide
+                        ? Get.find<ThemeController>().isDarkMode.value
+                            ? const Color(0xFFF68889)
+                            : const Color(0xFFE94043)
+                        : const Color(0xFF032A2E),
                     fontSize: context.setSp(16.10),
                     fontFamily: 'Tajawal',
                     fontWeight: FontWeight.w500,
@@ -1231,10 +1210,9 @@ class ButtonsToContinueOrStop extends StatelessWidget {
 
 String formatDateTime(String? odooDateTime) {
   // 1. نحول النص القادم من Odoo إلى DateTime
-  DateTime date =
-      odooDateTime == null || odooDateTime == ''
-          ? DateTime.now()
-          : DateTime.parse(odooDateTime);
+  DateTime date = odooDateTime == null || odooDateTime == ''
+      ? DateTime.now()
+      : DateTime.parse(odooDateTime);
 
   // 2. ننسق التاريخ حسب اللغة
   String formattedDate = intl.DateFormat(
@@ -1337,10 +1315,9 @@ class _SalesLineChartState extends State<_SalesLineChart> {
                 return Text(
                   v.toInt().toString(),
                   style: TextStyle(
-                    color:
-                        Get.find<ThemeController>().isDarkMode.value 
-                            ? Color(0xFFB1B3BC)
-                            : const Color(0xFF01343A),
+                    color: Get.find<ThemeController>().isDarkMode.value
+                        ? Color(0xFFB1B3BC)
+                        : const Color(0xFF01343A),
                     fontSize: context.setSp(12.30),
                     fontFamily: 'Tajawal',
                     fontWeight: FontWeight.w400,
@@ -1360,10 +1337,9 @@ class _SalesLineChartState extends State<_SalesLineChart> {
                   return Text(
                     bottomTitles[index],
                     style: TextStyle(
-                      color:
-                          Get.find<ThemeController>().isDarkMode.value 
-                              ? Color(0xFFB1B3BC)
-                              : const Color(0xFF01343A),
+                      color: Get.find<ThemeController>().isDarkMode.value
+                          ? Color(0xFFB1B3BC)
+                          : const Color(0xFF01343A),
                       fontSize: context.setSp(12.30),
                       fontFamily: 'Tajawal',
                       fontWeight: FontWeight.w400,
@@ -1394,7 +1370,7 @@ class _SalesLineChartState extends State<_SalesLineChart> {
               gradient: LinearGradient(
                 colors: [
                   const Color(0xFF16A6B7),
-                  Get.find<ThemeController>().isDarkMode.value 
+                  Get.find<ThemeController>().isDarkMode.value
                       ? const Color(0x00241E1E)
                       : Colors.white.withValues(alpha: 0),
                 ],
@@ -1412,7 +1388,7 @@ class _SalesLineChartState extends State<_SalesLineChart> {
 class BestSellingProducts extends StatelessWidget {
   FinalReportController finalReportController;
   BestSellingProducts({Key? key, required this.finalReportController})
-    : super(key: key);
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -1438,17 +1414,15 @@ class BestSellingProducts extends StatelessWidget {
       height: context.setHeight(123.7),
       padding: const EdgeInsets.all(16),
       decoration: ShapeDecoration(
-        color:
-            Get.find<ThemeController>().isDarkMode.value 
-                ? Colors.black.withValues(alpha: 0.17)
-                : Colors.white,
+        color: Get.find<ThemeController>().isDarkMode.value
+            ? Colors.black.withValues(alpha: 0.17)
+            : Colors.white,
         shape: RoundedRectangleBorder(
           side: BorderSide(
             width: 1,
-            color:
-                Get.find<ThemeController>().isDarkMode.value 
-                    ? Colors.white.withValues(alpha: 0.50)
-                    : const Color(0xFFE7E7E8),
+            color: Get.find<ThemeController>().isDarkMode.value
+                ? Colors.white.withValues(alpha: 0.50)
+                : const Color(0xFFE7E7E8),
           ),
           borderRadius: BorderRadius.circular(context.setMinSize(16)),
         ),
@@ -1472,7 +1446,9 @@ class BestSellingProducts extends StatelessWidget {
                   Text(
                     'best_selling_products'.tr,
                     style: TextStyle(
-                      color: Get.find<ThemeController>().isDarkMode.value  ? Colors.white : Colors.black,
+                      color: Get.find<ThemeController>().isDarkMode.value
+                          ? Colors.white
+                          : Colors.black,
                       fontSize: context.setSp(15.36),
                       fontFamily: 'Tajawal',
                       fontWeight: FontWeight.w700,
@@ -1483,26 +1459,25 @@ class BestSellingProducts extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8),
                     child: Row(
                       spacing: context.setWidth(7.75),
-                      children:
-                          products.map((p) {
-                            final value = p.totalPrice!;
-                            final color =
-                                colors[products.indexOf(p) % colors.length];
-                            final flex =
-                                ((value / total) * boxConstraints.maxWidth);
-                            return Container(
-                              width: flex,
-                              height: context.setHeight(11),
-                              decoration: ShapeDecoration(
-                                color: color,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(
-                                    context.setMinSize(12.72),
-                                  ),
-                                ),
+                      children: products.map((p) {
+                        final value = p.totalPrice!;
+                        final color =
+                            colors[products.indexOf(p) % colors.length];
+                        final flex =
+                            ((value / total) * boxConstraints.maxWidth);
+                        return Container(
+                          width: flex,
+                          height: context.setHeight(11),
+                          decoration: ShapeDecoration(
+                            color: color,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                context.setMinSize(12.72),
                               ),
-                            );
-                          }).toList(),
+                            ),
+                          ),
+                        );
+                      }).toList(),
                     ),
                   ),
                   Row(
@@ -1517,7 +1492,7 @@ class BestSellingProducts extends StatelessWidget {
                               textAlign: TextAlign.right,
                               style: TextStyle(
                                 color:
-                                    Get.find<ThemeController>().isDarkMode.value 
+                                    Get.find<ThemeController>().isDarkMode.value
                                         ? Colors.white
                                         : Colors.black,
                                 fontSize: context.setSp(11.55),
@@ -1533,10 +1508,11 @@ class BestSellingProducts extends StatelessWidget {
                                   (p.totalPrice).toString(),
                                   textAlign: TextAlign.right,
                                   style: TextStyle(
-                                    color:
-                                        Get.find<ThemeController>().isDarkMode.value 
-                                            ? Colors.white
-                                            : Colors.black,
+                                    color: Get.find<ThemeController>()
+                                            .isDarkMode
+                                            .value
+                                        ? Colors.white
+                                        : Colors.black,
                                     fontSize: context.setSp(14.85),
                                     fontFamily: 'Inter',
                                     fontWeight: FontWeight.w700,
@@ -1547,9 +1523,8 @@ class BestSellingProducts extends StatelessWidget {
                                   width: context.setWidth(20),
                                   height: context.setHeight(6),
                                   decoration: ShapeDecoration(
-                                    color:
-                                        colors[products.indexOf(p) %
-                                            colors.length],
+                                    color: colors[
+                                        products.indexOf(p) % colors.length],
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(6.60),
                                     ),
@@ -1575,7 +1550,7 @@ class BestSellingProducts extends StatelessWidget {
 class BestSellingCategoriesChart extends StatefulWidget {
   FinalReportController finalReportController;
   BestSellingCategoriesChart({Key? key, required this.finalReportController})
-    : super(key: key);
+      : super(key: key);
 
   @override
   State<BestSellingCategoriesChart> createState() =>
@@ -1590,21 +1565,13 @@ class _BestSellingCategoriesChartState
     const Color(0xFF8DD3C7),
   ];
   double get totalQtyAll {
-  return widget.finalReportController.finalReportInfo != null &&
-        widget
-            .finalReportController
-            .finalReportInfo!
-            .productBasedCategories!
-            .isNotEmpty
-      ? widget
-          .finalReportController
-          .finalReportInfo!
-          .productBasedCategories!
-          .fold(0.0, (sum, item) => sum + item.totalQty!)
-      : 0.0;
-}
-
-
+    return widget.finalReportController.finalReportInfo != null &&
+            widget.finalReportController.finalReportInfo!
+                .productBasedCategories!.isNotEmpty
+        ? widget.finalReportController.finalReportInfo!.productBasedCategories!
+            .fold(0.0, (sum, item) => sum + item.totalQty!)
+        : 0.0;
+  }
 
   // double totalQtyAll = 0.0;
   @override
@@ -1630,28 +1597,23 @@ class _BestSellingCategoriesChartState
   @override
   Widget build(BuildContext context) {
     return Container(
-      height:
-        Platform.isWindows ? context.setHeight(257) :  widget.finalReportController.finalReportInfo != null &&
-                  widget
-                      .finalReportController
-                      .finalReportInfo!
-                      .productBasedCategories!
-                      .isNotEmpty
+      height: Platform.isWindows
+          ? context.setHeight(257)
+          : widget.finalReportController.finalReportInfo != null &&
+                  widget.finalReportController.finalReportInfo!
+                      .productBasedCategories!.isNotEmpty
               ? null
-              : 
-              context.setHeight(257),
+              : context.setHeight(257),
       decoration: ShapeDecoration(
-        color:
-            Get.find<ThemeController>().isDarkMode.value 
-                ? Colors.black.withValues(alpha: 0.17)
-                : Colors.white,
+        color: Get.find<ThemeController>().isDarkMode.value
+            ? Colors.black.withValues(alpha: 0.17)
+            : Colors.white,
         shape: RoundedRectangleBorder(
           side: BorderSide(
             width: 1,
-            color:
-                Get.find<ThemeController>().isDarkMode.value 
-                    ? Colors.white.withValues(alpha: 0.50)
-                    : const Color(0xFFE7E7E8),
+            color: Get.find<ThemeController>().isDarkMode.value
+                ? Colors.white.withValues(alpha: 0.50)
+                : const Color(0xFFE7E7E8),
           ),
           borderRadius: BorderRadius.circular(16),
         ),
@@ -1678,10 +1640,9 @@ class _BestSellingCategoriesChartState
               child: Text(
                 'best_product_by_cat'.tr,
                 style: TextStyle(
-                  color:
-                      Get.find<ThemeController>().isDarkMode.value 
-                          ? Colors.white
-                          : const Color(0xFF2E2E2E),
+                  color: Get.find<ThemeController>().isDarkMode.value
+                      ? Colors.white
+                      : const Color(0xFF2E2E2E),
                   fontSize: context.setSp(16),
                   fontFamily: 'Tajawal',
                   fontWeight: FontWeight.w700,
@@ -1690,11 +1651,8 @@ class _BestSellingCategoriesChartState
               ),
             ),
             if (widget.finalReportController.finalReportInfo != null &&
-                widget
-                    .finalReportController
-                    .finalReportInfo!
-                    .productBasedCategories!
-                    .isNotEmpty) ...[
+                widget.finalReportController.finalReportInfo!
+                    .productBasedCategories!.isNotEmpty) ...[
               // Chart + Legend
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1703,28 +1661,22 @@ class _BestSellingCategoriesChartState
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      ...widget
-                          .finalReportController
-                          .finalReportInfo!
+                      ...widget.finalReportController.finalReportInfo!
                           .productBasedCategories!
                           .map(
-                            (item) => _legendItem(
-                              text: item.getProductNameBasedOnLang,
-                              color:
-                                  colorList[widget
-                                          .finalReportController
-                                          .finalReportInfo!
-                                          .productBasedCategories!
-                                          .indexOf(item) %
-                                      colorList.length],
-                              context: context,
-                              percentage:
-                                  totalQtyAll == 0
-                                      ? 0
-                                      : ((item.totalQty! / totalQtyAll) * 100)
-                                          .roundToDouble(),
-                            ),
-                          ),
+                        (item) => _legendItem(
+                          text: item.getProductNameBasedOnLang,
+                          color: colorList[widget.finalReportController
+                                  .finalReportInfo!.productBasedCategories!
+                                  .indexOf(item) %
+                              colorList.length],
+                          context: context,
+                          percentage: totalQtyAll == 0
+                              ? 0
+                              : ((item.totalQty! / totalQtyAll) * 100)
+                                  .roundToDouble(),
+                        ),
+                      ),
                     ],
                   ),
                   // Pie Chart (Donut)
@@ -1736,29 +1688,22 @@ class _BestSellingCategoriesChartState
                         sectionsSpace: context.setWidth(3.9),
                         // centerSpaceRadius:context.setWidth(40),
                         sections: [
-                          ...widget
-                              .finalReportController
-                              .finalReportInfo!
+                          ...widget.finalReportController.finalReportInfo!
                               .productBasedCategories!
                               .map(
-                                (item) => PieChartSectionData(
-                                  value:
-                                      totalQtyAll == 0
-                                          ? 0
-                                          : ((item.totalQty! / totalQtyAll) *
-                                                  100)
-                                              .roundToDouble(),
-                                  color:
-                                      colorList[widget
-                                              .finalReportController
-                                              .finalReportInfo!
-                                              .productBasedCategories!
-                                              .indexOf(item) %
-                                          colorList.length],
-                                  radius: context.setMinSize(33.5),
-                                  showTitle: false,
-                                ),
-                              ),
+                            (item) => PieChartSectionData(
+                              value: totalQtyAll == 0
+                                  ? 0
+                                  : ((item.totalQty! / totalQtyAll) * 100)
+                                      .roundToDouble(),
+                              color: colorList[widget.finalReportController
+                                      .finalReportInfo!.productBasedCategories!
+                                      .indexOf(item) %
+                                  colorList.length],
+                              radius: context.setMinSize(33.5),
+                              showTitle: false,
+                            ),
+                          ),
                         ],
                       ),
                     ),
