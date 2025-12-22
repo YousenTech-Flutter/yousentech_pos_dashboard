@@ -36,9 +36,9 @@ class _ProgressWidgetState extends State<ProgressWidget> {
       controller: _overlayPortalController,
       overlayChildBuilder: (context) {
         print("============ProgressWidget");
-        return 
-          
-          Positioned(
+        return Obx(() {
+          print("============ProgressWidget Obx");
+            return Positioned(
               child: Material(
                     color:  Color(0xFFDDDDDD),
                     child: Center(
@@ -122,7 +122,8 @@ class _ProgressWidgetState extends State<ProgressWidget> {
                     ))
               
             );
-          
+          }
+        );
       },
     );
   }
