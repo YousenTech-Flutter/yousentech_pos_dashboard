@@ -189,20 +189,20 @@ class _HomeState extends State<Home> {
                       }
                     ),
                   ),
-                  Positioned.fill(
-                    right: SharedPr.lang == "ar" ? context.setWidth(95) : 0.0,
-                    left: SharedPr.lang == "ar" ? 0.0 : context.setWidth(95),
-                    top: 0,
-                    child: GetBuilder<LoadingDataController>(
-                      id: "loading",
-                      builder: (loadingcontext) {
-                        print("============loading2222");
-                        return loadingDataController.isLoad.value
-                            ? const ProgressWidget()
-                            :  getHomeMenu(_navIndex);
-                      }
-                    ),
-                  ),
+                  // Positioned.fill(
+                  //   right: SharedPr.lang == "ar" ? context.setWidth(95) : 0.0,
+                  //   left: SharedPr.lang == "ar" ? 0.0 : context.setWidth(95),
+                  //   top: 0,
+                  //   child: GetBuilder<LoadingDataController>(
+                  //     id: "loading",
+                  //     builder: (loadingcontext) {
+                  //       print("============loading2222");
+                  //       return loadingDataController.isLoad.value
+                  //           ? const ProgressWidget()
+                  //           :  getHomeMenu(_navIndex);
+                  //     }
+                  //   ),
+                  // ),
                 ],
               ),
             ),
