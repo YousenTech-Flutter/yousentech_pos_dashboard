@@ -32,10 +32,11 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     print("Home=============");
     return Obx(() {
+      final themeCtrl = Get.find<ThemeController>();
       print("Home Obx=============");
         return SafeArea(
               child: Scaffold(
-                backgroundColor:Get.find<ThemeController>().isDarkMode.value  ? AppColor. darkModeBackgroundColor : Color(0xFFDDDDDD),
+                backgroundColor:themeCtrl.isDarkMode.value  ? AppColor. darkModeBackgroundColor : Color(0xFFDDDDDD),
                 body: Container(),
                 // backgroundColor:Get.find<ThemeController>().isDarkMode.value  ? AppColor. darkModeBackgroundColor : Color(0xFFDDDDDD),
                 // // resizeToAvoidBottomInset: _navIndex == 4  ? false : null,
