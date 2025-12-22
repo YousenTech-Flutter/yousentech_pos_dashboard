@@ -483,14 +483,14 @@ class _DashboardState extends State<Dashboard> {
             ),
           ),
         ),
-        Obx(() {
-          if (sessionController.isLoading.value ||
-              loadingDataController.isUpdate.value) {
-            return LoadingWidget(message: sessionController.message.value);
-          } else {
-            return Container(); // Return an empty widget when not loading
-          }
-        }),
+        // Obx(() {
+        //   if (sessionController.isLoading.value ||
+        //       loadingDataController.isUpdate.value) {
+        //     return LoadingWidget(message: sessionController.message.value);
+        //   } else {
+        //     return Container(); // Return an empty widget when not loading
+        //   }
+        // }),
       ],
     );
   }
