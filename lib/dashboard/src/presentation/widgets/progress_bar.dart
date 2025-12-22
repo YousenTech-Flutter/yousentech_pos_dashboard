@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:shared_widgets/config/app_colors.dart';
 import 'package:shared_widgets/config/app_images.dart';
+import 'package:shared_widgets/config/theme_controller.dart';
 import 'package:shared_widgets/utils/responsive_helpers/size_helper_extenstions.dart';
 import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/src/domain/loading_item_count_controller.dart';
 import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/src/domain/loading_synchronizing_data_viewmodel.dart';
@@ -63,7 +63,8 @@ class _ProgressWidgetState extends State<ProgressWidget> {
                               Text(
                                 "${loadingDataController.loadTital.value} ",
                                 style: TextStyle(
-                                  color:Theme.of(context).colorScheme.onSurface,
+                                  color:Get.find<ThemeController>().isDarkMode.value 
+                                          ? AppColor.white : AppColor.black,
                                   fontSize: context.setSp(16),
                                   fontWeight: FontWeight.w500,
                                   height: 1.43,
@@ -73,7 +74,8 @@ class _ProgressWidgetState extends State<ProgressWidget> {
                                   ? Text(
                                     "...",
                                     style: TextStyle(
-                                      color:Theme.of(context).colorScheme.onSurface,
+                                      color:Get.find<ThemeController>().isDarkMode.value 
+                                          ? AppColor.white : AppColor.black,
                                       fontSize: context.setSp(16),
                                       fontWeight: FontWeight.w500,
                                       height: 1.43,
@@ -82,7 +84,8 @@ class _ProgressWidgetState extends State<ProgressWidget> {
                                   : Text(
                                     "( ${_loadingItemsCountController.loadingItemCount.value.toString()} ",
                                     style: TextStyle(
-                                      color:Theme.of(context).colorScheme.onSurface,
+                                      color:Get.find<ThemeController>().isDarkMode.value 
+                                          ? AppColor.white : AppColor.black,
                                       fontSize: context.setSp(16),
                                       fontWeight: FontWeight.w500,
                                       height: 1.43,
@@ -93,7 +96,8 @@ class _ProgressWidgetState extends State<ProgressWidget> {
                                   : Text(
                                     "/ ${loadingDataController.lengthRemote.value} )",
                                     style: TextStyle(
-                                      color:Theme.of(context).colorScheme.onSurface,
+                                      color:Get.find<ThemeController>().isDarkMode.value 
+                                          ? AppColor.white : AppColor.black,
                                       fontSize: context.setSp(16),
                                       fontWeight: FontWeight.w500,
                                       height: 1.43,
