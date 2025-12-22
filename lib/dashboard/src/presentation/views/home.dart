@@ -207,9 +207,9 @@ class _HomeState extends State<Home> {
                   left: SharedPr.lang == "ar" ? 0.0 : context.setWidth(95),
                   top: 0,
                   child: 
-                  // loadingDataController.isLoad.value
-                  //     ? const ProgressWidget()
-                  //     : 
+                  loadingDataController.isLoad.value
+                      ? const ProgressWidget()
+                      : 
                       GetBuilder<LoadingDataController>(
                           id: "loading",
                           builder: (loadingcontext) {
