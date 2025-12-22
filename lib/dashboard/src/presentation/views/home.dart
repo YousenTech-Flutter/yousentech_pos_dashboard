@@ -201,8 +201,7 @@ class _HomeState extends State<Home> {
                         print("============loading2222");
                         return loadingDataController.isLoad.value
                             ? const ProgressWidget()
-                            : Container();
-                            // getHomeMenu(_navIndex);
+                            :  getHomeMenu(_navIndex);
                       }
                     ),
                   ),
