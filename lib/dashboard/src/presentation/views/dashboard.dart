@@ -1155,59 +1155,62 @@ class ButtonsToContinueOrStop extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: Container(
-        height: context.setHeight(46),
-        decoration: ShapeDecoration(
-          color: color,
-          shape: RoundedRectangleBorder(
-            side: addBorderSide
-                ? BorderSide(
-                    width: 1,
-                    color: Get.find<ThemeController>().isDarkMode.value
-                        ? Colors.black.withValues(alpha: 0.17)
-                        : Colors.white.withValues(alpha: 0.50),
-                  )
-                : BorderSide.none,
-            borderRadius: BorderRadius.circular(context.setMinSize(9)),
-          ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          spacing: context.setWidth(5),
-          children: [
-            SvgPicture.asset(
-              image,
-              package: 'shared_widgets',
-              width: context.setWidth(28.5),
-              height: context.setHeight(28.5),
-              color: addBorderSide
-                  ? Get.find<ThemeController>().isDarkMode.value
-                      ? const Color(0xFFF68889)
-                      : const Color(0xFFE94043)
-                  : AppColor.black,
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: context.setHeight(4.3)),
-              child: Center(
-                child: Text(
-                  data,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: addBorderSide
-                        ? Get.find<ThemeController>().isDarkMode.value
-                            ? const Color(0xFFF68889)
-                            : const Color(0xFFE94043)
-                        : const Color(0xFF032A2E),
-                    fontSize: context.setSp(16.10),
-                    fontFamily: 'Tajawal',
-                    fontWeight: FontWeight.w500,
-                    height: 1.43,
-                  ),
-                ),
+      child: Obx(() {
+          return Container(
+            height: context.setHeight(46),
+            decoration: ShapeDecoration(
+              color: color,
+              shape: RoundedRectangleBorder(
+                side: addBorderSide
+                    ? BorderSide(
+                        width: 1,
+                        color: Get.find<ThemeController>().isDarkMode.value
+                            ? Colors.black.withValues(alpha: 0.17)
+                            : Colors.white.withValues(alpha: 0.50),
+                      )
+                    : BorderSide.none,
+                borderRadius: BorderRadius.circular(context.setMinSize(9)),
               ),
             ),
-          ],
-        ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: context.setWidth(5),
+              children: [
+                SvgPicture.asset(
+                  image,
+                  package: 'shared_widgets',
+                  width: context.setWidth(28.5),
+                  height: context.setHeight(28.5),
+                  color: addBorderSide
+                      ? Get.find<ThemeController>().isDarkMode.value
+                          ? const Color(0xFFF68889)
+                          : const Color(0xFFE94043)
+                      : AppColor.black,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: context.setHeight(4.3)),
+                  child: Center(
+                    child: Text(
+                      data,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: addBorderSide
+                            ? Get.find<ThemeController>().isDarkMode.value
+                                ? const Color(0xFFF68889)
+                                : const Color(0xFFE94043)
+                            : const Color(0xFF032A2E),
+                        fontSize: context.setSp(16.10),
+                        fontFamily: 'Tajawal',
+                        fontWeight: FontWeight.w500,
+                        height: 1.43,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        }
       ),
     );
   }
