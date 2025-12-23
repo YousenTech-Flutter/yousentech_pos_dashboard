@@ -38,7 +38,7 @@ class _ProgressWidgetState extends State<ProgressWidget> {
         return Positioned(
           child: Obx(() {
               return Material(
-                // color: Get.find<ThemeController>().isDarkMode.value  ? AppColor. darkModeBackgroundColor : Color(0xFFDDDDDD),
+                color: Get.find<ThemeController>().isDarkMode.value  ? AppColor. darkModeBackgroundColor : Color(0xFFDDDDDD),
                 child:  Center(
                     child: SizedBox(
                       width: context.setWidth(454.48),
