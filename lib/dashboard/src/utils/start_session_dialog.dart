@@ -134,10 +134,17 @@ void startNewSession({required BuildContext context}) {
                             borderRadius: context.setMinSize(5),
                             hintText: 'openingBalanceSession'.tr,
                             labelText: 'openingBalanceSession'.tr,
-                            prefixIcon: Icon(
-                              Icons.price_change_outlined,
-                              size: context.setMinSize(25),
-                              color: AppColor.appColor,
+                            prefixIcon: Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: context.setWidth(
+                                  14,
+                                ),
+                              ),
+                              child: Icon(
+                                Icons.price_change_outlined,
+                                size: context.setMinSize(25),
+                                color: AppColor.appColor,
+                              ),
                             ),
                             keyboardType: TextInputType.number,
                             inputFormatters: [
