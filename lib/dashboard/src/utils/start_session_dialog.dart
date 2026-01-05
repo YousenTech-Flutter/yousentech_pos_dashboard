@@ -116,6 +116,20 @@ void startNewSession({required BuildContext context}) {
                             color: !Get.find<ThemeController>().isDarkMode.value
                                 ? const Color(0xFFC2C3CB)
                                 : const Color(0xFFC2C3CB),
+                            contentPadding: EdgeInsets.fromLTRB(
+                              context.setWidth(
+                                14.82,
+                              ),
+                              context.setHeight(
+                                15.22,
+                              ),
+                              context.setWidth(
+                                14.82,
+                              ),
+                              context.setHeight(
+                                15.22,
+                              ),
+                            ),
                             isAddOrEdit: true,
                             borderRadius: context.setMinSize(5),
                             hintText: 'openingBalanceSession'.tr,
