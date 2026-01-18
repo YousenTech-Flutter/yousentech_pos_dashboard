@@ -7,7 +7,9 @@ import 'package:shared_widgets/config/app_colors.dart';
 import 'package:shared_widgets/config/app_images.dart';
 import 'package:shared_widgets/config/theme_controller.dart';
 import 'package:shared_widgets/shared_widgets/custom_app_bar.dart';
+import 'package:shared_widgets/utils/responsive_helpers/device_utils.dart';
 import 'package:shared_widgets/utils/responsive_helpers/size_helper_extenstions.dart';
+import 'package:shared_widgets/utils/responsive_helpers/size_provider.dart';
 import 'package:yousentech_pos_basic_data_management/basic_data_management/src/customer/presentation/views/customer_screen.dart';
 import 'package:yousentech_pos_basic_data_management/basic_data_management/src/products/presentation/product_screen.dart';
 import 'package:yousentech_pos_dashboard/dashboard/src/presentation/views/dashboard.dart';
@@ -33,12 +35,12 @@ class _HomeState extends State<Home> {
     return Obx(() {
         return SafeArea(
           child: Scaffold(
-            // resizeToAvoidBottomInset: _navIndex == 4  ? false : null,
             resizeToAvoidBottomInset:false,
+            bottomNavigationBar: appNavigationBar(),
             appBar: customAppBar(
               context: context,
+              isMobile:DeviceUtils.isMobile(context) ,
               onDarkModeChanged: () {
-                // setState(() {});
               },
             ),
             backgroundColor:
@@ -66,6 +68,7 @@ class _HomeState extends State<Home> {
                       package: 'shared_widgets',
                     ),
                   ),
+                  if(!DeviceUtils.isMobile(context))...[
                   Positioned(
                     top: context.setHeight(0),
                     right: SharedPr.lang == "ar" ? context.setWidth(5) : null,
@@ -114,7 +117,6 @@ class _HomeState extends State<Home> {
                                         image: AppImages.home,
                                         onTap: () {
                                           _navIndex = 0;
-                                          // setState(() {});
                                           loadingDataController.update(["loading"]);
                                         },
                                         isSelect: _navIndex == 0,
@@ -124,7 +126,6 @@ class _HomeState extends State<Home> {
                                         image:AppImages.frame1,
                                         onTap: () {
                                           _navIndex = 1;
-                                          // setState(() {});
                                           loadingDataController.update(["loading"]);
                                         },
                                         isSelect: _navIndex == 1,
@@ -134,7 +135,6 @@ class _HomeState extends State<Home> {
                                         image:AppImages.productList,
                                         onTap: () {
                                           _navIndex = 2;
-                                          // setState(() {});
                                           loadingDataController.update(["loading"]);
                                         },
                                         isSelect: _navIndex == 2,
@@ -149,21 +149,11 @@ class _HomeState extends State<Home> {
                                         },
                                         isSelect: _navIndex == 3,
                                       ),
-                                      // BottomNavigationBar(
-                                      //   name: "invoice_return",
-                                      //   image: "Frame 2095586631",
-                                      //   onTap: () {
-                                      //     _navIndex = 3;
-                                      //     setState(() {});
-                                      //   },
-                                      //   isSelect: _navIndex == 3,
-                                      // ),
                                       BottomNavigationBar(
                                         name: "Reports",
                                         image:AppImages.reports,
                                         onTap: () {
                                           _navIndex = 4;
-                                          // setState(() {});
                                           loadingDataController.update(["loading"]);
                                         },
                                         isSelect: _navIndex == 4,
@@ -189,6 +179,7 @@ class _HomeState extends State<Home> {
                       }
                     ),
                   ),
+                  ],
                   Positioned.fill(
                     right: SharedPr.lang == "ar" ? context.setWidth(95) : 0.0,
                     left: SharedPr.lang == "ar" ? 0.0 : context.setWidth(95),
@@ -196,7 +187,6 @@ class _HomeState extends State<Home> {
                     child: GetBuilder<LoadingDataController>(
                       id: "loading",
                       builder: (loadingcontext) {
-                        print("loading=========${loadingDataController.isLoad.value}");
                         return loadingDataController.isLoad.value
                             ? const ProgressWidget()
                             : getHomeMenu(_navIndex);
@@ -211,6 +201,59 @@ class _HomeState extends State<Home> {
       }
     );
   }
+
+Builder appNavigationBar() {
+  return Builder(
+    builder: (context) {
+      return SizeProvider(
+          baseSize: Size(context.screenWidth, context.setHeight(80)),
+          height: context.screenHeight,
+          width: context.screenWidth,
+        child: NavigationBar(
+            height: context.setHeight(80),
+            elevation: 0,
+            backgroundColor: AppColor.white,
+            indicatorColor: AppColor.appColor.withAlpha(20),
+            labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>(
+              (Set<WidgetState> states) {
+                return TextStyle(
+                  fontSize: context.setSp(12),
+                  color: AppColor.appColor,
+                  fontFamily: 'SansMedium',
+                  fontWeight: FontWeight.w400,
+                );
+              },
+            ),
+            labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+            selectedIndex: _navIndex,
+            onDestinationSelected: (value) {
+              _navIndex = value;
+              loadingDataController.update(["loading"]);
+            },
+            destinations: List.generate(
+              appNavigationBarItems.length,
+              (int index) => NavigationDestination(
+                icon: SvgPicture.asset(
+                  appNavigationBarItems[index]["image"]!,
+                  package: 'shared_widgets',
+                  color: appNavigationBarItems[index]["name"] == "logout" ?const Color(0xFFF20C10): _navIndex == index
+                        ? Get.find<ThemeController>().isDarkMode.value 
+                            ? const Color(0x1916A6B7)
+                            : const Color(0xFFD5F1F5)
+                        : null,
+                  width:context.setWidth(24),
+                  height: context.setHeight(24),
+                ),
+                label: appNavigationBarItems[index]["name"]!.tr,
+                tooltip: appNavigationBarItems[index]["name"]!.tr,
+              ),
+            )),
+      );
+    }
+  );
+
+}
+
 }
 
 class BottomNavigationBar extends StatelessWidget {
@@ -320,3 +363,30 @@ Widget getHomeMenu(int index) {
       return Container();
   }
 }
+
+var appNavigationBarItems=[
+{
+  "name":"home",
+  "image":AppImages.home,
+},
+{
+  "name":"dashboard",
+  "image":AppImages.frame1,
+},
+{
+  "name":"products",
+  "image":AppImages.productList,
+},
+{
+  "name":"customers",
+  "image":AppImages.customers,
+},
+{
+  "name":"Reports",
+  "image":AppImages.reports,
+},
+{
+  "name":"Settings",
+  "image":AppImages.setting,
+}
+];
