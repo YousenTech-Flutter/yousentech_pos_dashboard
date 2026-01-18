@@ -238,8 +238,8 @@ Builder appNavigationBar() {
                   package: 'shared_widgets',
                   color: _navIndex == index
                         ?AppColor.appColor:  Get.find<ThemeController>().isDarkMode.value 
-                            ? const Color(0x1916A6B7)
-                            : const Color(0xFFD5F1F5),
+                            ? AppColor.white
+                            : AppColor.black,
                   width:context.setWidth(24),
                   height: context.setHeight(24),
                 ),
