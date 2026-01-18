@@ -181,8 +181,8 @@ class _HomeState extends State<Home> {
                   ),
                   ],
                   Positioned.fill(
-                    right: SharedPr.lang == "ar" ? context.setWidth(95) : 0.0,
-                    left: SharedPr.lang == "ar" ? 0.0 : context.setWidth(95),
+                    right:DeviceUtils.isMobile(context)?0.0 : SharedPr.lang == "ar" ? context.setWidth(95) : 0.0,
+                    left:DeviceUtils.isMobile(context)?0.0 : SharedPr.lang == "ar" ? 0.0 : context.setWidth(95),
                     top: 0,
                     child: GetBuilder<LoadingDataController>(
                       id: "loading",
