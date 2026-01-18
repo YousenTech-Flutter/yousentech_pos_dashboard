@@ -236,7 +236,7 @@ Builder appNavigationBar() {
                 icon: SvgPicture.asset(
                   appNavigationBarItems[index]["image"]!,
                   package: 'shared_widgets',
-                  color:appNavigationBarItems[index]["name"] == "logout" ?const Color(0xFFF20C10): _navIndex == index
+                  color: _navIndex == index
                         ?AppColor.appColor:  Get.find<ThemeController>().isDarkMode.value 
                             ? const Color(0x1916A6B7)
                             : const Color(0xFFD5F1F5),
