@@ -6,6 +6,7 @@ import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:shared_widgets/config/app_colors.dart';
 import 'package:shared_widgets/config/app_enums.dart';
 import 'package:shared_widgets/config/app_theme.dart';
+import 'package:shared_widgets/config/theme_controller.dart';
 import 'package:shared_widgets/shared_widgets/app_button.dart';
 import 'package:shared_widgets/shared_widgets/app_dialog.dart';
 import 'package:shared_widgets/shared_widgets/app_loading.dart';
@@ -83,7 +84,10 @@ void startNewSession({required BuildContext context}) {
                             "startNewSession".tr,
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: Theme.of(context).colorScheme.onPrimary,
+                              color:
+                                  Get.find<ThemeController>().isDarkMode.value
+                                      ? AppColor.white
+                                      : AppColor.black,
                               fontSize: context.setSp(20.03),
                               fontFamily: 'Tajawal',
                               fontWeight: FontWeight.w700,
@@ -97,24 +101,50 @@ void startNewSession({required BuildContext context}) {
                             height: context.setHeight(51.28),
                             fontSize: context.setSp(12),
                             testFontSize: context.setSp(16),
-                            borderColor: Theme.of(context)
-                                .extension<CustomTheme>()!
-                                .hintcolor,
-                            fillColor: Theme.of(context)
-                                .extension<CustomTheme>()!
-                                .fillColor,
-                            hintcolor: Theme.of(context)
-                                .extension<CustomTheme>()!
-                                .hintcolor,
-                            color: Theme.of(context).colorScheme.onSurface,
+                            borderColor:
+                                !Get.find<ThemeController>().isDarkMode.value
+                                    ? const Color(0xFFC2C3CB)
+                                    : null,
+                            fillColor:
+                                !Get.find<ThemeController>().isDarkMode.value
+                                    ? AppColor.white.withValues(alpha: 0.43)
+                                    : const Color(0xFF2B2B2B),
+                            hintcolor:
+                                !Get.find<ThemeController>().isDarkMode.value
+                                    ? const Color(0xFFC2C3CB)
+                                    : const Color(0xFFC2C3CB),
+                            color: !Get.find<ThemeController>().isDarkMode.value
+                                ? const Color(0xFFC2C3CB)
+                                : const Color(0xFFC2C3CB),
+                            contentPadding: EdgeInsets.fromLTRB(
+                              context.setWidth(
+                                14.82,
+                              ),
+                              context.setHeight(
+                                15.22,
+                              ),
+                              context.setWidth(
+                                14.82,
+                              ),
+                              context.setHeight(
+                                15.22,
+                              ),
+                            ),
                             isAddOrEdit: true,
                             borderRadius: context.setMinSize(5),
                             hintText: 'openingBalanceSession'.tr,
                             labelText: 'openingBalanceSession'.tr,
-                            prefixIcon: Icon(
-                              Icons.price_change_outlined,
-                              size: context.setMinSize(25),
-                              color: AppColor.appColor,
+                            prefixIcon: Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: context.setWidth(
+                                  14,
+                                ),
+                              ),
+                              child: Icon(
+                                Icons.price_change_outlined,
+                                size: context.setMinSize(25),
+                                color: AppColor.appColor,
+                              ),
                             ),
                             keyboardType: TextInputType.number,
                             inputFormatters: [
