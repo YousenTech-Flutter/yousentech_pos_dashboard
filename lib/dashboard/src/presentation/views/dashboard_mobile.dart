@@ -229,17 +229,29 @@ class ProductAndCustomerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
-      spacing: context.setWidth(10),
+      spacing: context.setWidth(15),
       children: [
-        CircularProgressIndicator(
-          value: double.parse(syncData) / 100,
-          semanticsLabel:'$syncData%' ,
-          semanticsValue:'$syncData%%'  ,
-          strokeAlign: 3,
-          strokeWidth: 5,
-          backgroundColor: const Color(0xFFE8E9EA),
-          valueColor:
-              AlwaysStoppedAnimation<Color>(const Color(0xFFF2AC57)),
+        Stack(
+          alignment: Alignment.center,
+          children: [
+            CircularProgressIndicator(
+              value: double.parse(syncData) / 100,
+              strokeWidth: 5,
+              backgroundColor: const Color(0xFFE8E9EA),
+              valueColor:
+                  AlwaysStoppedAnimation<Color>(const Color(0xFFF2AC57)),
+            ),
+            Text(
+              '$syncData%',
+              style: TextStyle(
+                fontSize:context.setSp(12),
+                fontWeight: FontWeight.bold,
+                color: Get.find<ThemeController>().isDarkMode.value
+                    ? AppColor.white
+                    : const Color(0xFF6A6A6B),
+              ),
+            ),
+          ],
         ),
         Column(
           spacing: context.setWidth(5),
