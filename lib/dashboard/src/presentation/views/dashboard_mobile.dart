@@ -56,7 +56,7 @@ class _DashboardMobileState extends State<DashboardMobile> {
     SessionService.getInstance();
   }
 
-  final pageController = PageController(viewportFraction: 0.8, keepPage: true);
+  final pageController = PageController(viewportFraction: 1.0);
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -333,21 +333,27 @@ class _DashboardMobileState extends State<DashboardMobile> {
                             ],
                           );
                         }),
-                    GetBuilder<FinalReportController>(
-                      id: "session_card",
-                      builder: (controller) {
-                        return BestSellingCategoriesChart(
-                          finalReportController: finalReportController,
-                        );
-                      },
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: context.setWidth(10)),
+                      child: GetBuilder<FinalReportController>(
+                        id: "session_card",
+                        builder: (controller) {
+                          return BestSellingCategoriesChart(
+                            finalReportController: finalReportController,
+                          );
+                        },
+                      ),
                     ),
-                    GetBuilder<FinalReportController>(
-                      id: "session_card",
-                      builder: (controller) {
-                        return PaymentDataCard(
-                          finalReportController: finalReportController,
-                        );
-                      },
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: context.setWidth(10)),
+                      child: GetBuilder<FinalReportController>(
+                        id: "session_card",
+                        builder: (controller) {
+                          return PaymentDataCard(
+                            finalReportController: finalReportController,
+                          );
+                        },
+                      ),
                     ),
                     GetBuilder<FinalReportController>(
                       id: "session_card",
@@ -360,13 +366,16 @@ class _DashboardMobileState extends State<DashboardMobile> {
                   ],
                 ),
               ),
-              SmoothPageIndicator(
-                controller: pageController,
-                count: 4,
-                effect: ExpandingDotsEffect(
-                  dotHeight:context.setHeight(10) ,
-                  dotWidth:context.setWidth(10) ,
-                  activeDotColor: AppColor.appColor,
+              Align(
+                alignment: AlignmentGeometry.center,
+                child: SmoothPageIndicator(
+                  controller: pageController,
+                  count: 4,
+                  effect: ExpandingDotsEffect(
+                    dotHeight:context.setHeight(10) ,
+                    dotWidth:context.setWidth(10) ,
+                    activeDotColor: AppColor.appColor,
+                  ),
                 ),
               )
             ],
