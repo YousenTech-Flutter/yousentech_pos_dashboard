@@ -16,6 +16,7 @@ import 'package:yousentech_pos_dashboard/dashboard/src/presentation/views/dashbo
 import 'package:yousentech_pos_final_report/final_report/src/domain/final_report_viewmodel.dart';
 import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/config/app_enums.dart';
 import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/src/domain/loading_synchronizing_data_viewmodel.dart';
+import 'package:yousentech_pos_session/pos_session/config/app_enums.dart';
 import 'package:yousentech_pos_session/pos_session/src/domain/session_service.dart';
 import 'package:yousentech_pos_session/pos_session/src/domain/session_viewmodel.dart';
 
@@ -132,58 +133,63 @@ class _DashboardMobileState extends State<DashboardMobile> {
                           horizontal: context.setWidth(24),
                         ),
                         child: Obx(() {
-                            return Column(
-                              spacing: context.setHeight(15),
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    ProductAndCustomerWidget(
-                                      loadingDataController: loadingDataController,
-                                      title: 'customers',
-                                      image: AppImages.partner,
-                                      syncData: customerRemote == 0
-                                          ? "0"
-                                          : customerLocal > customerRemote
-                                              ? (customerRemote /
-                                                      (customerLocal == 0
-                                                          ? 1
-                                                          : customerLocal) *
-                                                      100)
-                                                  .toStringAsFixed(0)
-                                              : ((customerLocal / customerRemote) *
-                                                      100)
-                                                  .toStringAsFixed(0),
-                                      remoteAndLocalCount:
-                                          "$customerRemote / $customerLocal",
-                                    ),
-                                    ProductAndCustomerWidget(
-                                      loadingDataController: loadingDataController,
-                                      title: "products",
-                                      image: AppImages.product,
-                                      syncData: productRemote == 0
-                                          ? "0"
-                                          : productLocal > productRemote
-                                              ? (productRemote /
-                                                      (productLocal == 0
-                                                          ? 1
-                                                          : productLocal) *
-                                                      100)
-                                                  .toStringAsFixed(0)
-                                              : ((productLocal / productRemote) *
-                                                      100)
-                                                  .toStringAsFixed(0),
-                                      remoteAndLocalCount:
-                                          "$productRemote / $productLocal",
-                                    ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        Get.put<DashboardController>(
-                                                DashboardController.getInstance())
-                                            .toggleProductCustomerInfo();
-                                      },
-                                      child: Container(
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            spacing: context.setHeight(15),
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  ProductAndCustomerWidget(
+                                    loadingDataController:
+                                        loadingDataController,
+                                    title: 'customers',
+                                    image: AppImages.partner,
+                                    syncData: customerRemote == 0
+                                        ? "0"
+                                        : customerLocal > customerRemote
+                                            ? (customerRemote /
+                                                    (customerLocal == 0
+                                                        ? 1
+                                                        : customerLocal) *
+                                                    100)
+                                                .toStringAsFixed(0)
+                                            : ((customerLocal /
+                                                        customerRemote) *
+                                                    100)
+                                                .toStringAsFixed(0),
+                                    remoteAndLocalCount:
+                                        "$customerRemote / $customerLocal",
+                                  ),
+                                  ProductAndCustomerWidget(
+                                    loadingDataController:
+                                        loadingDataController,
+                                    title: "products",
+                                    image: AppImages.product,
+                                    syncData: productRemote == 0
+                                        ? "0"
+                                        : productLocal > productRemote
+                                            ? (productRemote /
+                                                    (productLocal == 0
+                                                        ? 1
+                                                        : productLocal) *
+                                                    100)
+                                                .toStringAsFixed(0)
+                                            : ((productLocal / productRemote) *
+                                                    100)
+                                                .toStringAsFixed(0),
+                                    remoteAndLocalCount:
+                                        "$productRemote / $productLocal",
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Get.put<DashboardController>(
+                                              DashboardController.getInstance())
+                                          .toggleProductCustomerInfo();
+                                    },
+                                    child: Container(
                                         width: context.setWidth(21.15),
                                         height: context.setHeight(21.15),
                                         decoration: ShapeDecoration(
@@ -201,82 +207,124 @@ class _DashboardMobileState extends State<DashboardMobile> {
                                                 context.setMinSize(6.34)),
                                           ),
                                         ),
-                                        child:  Center(
-                                              child: Transform(
-                                            alignment: Alignment.center,
-                                            transform: Matrix4.rotationX(
-                                              Get.put<DashboardController>(
-                                                          DashboardController
-                                                              .getInstance())
-                                                      .isShowProductAndCustomerInfo
-                                                      .value
-                                                  ? 0
-                                                  : 3.14,
-                                            ),
-                                            child: SvgPicture.asset(
-                                              AppImages.arrowDown,
-                                              package: 'shared_widgets',
-                                              width: context.setWidth(14.84),
-                                              height: context.setHeight(14.84),
-                                            ),
-                                          ))
-                                        
-                                      ),
-                                    )
-                                  ],
+                                        child: Center(
+                                            child: Transform(
+                                          alignment: Alignment.center,
+                                          transform: Matrix4.rotationX(
+                                            Get.put<DashboardController>(
+                                                        DashboardController
+                                                            .getInstance())
+                                                    .isShowProductAndCustomerInfo
+                                                    .value
+                                                ? 0
+                                                : 3.14,
+                                          ),
+                                          child: SvgPicture.asset(
+                                            AppImages.arrowDown,
+                                            package: 'shared_widgets',
+                                            width: context.setWidth(14.84),
+                                            height: context.setHeight(14.84),
+                                          ),
+                                        ))),
+                                  )
+                                ],
+                              ),
+                              if (Get.put<DashboardController>(
+                                      DashboardController.getInstance())
+                                  .isShowProductAndCustomerInfo
+                                  .value) ...[
+                                ProductAndCustomerWidget(
+                                  loadingDataController: loadingDataController,
+                                  title: 'customers',
+                                  image: AppImages.partner,
+                                  syncData: customerRemote == 0
+                                      ? "0"
+                                      : customerLocal > customerRemote
+                                          ? (customerRemote /
+                                                  (customerLocal == 0
+                                                      ? 1
+                                                      : customerLocal) *
+                                                  100)
+                                              .toStringAsFixed(0)
+                                          : ((customerLocal / customerRemote) *
+                                                  100)
+                                              .toStringAsFixed(0),
+                                  remoteAndLocalCount:
+                                      "$customerRemote / $customerLocal",
+                                  isShowProductAndCustomerInfo: true,
                                 ),
-                                if (Get.put<DashboardController>(
-                                        DashboardController.getInstance())
-                                    .isShowProductAndCustomerInfo
-                                    .value) ...[
-                                  ProductAndCustomerWidget(
-                                    loadingDataController: loadingDataController,
-                                    title: 'customers',
-                                    image: AppImages.partner,
-                                    syncData: customerRemote == 0
-                                        ? "0"
-                                        : customerLocal > customerRemote
-                                            ? (customerRemote /
-                                                    (customerLocal == 0
-                                                        ? 1
-                                                        : customerLocal) *
-                                                    100)
-                                                .toStringAsFixed(0)
-                                            : ((customerLocal / customerRemote) *
-                                                    100)
-                                                .toStringAsFixed(0),
-                                    remoteAndLocalCount:
-                                        "$customerRemote / $customerLocal",
-                                    isShowProductAndCustomerInfo: true,
-                                  ),
-                                  ProductAndCustomerWidget(
-                                    loadingDataController: loadingDataController,
-                                    title: "products",
-                                    image: AppImages.product,
-                                    syncData: productRemote == 0
-                                        ? "0"
-                                        : productLocal > productRemote
-                                            ? (productRemote /
-                                                    (productLocal == 0
-                                                        ? 1
-                                                        : productLocal) *
-                                                    100)
-                                                .toStringAsFixed(0)
-                                            : ((productLocal / productRemote) * 100)
-                                                .toStringAsFixed(0),
-                                    remoteAndLocalCount:
-                                        "$productRemote / $productLocal",
-                                    isShowProductAndCustomerInfo: true,
-                                  ),
-                                ]
-                              ],
-                            );
-                          }
-                        ),
+                                ProductAndCustomerWidget(
+                                  loadingDataController: loadingDataController,
+                                  title: "products",
+                                  image: AppImages.product,
+                                  syncData: productRemote == 0
+                                      ? "0"
+                                      : productLocal > productRemote
+                                          ? (productRemote /
+                                                  (productLocal == 0
+                                                      ? 1
+                                                      : productLocal) *
+                                                  100)
+                                              .toStringAsFixed(0)
+                                          : ((productLocal / productRemote) *
+                                                  100)
+                                              .toStringAsFixed(0),
+                                  remoteAndLocalCount:
+                                      "$productRemote / $productLocal",
+                                  isShowProductAndCustomerInfo: true,
+                                ),
+                              ]
+                            ],
+                          );
+                        }),
                       ),
                     );
                   },
                 ),
+                Text(
+                  'نظرة عامة',
+                  style: TextStyle(
+                    color: Get.find<ThemeController>().isDarkMode.value
+                        ? AppColor.white
+                        : AppColor.black,
+                    fontSize: context.setSp(20.09),
+                    fontFamily: 'SansBold',
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                GetBuilder<FinalReportController>(
+                    id: "session_card",
+                    builder: (controller) {
+                      return Column(
+                        children: [
+                          AmountTotalCard(
+                            title: InfoTotalCard.totalSales.text.tr,
+                            total: controller.formatter.format(
+                              controller.finalReportInfo?.totalOutInvoice ??
+                                  0.0,
+                            ),
+                            image: AppImages.div2,
+                            color: const Color(0xFF27AE60),
+                          ),
+                          AmountTotalCard(
+                            title: InfoTotalCard.netIncome.text.tr,
+                            total: controller.formatter.format(
+                              controller.finalReportInfo?.netSales ?? 0.0,
+                            ),
+                            image: AppImages.div1,
+                            color: const Color(0x1916A6B7),
+                          ),
+                          AmountTotalCard(
+                            title: InfoTotalCard.totalReturns.text.tr,
+                            total: controller.formatter.format(
+                              controller.finalReportInfo?.totalOutRefund ?? 0.0,
+                            ),
+                            image: AppImages.div,
+                            color: const Color(0xFFF2AC57),
+                          ),
+                        ],
+                      );
+                    }),
               ],
             ),
           ),

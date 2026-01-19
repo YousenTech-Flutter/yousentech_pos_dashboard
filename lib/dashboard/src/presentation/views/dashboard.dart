@@ -244,6 +244,7 @@ class _DashboardState extends State<Dashboard> {
                                       color: const Color(0xFFF2AC57),
                                     ),
                                   ),
+                                
                                 ],
                               );
                             },
@@ -849,17 +850,17 @@ class SyncButton extends StatelessWidget {
                     : BorderSide(width: 1.01, color: const Color(0xFF898383)),
             borderRadius: BorderRadius.circular(context.setMinSize(30.54)),
           ),
-          shadows:
-              isHaveBackColor
-                  ? [
-                    BoxShadow(
-                      color: Color(0x3316A6B7),
-                      blurRadius: 30,
-                      offset: Offset(0, 4),
-                      spreadRadius: 0,
-                    ),
-                  ]
-                  : [],
+          // shadows:
+          //     isHaveBackColor
+          //         ? [
+          //           BoxShadow(
+          //             color: Color(0x3316A6B7),
+          //             blurRadius: 30,
+          //             offset: Offset(0, 4),
+          //             spreadRadius: 0,
+          //           ),
+          //         ]
+          //         : [],
         ),
         child:
             isHaveBackColor
