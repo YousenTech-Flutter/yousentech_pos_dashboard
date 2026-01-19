@@ -106,7 +106,7 @@ class _DashboardMobileState extends State<DashboardMobile> {
                                 .itemdata[Loaddata.products.name.toString()]
                             ["local"];
                     return Container(
-                      height: context.setHeight(61.33),
+                      height: context.setHeight(70),
                       decoration: ShapeDecoration(
                         color: Get.find<ThemeController>().isDarkMode.value
                             ? Colors.black.withValues(alpha: 0.17)
@@ -122,70 +122,76 @@ class _DashboardMobileState extends State<DashboardMobile> {
                               BorderRadius.circular(context.setMinSize(20)),
                         ),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          ProductAndCustomerWidget(
-                            title: 'customers',
-                            syncData: customerRemote == 0
-                                ? "0"
-                                : customerLocal > customerRemote
-                                    ? (customerRemote /
-                                            (customerLocal == 0
-                                                ? 1
-                                                : customerLocal) *
-                                            100)
-                                        .toStringAsFixed(0)
-                                    : ((customerLocal / customerRemote) * 100)
-                                        .toStringAsFixed(0),
-                            remoteAndLocalCount:
-                                "$customerRemote / $customerLocal",
-                          ),
-                          ProductAndCustomerWidget(
-                            title: "products",
-                            syncData: productRemote == 0
-                                ? "0"
-                                : productLocal > productRemote
-                                    ? (productRemote /
-                                            (productLocal == 0
-                                                ? 1
-                                                : productLocal) *
-                                            100)
-                                        .toStringAsFixed(0)
-                                    : ((productLocal / productRemote) * 100)
-                                        .toStringAsFixed(0),
-                            remoteAndLocalCount:
-                                "$productRemote / $productLocal",
-                          ),
-                          GestureDetector(
-                            onTap: (){},
-                            child: Container(
-                              width: context.setWidth(21.15),
-                              height: context.setHeight(21.15),
-                              decoration: ShapeDecoration(
-                                color:
-                                    Get.find<ThemeController>().isDarkMode.value
-                                        ? const Color(0xFFF1F1F1)
-                                        : const Color(0xFF202020),
-                                shape: RoundedRectangleBorder(
-                                  side: BorderSide(
-                                    width: 1.06,
-                                    color: const Color(0x21848484),
-                                  ),
-                                  borderRadius: BorderRadius.circular(
-                                      context.setMinSize(6.34)),
-                                ),
-                              ),
-                              child: Center(
-                                  child: SvgPicture.asset(
-                                AppImages.arrowDown,
-                                package: 'shared_widgets',
-                                width: context.setWidth(14.84),
-                                height: context.setHeight(14.84),
-                              )),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: context.setHeight(24),
+                          horizontal: context.setWidth(24),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            ProductAndCustomerWidget(
+                              title: 'customers',
+                              syncData: customerRemote == 0
+                                  ? "0"
+                                  : customerLocal > customerRemote
+                                      ? (customerRemote /
+                                              (customerLocal == 0
+                                                  ? 1
+                                                  : customerLocal) *
+                                              100)
+                                          .toStringAsFixed(0)
+                                      : ((customerLocal / customerRemote) * 100)
+                                          .toStringAsFixed(0),
+                              remoteAndLocalCount:
+                                  "$customerRemote / $customerLocal",
                             ),
-                          )
-                        ],
+                            ProductAndCustomerWidget(
+                              title: "products",
+                              syncData: productRemote == 0
+                                  ? "0"
+                                  : productLocal > productRemote
+                                      ? (productRemote /
+                                              (productLocal == 0
+                                                  ? 1
+                                                  : productLocal) *
+                                              100)
+                                          .toStringAsFixed(0)
+                                      : ((productLocal / productRemote) * 100)
+                                          .toStringAsFixed(0),
+                              remoteAndLocalCount:
+                                  "$productRemote / $productLocal",
+                            ),
+                            GestureDetector(
+                              onTap: () {},
+                              child: Container(
+                                width: context.setWidth(21.15),
+                                height: context.setHeight(21.15),
+                                decoration: ShapeDecoration(
+                                  color: Get.find<ThemeController>()
+                                          .isDarkMode
+                                          .value
+                                      ?const Color(0xFF202020) : const Color(0xFFF1F1F1),
+                                  shape: RoundedRectangleBorder(
+                                    side: BorderSide(
+                                      width: 1.06,
+                                      color: const Color(0x21848484),
+                                    ),
+                                    borderRadius: BorderRadius.circular(
+                                        context.setMinSize(6.34)),
+                                  ),
+                                ),
+                                child: Center(
+                                    child: SvgPicture.asset(
+                                  AppImages.arrowDown,
+                                  package: 'shared_widgets',
+                                  width: context.setWidth(14.84),
+                                  height: context.setHeight(14.84),
+                                )),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     );
                   },
@@ -222,22 +228,22 @@ class ProductAndCustomerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
-      spacing: context.setWidth(5),
+      spacing: context.setWidth(10),
       children: [
         Stack(
           alignment: Alignment.center,
           children: [
             CircularProgressIndicator(
               value: double.parse(syncData) / 100,
-              strokeWidth: 8,
-              backgroundColor: const Color(0xFFF8F2EB),
+              strokeWidth: 5,
+              backgroundColor: const Color(0xFFE8E9EA),
               valueColor:
                   AlwaysStoppedAnimation<Color>(const Color(0xFFF2AC57)),
             ),
             Text(
               '$syncData%',
               style: TextStyle(
-                fontSize: 16,
+                fontSize:context.setSp(14),
                 fontWeight: FontWeight.bold,
                 color: Get.find<ThemeController>().isDarkMode.value
                     ? AppColor.white
