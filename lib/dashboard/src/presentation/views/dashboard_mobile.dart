@@ -68,176 +68,85 @@ class _DashboardMobileState extends State<DashboardMobile> {
             right: context.setWidth(10),
             left: context.setWidth(10),
           ),
-          child: SingleChildScrollView(
-            child: Column(
-              spacing: context.setHeight(16),
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                GetBuilder<SessionController>(
-                  id: "Sessionbutton",
-                  builder: (sessioncontroller) {
-                    return Column(
-                      spacing: context.setHeight(16),
-                      children: [
-                        GetBuilder<SessionController>(
-                            id: "session_amount_opration_card",
-                            builder: (controller) {
-                              return PosCard(
-                                  sessionController: sessioncontroller);
-                            }),
-                      ],
-                    );
-                  },
-                ),
-                GetBuilder<LoadingDataController>(
-                  id: 'card_loading_data',
-                  builder: (controller) {
-                    int customerRemote = loadingDataController.itemdata.isEmpty
-                        ? 0
-                        : loadingDataController
-                                .itemdata[Loaddata.customers.name.toString()]
-                            ["remote"];
-                    int customerLocal = loadingDataController.itemdata.isEmpty
-                        ? 0
-                        : loadingDataController
-                                .itemdata[Loaddata.customers.name.toString()]
-                            ["local"];
-                    int productRemote = loadingDataController.itemdata.isEmpty
-                        ? 0
-                        : loadingDataController
-                                .itemdata[Loaddata.products.name.toString()]
-                            ["remote"];
-                    int productLocal = loadingDataController.itemdata.isEmpty
-                        ? 0
-                        : loadingDataController
-                                .itemdata[Loaddata.products.name.toString()]
-                            ["local"];
-                    return Container(
-                      // height: context.setHeight(100),
-                      decoration: ShapeDecoration(
-                        color: Get.find<ThemeController>().isDarkMode.value
-                            ? Colors.black.withValues(alpha: 0.17)
-                            : Colors.white.withValues(alpha: 0.50),
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(
-                            width: 1,
-                            color: Get.find<ThemeController>().isDarkMode.value
-                                ? Colors.white.withValues(alpha: 0.50)
-                                : const Color(0xFFE7E7E8),
-                          ),
-                          borderRadius:
-                              BorderRadius.circular(context.setMinSize(20)),
+          child: Column(
+            spacing: context.setHeight(16),
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              GetBuilder<SessionController>(
+                id: "Sessionbutton",
+                builder: (sessioncontroller) {
+                  return Column(
+                    spacing: context.setHeight(16),
+                    children: [
+                      GetBuilder<SessionController>(
+                          id: "session_amount_opration_card",
+                          builder: (controller) {
+                            return PosCard(
+                                sessionController: sessioncontroller);
+                          }),
+                    ],
+                  );
+                },
+              ),
+              GetBuilder<LoadingDataController>(
+                id: 'card_loading_data',
+                builder: (controller) {
+                  int customerRemote = loadingDataController.itemdata.isEmpty
+                      ? 0
+                      : loadingDataController
+                              .itemdata[Loaddata.customers.name.toString()]
+                          ["remote"];
+                  int customerLocal = loadingDataController.itemdata.isEmpty
+                      ? 0
+                      : loadingDataController
+                              .itemdata[Loaddata.customers.name.toString()]
+                          ["local"];
+                  int productRemote = loadingDataController.itemdata.isEmpty
+                      ? 0
+                      : loadingDataController
+                              .itemdata[Loaddata.products.name.toString()]
+                          ["remote"];
+                  int productLocal = loadingDataController.itemdata.isEmpty
+                      ? 0
+                      : loadingDataController
+                              .itemdata[Loaddata.products.name.toString()]
+                          ["local"];
+                  return Container(
+                    // height: context.setHeight(100),
+                    decoration: ShapeDecoration(
+                      color: Get.find<ThemeController>().isDarkMode.value
+                          ? Colors.black.withValues(alpha: 0.17)
+                          : Colors.white.withValues(alpha: 0.50),
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(
+                          width: 1,
+                          color: Get.find<ThemeController>().isDarkMode.value
+                              ? Colors.white.withValues(alpha: 0.50)
+                              : const Color(0xFFE7E7E8),
                         ),
+                        borderRadius:
+                            BorderRadius.circular(context.setMinSize(20)),
                       ),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: context.setHeight(24),
-                          horizontal: context.setWidth(24),
-                        ),
-                        child: Obx(() {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            spacing: context.setHeight(15),
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  ProductAndCustomerWidget(
-                                    loadingDataController:
-                                        loadingDataController,
-                                    title: 'customers',
-                                    image: AppImages.partner,
-                                    syncData: customerRemote == 0
-                                        ? "0"
-                                        : customerLocal > customerRemote
-                                            ? (customerRemote /
-                                                    (customerLocal == 0
-                                                        ? 1
-                                                        : customerLocal) *
-                                                    100)
-                                                .toStringAsFixed(0)
-                                            : ((customerLocal /
-                                                        customerRemote) *
-                                                    100)
-                                                .toStringAsFixed(0),
-                                    remoteAndLocalCount:
-                                        "$customerRemote / $customerLocal",
-                                  ),
-                                  ProductAndCustomerWidget(
-                                    loadingDataController:
-                                        loadingDataController,
-                                    title: "products",
-                                    image: AppImages.product,
-                                    syncData: productRemote == 0
-                                        ? "0"
-                                        : productLocal > productRemote
-                                            ? (productRemote /
-                                                    (productLocal == 0
-                                                        ? 1
-                                                        : productLocal) *
-                                                    100)
-                                                .toStringAsFixed(0)
-                                            : ((productLocal / productRemote) *
-                                                    100)
-                                                .toStringAsFixed(0),
-                                    remoteAndLocalCount:
-                                        "$productRemote / $productLocal",
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      Get.put<DashboardController>(
-                                              DashboardController.getInstance())
-                                          .toggleProductCustomerInfo();
-                                    },
-                                    child: Container(
-                                        width: context.setWidth(21.15),
-                                        height: context.setHeight(21.15),
-                                        decoration: ShapeDecoration(
-                                          color: Get.find<ThemeController>()
-                                                  .isDarkMode
-                                                  .value
-                                              ? const Color(0xFF202020)
-                                              : const Color(0xFFF1F1F1),
-                                          shape: RoundedRectangleBorder(
-                                            side: BorderSide(
-                                              width: 1.06,
-                                              color: const Color(0x21848484),
-                                            ),
-                                            borderRadius: BorderRadius.circular(
-                                                context.setMinSize(6.34)),
-                                          ),
-                                        ),
-                                        child: Center(
-                                            child: Transform(
-                                          alignment: Alignment.center,
-                                          transform: Matrix4.rotationX(
-                                            Get.put<DashboardController>(
-                                                        DashboardController
-                                                            .getInstance())
-                                                    .isShowProductAndCustomerInfo
-                                                    .value
-                                                ? 0
-                                                : 3.14,
-                                          ),
-                                          child: SvgPicture.asset(
-                                            AppImages.arrowDown,
-                                            package: 'shared_widgets',
-                                            width: context.setWidth(14.84),
-                                            height: context.setHeight(14.84),
-                                          ),
-                                        ))),
-                                  )
-                                ],
-                              ),
-                              if (Get.put<DashboardController>(
-                                      DashboardController.getInstance())
-                                  .isShowProductAndCustomerInfo
-                                  .value) ...[
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: context.setHeight(24),
+                        horizontal: context.setWidth(24),
+                      ),
+                      child: Obx(() {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          spacing: context.setHeight(15),
+                          children: [
+                            Row(
+                              mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
                                 ProductAndCustomerWidget(
-                                  loadingDataController: loadingDataController,
+                                  loadingDataController:
+                                      loadingDataController,
                                   title: 'customers',
                                   image: AppImages.partner,
                                   syncData: customerRemote == 0
@@ -249,15 +158,16 @@ class _DashboardMobileState extends State<DashboardMobile> {
                                                       : customerLocal) *
                                                   100)
                                               .toStringAsFixed(0)
-                                          : ((customerLocal / customerRemote) *
+                                          : ((customerLocal /
+                                                      customerRemote) *
                                                   100)
                                               .toStringAsFixed(0),
                                   remoteAndLocalCount:
                                       "$customerRemote / $customerLocal",
-                                  isShowProductAndCustomerInfo: true,
                                 ),
                                 ProductAndCustomerWidget(
-                                  loadingDataController: loadingDataController,
+                                  loadingDataController:
+                                      loadingDataController,
                                   title: "products",
                                   image: AppImages.product,
                                   syncData: productRemote == 0
@@ -274,28 +184,118 @@ class _DashboardMobileState extends State<DashboardMobile> {
                                               .toStringAsFixed(0),
                                   remoteAndLocalCount:
                                       "$productRemote / $productLocal",
-                                  isShowProductAndCustomerInfo: true,
                                 ),
-                              ]
-                            ],
-                          );
-                        }),
-                      ),
-                    );
-                  },
+                                GestureDetector(
+                                  onTap: () {
+                                    Get.put<DashboardController>(
+                                            DashboardController.getInstance())
+                                        .toggleProductCustomerInfo();
+                                  },
+                                  child: Container(
+                                      width: context.setWidth(21.15),
+                                      height: context.setHeight(21.15),
+                                      decoration: ShapeDecoration(
+                                        color: Get.find<ThemeController>()
+                                                .isDarkMode
+                                                .value
+                                            ? const Color(0xFF202020)
+                                            : const Color(0xFFF1F1F1),
+                                        shape: RoundedRectangleBorder(
+                                          side: BorderSide(
+                                            width: 1.06,
+                                            color: const Color(0x21848484),
+                                          ),
+                                          borderRadius: BorderRadius.circular(
+                                              context.setMinSize(6.34)),
+                                        ),
+                                      ),
+                                      child: Center(
+                                          child: Transform(
+                                        alignment: Alignment.center,
+                                        transform: Matrix4.rotationX(
+                                          Get.put<DashboardController>(
+                                                      DashboardController
+                                                          .getInstance())
+                                                  .isShowProductAndCustomerInfo
+                                                  .value
+                                              ? 0
+                                              : 3.14,
+                                        ),
+                                        child: SvgPicture.asset(
+                                          AppImages.arrowDown,
+                                          package: 'shared_widgets',
+                                          width: context.setWidth(14.84),
+                                          height: context.setHeight(14.84),
+                                        ),
+                                      ))),
+                                )
+                              ],
+                            ),
+                            if (Get.put<DashboardController>(
+                                    DashboardController.getInstance())
+                                .isShowProductAndCustomerInfo
+                                .value) ...[
+                              ProductAndCustomerWidget(
+                                loadingDataController: loadingDataController,
+                                title: 'customers',
+                                image: AppImages.partner,
+                                syncData: customerRemote == 0
+                                    ? "0"
+                                    : customerLocal > customerRemote
+                                        ? (customerRemote /
+                                                (customerLocal == 0
+                                                    ? 1
+                                                    : customerLocal) *
+                                                100)
+                                            .toStringAsFixed(0)
+                                        : ((customerLocal / customerRemote) *
+                                                100)
+                                            .toStringAsFixed(0),
+                                remoteAndLocalCount:
+                                    "$customerRemote / $customerLocal",
+                                isShowProductAndCustomerInfo: true,
+                              ),
+                              ProductAndCustomerWidget(
+                                loadingDataController: loadingDataController,
+                                title: "products",
+                                image: AppImages.product,
+                                syncData: productRemote == 0
+                                    ? "0"
+                                    : productLocal > productRemote
+                                        ? (productRemote /
+                                                (productLocal == 0
+                                                    ? 1
+                                                    : productLocal) *
+                                                100)
+                                            .toStringAsFixed(0)
+                                        : ((productLocal / productRemote) *
+                                                100)
+                                            .toStringAsFixed(0),
+                                remoteAndLocalCount:
+                                    "$productRemote / $productLocal",
+                                isShowProductAndCustomerInfo: true,
+                              ),
+                            ]
+                          ],
+                        );
+                      }),
+                    ),
+                  );
+                },
+              ),
+              Text(
+                'نظرة عامة',
+                style: TextStyle(
+                  color: Get.find<ThemeController>().isDarkMode.value
+                      ? AppColor.white
+                      : AppColor.black,
+                  fontSize: context.setSp(20.09),
+                  fontFamily: 'SansBold',
+                  fontWeight: FontWeight.w600,
                 ),
-                Text(
-                  'نظرة عامة',
-                  style: TextStyle(
-                    color: Get.find<ThemeController>().isDarkMode.value
-                        ? AppColor.white
-                        : AppColor.black,
-                    fontSize: context.setSp(20.09),
-                    fontFamily: 'SansBold',
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                PageView(
+              ),
+              Expanded(
+                child: PageView(
                   controller: pageController,
                   children: [
                     GetBuilder<FinalReportController>(
@@ -359,17 +359,17 @@ class _DashboardMobileState extends State<DashboardMobile> {
                     ),
                   ],
                 ),
-                SmoothPageIndicator(
-                  controller: pageController,
-                  count: 4,
-                  effect: ExpandingDotsEffect(
-                    dotHeight:context.setHeight(10) ,
-                    dotWidth:context.setWidth(10) ,
-                    activeDotColor: AppColor.appColor,
-                  ),
-                )
-              ],
-            ),
+              ),
+              SmoothPageIndicator(
+                controller: pageController,
+                count: 4,
+                effect: ExpandingDotsEffect(
+                  dotHeight:context.setHeight(10) ,
+                  dotWidth:context.setWidth(10) ,
+                  activeDotColor: AppColor.appColor,
+                ),
+              )
+            ],
           ),
         ),
         Obx(() {
