@@ -253,202 +253,7 @@ class _DashboardState extends State<Dashboard> {
                           GetBuilder<FinalReportController>(
                             id: "sales_performance",
                             builder: (controller) {
-                              return Container(
-                                decoration: ShapeDecoration(
-                                  color:
-                                      Get.find<ThemeController>().isDarkMode.value 
-                                          ? Colors.black.withValues(alpha: 0.17)
-                                          : Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    side: BorderSide(
-                                      width: 1,
-                                      color:
-                                          Get.find<ThemeController>().isDarkMode.value 
-                                              ? Colors.white.withValues(
-                                                alpha: 0.50,
-                                              )
-                                              : const Color(0xFFE7E7E8),
-                                    ),
-                                    borderRadius: BorderRadius.circular(
-                                      context.setMinSize(16),
-                                    ),
-                                  ),
-                                ),
-                                height: context.setHeight(291.77),
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    vertical: context.setHeight(13.5),
-                                    horizontal: context.setWidth(20.93),
-                                  ),
-                                  child: Column(
-                                    spacing: context.setHeight(10),
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Container(
-                                            // height: context.setHeight(39),
-                                            // width: context.setWidth(249.06),
-                                            decoration: ShapeDecoration(
-                                              color:
-                                                  Get.find<ThemeController>().isDarkMode.value 
-                                                      ? const Color(0xFF2D2A2A)
-                                                      : const Color(0xFFF5F5F5),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                      context.setMinSize(14.77),
-                                                    ),
-                                              ),
-                                            ),
-                                            child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                horizontal: context.setWidth(
-                                                  10,
-                                                ),
-                                                vertical: context.setHeight(7),
-                                              ),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  ...salesTitals.map(
-                                                    (e) => InkWell(
-                                                      onTap: () async {
-                                                        await controller
-                                                            .updateSalesPerformanceTab(
-                                                              type: salesTitals
-                                                                  .indexOf(e),
-                                                            );
-                                                      },
-                                                      child: Container(
-                                                        height: context
-                                                            .setHeight(27),
-                                                        decoration:
-                                                            salesTitals.indexOf(
-                                                                      e,
-                                                                    ) ==
-                                                                    controller
-                                                                        .salesPerformanceTab
-                                                                ? ShapeDecoration(
-                                                                  color:
-                                                                      Get.find<ThemeController>().isDarkMode.value 
-                                                                          ? Colors
-                                                                              .black
-                                                                          : Colors
-                                                                              .white,
-                                                                  shape: RoundedRectangleBorder(
-                                                                    side: BorderSide(
-                                                                      width: 1,
-                                                                      color:
-                                                                          Get.find<ThemeController>().isDarkMode.value 
-                                                                              ? Colors.black
-                                                                              : const Color(
-                                                                                0xFFE7E7E8,
-                                                                              ),
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                          8,
-                                                                        ),
-                                                                  ),
-                                                                )
-                                                                : null,
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsets.symmetric(
-                                                                horizontal:
-                                                                    context
-                                                                        .setWidth(
-                                                                          19.1,
-                                                                        ),
-                                                              ),
-                                                          child: Center(
-                                                            child: Text(
-                                                              e.tr,
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .center,
-                                                              style: TextStyle(
-                                                                color:
-                                                                    salesTitals.indexOf(
-                                                                              e,
-                                                                            ) ==
-                                                                            controller.salesPerformanceTab
-                                                                        ? Get.find<ThemeController>().isDarkMode.value 
-                                                                            ? Colors.white
-                                                                            : const Color(
-                                                                              0xFF01343A,
-                                                                            )
-                                                                        : const Color(
-                                                                          0xFF898989,
-                                                                        ),
-                                                                fontSize:
-                                                                    context
-                                                                        .setSp(
-                                                                          14,
-                                                                        ),
-                                                                fontFamily:
-                                                                    'Tajawal',
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                height: 1.14,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                          const Spacer(),
-                                          Text(
-                                            'sales_performance'.tr,
-                                            textAlign: TextAlign.right,
-                                            style: TextStyle(
-                                              color:
-                                                  Get.find<ThemeController>().isDarkMode.value 
-                                                      ? Colors.white
-                                                      : const Color(0xFF2E2E2E),
-                                              fontSize: context.setSp(16),
-                                              fontFamily: 'Tajawal',
-                                              fontWeight: FontWeight.w700,
-                                              height: 1.50,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Expanded(
-                                        child: Padding(
-                                          padding: EdgeInsets.symmetric(
-                                            horizontal: context.setWidth(16),
-                                            vertical: context.setHeight(16),
-                                          ),
-                                          child: LayoutBuilder(
-                                            builder: (context, boxConstraints) {
-                                              return SizedBox(
-                                                height:
-                                                    boxConstraints.maxHeight,
-                                                child: _SalesLineChart(
-                                                  tab:
-                                                      controller
-                                                          .salesPerformanceTab,
-                                                  finalReportController:
-                                                      finalReportController,
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
+                              return SalesPerformance(salesTitals: salesTitals, finalReportController: controller);
                             },
                           ),
                           GetBuilder<FinalReportController>(
@@ -476,6 +281,217 @@ class _DashboardState extends State<Dashboard> {
           }
         }),
       ],
+    );
+  }
+}
+
+class SalesPerformance extends StatelessWidget {
+  const SalesPerformance({
+    super.key,
+    required this.salesTitals,
+    required this.finalReportController,
+  });
+
+  final List<String> salesTitals;
+  final FinalReportController finalReportController;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: ShapeDecoration(
+        color:
+            Get.find<ThemeController>().isDarkMode.value 
+                ? Colors.black.withValues(alpha: 0.17)
+                : Colors.white,
+        shape: RoundedRectangleBorder(
+          side: BorderSide(
+            width: 1,
+            color:
+                Get.find<ThemeController>().isDarkMode.value 
+                    ? Colors.white.withValues(
+                      alpha: 0.50,
+                    )
+                    : const Color(0xFFE7E7E8),
+          ),
+          borderRadius: BorderRadius.circular(
+            context.setMinSize(16),
+          ),
+        ),
+      ),
+      height: context.setHeight(291.77),
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          vertical: context.setHeight(13.5),
+          horizontal: context.setWidth(20.93),
+        ),
+        child: Column(
+          spacing: context.setHeight(10),
+          children: [
+            Row(
+              children: [
+                Container(
+                  // height: context.setHeight(39),
+                  // width: context.setWidth(249.06),
+                  decoration: ShapeDecoration(
+                    color:
+                        Get.find<ThemeController>().isDarkMode.value 
+                            ? const Color(0xFF2D2A2A)
+                            : const Color(0xFFF5F5F5),
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.circular(
+                            context.setMinSize(14.77),
+                          ),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: context.setWidth(
+                        10,
+                      ),
+                      vertical: context.setHeight(7),
+                    ),
+                    child: Row(
+                      mainAxisAlignment:
+                          MainAxisAlignment
+                              .spaceBetween,
+                      children: [
+                        ...salesTitals.map(
+                          (e) => InkWell(
+                            onTap: () async {
+                              await finalReportController
+                                  .updateSalesPerformanceTab(
+                                    type: salesTitals
+                                        .indexOf(e),
+                                  );
+                            },
+                            child: Container(
+                              height: context
+                                  .setHeight(27),
+                              decoration:
+                                  salesTitals.indexOf(
+                                            e,
+                                          ) ==
+                                          finalReportController
+                                              .salesPerformanceTab
+                                      ? ShapeDecoration(
+                                        color:
+                                            Get.find<ThemeController>().isDarkMode.value 
+                                                ? Colors
+                                                    .black
+                                                : Colors
+                                                    .white,
+                                        shape: RoundedRectangleBorder(
+                                          side: BorderSide(
+                                            width: 1,
+                                            color:
+                                                Get.find<ThemeController>().isDarkMode.value 
+                                                    ? Colors.black
+                                                    : const Color(
+                                                      0xFFE7E7E8,
+                                                    ),
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(
+                                                8,
+                                              ),
+                                        ),
+                                      )
+                                      : null,
+                              child: Padding(
+                                padding:
+                                    EdgeInsets.symmetric(
+                                      horizontal:
+                                          context
+                                              .setWidth(
+                                                19.1,
+                                              ),
+                                    ),
+                                child: Center(
+                                  child: Text(
+                                    e.tr,
+                                    textAlign:
+                                        TextAlign
+                                            .center,
+                                    style: TextStyle(
+                                      color:
+                                          salesTitals.indexOf(
+                                                    e,
+                                                  ) ==
+                                                  finalReportController.salesPerformanceTab
+                                              ? Get.find<ThemeController>().isDarkMode.value 
+                                                  ? Colors.white
+                                                  : const Color(
+                                                    0xFF01343A,
+                                                  )
+                                              : const Color(
+                                                0xFF898989,
+                                              ),
+                                      fontSize:
+                                          context
+                                              .setSp(
+                                                14,
+                                              ),
+                                      fontFamily:
+                                          'Tajawal',
+                                      fontWeight:
+                                          FontWeight
+                                              .w500,
+                                      height: 1.14,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const Spacer(),
+                Text(
+                  'sales_performance'.tr,
+                  textAlign: TextAlign.right,
+                  style: TextStyle(
+                    color:
+                        Get.find<ThemeController>().isDarkMode.value 
+                            ? Colors.white
+                            : const Color(0xFF2E2E2E),
+                    fontSize: context.setSp(16),
+                    fontFamily:DeviceUtils.isMobile(context) ? 'SansBold' : 'Tajawal',
+                    fontWeight: FontWeight.w700,
+                    height: 1.50,
+                  ),
+                ),
+              ],
+            ),
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: context.setWidth(16),
+                  vertical: context.setHeight(16),
+                ),
+                child: LayoutBuilder(
+                  builder: (context, boxConstraints) {
+                    return SizedBox(
+                      height:
+                          boxConstraints.maxHeight,
+                      child: _SalesLineChart(
+                        tab:
+                            finalReportController
+                                .salesPerformanceTab,
+                        finalReportController:
+                            finalReportController,
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -1472,7 +1488,7 @@ class BestSellingProducts extends StatelessWidget {
                     style: TextStyle(
                       color: Get.find<ThemeController>().isDarkMode.value  ? Colors.white : Colors.black,
                       fontSize: context.setSp(15.36),
-                      fontFamily: 'Tajawal',
+                      fontFamily: DeviceUtils.isMobile(context)?'SansMedium' : 'Tajawal',
                       fontWeight: FontWeight.w700,
                       height: 1.23,
                     ),
@@ -1681,7 +1697,7 @@ class _BestSellingCategoriesChartState
                           ? Colors.white
                           : const Color(0xFF2E2E2E),
                   fontSize: context.setSp(16),
-                  fontFamily: 'Tajawal',
+                  fontFamily: DeviceUtils.isMobile(context)?'SansMedium' : 'Tajawal',
                   fontWeight: FontWeight.w700,
                   height: 1.50,
                 ),

@@ -301,38 +301,49 @@ class _DashboardMobileState extends State<DashboardMobile> {
                     GetBuilder<FinalReportController>(
                         id: "session_card",
                         builder: (controller) {
-                          return Column(
-                            spacing: context.setHeight(10),
-                            children: [
-                              AmountTotalCard(
-                                title: InfoTotalCard.totalSales.text.tr,
-                                total: controller.formatter.format(
-                                  controller.finalReportInfo?.totalOutInvoice ??
-                                      0.0,
+                          return SingleChildScrollView(
+                            child: Column(
+                              spacing: context.setHeight(10),
+                              children: [
+                                AmountTotalCard(
+                                  title: InfoTotalCard.totalSales.text.tr,
+                                  total: controller.formatter.format(
+                                    controller.finalReportInfo?.totalOutInvoice ??
+                                        0.0,
+                                  ),
+                                  image: AppImages.div2,
+                                  color: const Color(0xFF27AE60),
                                 ),
-                                image: AppImages.div2,
-                                color: const Color(0xFF27AE60),
-                              ),
-                              AmountTotalCard(
-                                title: InfoTotalCard.netIncome.text.tr,
-                                total: controller.formatter.format(
-                                  controller.finalReportInfo?.netSales ?? 0.0,
+                                AmountTotalCard(
+                                  title: InfoTotalCard.netIncome.text.tr,
+                                  total: controller.formatter.format(
+                                    controller.finalReportInfo?.netSales ?? 0.0,
+                                  ),
+                                  image: AppImages.div1,
+                                  color: const Color(0x1916A6B7),
                                 ),
-                                image: AppImages.div1,
-                                color: const Color(0x1916A6B7),
-                              ),
-                              AmountTotalCard(
-                                title: InfoTotalCard.totalReturns.text.tr,
-                                total: controller.formatter.format(
-                                  controller.finalReportInfo?.totalOutRefund ??
-                                      0.0,
+                                AmountTotalCard(
+                                  title: InfoTotalCard.totalReturns.text.tr,
+                                  total: controller.formatter.format(
+                                    controller.finalReportInfo?.totalOutRefund ??
+                                        0.0,
+                                  ),
+                                  image: AppImages.div,
+                                  color: const Color(0xFFF2AC57),
                                 ),
-                                image: AppImages.div,
-                                color: const Color(0xFFF2AC57),
-                              ),
-                            ],
+                              ],
+                            ),
                           );
                         }),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: context.setWidth(10)),
+                      child: GetBuilder<FinalReportController>(
+                              id: "sales_performance",
+                              builder: (controller) {
+                                return SalesPerformance(salesTitals: salesTitals, finalReportController: controller);
+                              },
+                            ),
+                    ),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: context.setWidth(10)),
                       child: GetBuilder<FinalReportController>(
@@ -370,7 +381,7 @@ class _DashboardMobileState extends State<DashboardMobile> {
                 alignment: AlignmentGeometry.center,
                 child: SmoothPageIndicator(
                   controller: pageController,
-                  count: 4,
+                  count: 5,
                   effect: ExpandingDotsEffect(
                     dotHeight:context.setHeight(10) ,
                     dotWidth:context.setWidth(10) ,
