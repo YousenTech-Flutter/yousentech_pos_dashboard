@@ -12,14 +12,14 @@ class DashboardController extends GetxController {
   SideUserMenu selectedMenu = SideUserMenu.dashboard;
   SideUserMenu? preselectedMenu;
   // Widget content = const UserDashboard();
-  Widget content =  Dashboard();
+  Widget content = Dashboard();
   SideUserMenu? sufelectedMenu = SideUserMenu
       .values[SideUserMenu.values.indexOf(SideUserMenu.dashboard) + 1];
   int? selectedSubMenu;
   int selectedMenulength = 0;
   static DashboardController? _instance;
   var isLoading = false.obs;
-   var isShowProductAndCustomerInfo = false.obs;
+  var isShowProductAndCustomerInfo = false.obs;
   late DashboardService dashboardService;
 
   DashboardController._() {
@@ -85,4 +85,8 @@ class DashboardController extends GetxController {
     // print("$selectedMenu $preselectedMenu  $sufelectedMenu");
   }
   // ===================================================== [ UPDATE SELECTED MENU ] =====================================================
+
+  void toggleProductCustomerInfo() async {
+    isShowProductAndCustomerInfo != isShowProductAndCustomerInfo;
+  }
 }

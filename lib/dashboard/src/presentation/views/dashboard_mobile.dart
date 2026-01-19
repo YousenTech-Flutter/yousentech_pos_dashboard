@@ -107,7 +107,7 @@ class _DashboardMobileState extends State<DashboardMobile> {
                                 .itemdata[Loaddata.products.name.toString()]
                             ["local"];
                     return Container(
-                      height: context.setHeight(90),
+                      height: context.setHeight(100),
                       decoration: ShapeDecoration(
                         color: Get.find<ThemeController>().isDarkMode.value
                             ? Colors.black.withValues(alpha: 0.17)
@@ -130,7 +130,7 @@ class _DashboardMobileState extends State<DashboardMobile> {
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             ProductAndCustomerWidget(
                               title: 'customers',
@@ -165,7 +165,9 @@ class _DashboardMobileState extends State<DashboardMobile> {
                                   "$productRemote / $productLocal",
                             ),
                             GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                Get.put<DashboardController>(DashboardController.getInstance()).toggleProductCustomerInfo();
+                              },
                               child: Container(
                                 width: context.setWidth(21.15),
                                 height: context.setHeight(21.15),
