@@ -325,6 +325,7 @@ class SalesPerformance extends StatelessWidget {
           horizontal: context.setWidth(20.93),
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           spacing: context.setHeight(10),
           children: [
             if (DeviceUtils.isMobile(context)) ...[
@@ -471,7 +472,7 @@ class SalesPerformance extends StatelessWidget {
             Expanded(
               child: Padding(
                 padding: EdgeInsets.symmetric(
-                  horizontal: context.setWidth(DeviceUtils.isMobile(context)?10: 16),
+                  horizontal: context.setWidth(DeviceUtils.isMobile(context)?0: 16),
                   vertical: context.setHeight(16),
                 ),
                 child: LayoutBuilder(
