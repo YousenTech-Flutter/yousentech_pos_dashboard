@@ -559,7 +559,7 @@ class AmountTotalCard extends StatelessWidget {
                             Get.find<ThemeController>().isDarkMode.value 
                                 ? const Color(0xFFDDDDDD)
                                 : const Color(0xFF2E2E2E),
-                        fontSize: context.setSp(18),
+                        fontSize: context.setSp(DeviceUtils.isMobile(context)?14 :18),
                         fontFamily: DeviceUtils.isMobile(context)?'SansMedium' : 'Tajawal',
                         fontWeight: FontWeight.w700,
                         height: 1.78,

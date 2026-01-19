@@ -10,6 +10,7 @@ import 'package:shared_widgets/config/theme_controller.dart';
 import 'package:shared_widgets/shared_widgets/app_loading.dart';
 import 'package:shared_widgets/shared_widgets/app_snack_bar.dart';
 import 'package:shared_widgets/utils/responsive_helpers/size_helper_extenstions.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:yousentech_pos_basic_data_management/basic_data_management/utils/define_type_function.dart';
 import 'package:yousentech_pos_dashboard/dashboard/src/domain/dashboard_viewmodel.dart';
 import 'package:yousentech_pos_dashboard/dashboard/src/presentation/views/dashboard.dart';
@@ -19,6 +20,7 @@ import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/src/domai
 import 'package:yousentech_pos_session/pos_session/config/app_enums.dart';
 import 'package:yousentech_pos_session/pos_session/src/domain/session_service.dart';
 import 'package:yousentech_pos_session/pos_session/src/domain/session_viewmodel.dart';
+import 'package:yousentech_pos_session/pos_session/src/presentation/close_session.dart';
 
 class DashboardMobile extends StatefulWidget {
   DashboardMobile({super.key});
@@ -54,6 +56,7 @@ class _DashboardMobileState extends State<DashboardMobile> {
     SessionService.getInstance();
   }
 
+  final pageController = PageController(viewportFraction: 0.8, keepPage: true);
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -292,40 +295,79 @@ class _DashboardMobileState extends State<DashboardMobile> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                GetBuilder<FinalReportController>(
-                    id: "session_card",
-                    builder: (controller) {
-                      return Column(
-                        spacing: context.setHeight(10),
-                        children: [
-                          AmountTotalCard(
-                            title: InfoTotalCard.totalSales.text.tr,
-                            total: controller.formatter.format(
-                              controller.finalReportInfo?.totalOutInvoice ??
-                                  0.0,
-                            ),
-                            image: AppImages.div2,
-                            color: const Color(0xFF27AE60),
-                          ),
-                          AmountTotalCard(
-                            title: InfoTotalCard.netIncome.text.tr,
-                            total: controller.formatter.format(
-                              controller.finalReportInfo?.netSales ?? 0.0,
-                            ),
-                            image: AppImages.div1,
-                            color: const Color(0x1916A6B7),
-                          ),
-                          AmountTotalCard(
-                            title: InfoTotalCard.totalReturns.text.tr,
-                            total: controller.formatter.format(
-                              controller.finalReportInfo?.totalOutRefund ?? 0.0,
-                            ),
-                            image: AppImages.div,
-                            color: const Color(0xFFF2AC57),
-                          ),
-                        ],
-                      );
-                    }),
+                PageView(
+                  controller: pageController,
+                  children: [
+                    GetBuilder<FinalReportController>(
+                        id: "session_card",
+                        builder: (controller) {
+                          return Column(
+                            spacing: context.setHeight(10),
+                            children: [
+                              AmountTotalCard(
+                                title: InfoTotalCard.totalSales.text.tr,
+                                total: controller.formatter.format(
+                                  controller.finalReportInfo?.totalOutInvoice ??
+                                      0.0,
+                                ),
+                                image: AppImages.div2,
+                                color: const Color(0xFF27AE60),
+                              ),
+                              AmountTotalCard(
+                                title: InfoTotalCard.netIncome.text.tr,
+                                total: controller.formatter.format(
+                                  controller.finalReportInfo?.netSales ?? 0.0,
+                                ),
+                                image: AppImages.div1,
+                                color: const Color(0x1916A6B7),
+                              ),
+                              AmountTotalCard(
+                                title: InfoTotalCard.totalReturns.text.tr,
+                                total: controller.formatter.format(
+                                  controller.finalReportInfo?.totalOutRefund ??
+                                      0.0,
+                                ),
+                                image: AppImages.div,
+                                color: const Color(0xFFF2AC57),
+                              ),
+                            ],
+                          );
+                        }),
+                    GetBuilder<FinalReportController>(
+                      id: "session_card",
+                      builder: (controller) {
+                        return BestSellingCategoriesChart(
+                          finalReportController: finalReportController,
+                        );
+                      },
+                    ),
+                    GetBuilder<FinalReportController>(
+                      id: "session_card",
+                      builder: (controller) {
+                        return PaymentDataCard(
+                          finalReportController: finalReportController,
+                        );
+                      },
+                    ),
+                    GetBuilder<FinalReportController>(
+                      id: "session_card",
+                      builder: (controller) {
+                        return BestSellingProducts(
+                          finalReportController: finalReportController,
+                        );
+                      },
+                    ),
+                  ],
+                ),
+                SmoothPageIndicator(
+                  controller: pageController,
+                  count: 4,
+                  effect: ExpandingDotsEffect(
+                    dotHeight:context.setHeight(10) ,
+                    dotWidth:context.setWidth(10) ,
+                    activeDotColor: AppColor.appColor,
+                  ),
+                )
               ],
             ),
           ),
