@@ -284,7 +284,7 @@ class _DashboardMobileState extends State<DashboardMobile> {
                 },
               ),
               Text(
-                'نظرة عامة',
+                'overview'.tr,
                 style: TextStyle(
                   color: Get.find<ThemeController>().isDarkMode.value
                       ? AppColor.white

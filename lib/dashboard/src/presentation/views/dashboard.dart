@@ -322,7 +322,7 @@ class SalesPerformance extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(
           vertical: context.setHeight(13.5),
-          horizontal: context.setWidth(20.93),
+          horizontal: context.setWidth(DeviceUtils.isMobile(context)?10: 20.93),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
