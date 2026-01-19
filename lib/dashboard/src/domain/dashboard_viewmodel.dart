@@ -19,6 +19,7 @@ class DashboardController extends GetxController {
   int selectedMenulength = 0;
   static DashboardController? _instance;
   var isLoading = false.obs;
+   var isShowProductAndCustomerInfo = false.obs;
   late DashboardService dashboardService;
 
   DashboardController._() {

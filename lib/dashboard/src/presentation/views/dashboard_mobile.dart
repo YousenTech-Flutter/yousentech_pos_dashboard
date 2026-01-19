@@ -8,6 +8,7 @@ import 'package:shared_widgets/config/app_images.dart';
 import 'package:shared_widgets/config/theme_controller.dart';
 import 'package:shared_widgets/shared_widgets/app_loading.dart';
 import 'package:shared_widgets/utils/responsive_helpers/size_helper_extenstions.dart';
+import 'package:yousentech_pos_dashboard/dashboard/src/domain/dashboard_viewmodel.dart';
 import 'package:yousentech_pos_dashboard/dashboard/src/presentation/views/dashboard.dart';
 import 'package:yousentech_pos_final_report/final_report/src/domain/final_report_viewmodel.dart';
 import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/config/app_enums.dart';
@@ -106,7 +107,7 @@ class _DashboardMobileState extends State<DashboardMobile> {
                                 .itemdata[Loaddata.products.name.toString()]
                             ["local"];
                     return Container(
-                      height: context.setHeight(80),
+                      height: context.setHeight(90),
                       decoration: ShapeDecoration(
                         color: Get.find<ThemeController>().isDarkMode.value
                             ? Colors.black.withValues(alpha: 0.17)
@@ -124,7 +125,7 @@ class _DashboardMobileState extends State<DashboardMobile> {
                       ),
                       child: Padding(
                         padding: EdgeInsets.symmetric(
-                          vertical: context.setHeight(15),
+                          vertical: context.setHeight(24),
                           horizontal: context.setWidth(24),
                         ),
                         child: Row(
@@ -172,7 +173,8 @@ class _DashboardMobileState extends State<DashboardMobile> {
                                   color: Get.find<ThemeController>()
                                           .isDarkMode
                                           .value
-                                      ?const Color(0xFF202020) : const Color(0xFFF1F1F1),
+                                      ? const Color(0xFF202020)
+                                      : const Color(0xFFF1F1F1),
                                   shape: RoundedRectangleBorder(
                                     side: BorderSide(
                                       width: 1.06,
@@ -182,13 +184,24 @@ class _DashboardMobileState extends State<DashboardMobile> {
                                         context.setMinSize(6.34)),
                                   ),
                                 ),
-                                child: Center(
-                                    child: SvgPicture.asset(
-                                  AppImages.arrowDown,
-                                  package: 'shared_widgets',
-                                  width: context.setWidth(14.84),
-                                  height: context.setHeight(14.84),
-                                )),
+                                child: Obx(() {
+                                    return Center(
+                                        child: Transform(
+                                      alignment: Alignment.center,
+                                      transform: Matrix4.rotationX(
+                                        Get.put<DashboardController>(DashboardController.getInstance()).isShowProductAndCustomerInfo.value
+                                            ? 0
+                                            : 3.14,
+                                      ),
+                                      child: SvgPicture.asset(
+                                        AppImages.arrowDown,
+                                        package: 'shared_widgets',
+                                        width: context.setWidth(14.84),
+                                        height: context.setHeight(14.84),
+                                      ),
+                                    ));
+                                  }
+                                ),
                               ),
                             )
                           ],
@@ -237,14 +250,18 @@ class ProductAndCustomerWidget extends StatelessWidget {
             CircularProgressIndicator(
               value: double.parse(syncData) / 100,
               strokeWidth: 5,
-              backgroundColor: const Color(0xFFE8E9EA),
-              valueColor:
-                  AlwaysStoppedAnimation<Color>(const Color(0xFFF2AC57)),
+              backgroundColor: Get.find<ThemeController>().isDarkMode.value
+                  ? const Color(0x26F7F7F7)
+                  : const Color(0x268B8B8B),
+              valueColor: AlwaysStoppedAnimation<Color>(
+                  Get.find<ThemeController>().isDarkMode.value
+                      ? const Color(0xFF18BBCD)
+                      : const Color(0xFF16A6B7)),
             ),
             Text(
               '$syncData%',
               style: TextStyle(
-                fontSize:context.setSp(12),
+                fontSize: context.setSp(12),
                 fontWeight: FontWeight.bold,
                 color: Get.find<ThemeController>().isDarkMode.value
                     ? AppColor.white
