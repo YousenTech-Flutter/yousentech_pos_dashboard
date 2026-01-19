@@ -33,42 +33,43 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-        return SafeArea(
-          child: Scaffold(
-            resizeToAvoidBottomInset:false,
-            bottomNavigationBar: appNavigationBar(),
-            appBar: customAppBar(
-              context: context,
-              isMobile:DeviceUtils.isMobile(context) ,
-              onDarkModeChanged: () {
-              },
-            ),
-            backgroundColor:
-                Get.find<ThemeController>().isDarkMode.value  ? AppColor. darkModeBackgroundColor : Color(0xFFDDDDDD),
-            body: Container(
-              width: Get.width,
-              decoration: BoxDecoration(
-                color: Get.find<ThemeController>().isDarkMode.value  ? AppColor.darkModeBackgroundColor : null,
-                gradient:
-                    Get.find<ThemeController>().isDarkMode.value 
-                        ? null
-                        : LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [const Color(0xFFF0F9FF), Colors.white],
-                        ),
-              ),
-              child: Stack(
-                children: [
-                  Positioned(
-                    top: context.setHeight(10),
-                    right: context.setWidth(-170),
-                    child: SvgPicture.asset(
-                      AppImages.imageBackground,
-                      package: 'shared_widgets',
+      return SafeArea(
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          bottomNavigationBar: appNavigationBar(),
+          appBar: customAppBar(
+            context: context,
+            isMobile: DeviceUtils.isMobile(context),
+            onDarkModeChanged: () {},
+          ),
+          backgroundColor: Get.find<ThemeController>().isDarkMode.value
+              ? AppColor.darkModeBackgroundColor
+              : Color(0xFFDDDDDD),
+          body: Container(
+            width: Get.width,
+            decoration: BoxDecoration(
+              color: Get.find<ThemeController>().isDarkMode.value
+                  ? AppColor.darkModeBackgroundColor
+                  : null,
+              gradient: Get.find<ThemeController>().isDarkMode.value
+                  ? null
+                  : LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [const Color(0xFFF0F9FF), Colors.white],
                     ),
+            ),
+            child: Stack(
+              children: [
+                Positioned(
+                  top: context.setHeight(10),
+                  right: context.setWidth(-170),
+                  child: SvgPicture.asset(
+                    AppImages.imageBackground,
+                    package: 'shared_widgets',
                   ),
-                  if(!DeviceUtils.isMobile(context))...[
+                ),
+                if (!DeviceUtils.isMobile(context)) ...[
                   Positioned(
                     top: context.setHeight(0),
                     right: SharedPr.lang == "ar" ? context.setWidth(5) : null,
@@ -78,181 +79,207 @@ class _HomeState extends State<Home> {
                         id: "loading",
                         builder: (loadingcontext) {
                           return Padding(
-                          padding: EdgeInsets.symmetric(
-                            vertical: context.setHeight(14),
-                            horizontal: context.setWidth(10),
-                          ),
-                          child: Container(
-                            width: context.setWidth(84),
-                            clipBehavior: Clip.antiAlias,
-                            decoration: ShapeDecoration(
-                              color:
-                                  Get.find<ThemeController>().isDarkMode.value 
-                                      ? null
-                                      : Colors.white.withValues(alpha: 0.70),
-                              shape: RoundedRectangleBorder(
-                                side: BorderSide(
-                                  width: Get.find<ThemeController>().isDarkMode.value  ? 0.60 : 1,
-                                  color:
-                                      Get.find<ThemeController>().isDarkMode.value 
-                                          ? AppColor.darkModeBackgroundColor
-                                          : Colors.white.withValues(alpha: 0.50),
-                                ),
-                                borderRadius: BorderRadius.circular(
-                                  context.setMinSize(16),
+                            padding: EdgeInsets.symmetric(
+                              vertical: context.setHeight(14),
+                              horizontal: context.setWidth(10),
+                            ),
+                            child: Container(
+                              width: context.setWidth(84),
+                              clipBehavior: Clip.antiAlias,
+                              decoration: ShapeDecoration(
+                                color:
+                                    Get.find<ThemeController>().isDarkMode.value
+                                        ? null
+                                        : Colors.white.withValues(alpha: 0.70),
+                                shape: RoundedRectangleBorder(
+                                  side: BorderSide(
+                                    width: Get.find<ThemeController>()
+                                            .isDarkMode
+                                            .value
+                                        ? 0.60
+                                        : 1,
+                                    color: Get.find<ThemeController>()
+                                            .isDarkMode
+                                            .value
+                                        ? AppColor.darkModeBackgroundColor
+                                        : Colors.white.withValues(alpha: 0.50),
+                                  ),
+                                  borderRadius: BorderRadius.circular(
+                                    context.setMinSize(16),
+                                  ),
                                 ),
                               ),
+                              child: LayoutBuilder(
+                                builder: (context, constraints) {
+                                  return ConstrainedBox(
+                                    constraints: BoxConstraints(
+                                      minHeight: constraints.maxHeight,
+                                    ),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        BottomNavigationBar(
+                                          name: "home",
+                                          image: AppImages.home,
+                                          onTap: () {
+                                            _navIndex = 0;
+                                            loadingDataController
+                                                .update(["loading"]);
+                                          },
+                                          isSelect: _navIndex == 0,
+                                        ),
+                                        BottomNavigationBar(
+                                          name: "dashboard",
+                                          image: AppImages.frame1,
+                                          onTap: () {
+                                            _navIndex = 1;
+                                            loadingDataController
+                                                .update(["loading"]);
+                                          },
+                                          isSelect: _navIndex == 1,
+                                        ),
+                                        BottomNavigationBar(
+                                          name: "products",
+                                          image: AppImages.productList,
+                                          onTap: () {
+                                            _navIndex = 2;
+                                            loadingDataController
+                                                .update(["loading"]);
+                                          },
+                                          isSelect: _navIndex == 2,
+                                        ),
+                                        BottomNavigationBar(
+                                          name: "customers",
+                                          image: AppImages.customers,
+                                          onTap: () {
+                                            _navIndex = 3;
+                                            // setState(() {});
+                                            loadingDataController
+                                                .update(["loading"]);
+                                          },
+                                          isSelect: _navIndex == 3,
+                                        ),
+                                        BottomNavigationBar(
+                                          name: "Reports",
+                                          image: AppImages.reports,
+                                          onTap: () {
+                                            _navIndex = 4;
+                                            loadingDataController
+                                                .update(["loading"]);
+                                          },
+                                          isSelect: _navIndex == 4,
+                                        ),
+                                        BottomNavigationBar(
+                                          name: "Settings",
+                                          image: AppImages.setting,
+                                          onTap: () {
+                                            _navIndex = 5;
+                                            // setState(() {});
+                                            loadingDataController
+                                                .update(["loading"]);
+                                          },
+                                          isSelect: _navIndex == 5,
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              ),
                             ),
-                            child: LayoutBuilder(
-                              builder: (context, constraints) {
-                                return ConstrainedBox(
-                                  constraints: BoxConstraints(
-                                    minHeight: constraints.maxHeight,
-                                  ),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      BottomNavigationBar(
-                                        name: "home",
-                                        image: AppImages.home,
-                                        onTap: () {
-                                          _navIndex = 0;
-                                          loadingDataController.update(["loading"]);
-                                        },
-                                        isSelect: _navIndex == 0,
-                                      ),
-                                      BottomNavigationBar(
-                                        name: "dashboard",
-                                        image:AppImages.frame1,
-                                        onTap: () {
-                                          _navIndex = 1;
-                                          loadingDataController.update(["loading"]);
-                                        },
-                                        isSelect: _navIndex == 1,
-                                      ),
-                                      BottomNavigationBar(
-                                        name: "products",
-                                        image:AppImages.productList,
-                                        onTap: () {
-                                          _navIndex = 2;
-                                          loadingDataController.update(["loading"]);
-                                        },
-                                        isSelect: _navIndex == 2,
-                                      ),
-                                      BottomNavigationBar(
-                                        name: "customers",
-                                        image: AppImages.customers,
-                                        onTap: () {
-                                          _navIndex = 3;
-                                          // setState(() {});
-                                          loadingDataController.update(["loading"]);
-                                        },
-                                        isSelect: _navIndex == 3,
-                                      ),
-                                      BottomNavigationBar(
-                                        name: "Reports",
-                                        image:AppImages.reports,
-                                        onTap: () {
-                                          _navIndex = 4;
-                                          loadingDataController.update(["loading"]);
-                                        },
-                                        isSelect: _navIndex == 4,
-                                      ),
-                                      BottomNavigationBar(
-                                        name: "Settings",
-                                        image:AppImages.setting,
-                                        onTap: () {
-                                          _navIndex = 5;
-                                          // setState(() {});
-                                          loadingDataController.update(["loading"]);
-                                        },
-                                        isSelect: _navIndex == 5,
-                                      ),
-                                      
-                                    ],
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                        );
-                      }
-                    ),
+                          );
+                        }),
                   ),
-                  ],
-                  Positioned.fill(
-                    right:DeviceUtils.isMobile(context)?0.0 : SharedPr.lang == "ar" ? context.setWidth(95) : 0.0,
-                    left:DeviceUtils.isMobile(context)?0.0 : SharedPr.lang == "ar" ? 0.0 : context.setWidth(95),
-                    top: 0,
-                    child: GetBuilder<LoadingDataController>(
+                ],
+                Positioned.fill(
+                  right: DeviceUtils.isMobile(context)
+                      ? 0.0
+                      : SharedPr.lang == "ar"
+                          ? context.setWidth(95)
+                          : 0.0,
+                  left: DeviceUtils.isMobile(context)
+                      ? 0.0
+                      : SharedPr.lang == "ar"
+                          ? 0.0
+                          : context.setWidth(95),
+                  top: 0,
+                  child: GetBuilder<LoadingDataController>(
                       id: "loading",
                       builder: (loadingcontext) {
                         return loadingDataController.isLoad.value
                             ? const ProgressWidget()
                             : getHomeMenu(_navIndex);
-                      }
-                    ),
-                  ),
-                ],
-              ),
+                      }),
+                ),
+              ],
             ),
           ),
-        );
-      }
-    );
+        ),
+      );
+    });
   }
 
-Builder appNavigationBar() {
-  return Builder(
-    builder: (context) {
-      return SizeProvider(
-          baseSize: Size(context.screenWidth, context.setHeight(80)),
-          height: context.screenHeight,
-          width: context.screenWidth,
-        child: NavigationBar(
-            height: context.setHeight(70),
-            elevation: 0,
-            backgroundColor:Get.find<ThemeController>().isDarkMode.value ? const Color(0xFF1B1B1B) : AppColor.white,
-            indicatorColor: AppColor.appColor.withAlpha(20),
-            labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>(
-              (Set<WidgetState> states) {
-                return TextStyle(
-                  fontSize: context.setSp(12),
-                  color: AppColor.appColor,
-                  fontFamily: 'SansMedium',
-                  fontWeight: FontWeight.w400,
-                );
-              },
-            ),
-            labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
-            selectedIndex: _navIndex,
-            onDestinationSelected: (value) {
-              _navIndex = value;
-              loadingDataController.update(["loading"]);
-            },
-            destinations: List.generate(
-              appNavigationBarItems.length,
-              (int index) => NavigationDestination(
-                icon: SvgPicture.asset(
-                  appNavigationBarItems[index]["image"]!,
-                  package: 'shared_widgets',
-                  color: _navIndex == index
-                        ?AppColor.appColor:  Get.find<ThemeController>().isDarkMode.value 
-                            ? AppColor.white
-                            : AppColor.black,
-                  width:context.setWidth(24),
-                  height: context.setHeight(24),
+  GetBuilder appNavigationBar() {
+    return GetBuilder<LoadingDataController>(
+        id: "loading",
+        builder: (loadingcontext) {
+          return SizeProvider(
+            baseSize: Size(context.screenWidth, context.setHeight(80)),
+            height: context.screenHeight,
+            width: context.screenWidth,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(context.setMinSize(12.69) ),
+                  topRight: Radius.circular(context.setMinSize(12.69) ),
                 ),
-                label: appNavigationBarItems[index]["name"]!.tr,
-                tooltip: appNavigationBarItems[index]["name"]!.tr,
               ),
-            )),
-      );
-    }
-  );
-
-}
-
+              child: NavigationBar(
+                  height: context.setHeight(60),
+                  elevation: 0,
+                  backgroundColor: Get.find<ThemeController>().isDarkMode.value
+                      ? const Color(0xFF1B1B1B)
+                      : AppColor.white,
+                  indicatorColor: AppColor.appColor.withAlpha(20),
+                  labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>(
+                    (Set<WidgetState> states) {
+                      return TextStyle(
+                        fontSize: context.setSp(12),
+                        color: AppColor.appColor,
+                        fontFamily: 'SansMedium',
+                        fontWeight: FontWeight.w400,
+                      );
+                    },
+                  ),
+                  labelBehavior:
+                      NavigationDestinationLabelBehavior.onlyShowSelected,
+                  selectedIndex: _navIndex,
+                  onDestinationSelected: (value) {
+                    _navIndex = value;
+                    loadingDataController.update(["loading"]);
+                  },
+                  destinations: List.generate(
+                    appNavigationBarItems.length,
+                    (int index) => NavigationDestination(
+                      icon: SvgPicture.asset(
+                        appNavigationBarItems[index]["image"]!,
+                        package: 'shared_widgets',
+                        color: _navIndex == index
+                            ? AppColor.appColor
+                            : Get.find<ThemeController>().isDarkMode.value
+                                ? AppColor.white
+                                : AppColor.black,
+                        width: context.setWidth(30),
+                        height: context.setHeight(30),
+                      ),
+                      label: appNavigationBarItems[index]["name"]!.tr,
+                      tooltip: appNavigationBarItems[index]["name"]!.tr,
+                    ),
+                  )),
+            ),
+          );
+        });
+  }
 }
 
 class BottomNavigationBar extends StatelessWidget {
@@ -283,52 +310,51 @@ class BottomNavigationBar extends StatelessWidget {
               width: double.infinity,
               height: context.setHeight(50),
               decoration: ShapeDecoration(
-                color:
-                    isSelect
-                        ? Get.find<ThemeController>().isDarkMode.value 
-                            ? const Color(0x1916A6B7)
-                            : const Color(0xFFD5F1F5)
-                        : null,
+                color: isSelect
+                    ? Get.find<ThemeController>().isDarkMode.value
+                        ? const Color(0x1916A6B7)
+                        : const Color(0xFFD5F1F5)
+                    : null,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(context.setMinSize(12)),
                 ),
               ),
-              child:
-                  name == "logout"
-                      ? Center(
-                        child: SvgPicture.asset(
-                          AppImages.loginIcon,
-                          package: 'shared_widgets',
-                          width: context.setWidth(30),
-                          height: context.setHeight(30),
-                          color: const Color(0xFFF20C10),
-                        ),
-                      )
-                      : Padding(
-                        padding: EdgeInsets.all(name == "create_invoice" ||  name == "home" ? context.setMinSize(10) : 0),
-                        child: SvgPicture.asset(
-                          image,
-                          package: 'shared_widgets',
-                          width: context.setWidth(53),
-                          height: context.setHeight(53),
-                          color:
-                              isSelect
-                                  ? const Color(0xFF16A6B7)
-                                  : Get.find<ThemeController>().isDarkMode.value 
-                                  ? Colors.white
-                                  : const Color(0xFF362C2C),
-                        ),
+              child: name == "logout"
+                  ? Center(
+                      child: SvgPicture.asset(
+                        AppImages.loginIcon,
+                        package: 'shared_widgets',
+                        width: context.setWidth(30),
+                        height: context.setHeight(30),
+                        color: const Color(0xFFF20C10),
                       ),
+                    )
+                  : Padding(
+                      padding: EdgeInsets.all(
+                          name == "create_invoice" || name == "home"
+                              ? context.setMinSize(10)
+                              : 0),
+                      child: SvgPicture.asset(
+                        image,
+                        package: 'shared_widgets',
+                        width: context.setWidth(53),
+                        height: context.setHeight(53),
+                        color: isSelect
+                            ? const Color(0xFF16A6B7)
+                            : Get.find<ThemeController>().isDarkMode.value
+                                ? Colors.white
+                                : const Color(0xFF362C2C),
+                      ),
+                    ),
             ),
           ),
           Text(
             name.tr,
             textAlign: TextAlign.center,
             style: TextStyle(
-              color:
-                  isSelect
-                      ? const Color(0xFF16A6B7)
-                      : Get.find<ThemeController>().isDarkMode.value 
+              color: isSelect
+                  ? const Color(0xFF16A6B7)
+                  : Get.find<ThemeController>().isDarkMode.value
                       ? Colors.white
                       : const Color(0xFF362C2C),
               fontSize: context.setSp(12),
@@ -363,29 +389,29 @@ Widget getHomeMenu(int index) {
   }
 }
 
-var appNavigationBarItems=[
-{
-  "name":"home",
-  "image":AppImages.home,
-},
-{
-  "name":"dashboard",
-  "image":AppImages.frame1,
-},
-{
-  "name":"products",
-  "image":AppImages.productList,
-},
-{
-  "name":"customers",
-  "image":AppImages.customers,
-},
-{
-  "name":"Reports",
-  "image":AppImages.reports,
-},
-{
-  "name":"Settings",
-  "image":AppImages.setting,
-}
+var appNavigationBarItems = [
+  {
+    "name": "home",
+    "image": AppImages.home,
+  },
+  {
+    "name": "dashboard",
+    "image": AppImages.frame1,
+  },
+  {
+    "name": "products",
+    "image": AppImages.productList,
+  },
+  {
+    "name": "customers",
+    "image": AppImages.customers,
+  },
+  {
+    "name": "Reports",
+    "image": AppImages.reports,
+  },
+  {
+    "name": "Settings",
+    "image": AppImages.setting,
+  }
 ];
