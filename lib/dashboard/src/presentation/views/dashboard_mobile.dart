@@ -296,6 +296,7 @@ class _DashboardMobileState extends State<DashboardMobile> {
                     id: "session_card",
                     builder: (controller) {
                       return Column(
+                        spacing: context.setHeight(10),
                         children: [
                           AmountTotalCard(
                             title: InfoTotalCard.totalSales.text.tr,

@@ -17,6 +17,7 @@ import 'package:shared_widgets/config/app_images.dart';
 import 'package:shared_widgets/config/theme_controller.dart';
 import 'package:shared_widgets/shared_widgets/app_loading.dart';
 import 'package:shared_widgets/shared_widgets/app_snack_bar.dart';
+import 'package:shared_widgets/utils/responsive_helpers/device_utils.dart';
 import 'package:shared_widgets/utils/responsive_helpers/size_helper_extenstions.dart';
 import 'package:yousentech_pos_basic_data_management/basic_data_management/utils/define_type_function.dart';
 import 'package:yousentech_pos_final_report/final_report/src/domain/final_report_viewmodel.dart';
@@ -531,7 +532,7 @@ class AmountTotalCard extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
-              spacing: context.setHeight(10),
+              spacing: context.setHeight(DeviceUtils.isMobile(context)?5 : 10),
               children: [
                 Text(
                   title,
@@ -542,7 +543,7 @@ class AmountTotalCard extends StatelessWidget {
                             ? Color(0xFFB1B3BC)
                             : const Color(0xFF463F3F),
                     fontSize: context.setSp(16),
-                    fontFamily: 'Tajawal',
+                    fontFamily: DeviceUtils.isMobile(context)?'SansBold' : 'Tajawal',
                     fontWeight: FontWeight.w500,
                     height: 1.67,
                   ),
@@ -559,7 +560,7 @@ class AmountTotalCard extends StatelessWidget {
                                 ? const Color(0xFFDDDDDD)
                                 : const Color(0xFF2E2E2E),
                         fontSize: context.setSp(18),
-                        fontFamily: 'Tajawal',
+                        fontFamily: DeviceUtils.isMobile(context)?'SansMedium' : 'Tajawal',
                         fontWeight: FontWeight.w700,
                         height: 1.78,
                       ),
@@ -874,7 +875,7 @@ class SyncButton extends StatelessWidget {
                               ? const Color(0xFF042B2F)
                               : Colors.white,
                       fontSize: context.setSp(15.13),
-                      fontFamily: 'Tajawal',
+                      fontFamily: DeviceUtils.isMobile(context)?'SansMedium' : 'Tajawal',
                       fontWeight: FontWeight.w400,
                       height: 1.43,
                     ),
@@ -956,7 +957,7 @@ class _PosCardState extends State<PosCard> {
                                   ? const Color(0xFFDDDDDD)
                                   : const Color(0xFF2E2E2E),
                           fontSize: context.setSp(20),
-                          fontFamily: 'Tajawal',
+                          fontFamily: DeviceUtils.isMobile(context)?'SansBold' : 'Tajawal',
                           fontWeight: FontWeight.w600,
                           overflow: TextOverflow.ellipsis,
                           height: 1.40,
@@ -987,7 +988,7 @@ class _PosCardState extends State<PosCard> {
                                 ? const Color(0xFFDDDDDD)
                                 : const Color(0xFF2E2E2E),
                         fontSize: context.setSp(20),
-                        fontFamily: 'Tajawal',
+                        fontFamily: DeviceUtils.isMobile(context)?'SansBold' : 'Tajawal',
                         fontWeight: FontWeight.w600,
                         height: 1.56,
                       ),
@@ -1026,7 +1027,7 @@ class _PosCardState extends State<PosCard> {
                                 ? const Color(0xFFD4D4D4)
                                 : const Color(0xFF2E2E2E),
                         fontSize: context.setSp(context.setSp(14)),
-                        fontFamily: 'Tajawal',
+                        fontFamily: DeviceUtils.isMobile(context)?'SansRegular' : 'Tajawal',
                         fontWeight: FontWeight.w400,
                         height: 2.50,
                       ),
@@ -1070,7 +1071,7 @@ class _PosCardState extends State<PosCard> {
                             ? const Color(0xFFD4D4D4)
                             : const Color(0xFF2E2E2E),
                     fontSize: context.setSp(14),
-                    fontFamily: 'Tajawal',
+                    fontFamily: DeviceUtils.isMobile(context)?'SansMedium' : 'Tajawal',
                     fontWeight: FontWeight.w400,
                     height: 2.50,
                   ),
@@ -1212,7 +1213,7 @@ class ButtonsToContinueOrStop extends StatelessWidget {
                                 : const Color(0xFFE94043)
                             : const Color(0xFF032A2E),
                     fontSize: context.setSp(16.10),
-                    fontFamily: 'Tajawal',
+                    fontFamily: DeviceUtils.isMobile(context)?'SansMedium' : 'Tajawal',
                     fontWeight: FontWeight.w500,
                     height: 1.43,
                   ),
