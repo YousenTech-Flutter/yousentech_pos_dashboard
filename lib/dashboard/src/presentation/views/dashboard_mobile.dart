@@ -69,7 +69,7 @@ class _DashboardMobileState extends State<DashboardMobile> {
             left: context.setWidth(10),
           ),
           child: Column(
-            spacing: context.setHeight(16),
+            spacing: context.setHeight(10),
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
