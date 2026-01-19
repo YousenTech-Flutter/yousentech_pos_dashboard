@@ -13,6 +13,7 @@ import 'package:shared_widgets/utils/responsive_helpers/size_provider.dart';
 import 'package:yousentech_pos_basic_data_management/basic_data_management/src/customer/presentation/views/customer_screen.dart';
 import 'package:yousentech_pos_basic_data_management/basic_data_management/src/products/presentation/product_screen.dart';
 import 'package:yousentech_pos_dashboard/dashboard/src/presentation/views/dashboard.dart';
+import 'package:yousentech_pos_dashboard/dashboard/src/presentation/views/dashboard_mobile.dart';
 import 'package:yousentech_pos_dashboard/dashboard/src/presentation/widgets/progress_bar.dart';
 import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/src/domain/loading_synchronizing_data_viewmodel.dart';
 import 'package:yousentech_pos_session_list_with_report/sessions_list_with_report/presentation/report_session.dart';
@@ -44,10 +45,12 @@ class _HomeState extends State<Home> {
           ),
           backgroundColor: Get.find<ThemeController>().isDarkMode.value
               ? AppColor.darkModeBackgroundColor
-              : Color(0xFFDDDDDD),
+              : DeviceUtils.isMobile(context)
+                  ? const Color(0xFFF6F6F6) 
+                  : const Color(0xFFDDDDDD),
           body: Container(
             width: Get.width,
-            decoration: BoxDecoration(
+            decoration:DeviceUtils.isMobile(context) ? null : BoxDecoration(
               color: Get.find<ThemeController>().isDarkMode.value
                   ? AppColor.darkModeBackgroundColor
                   : null,
@@ -208,7 +211,7 @@ class _HomeState extends State<Home> {
                       builder: (loadingcontext) {
                         return loadingDataController.isLoad.value
                             ? const ProgressWidget()
-                            : getHomeMenu(_navIndex);
+                            : getHomeMenu(index: _navIndex , isMobile:DeviceUtils.isMobile(context) );
                       }),
                 ),
               ],
@@ -370,10 +373,10 @@ class BottomNavigationBar extends StatelessWidget {
   }
 }
 
-Widget getHomeMenu(int index) {
+Widget getHomeMenu({required int index, isMobile = false} ) {
   switch (index) {
     case 0:
-      return Dashboard();
+      return isMobile ? DashboardMobile() : Dashboard();
     case 1:
       return Container();
     case 2:
