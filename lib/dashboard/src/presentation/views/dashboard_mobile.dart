@@ -124,7 +124,7 @@ class _DashboardMobileState extends State<DashboardMobile> {
                       ),
                       child: Padding(
                         padding: EdgeInsets.symmetric(
-                          vertical: context.setHeight(24),
+                          vertical: context.setHeight(15),
                           horizontal: context.setWidth(24),
                         ),
                         child: Row(
