@@ -106,7 +106,7 @@ class _DashboardMobileState extends State<DashboardMobile> {
                                 .itemdata[Loaddata.products.name.toString()]
                             ["local"];
                     return Container(
-                      height: context.setHeight(70),
+                      height: context.setHeight(80),
                       decoration: ShapeDecoration(
                         color: Get.find<ThemeController>().isDarkMode.value
                             ? Colors.black.withValues(alpha: 0.17)
@@ -129,6 +129,7 @@ class _DashboardMobileState extends State<DashboardMobile> {
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             ProductAndCustomerWidget(
                               title: 'customers',
@@ -230,27 +231,15 @@ class ProductAndCustomerWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: context.setWidth(10),
       children: [
-        Stack(
-          alignment: Alignment.center,
-          children: [
-            CircularProgressIndicator(
-              value: double.parse(syncData) / 100,
-              strokeWidth: 5,
-              backgroundColor: const Color(0xFFE8E9EA),
-              valueColor:
-                  AlwaysStoppedAnimation<Color>(const Color(0xFFF2AC57)),
-            ),
-            Text(
-              '$syncData%',
-              style: TextStyle(
-                fontSize:context.setSp(14),
-                fontWeight: FontWeight.bold,
-                color: Get.find<ThemeController>().isDarkMode.value
-                    ? AppColor.white
-                    : const Color(0xFF6A6A6B),
-              ),
-            ),
-          ],
+        CircularProgressIndicator(
+          value: double.parse(syncData) / 100,
+          semanticsLabel:'$syncData%' ,
+          semanticsValue:'$syncData%%'  ,
+          strokeAlign: 3,
+          strokeWidth: 5,
+          backgroundColor: const Color(0xFFE8E9EA),
+          valueColor:
+              AlwaysStoppedAnimation<Color>(const Color(0xFFF2AC57)),
         ),
         Column(
           spacing: context.setWidth(5),
