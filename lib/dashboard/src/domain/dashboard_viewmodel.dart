@@ -19,7 +19,7 @@ class DashboardController extends GetxController {
   int selectedMenulength = 0;
   static DashboardController? _instance;
   var isLoading = false.obs;
-  var isShowProductAndCustomerInfo = false.obs;
+  RxBool  isShowProductAndCustomerInfo = false.obs;
   late DashboardService dashboardService;
 
   DashboardController._() {
@@ -86,7 +86,7 @@ class DashboardController extends GetxController {
   }
   // ===================================================== [ UPDATE SELECTED MENU ] =====================================================
 
-  void toggleProductCustomerInfo() async {
-    isShowProductAndCustomerInfo != isShowProductAndCustomerInfo;
+  void toggleProductCustomerInfo()  {
+    isShowProductAndCustomerInfo.value =  !isShowProductAndCustomerInfo.value;
   }
 }
