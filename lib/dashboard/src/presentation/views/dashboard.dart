@@ -812,6 +812,7 @@ class ProductAndCustomerCard extends StatelessWidget {
                   ),
                 ],
               ),
+            
             ],
           ),
         );
