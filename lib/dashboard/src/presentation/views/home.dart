@@ -12,6 +12,7 @@ import 'package:shared_widgets/utils/responsive_helpers/size_helper_extenstions.
 import 'package:shared_widgets/utils/responsive_helpers/size_provider.dart';
 import 'package:yousentech_pos_basic_data_management/basic_data_management/src/customer/presentation/views/customer_screen.dart';
 import 'package:yousentech_pos_basic_data_management/basic_data_management/src/products/presentation/product_screen.dart';
+import 'package:yousentech_pos_basic_data_management/basic_data_management/src/products/presentation/product_screen_Mobile.dart';
 import 'package:yousentech_pos_dashboard/dashboard/src/presentation/views/dashboard.dart';
 import 'package:yousentech_pos_dashboard/dashboard/src/presentation/views/dashboard_mobile.dart';
 import 'package:yousentech_pos_dashboard/dashboard/src/presentation/widgets/progress_bar.dart';
@@ -380,7 +381,7 @@ Widget getHomeMenu({required int index, isMobile = false} ) {
     case 1:
       return Container();
     case 2:
-      return ProductScreen();
+      return isMobile ? ProductScreenMobile(): ProductScreen();
     case 3:
       return CustomerScreen();
     case 4:
