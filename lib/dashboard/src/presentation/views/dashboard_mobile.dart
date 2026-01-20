@@ -46,7 +46,7 @@ class _DashboardMobileState extends State<DashboardMobile> {
     await finalReportController.getSalesPerformanceInfo();
     return sessionController.posSessionsList;
   }
-
+    final pageController = PageController(viewportFraction: 1.0);
   @override
   void initState() {
     super.initState();
@@ -55,8 +55,13 @@ class _DashboardMobileState extends State<DashboardMobile> {
     SessionService.sessionServiceInstance = null;
     SessionService.getInstance();
   }
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
 
-  final pageController = PageController(viewportFraction: 1.0);
+
   @override
   Widget build(BuildContext context) {
     return Stack(
