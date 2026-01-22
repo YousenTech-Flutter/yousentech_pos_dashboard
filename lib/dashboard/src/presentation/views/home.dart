@@ -11,6 +11,7 @@ import 'package:shared_widgets/utils/responsive_helpers/device_utils.dart';
 import 'package:shared_widgets/utils/responsive_helpers/size_helper_extenstions.dart';
 import 'package:shared_widgets/utils/responsive_helpers/size_provider.dart';
 import 'package:yousentech_pos_basic_data_management/basic_data_management/src/customer/presentation/views/customer_screen.dart';
+import 'package:yousentech_pos_basic_data_management/basic_data_management/src/customer/presentation/views/customer_screen_mobile.dart';
 import 'package:yousentech_pos_basic_data_management/basic_data_management/src/products/presentation/product_screen.dart';
 import 'package:yousentech_pos_basic_data_management/basic_data_management/src/products/presentation/product_screen_Mobile.dart';
 import 'package:yousentech_pos_dashboard/dashboard/src/presentation/views/dashboard.dart';
@@ -383,7 +384,7 @@ Widget getHomeMenu({required int index, isMobile = false} ) {
     case 2:
       return isMobile ? ProductScreenMobile(): ProductScreen();
     case 3:
-      return CustomerScreen();
+      return isMobile ? CustomerScreenMobile() :CustomerScreen();
     case 4:
       return ReportSession();
     case 5:
