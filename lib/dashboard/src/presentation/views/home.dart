@@ -133,16 +133,16 @@ class _HomeState extends State<Home> {
                                           },
                                           isSelect: _navIndex == 0,
                                         ),
-                                        BottomNavigationBar(
-                                          name: "dashboard",
-                                          image: AppImages.frame1,
-                                          onTap: () {
-                                            _navIndex = 1;
-                                            loadingDataController
-                                                .update(["loading"]);
-                                          },
-                                          isSelect: _navIndex == 1,
-                                        ),
+                                        // BottomNavigationBar(
+                                        //   name: "dashboard",
+                                        //   image: AppImages.frame1,
+                                        //   onTap: () {
+                                        //     _navIndex = 1;
+                                        //     loadingDataController
+                                        //         .update(["loading"]);
+                                        //   },
+                                        //   isSelect: _navIndex == 1,
+                                        // ),
                                         BottomNavigationBar(
                                           name: "products",
                                           image: AppImages.productList,
@@ -398,10 +398,10 @@ var appNavigationBarItems = [
     "name": "home",
     "image": AppImages.home,
   },
-  {
-    "name": "dashboard",
-    "image": AppImages.frame1,
-  },
+  // {
+  //   "name": "dashboard",
+  //   "image": AppImages.frame1,
+  // },
   {
     "name": "products",
     "image": AppImages.productList,

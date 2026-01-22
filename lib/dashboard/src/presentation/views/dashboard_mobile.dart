@@ -234,6 +234,7 @@ class _DashboardMobileState extends State<DashboardMobile> {
                                         ),
                                       ))),
                                 )
+                              
                               ],
                             ),
                             if (Get.put<DashboardController>(
