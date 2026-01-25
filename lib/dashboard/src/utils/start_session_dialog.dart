@@ -165,6 +165,7 @@ void startNewSession({required BuildContext context}) {
                           Spacer(),
                           ButtonElevated(
                             height: context.setHeight(35),
+                            width: double.infinity,
                             text: "startNewSession".tr,
                             borderRadius: context.setMinSize(5),
                             textStyle: TextStyle(
