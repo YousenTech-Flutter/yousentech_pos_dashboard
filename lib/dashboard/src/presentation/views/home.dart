@@ -19,6 +19,7 @@ import 'package:yousentech_pos_dashboard/dashboard/src/presentation/views/dashbo
 import 'package:yousentech_pos_dashboard/dashboard/src/presentation/widgets/progress_bar.dart';
 import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/src/domain/loading_synchronizing_data_viewmodel.dart';
 import 'package:yousentech_pos_session_list_with_report/sessions_list_with_report/presentation/report_session.dart';
+import 'package:yousentech_pos_session_list_with_report/sessions_list_with_report/presentation/report_session_mobile.dart';
 import 'package:yousentech_pos_setting/setting/presentation/setting_screen.dart';
 
 class Home extends StatefulWidget {
@@ -384,7 +385,7 @@ Widget getHomeMenu({required int index, isMobile = false} ) {
     case 2:
       return isMobile ? CustomerScreenMobile() :CustomerScreen();
     case 3:
-      return ReportSession();
+      return  isMobile ? ReportSessionMobile():ReportSession();
     case 4:
       return SettingScreen();
     default:
