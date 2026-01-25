@@ -21,6 +21,7 @@ import 'package:yousentech_pos_loading_synchronizing_data/loading_sync/src/domai
 import 'package:yousentech_pos_session_list_with_report/sessions_list_with_report/presentation/report_session.dart';
 import 'package:yousentech_pos_session_list_with_report/sessions_list_with_report/presentation/report_session_mobile.dart';
 import 'package:yousentech_pos_setting/setting/presentation/setting_screen.dart';
+import 'package:yousentech_pos_setting/setting/presentation/setting_screen_mobile.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -387,7 +388,7 @@ Widget getHomeMenu({required int index, isMobile = false} ) {
     case 3:
       return  isMobile ? ReportSessionMobile():ReportSession();
     case 4:
-      return SettingScreen();
+      return  isMobile ? SettingScreenMobile() :SettingScreen();
     default:
       return Container();
   }
