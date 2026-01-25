@@ -27,6 +27,7 @@ import 'package:yousentech_pos_session/pos_session/config/app_enums.dart';
 import 'package:yousentech_pos_session/pos_session/src/domain/session_service.dart';
 import 'package:yousentech_pos_session/pos_session/src/domain/session_viewmodel.dart';
 import 'package:yousentech_pos_session/pos_session/src/presentation/close_session.dart';
+import 'package:yousentech_pos_session/pos_session/src/presentation/close_session_mobile.dart' hide PaymentDataCard;
 
 class Dashboard extends StatefulWidget {
   Dashboard({super.key});
@@ -1127,7 +1128,7 @@ class _PosCardState extends State<PosCard> {
                         widget.sessionController.isLoading.value = true;
                         await widget.sessionController.uploadData();
                         widget.sessionController.isLoading.value = false;
-                        Get.to(() => CloseSession());
+                        Get.to(() => DeviceUtils.isMobile(context) ? CloseSessionMobile(): CloseSession());
                       },
                       image: AppImages.continueImage,
                       data: "closeSession".tr,
