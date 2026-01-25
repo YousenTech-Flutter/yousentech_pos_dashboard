@@ -148,43 +148,43 @@ class _HomeState extends State<Home> {
                                           name: "products",
                                           image: AppImages.productList,
                                           onTap: () {
+                                            _navIndex = 1;
+                                            loadingDataController
+                                                .update(["loading"]);
+                                          },
+                                          isSelect: _navIndex == 1,
+                                        ),
+                                        BottomNavigationBar(
+                                          name: "customers",
+                                          image: AppImages.customers,
+                                          onTap: () {
                                             _navIndex = 2;
+                                            // setState(() {});
                                             loadingDataController
                                                 .update(["loading"]);
                                           },
                                           isSelect: _navIndex == 2,
                                         ),
                                         BottomNavigationBar(
-                                          name: "customers",
-                                          image: AppImages.customers,
+                                          name: "Reports",
+                                          image: AppImages.reports,
                                           onTap: () {
                                             _navIndex = 3;
-                                            // setState(() {});
                                             loadingDataController
                                                 .update(["loading"]);
                                           },
                                           isSelect: _navIndex == 3,
                                         ),
                                         BottomNavigationBar(
-                                          name: "Reports",
-                                          image: AppImages.reports,
-                                          onTap: () {
-                                            _navIndex = 4;
-                                            loadingDataController
-                                                .update(["loading"]);
-                                          },
-                                          isSelect: _navIndex == 4,
-                                        ),
-                                        BottomNavigationBar(
                                           name: "Settings",
                                           image: AppImages.setting,
                                           onTap: () {
-                                            _navIndex = 5;
+                                            _navIndex = 4;
                                             // setState(() {});
                                             loadingDataController
                                                 .update(["loading"]);
                                           },
-                                          isSelect: _navIndex == 5,
+                                          isSelect: _navIndex == 4,
                                         ),
                                       ],
                                     ),
@@ -380,14 +380,12 @@ Widget getHomeMenu({required int index, isMobile = false} ) {
     case 0:
       return isMobile ? DashboardMobile() : Dashboard();
     case 1:
-      return Container();
-    case 2:
       return isMobile ? ProductScreenMobile(): ProductScreen();
-    case 3:
+    case 2:
       return isMobile ? CustomerScreenMobile() :CustomerScreen();
-    case 4:
+    case 3:
       return ReportSession();
-    case 5:
+    case 4:
       return SettingScreen();
     default:
       return Container();
