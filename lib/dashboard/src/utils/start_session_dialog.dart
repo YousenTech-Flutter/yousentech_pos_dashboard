@@ -13,9 +13,11 @@ import 'package:shared_widgets/shared_widgets/app_loading.dart';
 import 'package:shared_widgets/shared_widgets/app_snack_bar.dart';
 import 'package:shared_widgets/shared_widgets/app_text_field.dart';
 import 'package:shared_widgets/utils/response_result.dart';
+import 'package:shared_widgets/utils/responsive_helpers/device_utils.dart';
 import 'package:shared_widgets/utils/responsive_helpers/size_helper_extenstions.dart';
 import 'package:shared_widgets/utils/responsive_helpers/size_provider.dart';
 import 'package:yousentech_pos_invoice/invoices/presentation/invoice_home.dart';
+import 'package:yousentech_pos_invoice/invoices/presentation/invoice_screen_mobile.dart';
 import 'package:yousentech_pos_session/pos_session/src/domain/session_viewmodel.dart';
 
 void startNewSession({required BuildContext context}) {
@@ -45,7 +47,7 @@ void startNewSession({required BuildContext context}) {
       sessionController.isLoading.value = false;
       Get.close(1);
       // Get.to(() => const InvoiceScreen());
-      Get.to(() => InvoiceHome());
+      Get.to(() =>DeviceUtils.isMobile(context) ? InvoiceScreenMobile() : InvoiceHome());
       sessionController.update(['Sessionbutton']);
     } else {
       sessionController.isLoading.value = false;
