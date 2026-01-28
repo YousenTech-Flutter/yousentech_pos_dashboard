@@ -304,6 +304,7 @@ class _DashboardMobileState extends State<DashboardMobile> {
                 child: PageView(
                   controller: pageController,
                   children: [
+                    // done AmountTotalCard
                     GetBuilder<FinalReportController>(
                         id: "session_card",
                         builder: (controller) {
@@ -341,6 +342,7 @@ class _DashboardMobileState extends State<DashboardMobile> {
                             ),
                           );
                         }),
+                    // done SalesPerformance
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: context.setWidth(10)),
                       child: GetBuilder<FinalReportController>(

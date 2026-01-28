@@ -1641,6 +1641,7 @@ class _BestSellingCategoriesChartState
           vertical: context.setHeight(16),
         ),
         child: Column(
+          spacing:DeviceUtils.isMobile(context) ? context.setHeight(10) : 0.0 ,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Title
@@ -1668,53 +1669,58 @@ class _BestSellingCategoriesChartState
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   // Legend
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ...widget.finalReportController.finalReportInfo!
-                          .productBasedCategories!
-                          .map(
-                        (item) => _legendItem(
-                          text: item.getProductNameBasedOnLang,
-                          color: colorList[widget.finalReportController
-                                  .finalReportInfo!.productBasedCategories!
-                                  .indexOf(item) %
-                              colorList.length],
-                          context: context,
-                          percentage: totalQtyAll == 0
-                              ? 0
-                              : ((item.totalQty! / totalQtyAll) * 100)
-                                  .roundToDouble(),
+                  Expanded(
+                    flex: 2,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ...widget.finalReportController.finalReportInfo!
+                            .productBasedCategories!
+                            .map(
+                          (item) => _legendItem(
+                            text: item.getProductNameBasedOnLang,
+                            color: colorList[widget.finalReportController
+                                    .finalReportInfo!.productBasedCategories!
+                                    .indexOf(item) %
+                                colorList.length],
+                            context: context,
+                            percentage: totalQtyAll == 0
+                                ? 0
+                                : ((item.totalQty! / totalQtyAll) * 100)
+                                    .roundToDouble(),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   // Pie Chart (Donut)
-                  SizedBox(
-                    width: context.setWidth(300),
-                    height: context.setHeight(150),
-                    child: PieChart(
-                      PieChartData(
-                        sectionsSpace: context.setWidth(3.9),
-                        // centerSpaceRadius:context.setWidth(40),
-                        sections: [
-                          ...widget.finalReportController.finalReportInfo!
-                              .productBasedCategories!
-                              .map(
-                            (item) => PieChartSectionData(
-                              value: totalQtyAll == 0
-                                  ? 0
-                                  : ((item.totalQty! / totalQtyAll) * 100)
-                                      .roundToDouble(),
-                              color: colorList[widget.finalReportController
-                                      .finalReportInfo!.productBasedCategories!
-                                      .indexOf(item) %
-                                  colorList.length],
-                              radius: context.setMinSize(33.5),
-                              showTitle: false,
+                  Expanded(
+                    child: SizedBox(
+                      width: context.setWidth(300),
+                      height: context.setHeight(150),
+                      child: PieChart(
+                        PieChartData(
+                          sectionsSpace: context.setWidth(3.9),
+                          // centerSpaceRadius:context.setWidth(40),
+                          sections: [
+                            ...widget.finalReportController.finalReportInfo!
+                                .productBasedCategories!
+                                .map(
+                              (item) => PieChartSectionData(
+                                value: totalQtyAll == 0
+                                    ? 0
+                                    : ((item.totalQty! / totalQtyAll) * 100)
+                                        .roundToDouble(),
+                                color: colorList[widget.finalReportController
+                                        .finalReportInfo!.productBasedCategories!
+                                        .indexOf(item) %
+                                    colorList.length],
+                                radius: context.setMinSize(33.5),
+                                showTitle: false,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -1737,39 +1743,42 @@ Widget _legendItem({
 }) {
   return Padding(
     padding: EdgeInsets.symmetric(vertical: context.setHeight(10)),
-    child: Row(
-      spacing: context.setWidth(10),
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-          width: context.setWidth(30),
-          height: context.setHeight(13),
-          decoration: BoxDecoration(
-            color: color,
-            borderRadius: BorderRadius.circular(context.setMinSize(10)),
+    child: FittedBox(
+      fit: BoxFit.contain,
+      child: Row(
+        spacing: context.setWidth(10),
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: context.setWidth(30),
+            height: context.setHeight(13),
+            decoration: BoxDecoration(
+              color: color,
+              borderRadius: BorderRadius.circular(context.setMinSize(10)),
+            ),
           ),
-        ),
-        Text(
-          text,
-          style: TextStyle(
-            color: const Color(0xFF6E6E6E),
-            fontSize: context.setSp(14),
-            fontFamily: 'Tajawal',
-            fontWeight: FontWeight.w400,
-            height: 0.71,
+          Text(
+            text,
+            style: TextStyle(
+              color: const Color(0xFF6E6E6E),
+              fontSize: context.setSp(DeviceUtils.isMobile(context) ? 12 :14),
+              fontFamily:DeviceUtils.isMobile(context) ? 'SansMedium': 'Tajawal',
+              fontWeight: FontWeight.w400,
+              height: 0.71,
+            ),
           ),
-        ),
-        Text(
-          "$percentage %",
-          style: TextStyle(
-            color: const Color(0xFF6E6E6E),
-            fontSize: context.setSp(14),
-            fontFamily: 'Tajawal',
-            fontWeight: FontWeight.w400,
-            height: 0.71,
+          Text(
+            "$percentage %",
+            style: TextStyle(
+              color: const Color(0xFF6E6E6E),
+              fontSize: context.setSp(DeviceUtils.isMobile(context) ?12 : 14),
+              fontFamily:DeviceUtils.isMobile(context) ? 'SansMedium': 'Tajawal',
+              fontWeight: FontWeight.w400,
+              height: 0.71,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     ),
   );
 }
