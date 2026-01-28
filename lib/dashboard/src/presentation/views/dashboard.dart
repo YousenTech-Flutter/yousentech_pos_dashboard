@@ -27,8 +27,7 @@ import 'package:yousentech_pos_session/pos_session/config/app_enums.dart';
 import 'package:yousentech_pos_session/pos_session/src/domain/session_service.dart';
 import 'package:yousentech_pos_session/pos_session/src/domain/session_viewmodel.dart';
 import 'package:yousentech_pos_session/pos_session/src/presentation/close_session.dart';
-import 'package:yousentech_pos_session/pos_session/src/presentation/close_session_mobile.dart'
-    hide PaymentDataCard;
+import 'package:yousentech_pos_session/pos_session/src/presentation/close_session_mobile.dart' hide PaymentDataCard;
 
 class Dashboard extends StatefulWidget {
   Dashboard({super.key});
@@ -324,8 +323,7 @@ class SalesPerformance extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(
           vertical: context.setHeight(13.5),
-          horizontal:
-              context.setWidth(DeviceUtils.isMobile(context) ? 10 : 20.93),
+          horizontal: context.setWidth(DeviceUtils.isMobile(context)?10: 20.93),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -475,8 +473,7 @@ class SalesPerformance extends StatelessWidget {
             Expanded(
               child: Padding(
                 padding: EdgeInsets.symmetric(
-                  horizontal:
-                      context.setWidth(DeviceUtils.isMobile(context) ? 8 : 16),
+                  horizontal: context.setWidth(DeviceUtils.isMobile(context)?8: 16),
                   vertical: context.setHeight(16),
                 ),
                 child: LayoutBuilder(
@@ -1131,9 +1128,7 @@ class _PosCardState extends State<PosCard> {
                         widget.sessionController.isLoading.value = true;
                         await widget.sessionController.uploadData();
                         widget.sessionController.isLoading.value = false;
-                        Get.to(() => DeviceUtils.isMobile(context)
-                            ? CloseSessionMobile()
-                            : CloseSession());
+                        Get.to(() => DeviceUtils.isMobile(context) ? CloseSessionMobile(): CloseSession());
                       },
                       image: AppImages.continueImage,
                       data: "closeSession".tr,
@@ -1299,7 +1294,6 @@ class _SalesLineChartState extends State<_SalesLineChart> {
         ? totals.reduce((a, b) => a < b ? a : b).toDouble()
         : 0;
   }
-
   @override
   void initState() {
     super.initState();
@@ -1332,9 +1326,7 @@ class _SalesLineChartState extends State<_SalesLineChart> {
                         ? Color(0xFFB1B3BC)
                         : const Color(0xFF01343A),
                     fontSize: context.setSp(12.30),
-                    fontFamily: DeviceUtils.isMobile(context)
-                        ? 'SansRegular'
-                        : 'Tajawal',
+                    fontFamily: DeviceUtils.isMobile(context)?'SansRegular' : 'Tajawal',
                     fontWeight: FontWeight.w400,
                     height: 1.40,
                   ),
@@ -1356,9 +1348,7 @@ class _SalesLineChartState extends State<_SalesLineChart> {
                           ? Color(0xFFB1B3BC)
                           : const Color(0xFF01343A),
                       fontSize: context.setSp(12.30),
-                      fontFamily: DeviceUtils.isMobile(context)
-                          ? 'SansRegular'
-                          : 'Tajawal',
+                      fontFamily: DeviceUtils.isMobile(context)?'SansRegular' : 'Tajawal',
                       fontWeight: FontWeight.w400,
                       height: 1.40,
                     ),
@@ -1651,7 +1641,7 @@ class _BestSellingCategoriesChartState
           vertical: context.setHeight(16),
         ),
         child: Column(
-          spacing: DeviceUtils.isMobile(context) ? context.setHeight(10) : 0.0,
+          spacing:DeviceUtils.isMobile(context) ? context.setHeight(10) : 0.0 ,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Title
@@ -1721,10 +1711,8 @@ class _BestSellingCategoriesChartState
                                     ? 0
                                     : ((item.totalQty! / totalQtyAll) * 100)
                                         .roundToDouble(),
-                                color: colorList[widget
-                                        .finalReportController
-                                        .finalReportInfo!
-                                        .productBasedCategories!
+                                color: colorList[widget.finalReportController
+                                        .finalReportInfo!.productBasedCategories!
                                         .indexOf(item) %
                                     colorList.length],
                                 radius: context.setMinSize(33.5),
@@ -1755,50 +1743,47 @@ Widget _legendItem({
 }) {
   return Padding(
     padding: EdgeInsets.symmetric(vertical: context.setHeight(10)),
-    child: DeviceUtils.isMobile(context)
-        ? FittedBox(
-            child: legenSubdetail(context, color, text, percentage),
-          )
-        : legenSubdetail(context, color, text, percentage),
+    child: FittedBox(
+      child: legenSubdetail(context, color, text, percentage),
+    ),
   );
 }
 
-Row legenSubdetail(
-    BuildContext context, Color color, String text, double percentage) {
+Row legenSubdetail(BuildContext context, Color color, String text, double percentage) {
   return Row(
-    spacing: context.setWidth(10),
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      Container(
-        width: context.setWidth(30),
-        height: context.setHeight(13),
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(context.setMinSize(10)),
+      spacing: context.setWidth(10),
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          width: context.setWidth(30),
+          height: context.setHeight(13),
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.circular(context.setMinSize(10)),
+          ),
         ),
-      ),
-      Text(
-        text,
-        style: TextStyle(
-          color: const Color(0xFF6E6E6E),
-          fontSize: context.setSp(DeviceUtils.isMobile(context) ? 12 : 14),
-          fontFamily: DeviceUtils.isMobile(context) ? 'SansMedium' : 'Tajawal',
-          fontWeight: FontWeight.w400,
-          height: 0.71,
+        Text(
+          text,
+          style: TextStyle(
+            color: const Color(0xFF6E6E6E),
+            fontSize: context.setSp(DeviceUtils.isMobile(context) ? 12 :14),
+            fontFamily:DeviceUtils.isMobile(context) ? 'SansMedium': 'Tajawal',
+            fontWeight: FontWeight.w400,
+            height: 0.71,
+          ),
         ),
-      ),
-      Text(
-        "$percentage %",
-        style: TextStyle(
-          color: const Color(0xFF6E6E6E),
-          fontSize: context.setSp(DeviceUtils.isMobile(context) ? 12 : 14),
-          fontFamily: DeviceUtils.isMobile(context) ? 'SansMedium' : 'Tajawal',
-          fontWeight: FontWeight.w400,
-          height: 0.71,
+        Text(
+          "$percentage %",
+          style: TextStyle(
+            color: const Color(0xFF6E6E6E),
+            fontSize: context.setSp(DeviceUtils.isMobile(context) ?12 : 14),
+            fontFamily:DeviceUtils.isMobile(context) ? 'SansMedium': 'Tajawal',
+            fontWeight: FontWeight.w400,
+            height: 0.71,
+          ),
         ),
-      ),
-    ],
-  );
+      ],
+    );
 }
 
 double calculateYInterval(double maxY) {
