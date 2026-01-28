@@ -1781,7 +1781,7 @@ Row legenSubdetail(
               child: Text(
                 text,
                 style: TextStyle(
-                  overflow:TextOverflow.ellipsis ,
+                  overflow:TextOverflow.fade ,
                   color: const Color(0xFF6E6E6E),
                   fontSize: context.setSp(DeviceUtils.isMobile(context) ? 12 : 14),
                   fontFamily:
