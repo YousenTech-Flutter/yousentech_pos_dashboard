@@ -1683,7 +1683,7 @@ class _BestSellingCategoriesChartState
                     flex: 2,
                     child: SingleChildScrollView(
                       child: Column(
-                        spacing: context.setHeight(10),
+                        spacing: context.setHeight(15),
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           ...widget.finalReportController.finalReportInfo!
