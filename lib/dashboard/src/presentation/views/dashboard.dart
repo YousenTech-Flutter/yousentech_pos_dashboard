@@ -1766,45 +1766,47 @@ Row legenSubdetail(
     mainAxisSize: MainAxisSize.min,
     children: [
       Container(
-        width: context.setWidth(30),
+        width: context.setWidth(DeviceUtils.isMobile(context) ?20 : 30),
         height: context.setHeight(13),
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(context.setMinSize(10)),
         ),
       ),
-      Row(
-        children: [
-          Expanded(
-            flex: 2,
-            child: Text(
-              text,
-              style: TextStyle(
-                overflow:TextOverflow.ellipsis ,
-                color: const Color(0xFF6E6E6E),
-                fontSize: context.setSp(DeviceUtils.isMobile(context) ? 12 : 14),
-                fontFamily:
-                    DeviceUtils.isMobile(context) ? 'SansMedium' : 'Tajawal',
-                fontWeight: FontWeight.w400,
-                height: 0.71,
+      Expanded(
+        child: Row(
+          children: [
+            Expanded(
+              flex: 2,
+              child: Text(
+                text,
+                style: TextStyle(
+                  overflow:TextOverflow.ellipsis ,
+                  color: const Color(0xFF6E6E6E),
+                  fontSize: context.setSp(DeviceUtils.isMobile(context) ? 12 : 14),
+                  fontFamily:
+                      DeviceUtils.isMobile(context) ? 'SansMedium' : 'Tajawal',
+                  fontWeight: FontWeight.w400,
+                  height: 0.71,
+                ),
               ),
             ),
-          ),
-          Expanded(
-            child: Text(
-              "$percentage %",
-              style: TextStyle(
-                overflow:TextOverflow.ellipsis ,
-                color: const Color(0xFF6E6E6E),
-                fontSize: context.setSp(DeviceUtils.isMobile(context) ? 12 : 14),
-                fontFamily:
-                    DeviceUtils.isMobile(context) ? 'SansMedium' : 'Tajawal',
-                fontWeight: FontWeight.w400,
-                height: 0.71,
+            Expanded(
+              child: Text(
+                "$percentage %",
+                style: TextStyle(
+                  overflow:TextOverflow.ellipsis ,
+                  color: const Color(0xFF6E6E6E),
+                  fontSize: context.setSp(DeviceUtils.isMobile(context) ? 12 : 14),
+                  fontFamily:
+                      DeviceUtils.isMobile(context) ? 'SansMedium' : 'Tajawal',
+                  fontWeight: FontWeight.w400,
+                  height: 0.71,
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     ],
   );
