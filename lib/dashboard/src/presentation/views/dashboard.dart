@@ -1681,26 +1681,29 @@ class _BestSellingCategoriesChartState
                   // Legend
                   Expanded(
                     flex: 2,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ...widget.finalReportController.finalReportInfo!
-                            .productBasedCategories!
-                            .map(
-                          (item) => _legendItem(
-                            text: item.getProductNameBasedOnLang,
-                            color: colorList[widget.finalReportController
-                                    .finalReportInfo!.productBasedCategories!
-                                    .indexOf(item) %
-                                colorList.length],
-                            context: context,
-                            percentage: totalQtyAll == 0
-                                ? 0
-                                : ((item.totalQty! / totalQtyAll) * 100)
-                                    .roundToDouble(),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        spacing: context.setHeight(10),
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ...widget.finalReportController.finalReportInfo!
+                              .productBasedCategories!
+                              .map(
+                            (item) => _legendItem(
+                              text: item.getProductNameBasedOnLang,
+                              color: colorList[widget.finalReportController
+                                      .finalReportInfo!.productBasedCategories!
+                                      .indexOf(item) %
+                                  colorList.length],
+                              context: context,
+                              percentage: totalQtyAll == 0
+                                  ? 0
+                                  : ((item.totalQty! / totalQtyAll) * 100)
+                                      .roundToDouble(),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                   // Pie Chart (Donut)
@@ -1753,10 +1756,7 @@ Widget _legendItem({
   required BuildContext context,
   required double percentage,
 }) {
-  return Padding(
-    padding: EdgeInsets.symmetric(vertical: context.setHeight(10)),
-    child: legenSubdetail(context, color, text, percentage),
-  );
+  return legenSubdetail(context, color, text, percentage);
 }
 
 Row legenSubdetail(
