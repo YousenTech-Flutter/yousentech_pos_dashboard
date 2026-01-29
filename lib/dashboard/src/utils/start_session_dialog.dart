@@ -47,7 +47,7 @@ void startNewSession({required BuildContext context}) {
       sessionController.isLoading.value = false;
       Get.close(1);
       // Get.to(() => const InvoiceScreen());
-      Get.to(() =>DeviceUtils.isMobile(context) ? InvoiceScreenMobile() : InvoiceHome());
+      Get.to(() => DeviceUtils.isMobile(context) ? InvoiceScreenMobile() : InvoiceHome() , routeName: DeviceUtils.isMobile(context) ? "/InvoiceScreenMobile" :  "/InvoiceHome");
       sessionController.update(['Sessionbutton']);
     } else {
       sessionController.isLoading.value = false;
