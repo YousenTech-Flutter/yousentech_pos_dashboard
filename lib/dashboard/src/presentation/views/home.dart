@@ -4,8 +4,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:shared_widgets/config/app_colors.dart';
+import 'package:shared_widgets/config/app_enums.dart';
 import 'package:shared_widgets/config/app_images.dart';
 import 'package:shared_widgets/config/theme_controller.dart';
+import 'package:shared_widgets/shared_widgets/app_snack_bar.dart';
 import 'package:shared_widgets/shared_widgets/custom_app_bar.dart';
 import 'package:shared_widgets/utils/responsive_helpers/device_utils.dart';
 import 'package:shared_widgets/utils/responsive_helpers/size_helper_extenstions.dart';
@@ -50,22 +52,24 @@ class _HomeState extends State<Home> {
           backgroundColor: Get.find<ThemeController>().isDarkMode.value
               ? AppColor.darkModeBackgroundColor
               : DeviceUtils.isMobile(context)
-                  ? const Color(0xFFF6F6F6) 
+                  ? const Color(0xFFF6F6F6)
                   : const Color(0xFFDDDDDD),
           body: Container(
             width: Get.width,
-            decoration:DeviceUtils.isMobile(context) ? null : BoxDecoration(
-              color: Get.find<ThemeController>().isDarkMode.value
-                  ? AppColor.darkModeBackgroundColor
-                  : null,
-              gradient: Get.find<ThemeController>().isDarkMode.value
-                  ? null
-                  : LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [const Color(0xFFF0F9FF), Colors.white],
-                    ),
-            ),
+            decoration: DeviceUtils.isMobile(context)
+                ? null
+                : BoxDecoration(
+                    color: Get.find<ThemeController>().isDarkMode.value
+                        ? AppColor.darkModeBackgroundColor
+                        : null,
+                    gradient: Get.find<ThemeController>().isDarkMode.value
+                        ? null
+                        : LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [const Color(0xFFF0F9FF), Colors.white],
+                          ),
+                  ),
             child: Stack(
               children: [
                 Positioned(
@@ -215,7 +219,9 @@ class _HomeState extends State<Home> {
                       builder: (loadingcontext) {
                         return loadingDataController.isLoad.value
                             ? const ProgressWidget()
-                            : getHomeMenu(index: _navIndex , isMobile:DeviceUtils.isMobile(context) );
+                            : getHomeMenu(
+                                index: _navIndex,
+                                isMobile: DeviceUtils.isMobile(context));
                       }),
                 ),
               ],
@@ -237,8 +243,8 @@ class _HomeState extends State<Home> {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(context.setMinSize(12.69) ),
-                  topRight: Radius.circular(context.setMinSize(12.69) ),
+                  topLeft: Radius.circular(context.setMinSize(12.69)),
+                  topRight: Radius.circular(context.setMinSize(12.69)),
                 ),
               ),
               child: NavigationBar(
@@ -262,6 +268,13 @@ class _HomeState extends State<Home> {
                       NavigationDestinationLabelBehavior.onlyShowSelected,
                   selectedIndex: _navIndex,
                   onDestinationSelected: (value) {
+                    if (value == 4 &&
+                        SharedPr.userObj!.showPosAppSettings == false) {
+                      appSnackBar(
+                          messageType: MessageTypes.warning,
+                          message: 'permission_issue'.tr);
+                      return;
+                    }
                     _navIndex = value;
                     loadingDataController.update(["loading"]);
                   },
@@ -377,18 +390,18 @@ class BottomNavigationBar extends StatelessWidget {
   }
 }
 
-Widget getHomeMenu({required int index, isMobile = false} ) {
+Widget getHomeMenu({required int index, isMobile = false}) {
   switch (index) {
     case 0:
       return isMobile ? DashboardMobile() : Dashboard();
     case 1:
-      return isMobile ? ProductScreenMobile(): ProductScreen();
+      return isMobile ? ProductScreenMobile() : ProductScreen();
     case 2:
-      return isMobile ? CustomerScreenMobile() :CustomerScreen();
+      return isMobile ? CustomerScreenMobile() : CustomerScreen();
     case 3:
-      return  isMobile ? ReportSessionMobile():ReportSession();
+      return isMobile ? ReportSessionMobile() : ReportSession();
     case 4:
-      return  isMobile ? SettingScreenMobile() :SettingScreen();
+      return isMobile ? SettingScreenMobile() : SettingScreen();
     default:
       return Container();
   }
