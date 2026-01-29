@@ -268,8 +268,11 @@ class _HomeState extends State<Home> {
                       NavigationDestinationLabelBehavior.onlyShowSelected,
                   selectedIndex: _navIndex,
                   onDestinationSelected: (value) {
-                    if (value == 4 &&
-                        SharedPr.userObj!.showPosAppSettings == false) {
+                    if ((value == 4 &&
+                        SharedPr.userObj!.showPosAppSettings == false)||
+                        (value == 3 && (SharedPr.currentPosObject!.showFinalReportForCurrentSession == false))
+                        
+                        ) {
                       appSnackBar(
                           messageType: MessageTypes.warning,
                           message: 'permission_issue'.tr);
