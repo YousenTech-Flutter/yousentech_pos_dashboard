@@ -1211,7 +1211,6 @@ class ButtonsToContinueOrStop extends StatelessWidget {
               Expanded(
                 child: Text(
                   data,
-                  textAlign: TextAlign.center,
                   style: TextStyle(
                     color: addBorderSide
                         ? Get.find<ThemeController>().isDarkMode.value
