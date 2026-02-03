@@ -1189,43 +1189,42 @@ class ButtonsToContinueOrStop extends StatelessWidget {
             borderRadius: BorderRadius.circular(context.setMinSize(9)),
           ),
         ),
-        child: Center(
-          child: Padding(
-            padding: EdgeInsets.all(context.setMinSize(10)),
-            child: Row(
-              spacing: context.setWidth(5),
-              children: [
-                SvgPicture.asset(
-                  image,
-                  package: 'shared_widgets',
-                  width: context.setWidth(28.5),
-                  height: context.setHeight(28.5),
-                  color: addBorderSide
-                      ? Get.find<ThemeController>().isDarkMode.value
-                          ? const Color(0xFFF68889)
-                          : const Color(0xFFE94043)
-                      : AppColor.black,
-                ),
-                Expanded(
-                  child: Text(
-                    data,
-                    style: TextStyle(
-                      color: addBorderSide
-                          ? Get.find<ThemeController>().isDarkMode.value
-                              ? const Color(0xFFF68889)
-                              : const Color(0xFFE94043)
-                          : const Color(0xFF032A2E),
-                      fontSize: context.setSp(16.10),
-                      fontFamily: DeviceUtils.isMobile(context)
-                          ? 'SansMedium'
-                          : 'Tajawal',
-                      fontWeight: FontWeight.w500,
-                      height: 1.43,
-                    ),
+        child: Padding(
+          padding: EdgeInsets.all(context.setMinSize(10)),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center, 
+            spacing: context.setWidth(5),
+            children: [
+              SvgPicture.asset(
+                image,
+                package: 'shared_widgets',
+                width: context.setWidth(28.5),
+                height: context.setHeight(28.5),
+                color: addBorderSide
+                    ? Get.find<ThemeController>().isDarkMode.value
+                        ? const Color(0xFFF68889)
+                        : const Color(0xFFE94043)
+                    : AppColor.black,
+              ),
+              Expanded(
+                child: Text(
+                  data,
+                  style: TextStyle(
+                    color: addBorderSide
+                        ? Get.find<ThemeController>().isDarkMode.value
+                            ? const Color(0xFFF68889)
+                            : const Color(0xFFE94043)
+                        : const Color(0xFF032A2E),
+                    fontSize: context.setSp(16.10),
+                    fontFamily: DeviceUtils.isMobile(context)
+                        ? 'SansMedium'
+                        : 'Tajawal',
+                    fontWeight: FontWeight.w500,
+                    height: 1.43,
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
