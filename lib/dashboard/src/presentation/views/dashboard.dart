@@ -1194,19 +1194,16 @@ class ButtonsToContinueOrStop extends StatelessWidget {
           child: Row(
             spacing: context.setWidth(5),
             children: [
-              Container(
-                color: Colors.black,
-                child: SvgPicture.asset(
-                  image,
-                  package: 'shared_widgets',
-                  width: context.setWidth(28.5),
-                  height: context.setHeight(28.5),
-                  color: addBorderSide
-                      ? Get.find<ThemeController>().isDarkMode.value
-                          ? const Color(0xFFF68889)
-                          : const Color(0xFFE94043)
-                      : AppColor.black,
-                ),
+              SvgPicture.asset(
+                image,
+                package: 'shared_widgets',
+                width: context.setWidth(28.5),
+                height: context.setHeight(28.5),
+                color: addBorderSide
+                    ? Get.find<ThemeController>().isDarkMode.value
+                        ? const Color(0xFFF68889)
+                        : const Color(0xFFE94043)
+                    : AppColor.black,
               ),
               Expanded(
                 child: Text(
