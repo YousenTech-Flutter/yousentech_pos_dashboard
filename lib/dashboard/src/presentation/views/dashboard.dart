@@ -1194,38 +1194,36 @@ class ButtonsToContinueOrStop extends StatelessWidget {
           child: Row(
             spacing: context.setWidth(5),
             children: [
-              SvgPicture.asset(
-                image,
-                package: 'shared_widgets',
-                width: context.setWidth(28.5),
-                height: context.setHeight(28.5),
-                color: addBorderSide
-                    ? Get.find<ThemeController>().isDarkMode.value
-                        ? const Color(0xFFF68889)
-                        : const Color(0xFFE94043)
-                    : AppColor.black,
+              Container(
+                color: Colors.black,
+                child: SvgPicture.asset(
+                  image,
+                  package: 'shared_widgets',
+                  width: context.setWidth(28.5),
+                  height: context.setHeight(28.5),
+                  color: addBorderSide
+                      ? Get.find<ThemeController>().isDarkMode.value
+                          ? const Color(0xFFF68889)
+                          : const Color(0xFFE94043)
+                      : AppColor.black,
+                ),
               ),
               Expanded(
-                child: Padding(
-                  padding: EdgeInsets.only(top: context.setHeight(4.3)),
-                  child: Center(
-                    child: Text(
-                      data,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: addBorderSide
-                            ? Get.find<ThemeController>().isDarkMode.value
-                                ? const Color(0xFFF68889)
-                                : const Color(0xFFE94043)
-                            : const Color(0xFF032A2E),
-                        fontSize: context.setSp(16.10),
-                        fontFamily: DeviceUtils.isMobile(context)
-                            ? 'SansMedium'
-                            : 'Tajawal',
-                        fontWeight: FontWeight.w500,
-                        height: 1.43,
-                      ),
-                    ),
+                child: Text(
+                  data,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: addBorderSide
+                        ? Get.find<ThemeController>().isDarkMode.value
+                            ? const Color(0xFFF68889)
+                            : const Color(0xFFE94043)
+                        : const Color(0xFF032A2E),
+                    fontSize: context.setSp(16.10),
+                    fontFamily: DeviceUtils.isMobile(context)
+                        ? 'SansMedium'
+                        : 'Tajawal',
+                    fontWeight: FontWeight.w500,
+                    height: 1.43,
                   ),
                 ),
               ),
