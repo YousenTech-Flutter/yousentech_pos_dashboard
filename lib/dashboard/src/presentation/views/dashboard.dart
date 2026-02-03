@@ -1094,6 +1094,7 @@ class _PosCardState extends State<PosCard> {
                 image: AppImages.stop,
                 data: "startNewSession".tr,
                 addBorderSide: false,
+                isStartButton: true,
                 color: const Color(0xFFF2AC57),
               ),
             ],
@@ -1159,11 +1160,13 @@ class ButtonsToContinueOrStop extends StatelessWidget {
   String image;
   String data;
   bool addBorderSide;
+  bool isStartButton;
   void Function()? onTap;
   ButtonsToContinueOrStop({
     super.key,
     this.color,
     this.addBorderSide = false,
+    this.isStartButton = false,
     required this.data,
     required this.image,
     required this.onTap,
@@ -1192,7 +1195,7 @@ class ButtonsToContinueOrStop extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.all(context.setMinSize(10)),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center, 
+            mainAxisAlignment: MainAxisAlignment.center,
             spacing: context.setWidth(5),
             children: [
               SvgPicture.asset(
@@ -1206,10 +1209,9 @@ class ButtonsToContinueOrStop extends StatelessWidget {
                         : const Color(0xFFE94043)
                     : AppColor.black,
               ),
-              Expanded(
-                child: Text(
+              if (isStartButton) ...[
+                Text(
                   data,
-                  textAlign: TextAlign.center,
                   style: TextStyle(
                     color: addBorderSide
                         ? Get.find<ThemeController>().isDarkMode.value
@@ -1224,7 +1226,27 @@ class ButtonsToContinueOrStop extends StatelessWidget {
                     height: 1.43,
                   ),
                 ),
-              ),
+              ] else ...[
+                Expanded(
+                  child: Text(
+                    data,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: addBorderSide
+                          ? Get.find<ThemeController>().isDarkMode.value
+                              ? const Color(0xFFF68889)
+                              : const Color(0xFFE94043)
+                          : const Color(0xFF032A2E),
+                      fontSize: context.setSp(16.10),
+                      fontFamily: DeviceUtils.isMobile(context)
+                          ? 'SansMedium'
+                          : 'Tajawal',
+                      fontWeight: FontWeight.w500,
+                      height: 1.43,
+                    ),
+                  ),
+                ),
+              ]
             ],
           ),
         ),
@@ -1766,7 +1788,7 @@ Row legenSubdetail(
     mainAxisSize: MainAxisSize.min,
     children: [
       Container(
-        width: context.setWidth(DeviceUtils.isMobile(context) ?20 : 30),
+        width: context.setWidth(DeviceUtils.isMobile(context) ? 20 : 30),
         height: context.setHeight(13),
         decoration: BoxDecoration(
           color: color,
@@ -1781,9 +1803,10 @@ Row legenSubdetail(
               child: Text(
                 text,
                 style: TextStyle(
-                  overflow:TextOverflow.ellipsis ,
+                  overflow: TextOverflow.ellipsis,
                   color: const Color(0xFF6E6E6E),
-                  fontSize: context.setSp(DeviceUtils.isMobile(context) ? 12 : 14),
+                  fontSize:
+                      context.setSp(DeviceUtils.isMobile(context) ? 12 : 14),
                   fontFamily:
                       DeviceUtils.isMobile(context) ? 'SansMedium' : 'Tajawal',
                   fontWeight: FontWeight.w400,
@@ -1795,9 +1818,10 @@ Row legenSubdetail(
               child: Text(
                 "$percentage %",
                 style: TextStyle(
-                  overflow:TextOverflow.ellipsis ,
+                  overflow: TextOverflow.ellipsis,
                   color: const Color(0xFF6E6E6E),
-                  fontSize: context.setSp(DeviceUtils.isMobile(context) ? 12 : 14),
+                  fontSize:
+                      context.setSp(DeviceUtils.isMobile(context) ? 12 : 14),
                   fontFamily:
                       DeviceUtils.isMobile(context) ? 'SansMedium' : 'Tajawal',
                   fontWeight: FontWeight.w400,
