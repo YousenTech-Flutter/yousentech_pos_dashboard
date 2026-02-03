@@ -43,7 +43,7 @@ class _HomeState extends State<Home> {
       return SafeArea(
         child: Scaffold(
           resizeToAvoidBottomInset: false,
-          bottomNavigationBar: appNavigationBar(),
+          bottomNavigationBar:DeviceUtils.isMobile(context)?  appNavigationBar() : null,
           appBar: customAppBar(
             context: context,
             isMobile: DeviceUtils.isMobile(context),
