@@ -394,6 +394,7 @@ class BottomNavigationBar extends StatelessWidget {
 }
 
 Widget getHomeMenu({required int index, isMobile = false}) {
+  print("isMobile==========$isMobile");
   switch (index) {
     case 0:
       return isMobile ? DashboardMobile() : Dashboard();
