@@ -516,7 +516,7 @@ class AmountTotalCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: context.setHeight(97),
+      height: DeviceUtils.isMobile(context) ? null : context.setHeight(97),
       decoration: ShapeDecoration(
         color: Get.find<ThemeController>().isDarkMode.value
             ? Colors.black.withValues(alpha: 0.17)
