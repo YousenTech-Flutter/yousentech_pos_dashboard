@@ -285,8 +285,8 @@ class _HomeState extends State<Home> {
                     appNavigationBarItems.length,
                     (int index) => NavigationDestination(
                       icon: SizedBox(
-                        width: context.setWidth(45),
-                        height: context.setHeight(45),
+                        width: context.setWidth(40),
+                        height: context.setHeight(40),
                         child: SvgPicture.asset(
                           appNavigationBarItems[index]["image"]!,
                           package: 'shared_widgets',
