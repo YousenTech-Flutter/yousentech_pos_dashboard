@@ -285,8 +285,8 @@ class _HomeState extends State<Home> {
                     appNavigationBarItems.length,
                     (int index) => NavigationDestination(
                       icon: SizedBox(
-                        width: context.setWidth(40),
-                        height: context.setHeight(40),
+                        width: context.setWidth(45),
+                        height: context.setHeight(45),
                         child: SvgPicture.asset(
                           appNavigationBarItems[index]["image"]!,
                           package: 'shared_widgets',
@@ -299,6 +299,17 @@ class _HomeState extends State<Home> {
                           
                         ),
                       ),
+                      selectedIcon:SizedBox(
+                        width: context.setWidth(35),
+                        height: context.setHeight(35),
+                        child: SvgPicture.asset(
+                          appNavigationBarItems[index]["image"]!,
+                          package: 'shared_widgets',
+                          fit: BoxFit.contain,
+                          color: AppColor.appColor 
+                          
+                        ),
+                      ) ,
                       label: appNavigationBarItems[index]["name"]!.tr,
                       tooltip: appNavigationBarItems[index]["name"]!.tr,
                     ),
