@@ -284,16 +284,20 @@ class _HomeState extends State<Home> {
                   destinations: List.generate(
                     appNavigationBarItems.length,
                     (int index) => NavigationDestination(
-                      icon: SvgPicture.asset(
-                        appNavigationBarItems[index]["image"]!,
-                        package: 'shared_widgets',
-                        color: _navIndex == index
-                            ? AppColor.appColor
-                            : Get.find<ThemeController>().isDarkMode.value
-                                ? AppColor.white
-                                : AppColor.black,
+                      icon: SizedBox(
                         width: context.setWidth(30),
-                        height: context.setHeight(30),
+                          height: context.setHeight(30),
+                        child: SvgPicture.asset(
+                          appNavigationBarItems[index]["image"]!,
+                          package: 'shared_widgets',
+                          fit: BoxFit.contain,
+                          color: _navIndex == index
+                              ? AppColor.appColor
+                              : Get.find<ThemeController>().isDarkMode.value
+                                  ? AppColor.white
+                                  : AppColor.black,
+                          
+                        ),
                       ),
                       label: appNavigationBarItems[index]["name"]!.tr,
                       tooltip: appNavigationBarItems[index]["name"]!.tr,
