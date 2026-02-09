@@ -417,7 +417,7 @@ Widget getHomeMenu({required int index, isMobile = false}) {
 var appNavigationBarItems = [
   {
     "name": "home",
-    "image": AppImages.home2,
+    "image": AppImages.home,
   },
   // {
   //   "name": "dashboard",
