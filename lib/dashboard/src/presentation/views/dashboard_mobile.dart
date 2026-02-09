@@ -312,37 +312,31 @@ class _DashboardMobileState extends State<DashboardMobile> {
                             child: Column(
                               spacing: context.setHeight(10),
                               children: [
-                                Expanded(
-                                  child: AmountTotalCard(
-                                    title: InfoTotalCard.totalSales.text.tr,
-                                    total: controller.formatter.format(
-                                      controller.finalReportInfo?.totalOutInvoice ??
-                                          0.0,
-                                    ),
-                                    image: AppImages.div2,
-                                    color: const Color(0xFF27AE60),
+                                AmountTotalCard(
+                                  title: InfoTotalCard.totalSales.text.tr,
+                                  total: controller.formatter.format(
+                                    controller.finalReportInfo?.totalOutInvoice ??
+                                        0.0,
                                   ),
+                                  image: AppImages.div2,
+                                  color: const Color(0xFF27AE60),
                                 ),
-                                Expanded(
-                                  child: AmountTotalCard(
-                                    title: InfoTotalCard.netIncome.text.tr,
-                                    total: controller.formatter.format(
-                                      controller.finalReportInfo?.netSales ?? 0.0,
-                                    ),
-                                    image: AppImages.div1,
-                                    color: const Color(0x1916A6B7),
+                                AmountTotalCard(
+                                  title: InfoTotalCard.netIncome.text.tr,
+                                  total: controller.formatter.format(
+                                    controller.finalReportInfo?.netSales ?? 0.0,
                                   ),
+                                  image: AppImages.div1,
+                                  color: const Color(0x1916A6B7),
                                 ),
-                                Expanded(
-                                  child: AmountTotalCard(
-                                    title: InfoTotalCard.totalReturns.text.tr,
-                                    total: controller.formatter.format(
-                                      controller.finalReportInfo?.totalOutRefund ??
-                                          0.0,
-                                    ),
-                                    image: AppImages.div,
-                                    color: const Color(0xFFF2AC57),
+                                AmountTotalCard(
+                                  title: InfoTotalCard.totalReturns.text.tr,
+                                  total: controller.formatter.format(
+                                    controller.finalReportInfo?.totalOutRefund ??
+                                        0.0,
                                   ),
+                                  image: AppImages.div,
+                                  color: const Color(0xFFF2AC57),
                                 ),
                               ],
                             ),
