@@ -264,8 +264,8 @@ class _HomeState extends State<Home> {
                       );
                     },
                   ),
-                  labelBehavior:
-                      NavigationDestinationLabelBehavior.onlyShowSelected,
+                  // labelBehavior:
+                  //     NavigationDestinationLabelBehavior.onlyShowSelected,
                   selectedIndex: _navIndex,
                   onDestinationSelected: (value) {
                     if ((value == 4 &&
