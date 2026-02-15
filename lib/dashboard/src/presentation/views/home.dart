@@ -43,7 +43,8 @@ class _HomeState extends State<Home> {
       return SafeArea(
         child: Scaffold(
           resizeToAvoidBottomInset: false,
-          bottomNavigationBar:DeviceUtils.isMobile(context)?  appNavigationBar() : null,
+          bottomNavigationBar:
+              DeviceUtils.isMobile(context) ? appNavigationBar() : null,
           appBar: customAppBar(
             context: context,
             isMobile: DeviceUtils.isMobile(context),
@@ -248,7 +249,8 @@ class _HomeState extends State<Home> {
                 ),
               ),
               child: NavigationBar(
-                  height: context.setHeight(60),
+                  // height: context.setHeight(60),
+                  height: kBottomNavigationBarHeight + 10,
                   elevation: 0,
                   backgroundColor: Get.find<ThemeController>().isDarkMode.value
                       ? const Color(0xFF1B1B1B)
@@ -256,9 +258,14 @@ class _HomeState extends State<Home> {
                   indicatorColor: AppColor.appColor.withAlpha(20),
                   labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>(
                     (Set<WidgetState> states) {
+                      final isSelected = states.contains(WidgetState.selected);
                       return TextStyle(
                         fontSize: context.setSp(12),
-                        color: AppColor.appColor,
+                        color: isSelected
+                            ? AppColor.appColor
+                            : Get.find<ThemeController>().isDarkMode.value
+                                ? AppColor.white
+                                : AppColor.black,
                         fontFamily: 'SansMedium',
                         fontWeight: FontWeight.w400,
                       );
@@ -269,10 +276,11 @@ class _HomeState extends State<Home> {
                   selectedIndex: _navIndex,
                   onDestinationSelected: (value) {
                     if ((value == 4 &&
-                        SharedPr.userObj!.showPosAppSettings == false)||
-                        (value == 3 && (SharedPr.currentPosObject!.showFinalReportForCurrentSession == false))
-                        
-                        ) {
+                            SharedPr.userObj!.showPosAppSettings == false) ||
+                        (value == 3 &&
+                            (SharedPr.currentPosObject!
+                                    .showFinalReportForCurrentSession ==
+                                false))) {
                       appSnackBar(
                           messageType: MessageTypes.warning,
                           message: 'permission_issue'.tr);
@@ -296,20 +304,17 @@ class _HomeState extends State<Home> {
                               : Get.find<ThemeController>().isDarkMode.value
                                   ? AppColor.white
                                   : AppColor.black,
-                          
                         ),
                       ),
-                      selectedIcon:SizedBox(
+                      selectedIcon: SizedBox(
                         width: context.setWidth(35),
                         height: context.setHeight(35),
                         child: SvgPicture.asset(
-                          appNavigationBarItems[index]["image"]!,
-                          package: 'shared_widgets',
-                          fit: BoxFit.contain,
-                          color: AppColor.appColor 
-                          
-                        ),
-                      ) ,
+                            appNavigationBarItems[index]["image"]!,
+                            package: 'shared_widgets',
+                            fit: BoxFit.contain,
+                            color: AppColor.appColor),
+                      ),
                       label: appNavigationBarItems[index]["name"]!.tr,
                       tooltip: appNavigationBarItems[index]["name"]!.tr,
                     ),
