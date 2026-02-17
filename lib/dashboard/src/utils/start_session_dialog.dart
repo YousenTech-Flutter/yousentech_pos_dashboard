@@ -69,7 +69,6 @@ void startNewSession({required BuildContext context}) {
           height: context.setHeight(220),
           child: Container(
             width: context.setWidth(454.48),
-            height: context.setHeight(220),
             padding: EdgeInsets.all(context.setMinSize(20)),
             child: Obx(
               () => IgnorePointer(
@@ -79,6 +78,7 @@ void startNewSession({required BuildContext context}) {
                     Form(
                       key: formKey,
                       child: Column(
+                        mainAxisSize: MainAxisSize.min,
                         spacing: context.setHeight(20),
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -90,8 +90,8 @@ void startNewSession({required BuildContext context}) {
                                   Get.find<ThemeController>().isDarkMode.value
                                       ? AppColor.white
                                       : AppColor.black,
-                              fontSize: context.setSp(20.03),
-                              fontFamily: 'Tajawal',
+                              fontSize: context.setSp(DeviceUtils.isMobile(context) ? 16 : 20.03),
+                              fontFamily: DeviceUtils.isMobile(context) ?'SansMedium' : 'Tajawal',
                               fontWeight: FontWeight.w700,
                             ),
                           ),
@@ -100,9 +100,9 @@ void startNewSession({required BuildContext context}) {
                             controller: sessionController.price,
                             focusNode: focusPrice,
                             width: context.screenWidth,
-                            height: context.setHeight(51.28),
+                            height: context.setHeight(DeviceUtils.isMobile(context) ? 40 : 51.28),
                             fontSize: context.setSp(12),
-                            testFontSize: context.setSp(16),
+                            testFontSize: context.setSp(15),
                             borderColor:
                                 !Get.find<ThemeController>().isDarkMode.value
                                     ? const Color(0xFFC2C3CB)
@@ -164,17 +164,17 @@ void startNewSession({required BuildContext context}) {
                               onPressed();
                             },
                           ),
-                          Spacer(),
+                          // Spacer(),
                           ButtonElevated(
                             height: context.setHeight(35),
                             width: double.infinity,
                             text: "startNewSession".tr,
                             borderRadius: context.setMinSize(5),
                             textStyle: TextStyle(
-                              fontSize: context.setSp(14),
+                              fontSize: context.setSp(DeviceUtils.isMobile(context) ? 14 : 18),
                               color: AppColor.white,
                               fontWeight: FontWeight.bold,
-                              fontFamily: 'Tajawal',
+                              fontFamily: DeviceUtils.isMobile(context) ?'SansMedium' : 'Tajawal',
                             ),
                             backgroundColor: AppColor.cyanTeal,
                             onPressed: onPressed,
