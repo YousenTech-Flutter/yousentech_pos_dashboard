@@ -63,130 +63,125 @@ void startNewSession({required BuildContext context}) {
     barrierDismissible: true,
     content: Builder(
       builder: (context) {
-        return SizeProvider(
-          baseSize: Size(context.setWidth(454.48), context.setHeight(220)),
+        return Container(
           width: context.setWidth(454.48),
-          height: context.setHeight(220),
-          child: Container(
-            width: context.setWidth(454.48),
-            padding: EdgeInsets.all(context.setMinSize(20)),
-            child: Obx(
-              () => IgnorePointer(
-                ignoring: sessionController.isLoading.value,
-                child: Stack(
-                  children: [
-                    Form(
-                      key: formKey,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        spacing: context.setHeight(20),
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "startNewSession".tr,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color:
-                                  Get.find<ThemeController>().isDarkMode.value
-                                      ? AppColor.white
-                                      : AppColor.black,
-                              fontSize: context.setSp(DeviceUtils.isMobile(context) ? 16 : 20.03),
-                              fontFamily: DeviceUtils.isMobile(context) ?'SansMedium' : 'Tajawal',
-                              fontWeight: FontWeight.w700,
+          padding: EdgeInsets.all(context.setMinSize(20)),
+          child: Obx(
+            () => IgnorePointer(
+              ignoring: sessionController.isLoading.value,
+              child: Stack(
+                children: [
+                  Form(
+                    key: formKey,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      spacing: context.setHeight(20),
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "startNewSession".tr,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color:
+                                Get.find<ThemeController>().isDarkMode.value
+                                    ? AppColor.white
+                                    : AppColor.black,
+                            fontSize: context.setSp(DeviceUtils.isMobile(context) ? 16 : 20.03),
+                            fontFamily: DeviceUtils.isMobile(context) ?'SansMedium' : 'Tajawal',
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+        
+                        ContainerTextField(
+                          controller: sessionController.price,
+                          focusNode: focusPrice,
+                          width: context.screenWidth,
+                          height: context.setHeight(DeviceUtils.isMobile(context) ? 40 : 51.28),
+                          fontSize: context.setSp(12),
+                          testFontSize: context.setSp(15),
+                          borderColor:
+                              !Get.find<ThemeController>().isDarkMode.value
+                                  ? const Color(0xFFC2C3CB)
+                                  : null,
+                          fillColor:
+                              !Get.find<ThemeController>().isDarkMode.value
+                                  ? AppColor.white.withValues(alpha: 0.43)
+                                  : const Color(0xFF2B2B2B),
+                          hintcolor:
+                              !Get.find<ThemeController>().isDarkMode.value
+                                  ? const Color(0xFFC2C3CB)
+                                  : const Color(0xFFC2C3CB),
+                          color: !Get.find<ThemeController>().isDarkMode.value
+                              ? const Color(0xFFC2C3CB)
+                              : const Color(0xFFC2C3CB),
+                          contentPadding: EdgeInsets.fromLTRB(
+                            context.setWidth(
+                              14.82,
+                            ),
+                            context.setHeight(
+                              15.22,
+                            ),
+                            context.setWidth(
+                              14.82,
+                            ),
+                            context.setHeight(
+                              15.22,
                             ),
                           ),
-
-                          ContainerTextField(
-                            controller: sessionController.price,
-                            focusNode: focusPrice,
-                            width: context.screenWidth,
-                            height: context.setHeight(DeviceUtils.isMobile(context) ? 40 : 51.28),
-                            fontSize: context.setSp(12),
-                            testFontSize: context.setSp(15),
-                            borderColor:
-                                !Get.find<ThemeController>().isDarkMode.value
-                                    ? const Color(0xFFC2C3CB)
-                                    : null,
-                            fillColor:
-                                !Get.find<ThemeController>().isDarkMode.value
-                                    ? AppColor.white.withValues(alpha: 0.43)
-                                    : const Color(0xFF2B2B2B),
-                            hintcolor:
-                                !Get.find<ThemeController>().isDarkMode.value
-                                    ? const Color(0xFFC2C3CB)
-                                    : const Color(0xFFC2C3CB),
-                            color: !Get.find<ThemeController>().isDarkMode.value
-                                ? const Color(0xFFC2C3CB)
-                                : const Color(0xFFC2C3CB),
-                            contentPadding: EdgeInsets.fromLTRB(
-                              context.setWidth(
-                                14.82,
-                              ),
-                              context.setHeight(
-                                15.22,
-                              ),
-                              context.setWidth(
-                                14.82,
-                              ),
-                              context.setHeight(
-                                15.22,
+                          isAddOrEdit: true,
+                          borderRadius: context.setMinSize(5),
+                          hintText: 'openingBalanceSession'.tr,
+                          labelText: 'openingBalanceSession'.tr,
+                          prefixIcon: Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: context.setWidth(
+                                14,
                               ),
                             ),
-                            isAddOrEdit: true,
-                            borderRadius: context.setMinSize(5),
-                            hintText: 'openingBalanceSession'.tr,
-                            labelText: 'openingBalanceSession'.tr,
-                            prefixIcon: Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: context.setWidth(
-                                  14,
-                                ),
-                              ),
-                              child: Icon(
-                                Icons.price_change_outlined,
-                                size: context.setMinSize(25),
-                                color: AppColor.appColor,
-                              ),
+                            child: Icon(
+                              Icons.price_change_outlined,
+                              size: context.setMinSize(25),
+                              color: AppColor.appColor,
                             ),
-                            keyboardType: TextInputType.number,
-                            inputFormatters: [
-                              FilteringTextInputFormatter.allow(
-                                RegExp('[0-9\$]+'),
-                              ),
-                            ],
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return "requiedField".tr;
-                              }
-                              return null;
-                            },
-                            onFieldSubmitted: (value) async {
-                              onPressed();
-                            },
                           ),
-                          // Spacer(),
-                          ButtonElevated(
-                            height: context.setHeight(35),
-                            width: double.infinity,
-                            text: "startNewSession".tr,
-                            borderRadius: context.setMinSize(5),
-                            textStyle: TextStyle(
-                              fontSize: context.setSp(DeviceUtils.isMobile(context) ? 14 : 18),
-                              color: AppColor.white,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: DeviceUtils.isMobile(context) ?'SansMedium' : 'Tajawal',
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.allow(
+                              RegExp('[0-9\$]+'),
                             ),
-                            backgroundColor: AppColor.cyanTeal,
-                            onPressed: onPressed,
-                          ), // Return an empty widget when not loading
-                        ],
-                      ),
+                          ],
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "requiedField".tr;
+                            }
+                            return null;
+                          },
+                          onFieldSubmitted: (value) async {
+                            onPressed();
+                          },
+                        ),
+                        // Spacer(),
+                        ButtonElevated(
+                          height: context.setHeight(35),
+                          width: double.infinity,
+                          text: "startNewSession".tr,
+                          borderRadius: context.setMinSize(5),
+                          textStyle: TextStyle(
+                            fontSize: context.setSp(DeviceUtils.isMobile(context) ? 14 : 18),
+                            color: AppColor.white,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: DeviceUtils.isMobile(context) ?'SansMedium' : 'Tajawal',
+                          ),
+                          backgroundColor: AppColor.cyanTeal,
+                          onPressed: onPressed,
+                        ), // Return an empty widget when not loading
+                      ],
                     ),
-                    sessionController.isLoading.value
-                        ? const LoadingWidget()
-                        : Container(),
-                  ],
-                ),
+                  ),
+                  sessionController.isLoading.value
+                      ? const LoadingWidget()
+                      : Container(),
+                ],
               ),
             ),
           ),
