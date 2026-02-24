@@ -295,7 +295,8 @@ class _DashboardMobileState extends State<DashboardMobile> {
                   color: Get.find<ThemeController>().isDarkMode.value
                       ? AppColor.white
                       : AppColor.black,
-                  fontSize: context.setSp(20.09),
+                  // fontSize: context.setSp(20.09),
+                  fontSize: context.setSp(22),
                   fontFamily: 'SansBold',
                   fontWeight: FontWeight.w600,
                 ),
@@ -474,9 +475,11 @@ class ProductAndCustomerWidget extends StatelessWidget {
                             ? const Color(0x26F7F7F7)
                             : const Color(0x268B8B8B),
                     valueColor: AlwaysStoppedAnimation<Color>(
-                        Get.find<ThemeController>().isDarkMode.value
-                            ? const Color(0xFF18BBCD)
-                            : const Color(0xFF16A6B7)),
+                          AppColor.appColor
+                        // Get.find<ThemeController>().isDarkMode.value
+                            // ? const Color(0xFF18BBCD)
+                            // : const Color(0xFF16A6B7)
+                            ),
                   ),
                   Text(
                     '$syncData%',
@@ -500,7 +503,8 @@ class ProductAndCustomerWidget extends StatelessWidget {
                     color: Get.find<ThemeController>().isDarkMode.value
                         ? AppColor.white
                         : AppColor.black,
-                    fontSize: context.setSp(14.80),
+                    // fontSize: context.setSp(14.80),
+                    fontSize: context.setSp(16),
                     fontFamily: 'SansMedium',
                     fontWeight: FontWeight.w500,
                     height: 1.43,
@@ -509,7 +513,7 @@ class ProductAndCustomerWidget extends StatelessWidget {
                 Text.rich(
                   TextSpan(
                     style: TextStyle(
-                      color: const Color(0xFF16A6B7),
+                      color: AppColor.appColor,
                       fontSize: context.setSp(12.69),
                       fontFamily: 'Tajawal',
                       fontWeight: FontWeight.w700,

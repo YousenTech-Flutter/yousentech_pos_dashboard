@@ -559,7 +559,7 @@ class AmountTotalCard extends StatelessWidget {
                         // ? const Color(0xFF9C9C9C)
                         ? Color(0xFFB1B3BC)
                         : const Color(0xFF463F3F),
-                    fontSize: context.setSp(16),
+                    fontSize: context.setSp(DeviceUtils.isMobile(context) ? 14 :16),
                     fontFamily:
                         DeviceUtils.isMobile(context) ? 'SansBold' : 'Tajawal',
                     fontWeight: FontWeight.w500,
@@ -577,7 +577,7 @@ class AmountTotalCard extends StatelessWidget {
                             ? const Color(0xFFDDDDDD)
                             : const Color(0xFF2E2E2E),
                         fontSize: context
-                            .setSp(DeviceUtils.isMobile(context) ? 14 : 18),
+                            .setSp(DeviceUtils.isMobile(context) ? 22 : 18),
                         fontFamily: DeviceUtils.isMobile(context)
                             ? 'SansMedium'
                             : 'Tajawal',
