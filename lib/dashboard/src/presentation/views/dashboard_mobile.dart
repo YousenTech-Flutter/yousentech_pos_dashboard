@@ -69,7 +69,7 @@ class _DashboardMobileState extends State<DashboardMobile> {
         Padding(
           padding: EdgeInsets.only(
             top: context.setHeight(16),
-            bottom: context.setHeight(5),
+            bottom: context.setHeight(10),
             right: context.setWidth(10),
             left: context.setWidth(10),
           ),
