@@ -114,7 +114,7 @@ class _ProgressWidgetState extends State<ProgressWidget> {
                                 width: context.setWidth(454.48),
                                 child: LinearProgressIndicator(
                                   color: AppColor.appColor,
-                                  backgroundColor:AppColor.appColor.withAlpha(6) ,
+                                  // backgroundColor:AppColor.appColor.withAlpha(6) ,
                                   borderRadius: BorderRadius.circular(
                                     context.setMinSize(10),
                                   ),
