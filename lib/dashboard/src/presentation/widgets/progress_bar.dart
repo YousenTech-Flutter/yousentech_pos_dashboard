@@ -66,7 +66,7 @@ class _ProgressWidgetState extends State<ProgressWidget> {
                                       color:Get.find<ThemeController>().isDarkMode.value 
                                               ? AppColor.white : AppColor.black,
                                       // fontSize: context.setSp(16),
-                                      fontSize: context.setSp(24),
+                                      fontSize: context.setSp(22),
                                       fontWeight: FontWeight.w500,
                                       height: 1.43,
                                     ),
@@ -78,7 +78,8 @@ class _ProgressWidgetState extends State<ProgressWidget> {
                                           color:Get.find<ThemeController>().isDarkMode.value 
                                               ? AppColor.white : AppColor.black,
                                           
-                                          fontSize: context.setSp(16),
+                                          // fontSize: context.setSp(16),
+                                          fontSize: context.setSp(22),
                                           fontWeight: FontWeight.w500,
                                           height: 1.43,
                                         ),
@@ -88,7 +89,8 @@ class _ProgressWidgetState extends State<ProgressWidget> {
                                         style: TextStyle(
                                           color:Get.find<ThemeController>().isDarkMode.value 
                                               ? AppColor.white : AppColor.black,
-                                          fontSize: context.setSp(16),
+                                          // fontSize: context.setSp(16),
+                                          fontSize: context.setSp(22),
                                           fontWeight: FontWeight.w500,
                                           height: 1.43,
                                         ),
@@ -100,7 +102,8 @@ class _ProgressWidgetState extends State<ProgressWidget> {
                                         style: TextStyle(
                                           color:Get.find<ThemeController>().isDarkMode.value 
                                               ? AppColor.white : AppColor.black,
-                                          fontSize: context.setSp(16),
+                                          // fontSize: context.setSp(16),
+                                          fontSize: context.setSp(22),
                                           fontWeight: FontWeight.w500,
                                           height: 1.43,
                                         ),
