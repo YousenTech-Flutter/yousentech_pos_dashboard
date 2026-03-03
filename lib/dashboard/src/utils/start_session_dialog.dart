@@ -29,6 +29,7 @@ void startNewSession({required BuildContext context}) {
   });
 
   onPressed() async {
+    FocusManager.instance.primaryFocus?.unfocus();
     sessionController.isLoading.value = true;
     ResponseResult result = await sessionController.openOrResumeSession(
       balance: sessionController.price.text.isNotEmpty
